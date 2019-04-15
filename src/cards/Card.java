@@ -13,6 +13,10 @@ public abstract class Card{
         this.price = price;
     }
 
+    public Card(){
+
+    }
+
     public String getName() {
         return name;
     }
