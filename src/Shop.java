@@ -40,6 +40,35 @@ public class Shop {
         }
     }
 
+    private void sell(Account account, String name) {
+        if (findCard(name) == null && findItem(name) == null) {
+            System.out.println("this card/item doesn't exist in the shop");
+            return;
+        } else if (findCard(name) != null){
+            account.buyCard(findCard(name));
+            return;
+        } else {
+            account.buyItem(findItem(name));
+            return;
+        }
+    }
+
+    private Card findCard(String name) {
+        for (Card card : cards) {
+            if (card.getName().compareTo(name) == 0)
+                return card;
+        }
+        return null;
+    }
+
+    private Item findItem(String name) {
+        for (Item item : items) {
+            if (item.getName().compareTo(name) == 0)
+                return item;
+        }
+        return null;
+    }
+
     private void show() {
         showItems();
         showHeroes();
