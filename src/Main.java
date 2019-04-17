@@ -31,7 +31,7 @@ public class Main {
     }
 
     private static void singIn() {
-        showTextForSingIn();
+        showTextForSignIn();
       //  Account.singIn(scanner.nextLine(), scanner.nextLine());
     }
 
@@ -51,14 +51,14 @@ public class Main {
     }
 
     private static void showInvalidCommand() {
-        System.out.println("Invalid command please use Help to show menu");
+        System.out.println("Invalid command, please use 'help' to show menu");
     }
 
     private static void showTextForInsertUserName(){
         System.out.println("please insert user name");
     }
 
-    private static void showTextForSingIn(){
+    private static void showTextForSignIn(){
         System.out.println("please insert user name and password");
     }
 }
