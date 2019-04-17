@@ -40,6 +40,17 @@ public class Shop {
         }
     }
 
+    private void search(String name) {
+        for (Card card : cards) {
+            if (card.getName().compareTo(name) == 0)
+                System.out.println(card.getName() + " - " + card.getDescription() + " - " + card.getPrice());
+        }
+        for (Item item : items) {
+            if (item.getName().compareTo(name) == 0)
+                System.out.println(item.getName() + " - " + item.getDescription() + " - " + item.getPrice());
+        }
+    }
+
     private void sell(Account account, String name) {
         if (findCard(name) == null && findItem(name) == null) {
             System.out.println("this card/item doesn't exist in the shop");
@@ -81,9 +92,10 @@ public class Shop {
         System.out.println("Minions : ");
         for (Card card : cards) {
             if (card instanceof Minion) {
-                System.out.println("        " + i + ". Name : " + card.getName() + " - Class : " + ((Minion) card).getAttackType() + " - AP : " + ((Minion) card).getAP() +
-                        " - HP : " + ((Minion) card).getHP() + " - MP : " + ((Minion) card).getMP() + " - Special Power : " + ((Minion) card).getSpecialPower() +
-                        "Buy Cost : " + card.getPrice());
+                System.out.println("        " + i + ". Name : " + card.getName() + " - Class : " +
+                        ((Minion) card).getAttackType() + " - AP : " + ((Minion) card).getAP() + " - HP : " +
+                        ((Minion) card).getHP() + " - MP : " + ((Minion) card).getMP() + " - Special Power : " +
+                        card.getDescription() + "Buy Cost : " + card.getPrice());
                 i++;
             }
         }
@@ -95,7 +107,7 @@ public class Shop {
         for (Card card : cards) {
             if (card instanceof Spell) {
                 System.out.println("        " + i + ". Name : " + card.getName() + " - MP : " + ((Spell) card).getMP()
-                        + " - Desc" + ((Spell) card).getDesc() + "Buy Cost : " + card.getPrice());
+                        + " - Desc" + card.getDescription() + "Buy Cost : " + card.getPrice());
                 i++;
             }
         }
@@ -117,7 +129,7 @@ public class Shop {
         for (Card card : cards) {
             if (card instanceof Hero) {
                 System.out.println("        " + i + ". Name : " + card.getName() + " - AP : " + ((Hero) card).getAP() +
-                        " - HP : " + ((Hero) card).getHP() + " - Special Power : " + ((Hero) card).getSpecialPower() +
+                        " - HP : " + ((Hero) card).getHP() + " - Special Power : " + card.getDescription() +
                         "Buy Cost : " + card.getPrice());
                 i++;
             }
