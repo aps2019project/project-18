@@ -1,9 +1,11 @@
 import cards.Card;
+import cards.Spell;
 
 import java.util.ArrayList;
 
 public class Deck {
     private String name;
+    private Hero hero;
     private ArrayList<Card> cards = new ArrayList<Card>();
     private Item item = null;
 
@@ -21,16 +23,27 @@ public class Deck {
     }
 
     public void addCard(Card card) {
-        if (cards.size() < 20 && findCard(card.getId()) == null) {
-            cards.add(card);
-            System.out.println("card added");
-            return;
-        } else if (cards.size() == 20) {
-            System.out.println("deck is full");
-            return;
+        if (card instanceof Hero) {
+            if (hero == null) {
+                hero = (Hero) card;
+                System.out.println("card added");
+                return;
+            } else {
+                System.out.println("deck already has a hero");
+                return;
+            }
         } else {
-            System.out.println("card already in deck");
-            return;
+            if (cards.size() < 20 && findCard(card.getId()) == null) {
+                cards.add(card);
+                System.out.println("card added");
+                return;
+            } else if (cards.size() == 20) {
+                System.out.println("deck is full");
+                return;
+            } else {
+                System.out.println("card already in deck");
+                return;
+            }
         }
     }
 
@@ -67,5 +80,40 @@ public class Deck {
         }
     }
 
+    public boolean checkValidity() {
+        if (hero == null || cards.size() < 20)
+            return false;
+        return true;
+    }
 
+    public void showDeck() {
+        if (hero != null) {
+            System.out.println("Hero :");
+            System.out.println("        " + ". Name : " + hero.getName() + " - AP : " + hero.getAP() +
+                    " - HP : " + hero.getHP() + " - Special Power : " + hero.getDescription() +
+                    "Buy Cost : " + hero.getPrice());
+        }
+        if (cards.size() > 0)
+            System.out.println("Cards : ");
+        int i = 1;
+        for (Card card : cards) {
+            if (card instanceof Minion) {
+                System.out.println("        " + i + ". Name : " + card.getName() + " - Class : " +
+                        ((Minion) card).getAttackType() + " - AP : " + ((Minion) card).getAP() + " - HP : " +
+                        ((Minion) card).getHP() + " - MP : " + ((Minion) card).getMP() + " - Special Power : " +
+                        card.getDescription() + "Buy Cost : " + card.getPrice());
+                i++;
+            }
+            if (card instanceof Spell) {
+                System.out.println("        " + i + ". Name : " + card.getName() + " - MP : " + ((Spell) card).getMP()
+                        + " - Desc" + card.getDescription() + "Buy Cost : " + card.getPrice());
+                i++;
+            }
+        }
+        if (item != null) {
+            System.out.println("Item :");
+                System.out.println("        " + ". Name : " + item.getName() + " - Desc : " + item.getDesc() +
+                        " - Buy Cost : " + item.getPrice());
+        }
+    }
 }
