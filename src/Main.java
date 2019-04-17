@@ -18,9 +18,9 @@ public class Main {
 
     private static void doOrder(String input) {
         if (input.equalsIgnoreCase("sign in")) {
-            singIn();
+            signIn();
         } else if (input.equalsIgnoreCase("sign up")) {
-            singUp();
+            signUp();
         } else if (input.equalsIgnoreCase("Exit")) {
             exit = true;
         } else if (input.equalsIgnoreCase("Help")) {
@@ -30,12 +30,12 @@ public class Main {
         }
     }
 
-    private static void singIn() {
+    private static void signIn() {
         showTextForSignIn();
       //  Account.singIn(scanner.nextLine(), scanner.nextLine());
     }
 
-    private static void singUp() {
+    private static void signUp() {
         showTextForInsertUserName();
      //   Account.createAccount(scanner.nextLine());
     }

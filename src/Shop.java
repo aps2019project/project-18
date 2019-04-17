@@ -40,6 +40,61 @@ public class Shop {
         }
     }
 
+    private void show() {
+        showItems();
+        showHeroes();
+        showMinions();
+        showSpells();
+    }
+
+    private void showMinions() {
+        int i = 1;
+        System.out.println("Minions : ");
+        for (Card card : cards) {
+            if (card instanceof Minion) {
+                System.out.println("        " + i + ". Name : " + card.getName() + " - Class : " + ((Minion) card).getAttackType() + " - AP : " + ((Minion) card).getAP() +
+                        " - HP : " + ((Minion) card).getHP() + " - MP : " + ((Minion) card).getMP() + " - Special Power : " + ((Minion) card).getSpecialPower() +
+                        "Buy Cost : " + card.getPrice());
+                i++;
+            }
+        }
+    }
+
+    private void showSpells() {
+        int i = 1;
+        System.out.println("Spells : ");
+        for (Card card : cards) {
+            if (card instanceof Spell) {
+                System.out.println("        " + i + ". Name : " + card.getName() + " - MP : " + ((Spell) card).getMP()
+                        + " - Desc" + ((Spell) card).getDesc() + "Buy Cost : " + card.getPrice());
+                i++;
+            }
+        }
+    }
+
+    private void showItems() {
+        int i = 1;
+        System.out.println("Items : ");
+        for (Item item : items) {
+            System.out.println("        " + i + ". Name : " + item.getName() + " - Desc : " + item.getDesc() +
+                    " - Buy Cost : " + item.getPrice());
+            i++;
+        }
+    }
+
+    private void showHeroes() {
+        int i = 1;
+        System.out.println("Heroes : ");
+        for (Card card : cards) {
+            if (card instanceof Hero) {
+                System.out.println("        " + i + ". Name : " + card.getName() + " - AP : " + ((Hero) card).getAP() +
+                        " - HP : " + ((Hero) card).getHP() + " - Special Power : " + ((Hero) card).getSpecialPower() +
+                        "Buy Cost : " + card.getPrice());
+                i++;
+            }
+        }
+    }
+
     private void showHelp() {
         System.out.println("1. show collection : see your collection");
         System.out.println("2. show : see cards and items in shop");
@@ -49,6 +104,4 @@ public class Shop {
         System.out.println("6. sell [ card name | item name ] : sell card or item");
         System.out.println("7. exit : close the shop");
     }
-
-
 }
