@@ -2,6 +2,7 @@ import cards.Card;
 import cards.Spell;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Deck {
     private String name;
@@ -11,6 +12,13 @@ public class Deck {
 
     public Deck(String name) {
         this.name = name;
+    }
+
+    private Deck(String name, Hero hero, ArrayList<Card> cards, Item item) {
+        this.name = name;
+        this.hero = hero;
+        this.cards = cards;
+        this.item = item;
     }
 
     public Card findCard(String cardId) {
@@ -115,5 +123,17 @@ public class Deck {
                 System.out.println("        " + ". Name : " + item.getName() + " - Desc : " + item.getDesc() +
                         " - Buy Cost : " + item.getPrice());
         }
+    }
+
+    public Card getRandomCard() {
+        Random random = new Random();
+        int i = random.nextInt(cards.size());
+        Card card = cards.get(i);
+        cards.remove(i);
+        return card;
+    }
+
+    public Deck getDeckCopy() {
+        return new Deck(this.name, this.hero, this.cards, this.item);
     }
 }
