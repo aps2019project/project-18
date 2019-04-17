@@ -44,4 +44,28 @@ public class Deck {
             return;
         }
     }
+
+    public void addItem(Item item) {
+        if (this.item == null) {
+            this.item = item;
+            System.out.println("item added");
+            return;
+        } else {
+            System.out.println("deck already has an item");
+            return;
+        }
+    }
+
+    public void removeItem(Item item) {
+        if (this.item.getId().compareTo(item.getId()) == 0) {
+            this.item = null;
+            System.out.println("item removed");
+            return;
+        } else {
+            System.out.println("item not in deck");
+            return;
+        }
+    }
+
+
 }
