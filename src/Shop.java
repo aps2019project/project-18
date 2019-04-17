@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 import cards.Card;
+import cards.Spell;
 
 public class Shop {
     private static final Shop SHOP = new Shop();
