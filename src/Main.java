@@ -43,7 +43,7 @@ public class Main {
     private static void showHelp() {
         System.out.println("1. sign in : login to your account");
         System.out.println("2. sign up : create account");
-        System.out.println("3. Exit : you can lose the game");
+        System.out.println("3. Exit : you can close the game");
     }
 
     public static void showMenu(){
