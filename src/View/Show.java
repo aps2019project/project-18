@@ -122,4 +122,48 @@ public class Show {
         System.out.println("6. sell [ card name | item name ] : sell card or item");
         System.out.println("7. exit : close the shop");
     }
+
+    public void cardAddMessage() {
+        System.out.println("card added");
+    }
+
+    public void deckHasAHeroMessage() {
+        System.out.println("deck already has a hero");
+    }
+
+    public void fullDeckMessage() {
+        System.out.println("deck is full");
+    }
+
+    public void cardInDeckMessage() {
+        System.out.println("card already in deck");
+    }
+
+    public void cardNotInDeckMessage() {
+        System.out.println("card isn't in deck");
+    }
+
+    public void cardRemovedMessage() {
+        System.out.println("card removed");
+    }
+
+    public void deckHasAnItemMessage() {
+        System.out.println("deck already has an item");
+    }
+
+    public void itemAddMessage() {
+        System.out.println("item added");
+    }
+
+    public void itemRemovedMessage() {
+        System.out.println("item removed");
+    }
+
+    public void itemNotInDeckMessage() {
+        System.out.println("item not in deck");
+    }
+
+    public void showDeckName(String name) {
+        System.out.println(name + " :");
+    }
 }
