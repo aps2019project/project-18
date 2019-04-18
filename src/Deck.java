@@ -1,6 +1,5 @@
 import View.Show;
-import cards.Card;
-import cards.Spell;
+import cards.*;
 
 import java.util.ArrayList;
 import java.util.Random;
