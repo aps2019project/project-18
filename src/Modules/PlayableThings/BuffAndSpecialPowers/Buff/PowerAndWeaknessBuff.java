@@ -1,11 +1,13 @@
 package Modules.PlayableThings.BuffAndSpecialPowers.Buff;
 
 public class PowerAndWeaknessBuff extends  Buff{
-    private int HealthPowerIncreaseNumber = 0;
-    private int AttackPowerIncreseNumber = 0;
+    private int healthPowerIncreaseNumber = 0;
+    private int attackPowerIncreaseNumber = 0;
 
-    public PowerAndWeaknessBuff(){
-        super(HealthPowerIncreaseNumber >= 0 && AttackPowerIncreaseNumber >= 0);
+    public PowerAndWeaknessBuff(int healthPowerIncreaseNumber , int attackPowerIncreaseNumber){
+        super(healthPowerIncreaseNumber >= 0 && attackPowerIncreaseNumber >= 0);
+        this.attackPowerIncreaseNumber = attackPowerIncreaseNumber;
+        this.healthPowerIncreaseNumber = healthPowerIncreaseNumber;
     }
 
     @Override
