@@ -36,22 +36,22 @@ public class Deck {
         if (card instanceof Hero) {
             if (hero == null) {
                 hero = (Hero) card;
-                System.out.println("card added");
+                new Show().cardAddMessage();
                 return;
             } else {
-                System.out.println("deck already has a hero");
+                new Show().deckHasAHeroMessage();
                 return;
             }
         } else {
             if (cards.size() < 20 && findCard(card.getId()) == null) {
                 cards.add(card);
-                System.out.println("card added");
+                new Show().cardAddMessage();
                 return;
             } else if (cards.size() == 20) {
-                System.out.println("deck is full");
+                new Show().fullDeckMessage();
                 return;
             } else {
-                System.out.println("card already in deck");
+                new Show().cardInDeckMessage();
                 return;
             }
         }
@@ -59,11 +59,11 @@ public class Deck {
 
     public void removeCard(Card card) {
         if (findCard(card.getId()) == null) {
-            System.out.println("card isn't in deck");
+            new Show().cardNotInDeckMessage();
             return;
         } else {
             cards.remove(card);
-            System.out.println("card removed from deck");
+            new Show().cardRemovedMessage();
             return;
         }
     }
@@ -71,10 +71,10 @@ public class Deck {
     public void addItem(Item item) {
         if (this.item == null) {
             this.item = item;
-            System.out.println("item added");
+            new Show().itemAddMessage();
             return;
         } else {
-            System.out.println("deck already has an item");
+            new Show().deckHasAnItemMessage();
             return;
         }
     }
@@ -82,10 +82,10 @@ public class Deck {
     public void removeItem(Item item) {
         if (this.item.getId().compareTo(item.getId()) == 0) {
             this.item = null;
-            System.out.println("item removed");
+            new Show().itemRemovedMessage();
             return;
         } else {
-            System.out.println("item not in deck");
+            new Show().itemNotInDeckMessage();
             return;
         }
     }
@@ -97,7 +97,7 @@ public class Deck {
     }
 
     public void showDeck() {
-        System.out.println(this.name + " :");
+        new Show().showDeckName(this.name);
         if (hero != null) {
             new Show().showHero(hero, null);
         }
@@ -120,5 +120,15 @@ public class Deck {
 
     public Deck getDeckCopy() {
         return new Deck(this.name, this.hero, this.cards, this.item);
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public boolean equals(Deck deck) {
+        if(this.name.equals(deck.getName()))
+            return true;
+        return false;
     }
 }

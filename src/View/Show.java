@@ -72,7 +72,7 @@ public class Show {
                         card.getDescription());
                 if (sell == null) {
                     System.out.println();
-                } else if (!sell) {
+                } else if (!sell){
                     System.out.println(" - Buy Cost : " + card.getPrice());
                 } else if (sell) {
                     System.out.println(" - Sell Cost : " + card.getPrice() / 10);
@@ -106,5 +106,4 @@ public class Show {
             System.out.println();
         }
     }
-
 }
