@@ -24,9 +24,9 @@ public class Shop {
             if (input.compareTo("exit") == 0) {
                 return;
             } else if (input.compareTo("show collection") == 0) {
-                account.getCollection.show();
+                account.getCollection().show();
             } else if (input.matches("search collection \\w+")) {
-                account.getCollection.search(input.split(" ")[2]);
+                account.getCollection().search(input.split(" ")[2]);
             } else if (input.matches("search \\w+")) {
                 search(input.split(" ")[1]);
             } else if (input.matches("buy \\w+")) {
