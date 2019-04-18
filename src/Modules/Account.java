@@ -1,6 +1,7 @@
 package Modules;
 
 import Modules.cards.Card;
+import View.Show;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -152,7 +153,13 @@ public class Account implements Comparator {
     }
 
     public void sellCard(String id) {
-        for (Card card : collection.)
+        for (Card card : collection.getCards()) {
+            if (card.getId().equalsIgnoreCase(id)) {
+                collection.removeCard(card);
+                money += card.getPrice();
+                return;
+            }
+        }
     }
 
     public void winReward(int reward) {
@@ -171,7 +178,7 @@ public class Account implements Comparator {
         return collection;
     }
 
-    public void beginGame(){
+    public void beginGame() {
         // TODO:
     }
 
