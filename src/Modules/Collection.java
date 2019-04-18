@@ -1,4 +1,6 @@
-import cards.Card;
+package Modules;
+
+import Modules.cards.Card;
 import View.Show;
 
 import java.util.ArrayList;

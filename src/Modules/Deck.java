@@ -1,5 +1,7 @@
+package Modules;
+
 import View.Show;
-import cards.*;
+import Modules.cards.Card;
 
 import java.util.ArrayList;
 import java.util.Random;

@@ -1,7 +1,8 @@
+package Modules;
+
 import java.util.ArrayList;
 
-import cards.Card;
-import cards.Spell;
+import Modules.cards.Card;
 import View.Show;
 
 public class Shop {

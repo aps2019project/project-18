@@ -1,4 +1,4 @@
-package cards;
+package Modules.cards;
 
 public abstract class Card{
     protected String name;
