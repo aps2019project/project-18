@@ -1,4 +1,4 @@
-package Modules.cards;
+package Modules.PlayableThings.cards;
 
 public class Minion extends  Force {
     private SpecialPower specialPower;

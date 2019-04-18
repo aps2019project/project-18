@@ -1,4 +1,4 @@
-package Modules.cards;
+package Modules.PlayableThings.cards;
 
 public abstract class Card{
     protected String name;

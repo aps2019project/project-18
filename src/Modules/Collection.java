@@ -1,6 +1,6 @@
 package Modules;
 
-import Modules.cards.Card;
+import Modules.PlayableThings.cards.Card;
 import View.Show;
 
 import java.util.ArrayList;

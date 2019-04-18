@@ -2,7 +2,7 @@ package Modules;
 
 import java.util.ArrayList;
 
-import Modules.cards.Card;
+import Modules.PlayableThings.cards.Card;
 import View.Show;
 
 public class Shop {

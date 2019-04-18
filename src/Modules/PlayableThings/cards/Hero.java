@@ -1,4 +1,4 @@
-package Modules.cards;
+package Modules.PlayableThings.cards;
 
 public class Hero extends Force{
     private  int spellCoolDown;

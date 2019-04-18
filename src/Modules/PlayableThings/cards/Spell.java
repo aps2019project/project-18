@@ -1,4 +1,4 @@
-package Modules.cards;
+package Modules.PlayableThings.cards;
 
 public class Spell extends Card{
     private int manaPoint;

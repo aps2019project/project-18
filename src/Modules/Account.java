@@ -1,6 +1,6 @@
 package Modules;
 
-import Modules.cards.Card;
+import Modules.PlayableThings.cards.Card;
 
 import java.util.ArrayList;
 import java.util.Comparator;

@@ -1,7 +1,7 @@
 package View;
 
-import Modules.cards.Card;
-import Modules.cards.Spell;
+import Modules.PlayableThings.cards.Card;
+import Modules.PlayableThings.cards.Spell;
 
 import java.util.ArrayList;
 

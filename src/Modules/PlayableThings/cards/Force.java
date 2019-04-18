@@ -1,4 +1,4 @@
-package Modules.cards;
+package Modules.PlayableThings.cards;
 
 import java.util.ArrayList;
 
