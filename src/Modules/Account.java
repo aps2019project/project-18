@@ -1,5 +1,7 @@
 package Modules;
 
+import Modules.cards.Card;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -10,6 +12,7 @@ public class Account implements Comparator {
     private static ArrayList<Account> accounts = new ArrayList<>();
     private String userName, passWord;
     private int winCount, money;
+    private Collection collection;
 
     private void doOrderInAccount() {
         String input;
@@ -127,17 +130,49 @@ public class Account implements Comparator {
         }
     }
 
-    private void sordAccounts() {
+    private void sortAccounts() {
         accounts.sort(this::compare);
     }
 
-    private static Account findAccount(String userName){
-        for(Account account : accounts){
-            if (account.userName.equalsIgnoreCase(userName)){
+    private static Account findAccount(String userName) {
+        for (Account account : accounts) {
+            if (account.userName.equalsIgnoreCase(userName)) {
                 return account;
             }
         }
         return null;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void buyCard(Card card) {
+        // TODO
+    }
+
+    public void sellCard(String id) {
+        //todo
+    }
+
+    public void winReward(int reward) {
+        money += reward;
+    }
+
+//    public void buyItem(Item item){
+//
+//    }
+
+//        public void saveGameData(GameData gameData){
+//
+//        }
+
+    public Collection getCollection() {
+        return collection;
+    }
+
+    public void beginGame(){
+        // TODO:
     }
 
     private static void showMenu() {
@@ -176,7 +211,7 @@ public class Account implements Comparator {
     }
 
     private void showLeaderboard() {
-        sordAccounts();
+        sortAccounts();
         int i = 1;
         for (Account account : accounts) {
             System.out.println(i + "-UserName : " + account.userName + "-Wins : " + account.winCount);
