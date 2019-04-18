@@ -179,4 +179,28 @@ public class Show {
     public void itemNotInCollectionMessage() {
         System.out.println("item not in collection");
     }
+
+    public void createDeckMessage() {
+        System.out.println("deck created");
+    }
+
+    public void createDeckErrorMessage() {
+        System.out.println("a deck with this name already exists");
+    }
+
+    public void deleteDeckErrorMessage() {
+        System.out.println("There is no such a deck");
+    }
+
+    public void deleteDeckMessage() {
+        System.out.println("deck deleted");
+    }
+
+    public void setMainDeckMessage(String name) {
+        System.out.println("deck " + name + " is now main deck");
+    }
+
+    public void setMainDeckErrorMessage() {
+        System.out.println("deck is not valid or does not exist");
+    }
 }

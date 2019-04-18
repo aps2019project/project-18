@@ -91,4 +91,39 @@ public class Collection {
                 return deck;
         return null;
     }
+
+    public int getItemsSize() {
+        return items.size();
+    }
+
+    public Deck getMainDeck() {
+        return mainDeck;
+    }
+
+    private void createDeck(String name) {
+        if (findDeck(name) != null) {
+            new Show().createDeckErrorMessage();
+            return;
+        }
+        decks.add(new Deck(name));
+        new Show().createDeckMessage();
+    }
+
+    private void deleteDeck(Deck deck) {
+        if (findDeck(deck.getName()) == null) {
+            new Show().deleteDeckErrorMessage();
+            return;
+        }
+        decks.remove(deck);
+        new Show().deleteDeckMessage();
+    }
+
+    private void setMainDeck(String name) {
+        if (findDeck(name) != null && findDeck(name).checkValidity()) {
+            mainDeck = findDeck(name);
+            new Show().setMainDeckMessage(name);
+            return;
+        }
+        new Show().setMainDeckErrorMessage();
+    }
 }
