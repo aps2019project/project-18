@@ -84,6 +84,30 @@ public class Account {
         return "";
     }
 
+    private static boolean checkPasswordNote(String passWord) {
+        boolean a_z = false, A_Z = false, _0_9 = false, specialChar = false;
+        if (passWord.length() < 8 || passWord.length() > 16) {
+            return false;
+        } else {
+            for (int i = 0; i < passWord.length(); i++) {
+                if (passWord.charAt(i) >= 'a' && passWord.charAt(i) <= 'z') {
+                    a_z = true;
+                } else if (passWord.charAt(i) >= 'A' && passWord.charAt(i) <= 'Z') {
+                    A_Z = true;
+                } else if (passWord.charAt(i) >= '0' && passWord.charAt(i) <= '9') {
+                    _0_9 = true;
+                } else {
+                    specialChar = true;
+                }
+            }
+        }
+        if (a_z && A_Z && _0_9 && specialChar) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     private static void showMenu() {
         System.out.print("1. Collection\n2. Shop\n3. Battle\n4. Leaderboard\n5. Logout\n6. Help\n");
     }
