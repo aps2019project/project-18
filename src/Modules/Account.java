@@ -13,24 +13,24 @@ public class Account implements Comparator {
 
     private void doOrderInAccount() {
         String input;
-        while (true){
-        input = scanner.nextLine();
-        if (input.equalsIgnoreCase("Collection")) {
-            //todo go to collection
-        } else if (input.equalsIgnoreCase("Shop")) {
-            //todo go to shop
-        } else if (input.equalsIgnoreCase("Battle")) {
-            //ToDo go to battle
-        } else if (input.equalsIgnoreCase("show leaderboard")) {
-            showshowLeaderboard();
-        } else if (input.equalsIgnoreCase("Logout")) {
-            Main.showMenu();
-            return;
-        } else if (input.equalsIgnoreCase("Help")) {
-            showHelp();
-        } else {
-            showInvalidCommand();
-        }
+        while (true) {
+            input = scanner.nextLine();
+            if (input.equalsIgnoreCase("Collection")) {
+                //todo go to collection
+            } else if (input.equalsIgnoreCase("Shop")) {
+                //todo go to shop
+            } else if (input.equalsIgnoreCase("Battle")) {
+                //ToDo go to battle
+            } else if (input.equalsIgnoreCase("show leaderboard")) {
+                showLeaderboard();
+            } else if (input.equalsIgnoreCase("Logout")) {
+                Main.showMenu();
+                return;
+            } else if (input.equalsIgnoreCase("Help")) {
+                showHelp();
+            } else {
+                showInvalidCommand();
+            }
         }
     }
 
@@ -117,17 +117,17 @@ public class Account implements Comparator {
     public int compare(Object o1, Object o2) {
         Account firstAccount = (Account) o1;
         Account secondAccount = (Account) o2;
-        if (firstAccount.winCount == secondAccount.winCount){
+        if (firstAccount.winCount == secondAccount.winCount) {
             return firstAccount.userName.compareTo(secondAccount.userName);
         }
-        if(firstAccount.winCount > secondAccount.winCount){
+        if (firstAccount.winCount > secondAccount.winCount) {
             return 1;
         } else {
             return -1;
         }
     }
 
-    private void sordAccounts(){
+    private void sordAccounts() {
         accounts.sort(this::compare);
     }
 
@@ -166,8 +166,13 @@ public class Account implements Comparator {
         System.out.println("Invalid command please use Help to show menu");
     }
 
-    private void showshowLeaderboard() {
-        //todo ...
+    private void showLeaderboard() {
+        sordAccounts();
+        int i = 1;
+        for (Account account : accounts) {
+            System.out.println(i + "-UserName : " + account.userName + "-Wins : " + account.winCount);
+            i++;
+        }
     }
 
 }

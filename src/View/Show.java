@@ -107,7 +107,4 @@ public class Show {
         }
     }
 
-    public void showText(String text) {
-        System.out.println(text);
-    }
 }
