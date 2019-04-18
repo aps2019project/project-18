@@ -13,7 +13,7 @@ public abstract class Force extends Card {
     protected ArrayList<Buff> buffs;
 
     void addBuff(Buff buff){
-        //todo
+        buffs.add(buff);
     }
 
     public boolean getFlag(){
