@@ -152,7 +152,7 @@ public class Account implements Comparator {
     }
 
     public void sellCard(String id) {
-        //todo
+        for (Card card : collection.)
     }
 
     public void winReward(int reward) {

@@ -15,6 +15,10 @@ public class Collection {
         // TODO
     }
 
+    public ArrayList<Card> getCards(){
+        return cards;
+    }
+
     public void search(String name) {
         int i = 0;
         for (Card card : cards)
