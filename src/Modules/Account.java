@@ -131,6 +131,15 @@ public class Account implements Comparator {
         accounts.sort(this::compare);
     }
 
+    private static Account findAccount(String userName){
+        for(Account account : accounts){
+            if (account.userName.equalsIgnoreCase(userName)){
+                return account;
+            }
+        }
+        return null;
+    }
+
     private static void showMenu() {
         System.out.print("1. Collection\n2. Shop\n3. Battle\n4. Leaderboard\n5. Logout\n6. Help\n");
     }
