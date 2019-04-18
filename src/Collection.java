@@ -58,6 +58,31 @@ public class Collection {
         return null;
     }
 
+    public void addItem(Item item) {
+        if (items.size() < 3) {
+            items.add(item);
+            new Show().itemAddMessage();
+        } else {
+            new Show().collectionItemsIsFullMessage();
+        }
+    }
+
+    public void removeItem(Item item) {
+        if (findItem(item.getId()) != null) {
+            items.remove(item);
+            new Show().itemRemovedMessage();
+        } else {
+            new Show().itemNotInCollectionMessage();
+        }
+    }
+
+    public Item findItem(String itemId) {
+        for (Item item : items)
+            if (item.getId().equals(itemId))
+                return item;
+        return null;
+    }
+
     private Deck findDeck(String name) {
         for (Deck deck : decks)
             if (deck.getName().equals(name))

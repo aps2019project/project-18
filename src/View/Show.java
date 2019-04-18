@@ -170,4 +170,12 @@ public class Show {
     public void cardNotInCollection() {
         System.out.println("card not in collection");
     }
+
+    public void collectionItemsIsFullMessage() {
+        System.out.println("you can't add any more items to your collection");
+    }
+
+    public void itemNotInCollectionMessage() {
+        System.out.println("item not in collection");
+    }
 }
