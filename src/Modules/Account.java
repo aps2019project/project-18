@@ -1,6 +1,7 @@
 package Modules;
 
 import Modules.cards.Card;
+import View.Show;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -19,9 +20,9 @@ public class Account implements Comparator {
         while (true) {
             input = scanner.nextLine();
             if (input.equalsIgnoreCase("Collection")) {
-                //todo go to collection
+                collection.menu();
             } else if (input.equalsIgnoreCase("Shop")) {
-                //todo go to shop
+                Shop.getInstance().menu(this);
             } else if (input.equalsIgnoreCase("Battle")) {
                 //ToDo go to battle
             } else if (input.equalsIgnoreCase("show leaderboard")) {

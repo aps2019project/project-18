@@ -17,7 +17,7 @@ public class Shop {
         return SHOP;
     }
 
-    private void menu(Account account) {
+    public void menu(Account account) {
         String input;
         while (true) {
             input = Main.scanner.nextLine();
