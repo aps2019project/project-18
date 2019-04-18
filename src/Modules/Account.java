@@ -1,10 +1,11 @@
 package Modules;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import static Modules.Main.*;
 
-public class Account {
+public class Account implements Comparator {
 
     private static ArrayList<Account> accounts = new ArrayList<>();
     private String userName, passWord;
@@ -112,6 +113,24 @@ public class Account {
         }
     }
 
+    @Override
+    public int compare(Object o1, Object o2) {
+        Account firstAccount = (Account) o1;
+        Account secondAccount = (Account) o2;
+        if (firstAccount.winCount == secondAccount.winCount){
+            return firstAccount.userName.compareTo(secondAccount.userName);
+        }
+        if(firstAccount.winCount > secondAccount.winCount){
+            return 1;
+        } else {
+            return -1;
+        }
+    }
+
+    private void sordAccounts(){
+        accounts.sort(this::compare);
+    }
+
     private static void showMenu() {
         System.out.print("1. Collection\n2. Shop\n3. Battle\n4. Leaderboard\n5. Logout\n6. Help\n");
     }
@@ -150,4 +169,5 @@ public class Account {
     private void showshowLeaderboard() {
         //todo show leaderboard
     }
+
 }
