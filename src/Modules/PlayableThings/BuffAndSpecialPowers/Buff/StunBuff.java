@@ -1,11 +1,10 @@
 package Modules.PlayableThings.BuffAndSpecialPowers.Buff;
 
 public class StunBuff extends  Buff {
-    private boolean positivity = false;
-
-    public boolean isPositivity() {
-        return positivity;
+    public StunBuff(){
+        super(false);
     }
+
 
     @Override
     public void doEffect() {
