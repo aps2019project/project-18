@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import static Modules.Main.*;
 
 public class Account {
-    private String userName, passWord;
+
     private static ArrayList<Account> accounts = new ArrayList<>();
+    private String userName, passWord;
+    private int winCount, money;
 
     private void doOrderInAccount() {
         String input;
