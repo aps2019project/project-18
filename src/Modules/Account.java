@@ -1,31 +1,36 @@
 package Modules;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import static Modules.Main.*;
 
-public class Account {
-    private String userName, passWord;
+public class Account implements Comparator {
+
     private static ArrayList<Account> accounts = new ArrayList<>();
+    private String userName, passWord;
+    private int winCount, money;
 
     private void doOrderInAccount() {
         String input;
-        input = scanner.nextLine();
-        if (input.equalsIgnoreCase("Collection")) {
-            //todo go to collection
-        } else if (input.equalsIgnoreCase("Shop")) {
-            //todo go to shop
-        } else if (input.equalsIgnoreCase("Battle")) {
-            //ToDo go to battle
-        } else if (input.equalsIgnoreCase("show leaderboard")) {
-            showshowLeaderboard();
-        } else if (input.equalsIgnoreCase("Logout")) {
-            Main.showMenu();
-            return;
-        } else if (input.equalsIgnoreCase("Help")) {
-            showHelp();
-        } else {
-            showInvalidCommand();
+        while (true) {
+            input = scanner.nextLine();
+            if (input.equalsIgnoreCase("Collection")) {
+                //todo go to collection
+            } else if (input.equalsIgnoreCase("Shop")) {
+                //todo go to shop
+            } else if (input.equalsIgnoreCase("Battle")) {
+                //ToDo go to battle
+            } else if (input.equalsIgnoreCase("show leaderboard")) {
+                showLeaderboard();
+            } else if (input.equalsIgnoreCase("Logout")) {
+                Main.showMenu();
+                return;
+            } else if (input.equalsIgnoreCase("Help")) {
+                showHelp();
+            } else {
+                showInvalidCommand();
+            }
         }
     }
 
@@ -108,6 +113,24 @@ public class Account {
         }
     }
 
+    @Override
+    public int compare(Object o1, Object o2) {
+        Account firstAccount = (Account) o1;
+        Account secondAccount = (Account) o2;
+        if (firstAccount.winCount == secondAccount.winCount) {
+            return firstAccount.userName.compareTo(secondAccount.userName);
+        }
+        if (firstAccount.winCount > secondAccount.winCount) {
+            return 1;
+        } else {
+            return -1;
+        }
+    }
+
+    private void sordAccounts() {
+        accounts.sort(this::compare);
+    }
+
     private static void showMenu() {
         System.out.print("1. Collection\n2. Shop\n3. Battle\n4. Leaderboard\n5. Logout\n6. Help\n");
     }
@@ -143,7 +166,13 @@ public class Account {
         System.out.println("Invalid command please use Help to show menu");
     }
 
-    private void showshowLeaderboard() {
-        //todo show leaderboard
+    private void showLeaderboard() {
+        sordAccounts();
+        int i = 1;
+        for (Account account : accounts) {
+            System.out.println(i + "-UserName : " + account.userName + "-Wins : " + account.winCount);
+            i++;
+        }
     }
+
 }
