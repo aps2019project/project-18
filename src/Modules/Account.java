@@ -149,7 +149,7 @@ public class Account implements Comparator {
     }
 
     public void buyCard(Card card) {
-        // TODO
+        collection.addCard(card);
     }
 
     public void sellCard(String id) {

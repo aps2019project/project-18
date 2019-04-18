@@ -32,7 +32,7 @@ public class Shop {
             } else if (input.matches("buy \\w+")) {
                 sell(account, input.split(" ")[1]);
             } else if (input.matches("sell \\w+")) {
-                account.sell(input.split(" ")[1]);
+                account.sellCard(input.split(" ")[1]);
             } else if (input.compareTo("show") == 0) {
                 show();
             } else if (input.compareTo("help") == 0) {
