@@ -12,6 +12,7 @@ public class Account {
 
     private void doOrderInAccount() {
         String input;
+        while (true){
         input = scanner.nextLine();
         if (input.equalsIgnoreCase("Collection")) {
             //todo go to collection
@@ -28,6 +29,7 @@ public class Account {
             showHelp();
         } else {
             showInvalidCommand();
+        }
         }
     }
 
