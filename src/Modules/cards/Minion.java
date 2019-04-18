@@ -1,6 +1,6 @@
 package Modules.cards;
 
-public class Minion {
+public class Minion extends  Force {
     private SpecialPower specialPower;
 
     public void excuteAbility(){
