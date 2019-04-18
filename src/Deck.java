@@ -1,3 +1,4 @@
+import View.Show;
 import cards.Card;
 import cards.Spell;
 
@@ -95,33 +96,16 @@ public class Deck {
     }
 
     public void showDeck() {
+        System.out.println(this.name + " :");
         if (hero != null) {
-            System.out.println("Hero :");
-            System.out.println("        " + ". Name : " + hero.getName() + " - AP : " + hero.getAP() +
-                    " - HP : " + hero.getHP() + " - Special Power : " + hero.getDescription() +
-                    "Buy Cost : " + hero.getPrice());
+            new Show().showHero(hero, null);
         }
-        if (cards.size() > 0)
-            System.out.println("Cards : ");
-        int i = 1;
-        for (Card card : cards) {
-            if (card instanceof Minion) {
-                System.out.println("        " + i + ". Name : " + card.getName() + " - Class : " +
-                        ((Minion) card).getAttackType() + " - AP : " + ((Minion) card).getAP() + " - HP : " +
-                        ((Minion) card).getHP() + " - MP : " + ((Minion) card).getMP() + " - Special Power : " +
-                        card.getDescription() + "Buy Cost : " + card.getPrice());
-                i++;
-            }
-            if (card instanceof Spell) {
-                System.out.println("        " + i + ". Name : " + card.getName() + " - MP : " + ((Spell) card).getMP()
-                        + " - Desc" + card.getDescription() + "Buy Cost : " + card.getPrice());
-                i++;
-            }
+        if (cards.size() > 0) {
+            new Show().showMinions(cards, null);
+            new Show().showSpells(cards, null);
         }
         if (item != null) {
-            System.out.println("Item :");
-                System.out.println("        " + ". Name : " + item.getName() + " - Desc : " + item.getDesc() +
-                        " - Buy Cost : " + item.getPrice());
+            new Show().showItem(item, null);
         }
     }
 
