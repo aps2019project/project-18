@@ -1,7 +1,8 @@
+package Modules;
+
 import java.util.ArrayList;
 
-import cards.Card;
-import cards.Spell;
+import Modules.cards.Card;
 import View.Show;
 
 public class Shop {
@@ -107,7 +108,7 @@ public class Shop {
 
     private void showHelp() {
         System.out.println("1. show collection : see your collection");
-        System.out.println("2. show : see cards and items in shop");
+        System.out.println("2. show : see Modules.cards and items in shop");
         System.out.println("3. search collection [ card name | item name ] : search your collection");
         System.out.println("4. search [ card name | item name ] : search the shop");
         System.out.println("5. buy [ card name | item name ] : buy card or item");

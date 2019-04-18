@@ -1,4 +1,4 @@
-package cards;
+package Modules.cards;
 
 public abstract class Force extends Card {
     protected int attackPower;
