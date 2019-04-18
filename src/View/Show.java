@@ -140,7 +140,7 @@ public class Show {
     }
 
     public void cardNotInDeckMessage() {
-        System.out.println("card isn't in deck");
+        System.out.println("card not in deck");
     }
 
     public void cardRemovedMessage() {
@@ -165,5 +165,9 @@ public class Show {
 
     public void showDeckName(String name) {
         System.out.println(name + " :");
+    }
+
+    public void cardNotInCollection() {
+        System.out.println("card not in collection");
     }
 }

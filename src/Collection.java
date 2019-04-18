@@ -39,5 +39,29 @@ public class Collection {
 
     public void addCard(Card card) {
         cards.add(card);
+        new Show().cardAddMessage();
+    }
+
+    public void removeCard(Card card) {
+        if (findCard(card.getId()) != null) {
+            cards.remove(card);
+            new Show().cardRemovedMessage();
+        } else {
+            new Show().cardNotInCollection();
+        }
+    }
+
+    private Card findCard(String cardId) {
+        for (Card card : cards)
+            if (card.getId().equals(cardId))
+                return card;
+        return null;
+    }
+
+    private Deck findDeck(String name) {
+        for (Deck deck : decks)
+            if (deck.getName().equals(name))
+                return deck;
+        return null;
     }
 }
