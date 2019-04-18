@@ -34,12 +34,12 @@ public class Main {
 
     private static void signIn() {
         showTextForSignIn();
-      //  Account.singIn(scanner.nextLine(), scanner.nextLine());
+        Account.singIn(scanner.nextLine(), scanner.nextLine());
     }
 
     private static void signUp() {
         showTextForInsertUserName();
-     //   Account.createAccount(scanner.nextLine());
+        Account.createAccount(scanner.nextLine());
     }
 
     private static void showHelp() {
