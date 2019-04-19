@@ -1,7 +1,5 @@
 package Modules;
 
-import Modules.PlayableThings.House;
-
 public class Playground {
     private House[][] houses = new House[9][5];
 
