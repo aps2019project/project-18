@@ -7,7 +7,7 @@ import Modules.PlayableThings.Item.Item;
 
 import java.util.ArrayList;
 
-public class Player {
+public abstract class Player {
     protected int numberOfFlag = 0;
     protected int manaPoint;
     protected Account account;
@@ -18,4 +18,6 @@ public class Player {
     public Account getAccount() {
         return account;
     }
+
+    public abstract void playTurn();
 }
