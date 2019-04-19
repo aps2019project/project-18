@@ -19,6 +19,6 @@ public class GameData {
 
     public void showGameData() {
         System.out.println("opponent : " + opponentName + "   match result : " + resultGame
-                + "Date : " + dateFormat.format(calendar.getTime()));
+                + " Date : " + dateFormat.format(calendar.getTime()));
     }
 }
