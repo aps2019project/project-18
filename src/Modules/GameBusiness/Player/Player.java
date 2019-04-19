@@ -1,7 +1,7 @@
 package Modules.GameBusiness.Player;
 
 import Modules.Account;
-import Modules.Game.Game;
+import Modules.GameBusiness.Game.Game;
 import Modules.Hand;
 import Modules.PlayableThings.Item.Item;
 

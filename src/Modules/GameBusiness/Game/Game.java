@@ -1,4 +1,4 @@
-package Modules.Game;
+package Modules.GameBusiness.Game;
 
 import Modules.GameBusiness.Player.Player;
 import Modules.GameData;

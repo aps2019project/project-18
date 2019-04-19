@@ -1,6 +1,7 @@
-package Modules.Game;
+package Modules.GameBusiness.Game;
 
-public class ModeCaptureFlag6Turn extends Game {
+public class ModeKillEnemyHero extends Game {
+
     @Override
     public void setPlayground() {
 

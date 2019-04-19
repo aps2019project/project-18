@@ -1,4 +1,4 @@
-package Modules.Game;
+package Modules.GameBusiness.Game;
 
 public class ModeCaptureHalfFlags extends Game {
     @Override

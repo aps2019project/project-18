@@ -9,4 +9,6 @@ public class Human extends Player {
     public void playTurn() {
         //todo
     }
+
+
 }
