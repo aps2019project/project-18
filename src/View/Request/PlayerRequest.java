@@ -1,4 +1,4 @@
 package View.Request;
 
-public class PlayerRequest {
+public class PlayerRequest extends MainRequest{
 }
