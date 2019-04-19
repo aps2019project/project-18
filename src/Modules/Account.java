@@ -1,5 +1,6 @@
 package Modules;
 
+import Modules.PlayableThings.Item.Item;
 import Modules.PlayableThings.cards.Card;
 
 import java.util.ArrayList;
@@ -165,9 +166,9 @@ public class Account implements Comparator {
         money += reward;
     }
 
-//    public void buyItem(Item item){
-//
-//    }
+    public void buyItem(Item item){
+        collection.addItem(item);
+    }
 
 //        public void saveGameData(GameData gameData){
 //
