@@ -5,7 +5,7 @@ import Modules.PlayableThings.BuffAndSpecialPowers.Buff.Buff;
 
 public abstract class Force extends Card {
     protected int attackPower;
-    protected int healthPower;
+    protected int hitPoint;
     protected boolean flag;
     protected String attackType;
     protected boolean canMove;
@@ -16,8 +16,12 @@ public abstract class Force extends Card {
         buffs.add(buff);
     }
 
-    public boolean getFlag(){
+    /*public boolean getFlag(){
         //todo
+    }*/
+
+    public String getAttackType() {
+        return attackType;
     }
 
     public int getRange() {
@@ -28,8 +32,8 @@ public abstract class Force extends Card {
         return attackPower;
     }
 
-    public int getHealthPower() {
-        return healthPower;
+    public int getHitPoint() {
+        return hitPoint;
     }
 
     public void checkBuff(){

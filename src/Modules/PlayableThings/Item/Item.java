@@ -4,6 +4,7 @@ public class Item {
     private String name;
     private String itemId;
     private int price;
+    private String description;
 
     public String getName() {
         return name;
@@ -13,15 +14,19 @@ public class Item {
         return price;
     }
 
-    public String getItemid() {
+    public String getItemId() {
         return itemId;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public void setItemId(String itemId) {
         this.itemId = itemId;
     }
 
-    public void excute(){
+    public void execute(){
         //todo
     }
 }

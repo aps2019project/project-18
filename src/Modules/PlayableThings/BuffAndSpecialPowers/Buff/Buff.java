@@ -4,21 +4,21 @@ public abstract class Buff {
     private boolean positivity;
     protected int numberOfTurns;
     protected int[] effectPoint = new int[2];
-    protected int dimenision;
+    protected int dimension;
 
     public Buff(){
 
     }
 
-    public Buff(boolean positivity , int numberOfTurns , int x , int y , int dimenision){
+    public Buff(boolean positivity , int numberOfTurns , int x , int y , int dimension){
         this.positivity = positivity;
         this.numberOfTurns = numberOfTurns;
         effectPoint[0] = x;
         effectPoint[1] = y;
-        this.dimenision = dimenision;
+        this.dimension = dimension;
     }
 
-    public boolean isPositivity() {
+    public boolean getPositivity() {
         return positivity;
     }
 

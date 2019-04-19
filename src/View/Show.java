@@ -1,9 +1,8 @@
 package View;
 
-import Modules.PlayableThings.Item.Item;
-import Modules.PlayableThings.cards.Card;
-import Modules.PlayableThings.cards.Hero;
-import Modules.PlayableThings.cards.Spell;
+import Modules.PlayableThings.cards.*;
+import Modules.PlayableThings.Item.*;
+
 import java.util.ArrayList;
 
 public class Show {
@@ -11,7 +10,7 @@ public class Show {
         int i = 1;
         System.out.println("Items : ");
         for (Item item : items) {
-            System.out.print("        " + i + ". Name : " + item.getName() + " - Desc : " + item.getDesc());
+            System.out.print("        " + i + ". Name : " + item.getName() + " - Desc : " + item.getDescription());
             if (sell) {
                 System.out.println(" - Sell Cost : " + item.getPrice() / 10);
             } else if (!sell) {
@@ -28,8 +27,8 @@ public class Show {
         System.out.println("Heroes : ");
         for (Card card : cards) {
             if (card instanceof Hero) {
-                System.out.print("        " + i + ". Name : " + card.getName() + " - AP : " + ((Hero) card).getAP() +
-                        " - HP : " + ((Hero) card).getHP() + " - Special Power : " + card.getDescription());
+                System.out.print("        " + i + ". Name : " + card.getName() + " - AP : " + ((Hero) card).getAttackPower() +
+                        " - HP : " + ((Hero) card).getHitPoint() + " - Special Power : " + card.getDescription());
                 if (sell) {
                     System.out.println(" - Sell Cost : " + card.getPrice() / 10);
                 } else if (!sell) {
@@ -62,18 +61,23 @@ public class Show {
         }
     }
 
+    public void showSpell(Spell spell) {
+        System.out.println("spell :    Name : " + spell.getName() + " - MP : " + spell.getMP()
+                + " - Desc" + spell.getDescription());
+    }
+
     public void showMinions(ArrayList<Card> cards, Boolean sell) {
         int i = 1;
         System.out.println("Minions : ");
         for (Card card : cards) {
             if (card instanceof Minion) {
                 System.out.println("        " + i + ". Name : " + card.getName() + " - Class : " +
-                        ((Minion) card).getAttackType() + " - AP : " + ((Minion) card).getAP() + " - HP : " +
-                        ((Minion) card).getHP() + " - MP : " + ((Minion) card).getMP() + " - Special Power : " +
+                        ((Minion) card).getAttackType() + " - AP : " + ((Minion) card).getAttackPower() + " - HP : " +
+                        ((Minion) card).getHitPoint() + " - MP : " + ((Minion) card).getManaPoint() + " - Special Power : " +
                         card.getDescription());
                 if (sell == null) {
                     System.out.println();
-                } else if (!sell){
+                } else if (!sell) {
                     System.out.println(" - Buy Cost : " + card.getPrice());
                 } else if (sell) {
                     System.out.println(" - Sell Cost : " + card.getPrice() / 10);
@@ -83,10 +87,19 @@ public class Show {
         }
     }
 
+    public void showMinion(Minion minion) {
+        System.out.println("minion :    Name : " + minion.getName() + " - Class : " +
+                minion.getAttackType() + " - AP : " + minion.getAttackPower() + " - HP : " +
+                minion.getHitPoint() + " - MP : " + minion.getManaPoint() + " - Special Power : " +
+                minion.getDescription());
+
+
+    }
+
     public void showHero(Hero hero, Boolean sell) {
         System.out.println("Hero :");
-        System.out.print("        " + ". Name : " + hero.getName() + " - AP : " + hero.getAP() +
-                " - HP : " + hero.getHP() + " - Special Power : " + hero.getDescription());
+        System.out.print("        " + ". Name : " + hero.getName() + " - AP : " + hero.getAttackPower() +
+                " - HP : " + hero.getHitPoint() + " - Special Power : " + hero.getDescription());
         if (sell) {
             System.out.println(" - Sell Cost : " + hero.getPrice() / 10);
         } else if (!sell) {
@@ -98,7 +111,7 @@ public class Show {
 
     public void showItem(Item item, Boolean sell) {
         System.out.println("Item :");
-        System.out.print("        " + ". Name : " + item.getName() + " - Desc : " + item.getDesc());
+        System.out.print("        " + ". Name : " + item.getName() + " - Desc : " + item.getDescription());
         if (sell) {
             System.out.println(" - Sell Cost : " + item.getPrice() / 10);
         } else if (!sell) {
