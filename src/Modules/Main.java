@@ -2,6 +2,7 @@ package Modules;
 
 import java.util.Scanner;
 
+
 public class Main {
     public static Scanner scanner = new Scanner(System.in);
     private static boolean exit = false;
