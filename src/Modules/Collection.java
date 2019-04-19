@@ -74,7 +74,7 @@ public class Collection {
     }
 
     public void removeItem(Item item) {
-        if (findItem(item.getId()) != null) {
+        if (findItem(item.getItemId()) != null) {
             items.remove(item);
             new Show().itemRemovedMessage();
         } else {
@@ -84,7 +84,7 @@ public class Collection {
 
     public Item findItem(String itemId) {
         for (Item item : items)
-            if (item.getId().equals(itemId))
+            if (item.getItemId().equals(itemId))
                 return item;
         return null;
     }
