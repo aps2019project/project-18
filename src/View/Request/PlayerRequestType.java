@@ -1,0 +1,15 @@
+package View.Request;
+
+public enum PlayerRequestType {
+    gGAMEINFO,
+    SHOWMYMINIONS,
+    SHOWOPPONENTMINIONS,
+    SHOWCARDINFO,
+    SHOWHAND,
+    INSERTCARD,
+    ENDTURN,
+    SHOWCOLLECTABLES,
+    SELEC,
+    SHOWNEXTCARD,
+    ENTERGRAVEYRAD
+}
