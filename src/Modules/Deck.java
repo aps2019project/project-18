@@ -2,6 +2,7 @@ package Modules;
 
 import View.Show;
 import Modules.PlayableThings.cards.*;
+import Modules.PlayableThings.Item.*;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -80,7 +81,7 @@ public class Deck {
     }
 
     public void removeItem(Item item) {
-        if (this.item.getId().compareTo(item.getId()) == 0) {
+        if (this.item.getItemId().compareTo(item.getItemId()) == 0) {
             this.item = null;
             new Show().itemRemovedMessage();
             return;
