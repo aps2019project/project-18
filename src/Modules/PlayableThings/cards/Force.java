@@ -16,9 +16,9 @@ public abstract class Force extends Card {
         buffs.add(buff);
     }
 
-    public boolean getFlag(){
+    /*public boolean getFlag(){
         //todo
-    }
+    }*/
 
     public String getAttackType() {
         return attackType;

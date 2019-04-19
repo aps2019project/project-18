@@ -61,6 +61,11 @@ public class Show {
         }
     }
 
+    public void showSpell(Spell spell) {
+        System.out.println("spell :    Name : " + spell.getName() + " - MP : " + spell.getMP()
+                + " - Desc" + spell.getDescription());
+    }
+
     public void showMinions(ArrayList<Card> cards, Boolean sell) {
         int i = 1;
         System.out.println("Minions : ");
@@ -72,7 +77,7 @@ public class Show {
                         card.getDescription());
                 if (sell == null) {
                     System.out.println();
-                } else if (!sell){
+                } else if (!sell) {
                     System.out.println(" - Buy Cost : " + card.getPrice());
                 } else if (sell) {
                     System.out.println(" - Sell Cost : " + card.getPrice() / 10);
@@ -80,6 +85,15 @@ public class Show {
                 i++;
             }
         }
+    }
+
+    public void showMinion(Minion minion) {
+        System.out.println("minion :    Name : " + minion.getName() + " - Class : " +
+                minion.getAttackType() + " - AP : " + minion.getAttackPower() + " - HP : " +
+                minion.getHitPoint() + " - MP : " + minion.getManaPoint() + " - Special Power : " +
+                minion.getDescription());
+
+
     }
 
     public void showHero(Hero hero, Boolean sell) {
