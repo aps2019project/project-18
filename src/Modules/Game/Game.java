@@ -14,7 +14,9 @@ public abstract class Game {
     protected int winnerPlayer;
     private static ArrayList<Item> collectableItems = new ArrayList<>();
 
-    abstract public void turn();
+     public void turn(){
+        //todo
+    }
 
     public void saveData() {
         String playerOneName = playerOne.getAccount().getUserName();
