@@ -11,9 +11,9 @@ public class SinglePlayer {
         while (true) {
             order = Main.scanner.nextLine();
             if (order.equalsIgnoreCase("Story")) {
-//todo
+                storyMode();
             } else if (order.equalsIgnoreCase("Custom")) {
-//todo
+                customGame();
             } else if (order.equalsIgnoreCase("back")) {
                 ShowBattle.showMenu();
                 return;
@@ -25,4 +25,13 @@ public class SinglePlayer {
         }
     }
 
+    private static void storyMode() {
+        System.out.println("Story");
+        //todo
+    }
+
+    private static void customGame() {
+        System.out.println("custom");
+        //todo
+    }
 }
