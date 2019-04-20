@@ -33,14 +33,13 @@ public class PlayerController {
                     break;
                 case SHOW_HAND:
                     haman.showHand();
+                case SHOW_NEXT_CARD:
+                    haman.showNextCard();
                     break;
                 case INSERT_CARD:
                     //todo
                 case SHOW_CARD_INFO:
                     haman.showCardInfo();
-                    break;
-                case SHOW_NEXT_CARD:
-                    haman.showNextCard();
                     break;
                 case ENTER_GRAVEYRAD:
                     //todo
