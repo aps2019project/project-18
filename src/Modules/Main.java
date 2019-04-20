@@ -12,8 +12,9 @@ public class Main {
 
     public static void main(String[] args) {
         ShowMain.showMenu();
-        String input = MainController.getInstance().getMenuAction();
+        String input;
         while (true) {
+            input = MainController.getInstance().getMenuAction();
             doOrder(input);
             if (exit == true) {
                 break;
