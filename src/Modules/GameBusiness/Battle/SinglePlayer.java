@@ -7,7 +7,6 @@ public class SinglePlayer {
         showMenu();
         String order;
         while (true) {
-
             order = Main.scanner.nextLine();
             if (order.equalsIgnoreCase("Story")) {
 //todo
