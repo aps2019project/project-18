@@ -2,6 +2,8 @@ package Modules;
 
 import Modules.PlayableThings.Item.Item;
 import Modules.PlayableThings.cards.Card;
+import View.ShowAccount;
+import View.ShowMain;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -29,12 +31,15 @@ public class Account implements Comparator {
             } else if (input.equalsIgnoreCase("show leaderboard")) {
                 showLeaderboard();
             } else if (input.equalsIgnoreCase("Logout")) {
-                Main.showMenu();
+                ShowMain.showMenu();
                 return;
             } else if (input.equalsIgnoreCase("Help")) {
-                showHelp();
+                ShowAccount.showHelp();
+            } else if (input.equalsIgnoreCase("Exit")) {
+                Main.exit();
+                return;
             } else {
-                showInvalidCommand();
+                ShowAccount.showInvalidCommand();
             }
         }
     }
@@ -43,13 +48,13 @@ public class Account implements Comparator {
         if (checkExistUserName(userName) == false) {
             Account account = new Account();
             account.userName = userName;
-            showEnterPassword();
+            ShowAccount.showEnterPassword();
             account.passWord = createPassword();
             accounts.add(account);
-            showMenu();
+            ShowAccount.showMenu();
             account.doOrderInAccount();
         } else {
-            showUserNameExist();
+            ShowAccount.showUserNameExist();
             createAccount(scanner.nextLine());
         }
     }
@@ -58,16 +63,16 @@ public class Account implements Comparator {
         for (Account account : accounts) {
             if (account.userName.equalsIgnoreCase(userName)) {
                 if (account.passWord.equals(passWord)) {
-                    showMenu();
+                    ShowAccount.showMenu();
                     account.doOrderInAccount();
                     break;
                 }
             }
         }
-        showIncorrectUserNameOrPassword();
+        ShowAccount.showIncorrectUserNameOrPassword();
         String input = scanner.nextLine();
         if (input.equalsIgnoreCase("Back")) {
-            Main.showMenu();
+            ShowMain.showMenu();
             return;
         } else {
             singIn(input, scanner.nextLine());
@@ -88,7 +93,7 @@ public class Account implements Comparator {
         if (checkPasswordNote(password)) {
             return password;
         } else {
-            showPasswordNote();
+            ShowAccount.showPasswordNote();
             createPassword();
         }
         return "";
@@ -183,46 +188,11 @@ public class Account implements Comparator {
         // TODO:
     }
 
-    private static void showMenu() {
-        System.out.print("1. Collection\n2. Shop\n3. Battle\n4. Leaderboard\n5. Logout\n6. Help\n");
-    }
-
-    private static void showHelp() {
-        System.out.println("1. Collection : see your cart and item");
-        System.out.println("2. Shop : go to shop for buy or sale");
-        System.out.println("3. Battle : go to battle menu");
-        System.out.println("4. Leaderboard : show user list sort by their win");
-        System.out.println("5. Logout : logout from your account");
-    }
-
-    private static void showUserNameExist() {
-        System.out.println("This user name has exist please use another user name");
-        System.out.println("Note : user name is not case sensitive");
-    }
-
-    private static void showEnterPassword() {
-        System.out.println("please insert password");
-        showPasswordNote();
-    }
-
-    private static void showPasswordNote() {
-        System.out.println("Note : password should have 8-16 character and ([a-z]and[A-Z]and[0-9] and special character)");
-    }
-
-    private static void showIncorrectUserNameOrPassword() {
-        System.out.println("Incorrect UserName or password");
-        System.out.println("1. try another userName or password\n2. Back : use this word to back to previous menu");
-    }
-
-    private void showInvalidCommand() {
-        System.out.println("Invalid command please use Help to show menu");
-    }
-
     private void showLeaderboard() {
         sortAccounts();
         int i = 1;
         for (Account account : accounts) {
-            System.out.println(i + "-UserName : " + account.userName + "-Wins : " + account.winCount);
+            ShowAccount.showLeaderboard(i, account.userName, account.winCount);
             i++;
         }
     }
