@@ -11,9 +11,9 @@ public class Battle {
         while (true) {
             order = Main.scanner.nextLine();
             if (order.equalsIgnoreCase("Single player")) {
-//todo
+                SinglePlayer.doOrder();
             } else if (order.equalsIgnoreCase("Multi player")) {
-//todo
+                MultiPlayer.doOrder();
             } else if (order.equalsIgnoreCase("back")) {
                 ShowAccount.showMenu();
                 return;

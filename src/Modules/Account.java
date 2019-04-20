@@ -188,7 +188,7 @@ public class Account implements Comparator {
         // TODO:
     }
 
-    private void showLeaderboard() {
+    public void showLeaderboard() {
         sortAccounts();
         int i = 1;
         for (Account account : accounts) {
