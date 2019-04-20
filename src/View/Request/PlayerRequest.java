@@ -1,5 +1,9 @@
 package View.Request;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+
 public class PlayerRequest extends MainRequest {
     private static final String GAME_INFO = "Game info";
     private static final String SHOW_MY_MINIONS = "Show my minions";
@@ -31,14 +35,14 @@ public class PlayerRequest extends MainRequest {
             return PlayerRequestType.ENTER_GRAVEYRAD;
         } else if (command.equals(HELP)) {
             return PlayerRequestType.HELP;
-        } else if (command.substring(0, 5).equals(INSERT_CARD)){
+        } else if (command.substring(0, 5).equals(INSERT_CARD)) {
             return PlayerRequestType.INSERT_CARD;
         }
         return null;
     }
 
     private PlayerRequestType showType() {
-        if (command.substring(4, 14).equals(SHOW_CARD_INFO)){
+        if (command.substring(4, 14).equals(SHOW_CARD_INFO)) {
             return PlayerRequestType.SHOW_CARD_INFO;
         } else if (command.equals(SHOW_MY_MINIONS)) {
             return PlayerRequestType.SHOW_MY_MINIONS;
@@ -55,7 +59,7 @@ public class PlayerRequest extends MainRequest {
     }
 
     public boolean isValid() {
-        switch (getType()){
+        switch (getType()) {
             case SHOW_CARD_INFO:
                 return checkCardInfoCommand();
             case INSERT_CARD:
@@ -66,15 +70,21 @@ public class PlayerRequest extends MainRequest {
         return true;
     }
 
-    private boolean checkCardInfoCommand(){
+    private boolean checkCardInfoCommand() {
         if (command.matches("Show card info (\\w+)"))
             return true;
         return false;
     }
 
-    private boolean checkInsertCommand(){
+    private boolean checkInsertCommand() {
         if (command.matches("Insert \\w+ in \\(\\d; \\d\\)"))
             return true;
         return false;
+    }
+
+    public String returnInsertCommand() {
+        Pattern pattern = Pattern.compile("Insert (\\w+) in \\((\\d); (\\d)\\)");
+        Matcher matcher = pattern.matcher(command);
+        return matcher.group(1) + " " + matcher.group(2) + " " + matcher.group(3);
     }
 }

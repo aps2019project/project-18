@@ -17,4 +17,8 @@ public class Human extends Player {
     public void showNextCard(){
         hand.showNextCard();
     }
+
+    public void insertCard(String id , int x , int y){
+        //todo
+    }
 }

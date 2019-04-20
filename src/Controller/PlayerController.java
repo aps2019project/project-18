@@ -36,7 +36,8 @@ public class PlayerController {
                     haman.showNextCard();
                     break;
                 case INSERT_CARD:
-                    //todo
+                    String[] temp = request.returnInsertCommand().split(" ");
+                    haman.insertCard(temp[0] , Integer.parseInt(temp[1]) , Integer.parseInt(temp[2]));
                     break;
                 case SHOW_CARD_INFO:
                     //todo
