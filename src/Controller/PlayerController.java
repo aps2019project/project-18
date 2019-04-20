@@ -36,11 +36,11 @@ public class PlayerController {
                     haman.showNextCard();
                     break;
                 case INSERT_CARD:
-                    String[] temp = request.returnInsertCommand().split(" ");
+                    String[] temp = request.returnCommand().split(" ");
                     haman.insertCard(temp[0] , Integer.parseInt(temp[1]) , Integer.parseInt(temp[2]));
                     break;
                 case SHOW_CARD_INFO:
-                    //todo
+                    haman.getGame().showCardInfo(request.returnCommand());
                     break;
                 case ENTER_GRAVEYRAD:
                     //todo

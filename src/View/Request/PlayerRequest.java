@@ -82,9 +82,18 @@ public class PlayerRequest extends MainRequest {
         return false;
     }
 
-    public String returnInsertCommand() {
-        Pattern pattern = Pattern.compile("Insert (\\w+) in \\((\\d); (\\d)\\)");
-        Matcher matcher = pattern.matcher(command);
-        return matcher.group(1) + " " + matcher.group(2) + " " + matcher.group(3);
+    public String returnCommand() {
+        Pattern patternInsert = Pattern.compile("Insert (\\w+) in \\((\\d); (\\d)\\)");
+        Pattern patternCardInfo = Pattern.compile("Show card info (\\w+)");
+        Matcher matcher;
+        switch (getType()) {
+            case INSERT_CARD:
+                matcher = patternInsert.matcher(command);
+                return matcher.group(1) + " " + matcher.group(2) + " " + matcher.group(3);
+            case SHOW_CARD_INFO:
+                matcher = patternCardInfo.matcher(command);
+                return matcher.group(1);
+        }
+        return " ";
     }
 }
