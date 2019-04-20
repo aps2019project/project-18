@@ -1,6 +1,6 @@
 package Modules;
 
-import View.Show;
+import View.View.Show;
 import Modules.PlayableThings.cards.*;
 import Modules.PlayableThings.Item.*;
 

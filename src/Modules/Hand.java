@@ -1,7 +1,7 @@
 package Modules;
 
 import Modules.PlayableThings.cards.*;
-import View.Show;
+import View.View.Show;
 
 public class Hand {
     private Deck deck;

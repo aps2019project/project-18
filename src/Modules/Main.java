@@ -1,6 +1,6 @@
 package Modules;
 
-import View.ShowMain;
+import View.View.ShowMain;
 
 import java.util.Scanner;
 

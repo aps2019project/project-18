@@ -2,8 +2,8 @@ package Modules;
 
 import Modules.PlayableThings.Item.Item;
 import Modules.PlayableThings.cards.Card;
-import View.ShowAccount;
-import View.ShowMain;
+import View.View.ShowAccount;
+import View.View.ShowMain;
 
 import java.util.ArrayList;
 import java.util.Comparator;

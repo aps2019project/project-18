@@ -1,4 +1,4 @@
-package View;
+package View.View;
 
 public class ShowAccount {
     public static void showMenu() {

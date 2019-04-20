@@ -1,4 +1,4 @@
-package View;
+package View.View;
 
 import Modules.PlayableThings.cards.*;
 import Modules.PlayableThings.Item.*;

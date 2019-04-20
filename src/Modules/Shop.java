@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import Modules.PlayableThings.Item.Item;
 import Modules.PlayableThings.cards.Card;
-import View.Show;//why? u fucked mvc module should not use view
-import View.ShowAccount;
+import View.View.Show;//why? u fucked mvc module should not use view
+import View.View.ShowAccount;
 
 public class Shop {
     private static final Shop SHOP = new Shop();
