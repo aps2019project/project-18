@@ -2,7 +2,7 @@ package View;
 
 public class ShowAccount {
     public static void showMenu() {
-        System.out.print("1. Collection\n2. Shop\n3. Battle\n4. Leaderboard\n5. Logout\n6. Help\n");
+        System.out.print("1. Collection\n2. Shop\n3. Battle\n4. Leaderboard\n5. Logout\n6. Exit\n7. Help\n");
     }
 
     public static void showHelp() {
@@ -11,6 +11,7 @@ public class ShowAccount {
         System.out.println("3. Battle : go to battle menu");
         System.out.println("4. Leaderboard : show user list sort by their win");
         System.out.println("5. Logout : logout from your account");
+        System.out.println("6. Exit : close the game");
     }
 
     public static void showUserNameExist() {

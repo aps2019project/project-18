@@ -27,7 +27,7 @@ public class Main {
         } else if (input.equalsIgnoreCase("sign up")) {
             signUp();
         } else if (input.equalsIgnoreCase("Exit")) {
-            exit = true;
+            exit();
         } else if (input.equalsIgnoreCase("Help")) {
             ShowMain.showHelp();
         } else {
@@ -48,5 +48,8 @@ public class Main {
         Account.createAccount(userName);
     }
 
+    public static void exit() {
+        exit = true;
+    }
 
 }
