@@ -51,4 +51,11 @@ public class House {
     public void addHolyBuff(int numberOfHolyTurn) {
         holyTurns.add(numberOfHolyTurn);
     }
+
+    public boolean isCardOnIt() {
+        if (card == null && item == null) {
+            return false;
+        }
+        return true;
+    }
 }
