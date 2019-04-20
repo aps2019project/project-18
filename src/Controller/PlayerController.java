@@ -2,7 +2,7 @@ package Controller;
 
 import Modules.GameBusiness.Player.Human;
 import View.View.Show;
-import View.Request.PlayerRequest;
+import View.Request.Player.PlayerRequest;
 
 public class PlayerController {
     private Human human;
@@ -19,7 +19,7 @@ public class PlayerController {
             }
             switch (request.getType()){
                 case HELP:
-                    human.showOptions();
+                    human.showOptions(Show.get());
                     break;
                 case SELECT:
                     //todo

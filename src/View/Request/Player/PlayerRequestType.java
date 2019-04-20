@@ -1,4 +1,4 @@
-package View.Request;
+package View.Request.Player;
 
 public enum PlayerRequestType {
     GAME_INFO,

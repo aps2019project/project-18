@@ -1,4 +1,6 @@
-package View.Request;
+package View.Request.Player;
+
+import View.Request.MainRequest;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
