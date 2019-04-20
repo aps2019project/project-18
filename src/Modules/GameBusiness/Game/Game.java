@@ -1,5 +1,7 @@
 package Modules.GameBusiness.Game;
 
+import Modules.GameBusiness.Player.AI;
+import Modules.GameBusiness.Player.Human;
 import Modules.GameBusiness.Player.Player;
 import Modules.GameData;
 import Modules.PlayableThings.Item.Item;
@@ -7,14 +9,24 @@ import Modules.PlayableThings.Item.Item;
 import java.util.ArrayList;
 
 public abstract class Game {
-    protected Player playerOne = new Player();
-    protected Player playerTwo = new Player();
+    protected Player playerOne;
+    protected Player playerTwo;
     protected int turn;
     protected boolean end;
     protected int winnerPlayer;
     private static ArrayList<Item> collectableItems = new ArrayList<>();
 
-     public void turn(){
+    public Game(Human playerOne, Human playerTwo) {
+        this.playerOne = playerOne;
+        this.playerTwo = playerTwo;
+    }
+
+    public Game(Human playerOne, AI playerTwo) {
+        this.playerOne = playerOne;
+        this.playerTwo = playerTwo;
+    }
+
+    public void turn() {
         //todo
     }
 
