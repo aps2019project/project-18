@@ -1,6 +1,5 @@
 package Modules;
 
-import Controller.MainController;
 import View.ShowMain;
 
 import java.util.Scanner;
@@ -14,7 +13,7 @@ public class Main {
         ShowMain.showMenu();
         String input;
         while (true) {
-            input = MainController.getInstance().getMenuAction();
+            input = scanner.nextLine();
             doOrder(input);
             if (exit == true) {
                 break;
@@ -37,14 +36,14 @@ public class Main {
     }
 
     private static void signIn() {
-        String userName = MainController.getInstance().getUserNameForSignIn();
-        String password = MainController.getInstance().getPassword();
+        String userName = scanner.nextLine();
+        String password = scanner.nextLine();
         ShowMain.showTextForSignIn();
         Account.singIn(userName, password);
     }
 
     private static void signUp() {
-        String userName = MainController.getInstance().getUserNameForSignUp();
+        String userName = scanner.nextLine();
         ShowMain.showTextForInsertUserName();
         Account.createAccount(userName);
     }
