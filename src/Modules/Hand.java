@@ -13,17 +13,17 @@ public class Hand {
     public void showHand() {
         for (int i = 0; i < 5; i++) {
             if (hand[i] instanceof Spell)
-                new Show().showSpell((Spell) hand[i]);
+                Show.get().showSpell((Spell) hand[i]);
             if (hand[i] instanceof Minion)
-                new Show().showMinion((Minion) hand[i]);
+                Show.get().showMinion((Minion) hand[i]);
         }
     }
 
     public void showNextCard() {
         if (nextCard instanceof Spell)
-            new Show().showSpell((Spell) nextCard);
+            Show.get().showSpell((Spell) nextCard);
         if (nextCard instanceof Minion)
-            new Show().showMinion((Minion) nextCard);
+            Show.get().showMinion((Minion) nextCard);
     }
 
     public void insertCard(String cardId, int manaPoint) {

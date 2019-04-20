@@ -27,7 +27,7 @@ public class Collection {
         for (Item item : items)
             if (item.getName().equals(name))
                 i++;
-        new Show().showNumberOfCardsOrItems(i);
+        Show.get().showNumberOfCardsOrItems(i);
     }
 
     private void showDecks() {
@@ -37,23 +37,23 @@ public class Collection {
     }
 
     public void show() {
-        new Show().showHeroes(cards, true);
-        new Show().showMinions(cards, true);
-        new Show().showSpells(cards, true);
-        new Show().showItems(items, true);
+         Show.get().showHeroes(cards, true);
+         Show.get().showMinions(cards, true);
+         Show.get().showSpells(cards, true);
+         Show.get().showItems(items, true);
     }
 
     public void addCard(Card card) {
         cards.add(card);
-        new Show().cardAddMessage();
+         Show.get().cardAddMessage();
     }
 
     public void removeCard(Card card) {
         if (findCard(card.getId()) != null) {
             cards.remove(card);
-            new Show().cardRemovedMessage();
+             Show.get().cardRemovedMessage();
         } else {
-            new Show().cardNotInCollection();
+             Show.get().cardNotInCollection();
         }
     }
 
@@ -67,18 +67,18 @@ public class Collection {
     public void addItem(Item item) {
         if (items.size() < 3) {
             items.add(item);
-            new Show().itemAddMessage();
+            Show.get().itemAddMessage();
         } else {
-            new Show().collectionItemsIsFullMessage();
+            Show.get().collectionItemsIsFullMessage();
         }
     }
 
     public void removeItem(Item item) {
         if (findItem(item.getItemId()) != null) {
             items.remove(item);
-            new Show().itemRemovedMessage();
+            Show.get().itemRemovedMessage();
         } else {
-            new Show().itemNotInCollectionMessage();
+            Show.get().itemNotInCollectionMessage();
         }
     }
 
@@ -106,28 +106,28 @@ public class Collection {
 
     private void createDeck(String name) {
         if (findDeck(name) != null) {
-            new Show().createDeckErrorMessage();
+            Show.get().createDeckErrorMessage();
             return;
         }
         decks.add(new Deck(name));
-        new Show().createDeckMessage();
+        Show.get().createDeckMessage();
     }
 
     private void deleteDeck(Deck deck) {
         if (findDeck(deck.getName()) == null) {
-            new Show().deleteDeckErrorMessage();
+            Show.get().deleteDeckErrorMessage();
             return;
         }
         decks.remove(deck);
-        new Show().deleteDeckMessage();
+        Show.get().deleteDeckMessage();
     }
 
     private void setMainDeck(String name) {
         if (findDeck(name) != null && findDeck(name).checkValidity()) {
             mainDeck = findDeck(name);
-            new Show().setMainDeckMessage(name);
+            Show.get().setMainDeckMessage(name);
             return;
         }
-        new Show().setMainDeckErrorMessage();
+        Show.get().setMainDeckErrorMessage();
     }
 }

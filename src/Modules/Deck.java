@@ -37,22 +37,22 @@ public class Deck {
         if (card instanceof Hero) {
             if (hero == null) {
                 hero = (Hero) card;
-                new Show().cardAddMessage();
+                Show.get().cardAddMessage();
                 return;
             } else {
-                new Show().deckHasAHeroMessage();
+                Show.get().deckHasAHeroMessage();
                 return;
             }
         } else {
             if (cards.size() < 20 && findCard(card.getId()) == null) {
                 cards.add(card);
-                new Show().cardAddMessage();
+                Show.get().cardAddMessage();
                 return;
             } else if (cards.size() == 20) {
-                new Show().fullDeckMessage();
+                Show.get().fullDeckMessage();
                 return;
             } else {
-                new Show().cardInDeckMessage();
+                Show.get().cardInDeckMessage();
                 return;
             }
         }
@@ -60,11 +60,11 @@ public class Deck {
 
     public void removeCard(Card card) {
         if (findCard(card.getId()) == null) {
-            new Show().cardNotInDeckMessage();
+            Show.get().cardNotInDeckMessage();
             return;
         } else {
             cards.remove(card);
-            new Show().cardRemovedMessage();
+            Show.get().cardRemovedMessage();
             return;
         }
     }
@@ -72,10 +72,10 @@ public class Deck {
     public void addItem(Item item) {
         if (this.item == null) {
             this.item = item;
-            new Show().itemAddMessage();
+            Show.get().itemAddMessage();
             return;
         } else {
-            new Show().deckHasAnItemMessage();
+            Show.get().deckHasAnItemMessage();
             return;
         }
     }
@@ -83,10 +83,10 @@ public class Deck {
     public void removeItem(Item item) {
         if (this.item.getItemId().compareTo(item.getItemId()) == 0) {
             this.item = null;
-            new Show().itemRemovedMessage();
+            Show.get().itemRemovedMessage();
             return;
         } else {
-            new Show().itemNotInDeckMessage();
+            Show.get().itemNotInDeckMessage();
             return;
         }
     }
@@ -98,16 +98,16 @@ public class Deck {
     }
 
     public void showDeck() {
-        new Show().showDeckName(this.name);
+        Show.get().showDeckName(this.name);
         if (hero != null) {
-            new Show().showHero(hero, null);
+            Show.get().showHero(hero, null);
         }
         if (cards.size() > 0) {
-            new Show().showMinions(cards, null);
-            new Show().showSpells(cards, null);
+            Show.get().showMinions(cards, null);
+            Show.get().showSpells(cards, null);
         }
         if (item != null) {
-            new Show().showItem(item, null);
+            Show.get().showItem(item, null);
         }
     }
 

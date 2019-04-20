@@ -1,6 +1,7 @@
 package Controller;
 
 import Modules.GameBusiness.Player.Human;
+import View.View.Show;
 import View.Request.PlayerRequest;
 
 public class PlayerController {
@@ -36,6 +37,7 @@ public class PlayerController {
                     break;
                 case INSERT_CARD:
                     //todo
+                    break;
                 case SHOW_CARD_INFO:
                     //todo
                     break;

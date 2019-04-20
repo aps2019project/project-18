@@ -13,7 +13,7 @@ public class Graveyard {
     }
 
     public void showGraveyard() {
-        new Show().showMinions(cards, null);
-        new Show().showSpells(cards, null);
+        Show.get().showMinions(cards, null);
+        Show.get().showSpells(cards, null);
     }
 }
