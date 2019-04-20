@@ -2,6 +2,7 @@ package Modules;
 
 import Modules.PlayableThings.Item.Item;
 import Modules.PlayableThings.cards.Card;
+import View.ShowMain;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -29,7 +30,7 @@ public class Account implements Comparator {
             } else if (input.equalsIgnoreCase("show leaderboard")) {
                 showLeaderboard();
             } else if (input.equalsIgnoreCase("Logout")) {
-                Main.showMenu();
+                ShowMain.showMenu();
                 return;
             } else if (input.equalsIgnoreCase("Help")) {
                 showHelp();
@@ -67,7 +68,7 @@ public class Account implements Comparator {
         showIncorrectUserNameOrPassword();
         String input = scanner.nextLine();
         if (input.equalsIgnoreCase("Back")) {
-            Main.showMenu();
+            ShowMain.showMenu();
             return;
         } else {
             singIn(input, scanner.nextLine());
