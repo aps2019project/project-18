@@ -128,6 +128,12 @@ public class Show {
             System.out.println("card/item not in collection");
     }
 
+    public static void showShopMenu(){
+        System.out.print("1. show collection\n2. show\n3. search collection [ card name | item name ]\n" +
+                "4. search [ card name | item name ]\n5. buy [ card name | item name ]\n" +
+                "6. sell [ card name | item name ]\n7. exit : close the shop");
+    }
+
     public void showShopHelp() {
         System.out.println("1. show collection : see your collection");
         System.out.println("2. show : see cards and items in shop");

@@ -36,15 +36,15 @@ public class Main {
     }
 
     private static void signIn() {
+        ShowMain.showTextForSignIn();
         String userName = scanner.nextLine();
         String password = scanner.nextLine();
-        ShowMain.showTextForSignIn();
         Account.singIn(userName, password);
     }
 
     private static void signUp() {
-        String userName = scanner.nextLine();
         ShowMain.showTextForInsertUserName();
+        String userName = scanner.nextLine();
         Account.createAccount(userName);
     }
 

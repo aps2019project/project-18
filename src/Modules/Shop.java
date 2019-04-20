@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import Modules.PlayableThings.Item.Item;
 import Modules.PlayableThings.cards.Card;
 import View.Show;//why? u fucked mvc module should not use view
+import View.ShowAccount;
 
 public class Shop {
     private static final Shop SHOP = new Shop();
@@ -19,10 +20,12 @@ public class Shop {
     }
 
     public void menu(Account account) {
+        Show.showShopMenu();
         String input;
         while (true) {
             input = Main.scanner.nextLine();
             if (input.compareTo("exit") == 0) {
+                ShowAccount.showMenu();
                 return;
             } else if (input.compareTo("show collection") == 0) {
                 account.getCollection().show();

@@ -12,9 +12,9 @@ public class PlayerController {
         request.getNewCommand();
 
         while (true){
-            if (!request.isValid()){
-                continue;
-            }
+//            if (!request.isValid()){
+//                continue;
+//            }
         }
     }
 }

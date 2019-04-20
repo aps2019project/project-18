@@ -29,7 +29,7 @@ public class ShowAccount {
 
     public static void showIncorrectUserNameOrPassword() {
         System.out.println("Incorrect UserName or password");
-        System.out.println("1. try another userName or password\n2. Back : use this word to back to previous menu");
+        System.out.println("1. try another userName and password\n2. Back : use this word to back to previous menu");
     }
 
     public static void showInvalidCommand() {
