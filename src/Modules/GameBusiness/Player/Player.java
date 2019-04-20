@@ -4,6 +4,7 @@ import Modules.Account;
 import Modules.GameBusiness.Game.Game;
 import Modules.Hand;
 import Modules.PlayableThings.Item.Item;
+import View.View.Show;
 
 import java.util.ArrayList;
 
@@ -25,5 +26,9 @@ public abstract class Player {
 
     public Game getGame() {
         return game;
+    }
+
+    public void showCollectables(Show show){
+        show.showItems(items , null);
     }
 }

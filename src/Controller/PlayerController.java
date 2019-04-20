@@ -2,7 +2,6 @@ package Controller;
 
 import Modules.GameBusiness.Player.Human;
 import View.Request.PlayerRequest;
-import View.View.ShowPlayer;
 
 public class PlayerController {
     private Human human;
@@ -10,7 +9,6 @@ public class PlayerController {
     public void handlePlayerCommands(Human haman){
         this.human = human;
         PlayerRequest request = new PlayerRequest();
-        ShowPlayer showPlayer = new ShowPlayer();
         boolean in = true;
 
         while (in){
@@ -39,7 +37,7 @@ public class PlayerController {
                 case INSERT_CARD:
                     //todo
                 case SHOW_CARD_INFO:
-                    haman.showCardInfo();
+                    //todo
                     break;
                 case ENTER_GRAVEYRAD:
                     //todo
@@ -48,7 +46,7 @@ public class PlayerController {
                     human.getGame().showMyMinions();
                     break;
                 case SHOW_COLLECTABLES:
-                    haman.showCollectables();
+                    haman.showCollectables(Show.get());
                     break;
                 case SHOW_OPPONENT_MINIONS:
                     haman.getGame().showOpponentMinion();

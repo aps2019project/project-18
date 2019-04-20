@@ -6,6 +6,10 @@ import Modules.PlayableThings.Item.*;
 import java.util.ArrayList;
 
 public class Show {
+    Show show = new Show();
+    private Show(){
+
+    }
     public void showItems(ArrayList<Item> items, Boolean sell) {
         int i = 1;
         System.out.println("Items : ");
