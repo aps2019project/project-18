@@ -1,6 +1,6 @@
 package View.Request;
 
-public class PlayerRequest extends MainRequest{
+public class PlayerRequest extends MainRequest {
     private static final String GAME_INFO = "Game info";
     private static final String SHOW_MY_MINIONS = "Show my minions";
     private static final String SHOW_OPPONENT_MINIONS = "Show opponent minions";
@@ -31,14 +31,14 @@ public class PlayerRequest extends MainRequest{
             return PlayerRequestType.ENTER_GRAVEYRAD;
         } else if (command.equals(HELP)) {
             return PlayerRequestType.HELP;
-        } else if (command.equals(INSERT_CARD)) {
+        } else if (command.substring(0, 5).equals(INSERT_CARD)){
             return PlayerRequestType.INSERT_CARD;
         }
         return null;
     }
 
-    private PlayerRequestType showType(){
-        if (command.equals(SHOW_CARD_INFO)) {
+    private PlayerRequestType showType() {
+        if (command.substring(4, 14).equals(SHOW_CARD_INFO)){
             return PlayerRequestType.SHOW_CARD_INFO;
         } else if (command.equals(SHOW_MY_MINIONS)) {
             return PlayerRequestType.SHOW_MY_MINIONS;
@@ -52,5 +52,29 @@ public class PlayerRequest extends MainRequest{
             return PlayerRequestType.SHOW_NEXT_CARD;
         }
         return null;
+    }
+
+    public boolean isValid() {
+        switch (getType()){
+            case SHOW_CARD_INFO:
+                return checkCardInfoCommand();
+            case INSERT_CARD:
+                return checkInsertCommand();
+        }
+        if (getType() == null)
+            return false;
+        return true;
+    }
+
+    private boolean checkCardInfoCommand(){
+        if (command.matches("Show card info (\\w+)"))
+            return true;
+        return false;
+    }
+
+    private boolean checkInsertCommand(){
+        if (command.matches("Insert \\w+ in \\(\\d; \\d\\)"))
+            return true;
+        return false;
     }
 }
