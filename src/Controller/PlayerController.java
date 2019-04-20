@@ -19,7 +19,7 @@ public class PlayerController {
             }
             switch (request.getType()){
                 case HELP:
-                    // TODO
+                    human.showOptions();
                     break;
                 case SELECT:
                     //todo

@@ -1,6 +1,7 @@
 package Modules.GameBusiness.Player;
 
 import Modules.Account;
+import View.View.Show;
 
 public class Human extends Player {
     private Account account;
@@ -20,5 +21,12 @@ public class Human extends Player {
 
     public void insertCard(String id , int x , int y){
         //todo
+    }
+
+    public void showOptions(Show show){
+        showCollectables(show);
+        hand.showInsertables(manaPoint);
+        game.showMoveableCards();
+        game.attackableCards();
     }
 }
