@@ -13,7 +13,7 @@ import java.util.Random;
 public abstract class Game {
     protected Player playerOne;
     protected Player playerTwo;
-    protected int turn;
+    protected int turn = 0;
     protected boolean end;
     protected int winnerPlayer;
     protected Playground playground = new Playground();
@@ -50,6 +50,23 @@ public abstract class Game {
 
     public static Item getRandomCollectableItem() {
         return collectableItems.get(new Random().nextInt(collectableItems.size()));
+    }
+
+    private void setRandomItemInPlayground() {
+        int indexX, indexY;
+        indexX = new Random().nextInt(9);
+        indexY = new Random().nextInt(5);
+        while (playground.getGround()[indexX][indexY].isCardOnIt()) {
+            indexX = new Random().nextInt(9);
+            indexY = new Random().nextInt(5);
+        }
+        playground.getGround()[indexX][indexY].setItem(getRandomCollectableItem());
+    }
+
+    private void setItemInRandomTurn() {
+        if (new Random().nextInt() % 6 == 0) {
+            setRandomItemInPlayground();
+        }
     }
 
     abstract public void setPlayground();
