@@ -1,8 +1,19 @@
 package Modules.GameBusiness.Game;
 
+import Modules.GameBusiness.Player.AI;
+import Modules.GameBusiness.Player.Human;
 import Modules.PlayableThings.Item.Flag;
 
 public class ModeCaptureFlag6Turn extends Game {
+
+    public ModeCaptureFlag6Turn(Human playerOne, Human playerTwo) {
+        super(playerOne, playerTwo);
+    }
+
+    public ModeCaptureFlag6Turn(Human playerOne, AI playerTwo) {
+        super(playerOne, playerTwo);
+    }
+
     @Override
     public void setPlayground() {
         playground.getGround()[0][2].setCard(playerOne.getHeroCard());

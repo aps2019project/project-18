@@ -16,9 +16,18 @@ public abstract class Player {
     protected Hand hand;
     protected Game game;
     protected ArrayList<Item> items = new ArrayList<>();
+    private int numberOfTurnPlayeHaveFlag;
 
     public Account getAccount() {
         return account;
+    }
+
+    public int getNumberOfFlag() {
+        return numberOfFlag;
+    }
+
+    public int getNumberOfTurnPlayerHaveFlag() {
+        return numberOfTurnPlayeHaveFlag;
     }
 
     public void playTurn() {
