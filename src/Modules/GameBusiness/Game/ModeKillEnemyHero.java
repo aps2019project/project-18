@@ -20,7 +20,7 @@ public class ModeKillEnemyHero extends Game {
         int indexX, indexY;
         playground.getGround()[0][3].setCard(playerOne.getHeroCard());
         playground.getGround()[8][3].setCard(playerTwo.getHeroCard());
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 3; i++) {
             indexX = new Random().nextInt(9);
             indexY = new Random().nextInt(5);
             while (playground.getGround()[indexX][indexY].isCardOnIt()) {
@@ -33,6 +33,13 @@ public class ModeKillEnemyHero extends Game {
 
     @Override
     protected void checkEnd() {
-
+        if (playerOne.getHeroCard().getHitPoint <= 0) {
+            winnerPlayer = 2;
+            end = true;
+        } else if (playerTwo.getHeroCard().getHitPoint <= 0) {
+            winnerPlayer = 1;
+            end = true;
+        }
+        turn++;
     }
 }
