@@ -12,6 +12,16 @@ public class ModeCaptureFlag6Turn extends Game {
 
     @Override
     protected void checkEnd() {
-
+        if (playerOne.getNumberOfTurnPlayerHaveFlag() >= 6) {
+            winnerPlayer = 1;
+            end = true;
+            return;
+        }
+        if (playerTwo.getNumberOfTurnPlayerHaveFlag() >= 6) {
+            winnerPlayer = 2;
+            end = true;
+            return;
+        }
+        turn++;
     }
 }
