@@ -1,5 +1,6 @@
 package Modules;
 
+import Modules.GameBusiness.Battle.Battle;
 import Modules.PlayableThings.Item.Item;
 import Modules.PlayableThings.cards.Card;
 import View.View.ShowAccount;
@@ -27,8 +28,8 @@ public class Account implements Comparator {
             } else if (input.equalsIgnoreCase("Shop")) {
                 Shop.getInstance().menu(this);
             } else if (input.equalsIgnoreCase("Battle")) {
-                //ToDo go to battle
-            } else if (input.equalsIgnoreCase("show leaderboard")) {
+                Battle.doOrder();
+            } else if (input.equalsIgnoreCase("leaderboard")) {
                 showLeaderboard();
             } else if (input.equalsIgnoreCase("Logout")) {
                 ShowMain.showMenu();
