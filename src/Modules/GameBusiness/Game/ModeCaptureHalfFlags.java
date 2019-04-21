@@ -30,8 +30,8 @@ public class ModeCaptureHalfFlags extends Game {
     @Override
     public void setPlayground() {
         int indexX, indexY;
-        playground.getGround()[0][3].setCard(playerOne.getHeroCard());
-        playground.getGround()[8][3].setCard(playerTwo.getHeroCard());
+        playground.getGround()[0][2].setCard(playerOne.getHeroCard());
+        playground.getGround()[8][2].setCard(playerTwo.getHeroCard());
         for (int i = 0; i < numberOfFlags; i++) {
             indexX = new Random().nextInt(9);
             indexY = new Random().nextInt(5);
