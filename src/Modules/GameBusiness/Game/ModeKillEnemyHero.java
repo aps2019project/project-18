@@ -15,6 +15,9 @@ public class ModeKillEnemyHero extends Game {
         super(playerOne, playerTwo);
     }
 
+    public ModeKillEnemyHero() {
+    }
+
     @Override
     public void setPlayground() {
         int indexX, indexY;

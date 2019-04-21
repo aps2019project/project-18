@@ -29,6 +29,10 @@ public abstract class Game {
         this.playerTwo = playerTwo;
     }
 
+    public Game() {
+
+    }
+
     public void turn() {
         //todo
     }
@@ -48,9 +52,10 @@ public abstract class Game {
         playerTwo.getAccount().saveGameData(new GameData(playerOneName, matchResultPlayerTwo));
     }
 
-    public static Item getRandomCollectableItem(){
+    public static Item getRandomCollectableItem() {
         return collectableItems.get(new Random().nextInt(collectableItems.size()));
     }
+
     abstract public void setPlayground();
 
     abstract protected void checkEnd();
