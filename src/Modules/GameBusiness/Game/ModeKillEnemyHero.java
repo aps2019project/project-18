@@ -39,8 +39,6 @@ public class ModeKillEnemyHero extends Game {
         } else if (playerTwo.getHeroCard().getHitPoint <= 0) {
             winnerPlayer = 1;
             end = true;
-        } else {
-        turn++;
         }
     }
 }

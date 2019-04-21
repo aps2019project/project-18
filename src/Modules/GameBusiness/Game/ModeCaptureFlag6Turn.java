@@ -22,6 +22,5 @@ public class ModeCaptureFlag6Turn extends Game {
             end = true;
             return;
         }
-        turn++;
     }
 }

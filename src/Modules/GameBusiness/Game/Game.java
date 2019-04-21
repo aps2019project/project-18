@@ -11,29 +11,47 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public abstract class Game {
-    protected Player playerOne;
-    protected Player playerTwo;
-    protected int turn = 0;
-    protected boolean end;
-    protected int winnerPlayer;
-    protected Playground playground = new Playground();
+    Player playerOne;
+    Player playerTwo;
+    private int turn = 0;
+    boolean end;
+    int winnerPlayer;
+    Playground playground = new Playground();
     private static ArrayList<Item> collectableItems = new ArrayList<>();
 
-    public Game(Human playerOne, Human playerTwo) {
+    Game(Human playerOne, Human playerTwo) {
         this.playerOne = playerOne;
         this.playerTwo = playerTwo;
     }
 
-    public Game(Human playerOne, AI playerTwo) {
+    Game(Human playerOne, AI playerTwo) {
         this.playerOne = playerOne;
         this.playerTwo = playerTwo;
     }
 
     public void turn() {
-        //todo
+        if (end) {
+            doWhatNeedDoAfterGameEnd();
+            return;
+        }
+        if (turn % 2 == 0) {
+            playerOne.playTurn();
+        } else {
+            playerTwo.playTurn();
+        }
+        doWhatNeedDoAfterEachTurn();
     }
 
-    public void saveData() {
+    private void doWhatNeedDoAfterEachTurn() {
+        turn++;
+        checkEnd();
+    }
+
+    private void doWhatNeedDoAfterGameEnd() {
+        saveData();
+    }
+
+    private void saveData() {
         String playerOneName = playerOne.getAccount().getUserName();
         String playerTwoName = playerTwo.getAccount().getUserName();
         String matchResultPlayerOne, matchResultPlayerTwo;
@@ -48,7 +66,7 @@ public abstract class Game {
         playerTwo.getAccount().saveGameData(new GameData(playerOneName, matchResultPlayerTwo));
     }
 
-    public static Item getRandomCollectableItem() {
+    static Item getRandomCollectableItem() {
         return collectableItems.get(new Random().nextInt(collectableItems.size()));
     }
 

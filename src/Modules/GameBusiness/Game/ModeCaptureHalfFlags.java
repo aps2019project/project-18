@@ -65,6 +65,5 @@ public class ModeCaptureHalfFlags extends Game {
             end = true;
             return;
         }
-        turn++;
     }
 }
