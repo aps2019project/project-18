@@ -28,7 +28,7 @@ public class PlayerController {
                     in = false;
                     break;
                 case GAME_INFO:
-                    human.getGame().showInfo();
+                  //  human.getGame().showInfo();
                     break;
                 case SHOW_HAND:
                     haman.showHand();
@@ -40,19 +40,19 @@ public class PlayerController {
                     haman.insertCard(temp[0] , Integer.parseInt(temp[1]) , Integer.parseInt(temp[2]));
                     break;
                 case SHOW_CARD_INFO:
-                    haman.getGame().showCardInfo(request.returnCommand());
+                 //   haman.getGame().showCardInfo(request.returnCommand());
                     break;
                 case ENTER_GRAVEYRAD:
                     //todo
                     break;
                 case SHOW_MY_MINIONS:
-                    human.getGame().showMyMinions();
+                  //  human.getGame().showMyMinions();
                     break;
                 case SHOW_COLLECTABLES:
                     haman.showCollectables(Show.get());
                     break;
                 case SHOW_OPPONENT_MINIONS:
-                    haman.getGame().showOpponentMinion();
+                   // haman.getGame().showOpponentMinion();
             }
         }
     }

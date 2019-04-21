@@ -62,7 +62,7 @@ public class Shop {
         if (findCard(name) == null && findItem(name) == null) {
             System.out.println("this card/item doesn't exist in the shop");
             return;
-        } else if (findCard(name) != null){
+        } else if (findCard(name) != null) {
             account.buyCard(findCard(name));
             return;
         } else {
@@ -95,22 +95,22 @@ public class Shop {
     }
 
     private void showShopMinions() {
-        new Show().showMinions(cards, false);
+        Show.get().showMinions(cards, false);
     }
 
     private void showShopSpells() {
-        new Show().showSpells(cards, false);
+        Show.get().showSpells(cards, false);
     }
 
     private void showShopItems() {
-        new Show().showItems(items, false);
+        Show.get().showItems(items, false);
     }
 
     private void showShopHeroes() {
-        new Show().showHeroes(cards, false);
+        Show.get().showHeroes(cards, false);
     }
 
     private void showHelp() {
-        new Show().showShopHelp();
+        Show.get().showShopHelp();
     }
 }
