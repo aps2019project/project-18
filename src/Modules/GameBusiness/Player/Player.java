@@ -4,6 +4,7 @@ import Modules.Account;
 import Modules.GameBusiness.Game.Game;
 import Modules.Hand;
 import Modules.PlayableThings.Item.Item;
+import Modules.PlayableThings.cards.Hero;
 import View.View.Show;
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public abstract class Player {
         return account;
     }
 
-    public void playTurn(){
+    public void playTurn() {
 
     }
 
@@ -28,7 +29,11 @@ public abstract class Player {
         return game;
     }
 
-    public void showCollectables(Show show){
-        show.showItems(items , null);
+    public void showCollectables(Show show) {
+        show.showItems(items, null);
+    }
+
+    public Hero getHeroCard() {
+        return account.getCollection().getMainDeck().getHero();
     }
 }

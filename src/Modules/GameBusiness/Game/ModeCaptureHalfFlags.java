@@ -45,12 +45,12 @@ public class ModeCaptureHalfFlags extends Game {
 
     @Override
     protected void checkEnd() {
-        if (playerOne.getHeroCard().getHitPoint <= 0) {
+        if (playerOne.getHeroCard().getHitPoint() <= 0) {
             winnerPlayer = 2;
             end = true;
             return;
         }
-        if (playerTwo.getHeroCard().getHitPoint <= 0) {
+        if (playerTwo.getHeroCard().getHitPoint() <= 0) {
             winnerPlayer = 1;
             end = true;
             return;
@@ -63,7 +63,6 @@ public class ModeCaptureHalfFlags extends Game {
         if (playerTwo.getNumberOfFlag() >= numberOfFlags / 2) {
             winnerPlayer = 2;
             end = true;
-            return;
         }
     }
 }

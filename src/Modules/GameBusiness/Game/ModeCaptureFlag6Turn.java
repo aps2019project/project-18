@@ -12,6 +12,16 @@ public class ModeCaptureFlag6Turn extends Game {
 
     @Override
     protected void checkEnd() {
+        if (playerOne.getHeroCard().getHitPoint() <= 0) {
+            winnerPlayer = 2;
+            end = true;
+            return;
+        }
+        if (playerTwo.getHeroCard().getHitPoint() <= 0) {
+            winnerPlayer = 1;
+            end = true;
+            return;
+        }
         if (playerOne.getNumberOfTurnPlayerHaveFlag() >= 6) {
             winnerPlayer = 1;
             end = true;
@@ -20,7 +30,6 @@ public class ModeCaptureFlag6Turn extends Game {
         if (playerTwo.getNumberOfTurnPlayerHaveFlag() >= 6) {
             winnerPlayer = 2;
             end = true;
-            return;
         }
     }
 }

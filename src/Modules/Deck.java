@@ -127,8 +127,12 @@ public class Deck {
         return this.name;
     }
 
+    public Hero getHero() {
+        return hero;
+    }
+
     public boolean equals(Deck deck) {
-        if(this.name.equals(deck.getName()))
+        if (this.name.equals(deck.getName()))
             return true;
         return false;
     }

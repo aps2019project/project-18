@@ -33,10 +33,10 @@ public class ModeKillEnemyHero extends Game {
 
     @Override
     protected void checkEnd() {
-        if (playerOne.getHeroCard().getHitPoint <= 0) {
+        if (playerOne.getHeroCard().getHitPoint() <= 0) {
             winnerPlayer = 2;
             end = true;
-        } else if (playerTwo.getHeroCard().getHitPoint <= 0) {
+        } else if (playerTwo.getHeroCard().getHitPoint() <= 0) {
             winnerPlayer = 1;
             end = true;
         }
