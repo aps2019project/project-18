@@ -29,10 +29,6 @@ public abstract class Game {
         this.playerTwo = playerTwo;
     }
 
-    public Game() {
-
-    }
-
     public void turn() {
         //todo
     }
