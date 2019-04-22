@@ -28,4 +28,10 @@ public class GraveyardRequest extends MainRequest {
             return true;
         return false;
     }
+
+    private boolean checkShowCard(){
+        if (command.matches("Show info (\\d+)"))
+            return true;
+        return false;
+    }
 }
