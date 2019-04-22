@@ -11,6 +11,6 @@ public enum PlayerRequestType {
     SHOW_COLLECTABLES,
     SELECT,
     SHOW_NEXT_CARD,
-    ENTER_GRAVEYRAD,
+    ENTER_GRAVEYARD,
     HELP
 }

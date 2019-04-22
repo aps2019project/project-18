@@ -34,7 +34,7 @@ public class PlayerRequest extends MainRequest {
         } else if (command.substring(0, 5).equals(SELECT)) {
             return PlayerRequestType.SELECT;
         } else if (command.equals(ENTER_GRAVEYARD)) {
-            return PlayerRequestType.ENTER_GRAVEYRAD;
+            return PlayerRequestType.ENTER_GRAVEYARD;
         } else if (command.equals(HELP)) {
             return PlayerRequestType.HELP;
         } else if (command.substring(0, 5).equals(INSERT_CARD)) {
