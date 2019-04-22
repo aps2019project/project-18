@@ -20,4 +20,12 @@ public class GraveyardRequest extends MainRequest {
         }
         return null;
     }
+
+    public boolean isValid(){
+        if (getType() == GraveyardRequestType.SHOW_CARD)
+            return checkShowCard();
+        else if (getType() != null)
+            return true;
+        return false;
+    }
 }
