@@ -42,9 +42,9 @@ public class PlayerController {
                 case SHOW_CARD_INFO:
                  //   haman.getGame().showCardInfo(request.returnCommand());
                     break;
-                case ENTER_GRAVEYRAD:
+                //case ENTER_GRAVEYRAD:
                     //todo
-                    break;
+                  //  break;
                 case SHOW_MY_MINIONS:
                   //  human.getGame().showMyMinions();
                     break;
