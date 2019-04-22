@@ -5,6 +5,8 @@ import Modules.GameBusiness.Player.Human;
 import Modules.GameBusiness.Player.Player;
 import Modules.GameData;
 import Modules.PlayableThings.Item.Item;
+import Modules.PlayableThings.cards.Card;
+import Modules.PlayableThings.cards.Force;
 import Modules.Playground;
 
 import java.util.ArrayList;
@@ -90,4 +92,28 @@ public abstract class Game {
     abstract public void setPlayground();
 
     abstract protected void checkEnd();
+
+    public void showMoveAbleCards() {
+        String userNamePlayerWhoHaveTurn;
+        if (turn % 2 == 0) {
+            userNamePlayerWhoHaveTurn = playerOne.getAccount().getUserName();
+        } else {
+            userNamePlayerWhoHaveTurn = playerTwo.getAccount().getUserName();
+        }
+        Force force = new Force() {
+        };
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (playground.getGround()[i][j].getCard() instanceof Force) {
+                    force = (Force) playground.getGround()[i][j].getCard();
+                    if (force.getCanMove()) {
+                        //player should have card to move it
+                        if (userNamePlayerWhoHaveTurn.contains(force.getId())){
+                            //show card
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

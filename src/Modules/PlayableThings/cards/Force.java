@@ -20,6 +20,10 @@ public abstract class Force extends Card {
         //todo
     }*/
 
+    public boolean getCanMove(){
+        return canMove;
+    }
+
     public String getAttackType() {
         return attackType;
     }
