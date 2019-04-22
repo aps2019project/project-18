@@ -1,5 +1,6 @@
 package Modules.GameBusiness.Player;
 
+import Controller.PlayerController;
 import Modules.Account;
 import View.View.Show;
 
@@ -8,7 +9,8 @@ public class Human extends Player {
 
     @Override
     public void playTurn() {
-        //todo
+        new PlayerController().handlePlayerCommands(this);
+        //handleMana
     }
 
     public void showHand(){
