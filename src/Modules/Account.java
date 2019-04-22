@@ -17,7 +17,7 @@ public class Account implements Comparator {
     private ArrayList<GameData> matchHistory = new ArrayList<>();
     private String userName, passWord;
     private int winCount, money;
-    private Collection collection;
+    private Collection collection = new Collection();
 
     private void doOrderInAccount() {
         String input;
