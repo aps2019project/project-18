@@ -93,27 +93,35 @@ public abstract class Game {
 
     abstract protected void checkEnd();
 
-    public void showMoveAbleCards() {
+    private Force getPlayerForce(int x, int y) {
         String userNamePlayerWhoHaveTurn;
         if (turn % 2 == 0) {
             userNamePlayerWhoHaveTurn = playerOne.getAccount().getUserName();
         } else {
             userNamePlayerWhoHaveTurn = playerTwo.getAccount().getUserName();
         }
-        Force force = new Force() {
-        };
+        //player should have card to move it
+        if (playground.getGround()[x][y].getCard().getId().contains(userNamePlayerWhoHaveTurn)) {
+            if (playground.getGround()[x][y].getCard() instanceof Force) {
+                return (Force) playground.getGround()[x][y].getCard();
+            }
+        }
+        return null;
+    }
+
+    public void showMoveAbleCards() {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
-                if (playground.getGround()[i][j].getCard() instanceof Force) {
-                    force = (Force) playground.getGround()[i][j].getCard();
-                    if (force.getCanMove()) {
-                        //player should have card to move it
-                        if (userNamePlayerWhoHaveTurn.contains(force.getId())){
-                            //show card
-                        }
+                if (getPlayerForce(i, j) != null) {
+                    if (getPlayerForce(i, j).getCanMove()) {
+                        //show card
                     }
                 }
             }
         }
+    }
+
+    public void ShowAttackAbleCards() {
+
     }
 }
