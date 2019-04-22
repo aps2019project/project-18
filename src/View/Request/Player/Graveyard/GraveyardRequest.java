@@ -2,6 +2,9 @@ package View.Request.Player.Graveyard;
 
 import View.Request.MainRequest;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class GraveyardRequest extends MainRequest {
     private static final String EXIT = "Exit";
     private static final String SHOW_CARD = "Show info";
@@ -33,5 +36,14 @@ public class GraveyardRequest extends MainRequest {
         if (command.matches("Show info (\\d+)"))
             return true;
         return false;
+    }
+
+    public String returnCommand(){
+        if (getType() == GraveyardRequestType.SHOW_CARD){
+            Pattern patternCardInfo = Pattern.compile("Show card (\\w+)");
+            Matcher matcher = patternCardInfo.matcher(command);
+            return matcher.group(1);
+        }
+        return null;
     }
 }

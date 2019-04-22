@@ -96,6 +96,6 @@ public class PlayerRequest extends MainRequest {
                 matcher = patternCardInfo.matcher(command);
                 return matcher.group(1);
         }
-        return " ";
+        return null;
     }
 }
