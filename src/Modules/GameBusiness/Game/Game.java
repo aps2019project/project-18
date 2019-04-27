@@ -5,9 +5,9 @@ import Modules.GameBusiness.Player.Human;
 import Modules.GameBusiness.Player.Player;
 import Modules.GameData;
 import Modules.PlayableThings.Item.Item;
-import Modules.PlayableThings.cards.Card;
 import Modules.PlayableThings.cards.Force;
 import Modules.Playground;
+import View.View.Show;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -20,6 +20,7 @@ public abstract class Game {
     int winnerPlayer;
     Playground playground = new Playground();
     private static ArrayList<Item> collectableItems = new ArrayList<>();
+    private static ArrayList<Integer[]> targetPositionCanAttackTo;
 
     Game(Human playerOne, Human playerTwo) {
         this.playerOne = playerOne;
@@ -123,6 +124,7 @@ public abstract class Game {
     }
 
     private boolean canAttackRangeForce(Force force, int x, int y) {
+        targetPositionCanAttackTo = new ArrayList<>();
         if (canAttackMeleeForce(x, y)) {
             return false;
         }
@@ -130,32 +132,30 @@ public abstract class Game {
             for (int j = 0; j < 5; j++) {
                 if (Math.abs(x - i) + Math.abs(y - j) <= force.getRange()) {
                     if (getEnemyForce(i, j) != null) {
-                        return true;
+                        targetPositionCanAttackTo.add(new Integer[]{i, j});
                     }
                 }
             }
         }
-        return false;
+        return targetPositionCanAttackTo.size() != 0;
     }
 
     private boolean canAttackMeleeForce(int x, int y) {
+        targetPositionCanAttackTo = new ArrayList<>();
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
                 if ((x - i == 1 || i - x == 1) && (y - j == 1 || j - y == 1)) {
                     if (getEnemyForce(i, j) != null) {
-                        return true;
+                        targetPositionCanAttackTo.add(new Integer[]{i, j});
                     }
                 }
             }
         }
-        return false;
+        return targetPositionCanAttackTo.size() != 0;
     }
 
     private boolean canAttackHybridForce(Force force, int x, int y) {
-        if (canAttackMeleeForce(x, y) || canAttackRangeForce(force, x, y)) {
-            return true;
-        }
-        return false;
+        return canAttackMeleeForce(x, y) || canAttackRangeForce(force, x, y);
     }
 
     private Force getEnemyForce(int x, int y) {
@@ -189,6 +189,16 @@ public abstract class Game {
                     //show card
                 }
             }
+        }
+    }
+
+    public void showTargetThatForceCanAttackTo(Force force, int i, int j) {
+        if (!canAttack(force, i, j)) return;
+        int x, y;
+        for (Integer[] integers : targetPositionCanAttackTo) {
+            x = integers[0];
+            y = integers[1];
+            Show.showTargetThatForceCanAttackTo(x, y);
         }
     }
 }

@@ -7,13 +7,15 @@ import java.util.ArrayList;
 
 public class Show {
     final static Show show = new Show();
-    private Show(){
+
+    private Show() {
 
     }
 
-    public static Show get(){
+    public static Show get() {
         return show;
     }
+
     public void showItems(ArrayList<Item> items, Boolean sell) {
         int i = 1;
         System.out.println("Items : ");
@@ -136,7 +138,7 @@ public class Show {
             System.out.println("card/item not in collection");
     }
 
-    public static void showShopMenu(){
+    public static void showShopMenu() {
         System.out.print("1. show collection\n2. show\n3. search collection [ card name | item name ]\n" +
                 "4. search [ card name | item name ]\n5. buy [ card name | item name ]\n" +
                 "6. sell [ card name | item name ]\n7. exit : close the shop");
@@ -232,4 +234,7 @@ public class Show {
         System.out.println("deck is not valid or does not exist");
     }
 
+    public static void showTargetThatForceCanAttackTo(int x, int y) {
+        System.out.println("{ " + x + " ," + y + " }");
+    }
 }
