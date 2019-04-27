@@ -109,6 +109,65 @@ public abstract class Game {
         return null;
     }
 
+    private boolean canAttack(Force force, int x, int y) {
+        if (force.getAttackType().equals("melee")) {
+            return canAttackMeleeForce(x, y);
+        }
+        if (force.getAttackType().equals("range")) {
+            return canAttackRangeForce(force, x, y);
+        }
+        if (force.getAttackType().equals("hybrid")) {
+            return canAttackHybridForce(force, x, y);
+        }
+        return false;
+    }
+
+    private boolean canAttackRangeForce(Force force, int x, int y) {
+        if (canAttackMeleeForce(x, y)) {
+            return false;
+        }
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (Math.abs(x - i) + Math.abs(y - j) <= force.getRange()) {
+                    if (getEnemyForce(i, j) != null) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean canAttackMeleeForce(int x, int y) {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 5; j++) {
+                if ((x - i == 1 || i - x == 1) && (y - j == 1 || j - y == 1)) {
+                    if (getEnemyForce(i, j) != null) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean canAttackHybridForce(Force force, int x, int y) {
+        if (canAttackMeleeForce(x, y) || canAttackRangeForce(force, x, y)) {
+            return true;
+        }
+        return false;
+    }
+
+    private Force getEnemyForce(int x, int y) {
+        if (playground.getGround()[x][y].getCard() instanceof Force) {
+            //that means this force is for enemy
+            if (getPlayerForce(x, y) == null) {
+                return (Force) playground.getGround()[x][y].getCard();
+            }
+        }
+        return null;
+    }
+
     public void showMoveAbleCards() {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
@@ -122,6 +181,14 @@ public abstract class Game {
     }
 
     public void ShowAttackAbleCards() {
-
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (getPlayerForce(i, j) == null) continue;
+                if (!getPlayerForce(i, j).getCanAttack()) continue;
+                if (canAttack(getPlayerForce(i, j), i, j)) {
+                    //show card
+                }
+            }
+        }
     }
 }
