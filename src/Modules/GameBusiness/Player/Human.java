@@ -7,6 +7,10 @@ import View.View.Show;
 public class Human extends Player {
     private Account account;
 
+    public Human(Account account) {
+        this.account = account;
+    }
+
     @Override
     public void playTurn() {
         new PlayerController().handlePlayerCommands(this);

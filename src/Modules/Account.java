@@ -1,6 +1,8 @@
 package Modules;
 
 import Modules.GameBusiness.Battle.Battle;
+import Modules.GameBusiness.Player.Human;
+import Modules.GameBusiness.Player.Player;
 import Modules.PlayableThings.Item.Item;
 import Modules.PlayableThings.cards.Card;
 import View.View.ShowAccount;
@@ -18,6 +20,7 @@ public class Account implements Comparator {
     private String userName, passWord;
     private int winCount, money;
     private Collection collection = new Collection();
+    private Human player;
 
     private void doOrderInAccount() {
         String input;
@@ -28,7 +31,8 @@ public class Account implements Comparator {
             } else if (input.equalsIgnoreCase("Shop")) {
                 Shop.getInstance().menu(this);
             } else if (input.equalsIgnoreCase("Battle")) {
-                Battle.doOrder();
+                //todo check player
+                Battle.doOrder(this);
             } else if (input.equalsIgnoreCase("leaderboard")) {
                 showLeaderboard();
             } else if (input.equalsIgnoreCase("Logout")) {
@@ -48,6 +52,7 @@ public class Account implements Comparator {
     public static void createAccount(String userName) {
         if (checkExistUserName(userName) == false) {
             Account account = new Account();
+            account.player = new Human(account);
             account.userName = userName;
             ShowAccount.showEnterPassword();
             account.passWord = createPassword();
@@ -142,7 +147,11 @@ public class Account implements Comparator {
         accounts.sort(this::compare);
     }
 
-    private static Account findAccount(String userName) {
+    public Human getPlayer() {
+        return player;
+    }
+
+    public static Account findAccount(String userName) {
         for (Account account : accounts) {
             if (account.userName.equalsIgnoreCase(userName)) {
                 return account;

@@ -1,11 +1,12 @@
 package Modules.GameBusiness.Battle;
 
+import Modules.Account;
 import Modules.Main;
 import View.View.ShowBattle;
 import View.View.ShowSinglePlayer;
 
 public class SinglePlayer {
-    public static void doOrder() {
+    public static void doOrder(Account account) {
         ShowSinglePlayer.showMenu();
         String order;
         while (true) {

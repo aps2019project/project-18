@@ -8,14 +8,16 @@ public class ModeCaptureFlag6Turn extends Game {
 
     public ModeCaptureFlag6Turn(Human playerOne, Human playerTwo) {
         super(playerOne, playerTwo);
+        setPlayground();
     }
 
     public ModeCaptureFlag6Turn(Human playerOne, AI playerTwo) {
         super(playerOne, playerTwo);
+        setPlayground();
     }
 
     @Override
-    public void setPlayground() {
+    void setPlayground() {
         playground.getGround()[0][2].setCard(playerOne.getHeroCard());
         playground.getGround()[8][2].setCard(playerTwo.getHeroCard());
         playground.getGround()[4][2].setItem(new Flag());

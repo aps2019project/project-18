@@ -11,24 +11,28 @@ public class ModeCaptureHalfFlags extends Game {
 
     public ModeCaptureHalfFlags(Human playerOne, Human playerTwo) {
         super(playerOne, playerTwo);
+        setPlayground();
     }
 
     public ModeCaptureHalfFlags(Human playerOne, AI playerTwo) {
         super(playerOne, playerTwo);
+        setPlayground();
     }
 
     public ModeCaptureHalfFlags(Human playerOne, Human playerTwo, int numberOfFlags) {
         super(playerOne, playerTwo);
         this.numberOfFlags = numberOfFlags;
+        setPlayground();
     }
 
     public ModeCaptureHalfFlags(Human playerOne, AI playerTwo, int numberOfFlags) {
         super(playerOne, playerTwo);
         this.numberOfFlags = numberOfFlags;
+        setPlayground();
     }
 
     @Override
-    public void setPlayground() {
+    void setPlayground() {
         int indexX, indexY;
         playground.getGround()[0][2].setCard(playerOne.getHeroCard());
         playground.getGround()[8][2].setCard(playerTwo.getHeroCard());

@@ -90,7 +90,7 @@ public abstract class Game {
         }
     }
 
-    abstract public void setPlayground();
+    abstract void setPlayground();
 
     abstract protected void checkEnd();
 
