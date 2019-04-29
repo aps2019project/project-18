@@ -9,14 +9,16 @@ public class ModeKillEnemyHero extends Game {
 
     public ModeKillEnemyHero(Human playerOne, Human playerTwo) {
         super(playerOne, playerTwo);
+        setPlayground();
     }
 
     public ModeKillEnemyHero(Human playerOne, AI playerTwo) {
         super(playerOne, playerTwo);
+        setPlayground();
     }
 
     @Override
-    public void setPlayground() {
+    void setPlayground() {
         int indexX, indexY;
         playground.getGround()[0][2].setCard(playerOne.getHeroCard());
         playground.getGround()[8][2].setCard(playerTwo.getHeroCard());

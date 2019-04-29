@@ -10,7 +10,6 @@ public class Main {
     private static boolean exit = false;
 
     public static void main(String[] args) {
-        new GameData("ali","lose").showGameData();
         ShowMain.showMenu();
         String input;
         while (true) {

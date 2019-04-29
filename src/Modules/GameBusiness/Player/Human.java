@@ -7,28 +7,32 @@ import View.View.Show;
 public class Human extends Player {
     private Account account;
 
+    public Human(Account account) {
+        this.account = account;
+    }
+
     @Override
     public void playTurn() {
         new PlayerController().handlePlayerCommands(this);
         //handleMana
     }
 
-    public void showHand(){
+    public void showHand() {
         hand.showHand();
     }
 
-    public void showNextCard(){
+    public void showNextCard() {
         hand.showNextCard();
     }
 
-    public void insertCard(String id , int x , int y){
+    public void insertCard(String id, int x, int y) {
         //todo
     }
 
-    public void showOptions(Show show){
+    public void showOptions(Show show) {
         showCollectables(show);
 //        hand.showInsertables(manaPoint);
-//        game.showMoveableCards();
-//        game.attackableCards();
-}
+        game.showMoveAbleCards();
+        game.ShowAttackAbleCards();
+    }
 }
