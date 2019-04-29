@@ -1,6 +1,8 @@
 package Controller;
 
 import Modules.GameBusiness.Player.Human;
+import Modules.Graveyard;
+import View.Request.Player.Graveyard.GraveyardRequest;
 import View.View.Show;
 import View.Request.Player.PlayerRequest;
 
@@ -42,8 +44,8 @@ public class PlayerController {
                 case SHOW_CARD_INFO:
                  //   haman.getGame().showCardInfo(request.returnCommand());
                     break;
-                //case ENTER_GRAVEYRAD:
-                    //todo
+                case ENTER_GRAVEYARD:
+                    graveYardMenu();
                   //  break;
                 case SHOW_MY_MINIONS:
                   //  human.getGame().showMyMinions();
@@ -53,6 +55,25 @@ public class PlayerController {
                     break;
                 case SHOW_OPPONENT_MINIONS:
                    // haman.getGame().showOpponentMinion();
+            }
+        }
+    }
+
+    private void graveYardMenu(){
+        GraveyardRequest request = new GraveyardRequest();
+        boolean in = true;
+
+        while (in){
+            request.getCommand();
+            if (!request.isValid())
+                continue;
+            switch (request.getType()){
+                case EXIT:
+                    return;
+                case SHOW_CARD:
+                    break;
+                case SHOW_CARDS:
+                    break;
             }
         }
     }
