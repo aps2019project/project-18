@@ -71,8 +71,10 @@ public class PlayerController {
                 case EXIT:
                     return;
                 case SHOW_CARD:
+                    human.showGraveyard(false , request.returnCommand());
                     break;
                 case SHOW_CARDS:
+                    human.showGraveyard(true , "");
                     break;
             }
         }
