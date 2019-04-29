@@ -35,4 +35,11 @@ public class Human extends Player {
         game.showMoveAbleCards();
         game.ShowAttackAbleCards();
     }
+
+    public void showGraveyard(boolean all , String id){
+        if (all)
+            hand.getGraveyard().showGraveyard();
+        else
+            hand.getGraveyard().showCard(id);
+    }
 }
