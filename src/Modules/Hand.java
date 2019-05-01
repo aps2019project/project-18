@@ -7,7 +7,6 @@ public class Hand {
     private Deck deck;
     private Card[] hand = new Card[5];
     private Card nextCard;
-    private Hero hero;
     private Graveyard graveyard;
 
     public void showHand() {
