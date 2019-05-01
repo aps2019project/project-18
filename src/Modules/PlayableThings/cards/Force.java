@@ -12,7 +12,7 @@ public abstract class Force extends Card {
     protected boolean canMove;
     protected boolean canAttack;
     protected int range;
-    protected ArrayList<Buff> buffs;
+    protected ArrayList<Buff> buffs = new ArrayList<>();
 
     void addBuff(Buff buff) {
         buffs.add(buff);
