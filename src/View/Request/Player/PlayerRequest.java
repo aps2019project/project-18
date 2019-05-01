@@ -73,20 +73,20 @@ public class PlayerRequest extends MainRequest {
     }
 
     private boolean checkCardInfoCommand() {
-        if (command.matches("Show card info (\\w+)"))
+        if (command.matches("Show card info (\\d+)"))
             return true;
         return false;
     }
 
     private boolean checkInsertCommand() {
-        if (command.matches("Insert \\w+ in \\(\\d; \\d\\)"))
+        if (command.matches("Insert \\w+ in \\(\\d+; \\d+\\)"))
             return true;
         return false;
     }
 
     public String returnCommand() {
         Pattern patternInsert = Pattern.compile("Insert (\\w+) in \\((\\d); (\\d)\\)");
-        Pattern patternCardInfo = Pattern.compile("Show card info (\\w+)");
+        Pattern patternCardInfo = Pattern.compile("Show card info (\\d+)");
         Matcher matcher;
         switch (getType()) {
             case INSERT_CARD:

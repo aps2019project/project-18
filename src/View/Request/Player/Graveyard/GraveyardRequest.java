@@ -40,7 +40,7 @@ public class GraveyardRequest extends MainRequest {
 
     public String returnCommand(){
         if (getType() == GraveyardRequestType.SHOW_CARD){
-            Pattern patternCardInfo = Pattern.compile("Show card (\\w+)");
+            Pattern patternCardInfo = Pattern.compile("Show card (\\d+)");
             Matcher matcher = patternCardInfo.matcher(command);
             return matcher.group(1);
         }
