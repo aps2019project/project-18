@@ -31,7 +31,7 @@ public class Human extends Player {
 
     public void showOptions(Show show) {
         showCollectables(show);
-//        hand.showInsertables(manaPoint);
+        hand.showInsertables(manaPoint);
         game.showMoveAbleCards();
         game.showAttackAbleCards();
     }

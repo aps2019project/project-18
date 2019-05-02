@@ -15,7 +15,7 @@ public class Main {
         while (true) {
             input = scanner.nextLine();
             doOrder(input);
-            if (exit == true) {
+            if (exit) {
                 break;
             }
         }
