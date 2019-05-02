@@ -1,5 +1,8 @@
 package Modules.PlayableThings.Item;
 
+import Modules.PlayableThings.cards.Card;
+import Modules.PlayableThings.cards.Spell;
+
 public class Item {
     private String name;
     private String itemId;
@@ -38,5 +41,9 @@ public class Item {
 
     public void execute() {
         //todo
+    }
+
+    public Item copyItem(Item item) {
+        return new Item(item.name, item.price, item.description);
     }
 }

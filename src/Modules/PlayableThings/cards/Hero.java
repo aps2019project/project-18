@@ -1,8 +1,8 @@
 package Modules.PlayableThings.cards;
 
-public class Hero extends Force{
-    private  int spellCoolDown;
-    private  int spellMana;
+public class Hero extends Force {
+    private int spellCoolDown;
+    private int spellMana;
     private int usedSpellCoolDown = 0;
     private Spell spell;
 
@@ -12,21 +12,23 @@ public class Hero extends Force{
         this.spellMana = spellMana;
     }
 
-    public Hero(int attackPower, int hitPoint, String attackType, int range, int spellCoolDown, int spellMana) {
-        super(attackPower, hitPoint, attackType, range);
-        this.spellCoolDown = spellCoolDown;
-        this.spellMana = spellMana;
-    }
-
-    public void excuteAbility(){
-        if (usedSpellCoolDown == 0){
+    public void excuteAbility() {
+        if (usedSpellCoolDown == 0) {
             usedSpellCoolDown = spellCoolDown;
             //todo
         }
     }
 
-    public void decreaseCoolDown(){
+    public void decreaseCoolDown() {
         if (usedSpellCoolDown > 0)
             usedSpellCoolDown--;
+    }
+
+    @Override
+    public Card getCopyCard(Card card) {
+        Hero hero = (Hero) card;
+        Card copyCard = new Hero(hero.name, hero.description, hero.price, hero.attackPower, hero.hitPoint,
+                hero.attackType, hero.range, hero.spellCoolDown, hero.spellMana);
+        return  copyCard;
     }
 }
