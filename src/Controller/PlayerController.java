@@ -2,6 +2,7 @@ package Controller;
 
 import Modules.GameBusiness.Player.Human;
 import View.Request.Player.Graveyard.GraveyardRequest;
+import View.Request.Player.Item.ItemRequest;
 import View.View.Show;
 import View.Request.Player.PlayerRequest;
 
@@ -83,8 +84,33 @@ public class PlayerController {
     public void selectMenu(String id2){
         int id = Integer.parseInt(id2);
         if (human.checkItem(id))
-            selectMenu(Item(id));
+            selectMenuItem(id);
         else if (human.getGame().checkCard(id , huamn))
             selectMenuCard(id);
+    }
+
+    public void selectMenuCard(int id){
+
+    }
+
+    public void selectMenuItem(int id){
+        ItemRequest request = new ItemRequest();
+        boolean in = true;
+
+        while (in){
+            request.getCommand();
+            if (!request.isValid())
+                continue;
+            switch (request.getType()){
+                case EXIT:
+                    return;
+                case USE:
+                    useItem(id ,request.returnCommand());
+                    break;
+                case SHOW_INFO:
+                    human.showItem(id);
+                    break;
+            }
+        }
     }
 }
