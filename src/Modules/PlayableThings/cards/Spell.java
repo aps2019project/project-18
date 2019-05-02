@@ -25,9 +25,7 @@ public class Spell extends Card {
     }
 
     @Override
-    public Card getCopyCard(Card card) {
-        Spell spell = (Spell) card;
-        Card copyCard = new Spell(spell.name, spell.description, spell.price, spell.manaPoint, spell.target);
-        return copyCard;
+    public Card getCopyCard() {
+        return new Spell(this.name, this.description, this.price, this.manaPoint, this.target);
     }
 }

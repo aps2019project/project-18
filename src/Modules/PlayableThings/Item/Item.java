@@ -43,7 +43,7 @@ public class Item {
         //todo
     }
 
-    public Item copyItem(Item item) {
-        return new Item(item.name, item.price, item.description);
+    public Item copyItem() {
+        return new Item(this.name, this.price, this.description);
     }
 }

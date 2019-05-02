@@ -165,6 +165,7 @@ public class Account implements Comparator {
     }
 
     public void buyCard(Card card) {
+        Card copyCard = Card
         collection.addCard(card);
     }
 
