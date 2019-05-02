@@ -34,14 +34,14 @@ public class Shop {
                 return;
             } else if (input.compareTo("show collection") == 0) {
                 account.getCollection().show();
-            } else if (input.matches("search collection \\w+")) {
-                account.getCollection().search(input.split(" ")[2]);
-            } else if (input.matches("search \\w+")) {
-                search(input.split(" ")[1]);
-            } else if (input.matches("buy \\w+")) {
-                sell(account, input.split(" ")[1]);
-            } else if (input.matches("sell \\w+")) {
-                account.sellCard(input.split(" ")[1]);
+            } else if (input.matches("search collection .+")) {
+                account.getCollection().search(input.substring(17));
+            } else if (input.matches("search .+")) {
+                search(input.substring(7));
+            } else if (input.matches("buy .+")) {
+                sell(account, input.substring(4));
+            } else if (input.matches("sell .+")) {
+                account.sellCard(input.substring(5));
             } else if (input.compareTo("show") == 0) {
                 show();
             } else if (input.compareTo("help") == 0) {
