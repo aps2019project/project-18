@@ -81,7 +81,7 @@ public class PlayerRequest extends MainRequest {
     }
 
     private boolean checkInsertCommand() {
-        if (command.matches("Insert \\w+ in \\(\\d+; \\d+\\)"))
+        if (command.matches("Insert \\d+ in \\(\\d+; \\d+\\)"))
             return true;
         return false;
     }
@@ -93,7 +93,7 @@ public class PlayerRequest extends MainRequest {
     }
 
     public String returnCommand() {
-        Pattern patternInsert = Pattern.compile("Insert (\\w+) in \\((\\d); (\\d)\\)");
+        Pattern patternInsert = Pattern.compile("Insert (\\d+) in \\((\\d); (\\d)\\)");
         Pattern patternCardInfo = Pattern.compile("Show card info (\\d+)");
         Pattern patternSelect = Pattern.compile("elect (\\d+)");
         Matcher matcher;
