@@ -1,7 +1,6 @@
 package View.Request.Player.CardRequests;
 
 import View.Request.MainRequest;
-import View.Request.Player.Graveyard.GraveyardRequestType;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -80,19 +79,21 @@ public class CardRequest extends MainRequest {
         switch (getType()) {
             case MOVE:
                 matcher = patternMove.matcher(command);
+                matcher.find();
                 return matcher.group(1) + " " + matcher.group(2);
             case COMBO:
                 matcher = patternComboAttack.matcher(command);
                 StringBuilder result = new StringBuilder();
-                matcher = patternComboAttack.matcher(command);
                 while (matcher.find())
                     result.append(matcher.group(1)).append(" ");
                 return result.toString();
             case ATTACK:
                 matcher = patternAttack.matcher(command);
+                matcher.find();
                 return matcher.group(1);
             case USE_SPECIAL_POWER:
                 matcher = patternSpecialPower.matcher(command);
+                matcher.find();
                 return matcher.group(1) + " " + matcher.group(2);
         }
         return null;

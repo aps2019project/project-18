@@ -91,9 +91,11 @@ public class PlayerRequest extends MainRequest {
         switch (getType()) {
             case INSERT_CARD:
                 matcher = patternInsert.matcher(command);
+                matcher.find();
                 return matcher.group(1) + " " + matcher.group(2) + " " + matcher.group(3);
             case SHOW_CARD_INFO:
                 matcher = patternCardInfo.matcher(command);
+                matcher.find();
                 return matcher.group(1);
         }
         return null;

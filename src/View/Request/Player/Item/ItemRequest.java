@@ -47,6 +47,7 @@ public class ItemRequest extends MainRequest {
         if (getType() == ItemRequestType.USE){
             Pattern patternCardInfo = Pattern.compile("Use\\[(\\d+),(\\d+)\\]");
             Matcher matcher = patternCardInfo.matcher(command);
+            matcher.find();
             return matcher.group(1) + " " + matcher.group(2);
         }
         return null;
