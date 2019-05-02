@@ -2,8 +2,21 @@ package Modules.PlayableThings.cards;
 
 public class Hero extends Force{
     private  int spellCoolDown;
+    private  int spellMana;
     private int usedSpellCoolDown = 0;
     private Spell spell;
+
+    public Hero(String name, String description, int price, int attackPower, int hitPoint, String attackType, int range, int spellCoolDown, int spellMana) {
+        super(name, description, price, attackPower, hitPoint, attackType, range);
+        this.spellCoolDown = spellCoolDown;
+        this.spellMana = spellMana;
+    }
+
+    public Hero(int attackPower, int hitPoint, String attackType, int range, int spellCoolDown, int spellMana) {
+        super(attackPower, hitPoint, attackType, range);
+        this.spellCoolDown = spellCoolDown;
+        this.spellMana = spellMana;
+    }
 
     public void excuteAbility(){
         if (usedSpellCoolDown == 0){

@@ -6,6 +6,16 @@ public class Item {
     private int price;
     private String description;
 
+    public Item(String name, int price, String description) {
+        this.name = name;
+        this.price = price;
+        this.description = description;
+    }
+
+    public Item() {
+
+    }
+
     public String getName() {
         return name;
     }
@@ -26,7 +36,7 @@ public class Item {
         this.itemId = itemId;
     }
 
-    public void execute(){
+    public void execute() {
         //todo
     }
 }

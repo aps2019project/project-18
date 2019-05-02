@@ -31,7 +31,7 @@ public class Human extends Player {
 
     public void showOptions(Show show) {
         showCollectables(show);
-        hand.showInsertables(manaPoint);
+        //hand.showInsertables(manaPoint);
         game.showMoveAbleCards();
         game.showAttackAbleCards();
     }
@@ -39,7 +39,7 @@ public class Human extends Player {
     public void showGraveyard(boolean all , String id){
         if (all)
             hand.getGraveyard().showGraveyard();
-        else
-            hand.getGraveyard().showCard(id);
+//        else
+//            hand.getGraveyard().showCard(id);
     }
 }

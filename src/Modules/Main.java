@@ -1,5 +1,6 @@
 package Modules;
 
+import Modules.GameBusiness.Game.Game;
 import View.View.ShowMain;
 
 import java.util.Scanner;
@@ -10,6 +11,7 @@ public class Main {
     private static boolean exit = false;
 
     public static void main(String[] args) {
+        Game.initializeItems();
         ShowMain.showMenu();
         String input;
         while (true) {

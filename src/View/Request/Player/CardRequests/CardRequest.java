@@ -24,17 +24,17 @@ public class CardRequest extends MainRequest {
             return CardRequestType.MOVE;
         } else if (command.equals(HELP)) {
             return CardRequestType.HELP;
-        }else if (command.substring(0, 11).equals(COMBO)) {
+        } else if (command.substring(0, 11).equals(COMBO)) {
             return CardRequestType.COMBO;
-        } else if (command.substring(0 , 5).equals(ATTACK)) {
+        } else if (command.substring(0, 5).equals(ATTACK)) {
             return CardRequestType.HELP;
-        }else if (command.substring(0, 16).equals(SPECIAL_POWER)) {
+        } else if (command.substring(0, 16).equals(SPECIAL_POWER)) {
             return CardRequestType.USE_SPECIAL_POWER;
         }
         return null;
     }
 
-    public boolean isValid(){
+    public boolean isValid() {
         CardRequestType type = getType();
         if (type == CardRequestType.MOVE)
             return checkMove();
@@ -47,31 +47,32 @@ public class CardRequest extends MainRequest {
         return false;
     }
 
-    private boolean checkMove(){
+    private boolean checkMove() {
         if (command.matches("Move to \\(\\d+, \\d+\\)"))
             return true;
         return false;
     }
 
-    private boolean checkSpecialPower(){
+    private boolean checkSpecialPower() {
         if (command.matches("Use special power \\(\\d+; \\d+\\)"))
             return true;
         return false;
     }
 
-    private boolean checkAttack(){
+    private boolean checkAttack() {
         if (command.matches("Attack \\d+"))
             return true;
         return false;
     }
 
-    private boolean checkCombo(){
+    private boolean checkCombo() {
         if (command.matches("Attack combo \\d+ (\\d+)+"))
             return true;
         return false;
     }
 
-    public String returnCommand(){
+    public String returnCommand() {
         // TODO: 5/2/2019
+        return "";
     }
 }
