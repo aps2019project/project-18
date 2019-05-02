@@ -23,9 +23,6 @@ public class ItemRequest extends MainRequest {
         } else if (command.substring(0, 2).equals(USE)) {
             return ItemRequestType.USE;
         }
-        else if (command.equals(HELP)){
-            return ItemRequestType.HELP;
-        }
         return null;
     }
 

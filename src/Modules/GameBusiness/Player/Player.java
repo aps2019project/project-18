@@ -45,4 +45,14 @@ public abstract class Player {
     public Hero getHeroCard() {
         return account.getCollection().getMainDeck().getHero();
     }
+    public Item getItem(String id){
+        for (Item item : items) {
+            if (item.getItemId() == id)
+                return item;
+        }
+        return null;
+    }
+    public void showItem(String id){
+        Show.get().showItem(getItem(id) , null);
+    }
 }
