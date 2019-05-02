@@ -82,18 +82,17 @@ public class PlayerController {
     }
 
     public void selectMenu(String id2){
-        int id = Integer.parseInt(id2);
         if (human.checkItem(id))
             selectMenuItem(id);
         else if (human.getGame().checkCard(id , human))
             selectMenuCard(id);
     }
 
-    public void selectMenuCard(int id){
+    public void selectMenuCard(String id){
 
     }
 
-    public void selectMenuItem(int id){
+    public void selectMenuItem(String id){
         ItemRequest request = new ItemRequest();
         boolean in = true;
 
@@ -113,7 +112,7 @@ public class PlayerController {
             }
         }
     }
-    private void useItem(int id , String place){
+    private void useItem(String id , String place){
         String[] deminision = place.split(" ");
         human.getGame().useItem(human.getItem(id) , Integer.parseInt(deminision[0]) , Integer.parseInt(deminision[1]));
     }
