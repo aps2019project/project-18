@@ -1,7 +1,6 @@
 package View.Request.Player.CardRequests;
 
 import View.Request.MainRequest;
-import View.Request.Player.Graveyard.GraveyardRequestType;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -65,14 +64,38 @@ public class CardRequest extends MainRequest {
         return false;
     }
 
-    private boolean checkCombo() {
-        if (command.matches("Attack combo \\d+ (\\d+)+"))
+    private boolean checkCombo(){
+        if (command.matches("Attack combo (\\d+)(( \\d+)+)"))
             return true;
         return false;
     }
 
-    public String returnCommand() {
-        // TODO: 5/2/2019
-        return "";
+    public String returnCommand(){
+        Pattern patternAttack = Pattern.compile("Attack (\\d+)");
+        Pattern patternComboAttack = Pattern.compile("(\\d+)");
+        Pattern patternMove = Pattern.compile("Move to \\((\\d+), (\\d+)\\)");
+        Pattern patternSpecialPower = Pattern.compile("Use special power \\((\\d+); (\\d+)\\)");
+        Matcher matcher;
+        switch (getType()) {
+            case MOVE:
+                matcher = patternMove.matcher(command);
+                matcher.find();
+                return matcher.group(1) + " " + matcher.group(2);
+            case COMBO:
+                matcher = patternComboAttack.matcher(command);
+                StringBuilder result = new StringBuilder();
+                while (matcher.find())
+                    result.append(matcher.group(1)).append(" ");
+                return result.toString();
+            case ATTACK:
+                matcher = patternAttack.matcher(command);
+                matcher.find();
+                return matcher.group(1);
+            case USE_SPECIAL_POWER:
+                matcher = patternSpecialPower.matcher(command);
+                matcher.find();
+                return matcher.group(1) + " " + matcher.group(2);
+        }
+        return null;
     }
 }
