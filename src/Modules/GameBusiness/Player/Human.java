@@ -33,7 +33,7 @@ public class Human extends Player {
         showCollectables(show);
 //        hand.showInsertables(manaPoint);
         game.showMoveAbleCards();
-        game.ShowAttackAbleCards();
+        game.showAttackAbleCards();
     }
 
     public void showGraveyard(boolean all , String id){

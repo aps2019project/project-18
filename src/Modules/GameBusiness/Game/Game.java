@@ -6,6 +6,7 @@ import Modules.GameBusiness.Player.Player;
 import Modules.GameData;
 import Modules.PlayableThings.Item.Item;
 import Modules.PlayableThings.cards.Force;
+import Modules.PlayableThings.cards.Hero;
 import Modules.Playground;
 import View.View.Show;
 
@@ -168,6 +169,29 @@ public abstract class Game {
         return null;
     }
 
+    private Player getEnemyPlayer() {
+        if (turn % 2 == 0) {
+            return playerTwo;
+        } else {
+            return playerOne;
+        }
+    }
+
+    public Hero getEnemyHero() {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (playground.getGround()[i][j].getCard().getId().contains
+                        (getEnemyPlayer().getAccount().getUserName())) {
+                    continue;
+                }
+                if (playground.getGround()[i][j].getCard() instanceof Hero) {
+                    return (Hero) playground.getGround()[i][j].getCard();
+                }
+            }
+        }
+        return null;
+    }
+
     public void showMoveAbleCards() {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
@@ -180,7 +204,7 @@ public abstract class Game {
         }
     }
 
-    public void ShowAttackAbleCards() {
+    public void showAttackAbleCards() {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
                 if (getPlayerForce(i, j) == null) continue;
@@ -189,6 +213,60 @@ public abstract class Game {
                     //show card
                 }
             }
+        }
+    }
+
+    public void showAllPlaceCanForceMoveTo(Force force, int i, int j) {
+        if (!force.getCanMove()) {
+            return;
+        }
+        if (i - 1 >= 0 && playground.getGround()[i - 1][j].getCard() == null) {
+            Show.showTargetThatForceCanMoveTo(i - 1, j);
+        }
+        if (j - 1 >= 0 && playground.getGround()[i][j - 1].getCard() == null) {
+            Show.showTargetThatForceCanMoveTo(i, j - 1);
+        }
+        if (j + 1 < 9 && playground.getGround()[i][j + 1].getCard() == null) {
+            Show.showTargetThatForceCanMoveTo(i, j + 1);
+        }
+        if (j + 1 < 9 && playground.getGround()[i + 1][j].getCard() == null) {
+            Show.showTargetThatForceCanMoveTo(i + 1, j);
+        }
+        if (i - 1 >= 0 && playground.getGround()[i - 1][j].getCard() == null &&
+                i - 2 >= 0 && playground.getGround()[i - 2][j].getCard() == null) {
+            Show.showTargetThatForceCanMoveTo(i - 2, j);
+        }
+        if (j - 1 >= 0 && playground.getGround()[i][j - 1].getCard() == null &&
+                j - 2 >= 0 && playground.getGround()[i][j - 2].getCard() == null) {
+            Show.showTargetThatForceCanMoveTo(i, j - 2);
+        }
+        if (i + 1 < 9 && playground.getGround()[i + 1][j].getCard() == null &&
+                i + 2 < 9 && playground.getGround()[i + 2][j].getCard() == null) {
+            Show.showTargetThatForceCanMoveTo(i + 2, j);
+        }
+        if (j + 1 < 9 && playground.getGround()[i][j + 1].getCard() == null &&
+                j + 2 < 9 && playground.getGround()[i][j + 2].getCard() == null) {
+            Show.showTargetThatForceCanMoveTo(i, j + 2);
+        }
+        if (j - 1 >= 0 && i - 1 >= 0 && (playground.getGround()[i][j - 1].getCard() == null ||
+                playground.getGround()[i - 1][j].getCard() == null) &&
+                playground.getGround()[i - 1][j - 1].getCard() == null) {
+            Show.showTargetThatForceCanMoveTo(i - 1, j - 1);
+        }
+        if (j + 1 < 9 && i + 1 < 9 && (playground.getGround()[i][j + 1].getCard() == null ||
+                playground.getGround()[i + 1][j].getCard() == null) &&
+                playground.getGround()[i + 1][j + 1].getCard() == null) {
+            Show.showTargetThatForceCanMoveTo(i + 1, j + 1);
+        }
+        if (j - 1 >= 0 && i + 1 < 9 && (playground.getGround()[i][j - 1].getCard() == null ||
+                playground.getGround()[i + 1][j].getCard() == null) &&
+                playground.getGround()[i + 1][j - 1].getCard() == null) {
+            Show.showTargetThatForceCanMoveTo(i + 1, j - 1);
+        }
+        if (j + 1 < 9 && i - 1 >= 0 && (playground.getGround()[i][j + 1].getCard() == null ||
+                playground.getGround()[i - 1][j].getCard() == null) &&
+                playground.getGround()[i - 1][j + 1].getCard() == null) {
+            Show.showTargetThatForceCanMoveTo(i - 1, j + 1);
         }
     }
 
