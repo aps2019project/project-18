@@ -66,6 +66,8 @@ public class PlayerRequest extends MainRequest {
                 return checkCardInfoCommand();
             case INSERT_CARD:
                 return checkInsertCommand();
+            case SELECT:
+                return checkSelectCommand();
         }
         if (getType() == null)
             return false;
@@ -84,9 +86,16 @@ public class PlayerRequest extends MainRequest {
         return false;
     }
 
+    private boolean checkSelectCommand(){
+        if (command.matches("elect \\d+"))
+            return true;
+        return false;
+    }
+
     public String returnCommand() {
         Pattern patternInsert = Pattern.compile("Insert (\\w+) in \\((\\d); (\\d)\\)");
         Pattern patternCardInfo = Pattern.compile("Show card info (\\d+)");
+        Pattern patternSelect = Pattern.compile("elect (\\d+)")
         Matcher matcher;
         switch (getType()) {
             case INSERT_CARD:
@@ -95,6 +104,10 @@ public class PlayerRequest extends MainRequest {
                 return matcher.group(1) + " " + matcher.group(2) + " " + matcher.group(3);
             case SHOW_CARD_INFO:
                 matcher = patternCardInfo.matcher(command);
+                matcher.find();
+                return matcher.group(1);
+            case SELECT:
+                matcher = patternSelect.matcher(command);
                 matcher.find();
                 return matcher.group(1);
         }

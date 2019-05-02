@@ -23,7 +23,7 @@ public class PlayerController {
                     human.showOptions(Show.get());
                     break;
                 case SELECT:
-                    //todo
+                    selectMenu();
                     break;
                 case END_TURN:
                     in = false;
@@ -78,5 +78,9 @@ public class PlayerController {
                     break;
             }
         }
+    }
+
+    public void selectMenu(){
+
     }
 }
