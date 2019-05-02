@@ -16,7 +16,7 @@ public abstract class Card {
 
     }
 
-    public abstract Card getCopyCard(Card card);
+    public abstract Card getCopyCard();
 
     public String getName() {
         return name;

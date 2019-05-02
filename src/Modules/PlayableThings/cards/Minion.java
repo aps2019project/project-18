@@ -22,10 +22,8 @@ public class Minion extends Force {
     }
 
     @Override
-    public Card getCopyCard(Card card) {
-        Minion minion = (Minion) card;
-        Card copyCard = new Minion(minion.name, minion.description, minion.price, minion.attackPower,
-                minion.hitPoint, minion.attackType, minion.range, minion.manaPoint);
-        return copyCard;
+    public Card getCopyCard() {
+        return new Minion(this.name, this.description, this.price, this.attackPower,
+                this.hitPoint, this.attackType, this.range, this.manaPoint);
     }
 }

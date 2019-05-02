@@ -25,10 +25,8 @@ public class Hero extends Force {
     }
 
     @Override
-    public Card getCopyCard(Card card) {
-        Hero hero = (Hero) card;
-        Card copyCard = new Hero(hero.name, hero.description, hero.price, hero.attackPower, hero.hitPoint,
-                hero.attackType, hero.range, hero.spellCoolDown, hero.spellMana);
-        return  copyCard;
+    public Card getCopyCard() {
+        return new Hero(this.name, this.description, this.price, this.attackPower, this.hitPoint,
+                this.attackType, this.range, this.spellCoolDown, this.spellMana);
     }
 }
