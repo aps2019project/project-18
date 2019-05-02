@@ -66,12 +66,35 @@ public class CardRequest extends MainRequest {
     }
 
     private boolean checkCombo(){
-        if (command.matches("Attack combo \\d+ (\\d+)+"))
+        if (command.matches("Attack combo (\\d+)(( \\d+)+)"))
             return true;
         return false;
     }
 
     public String returnCommand(){
-        // TODO: 5/2/2019
+        Pattern patternAttack = Pattern.compile("Attack (\\d+)");
+        Pattern patternComboAttack = Pattern.compile("(\\d+)");
+        Pattern patternMove = Pattern.compile("Move to \\((\\d+), (\\d+)\\)");
+        Pattern patternSpecialPower = Pattern.compile("Use special power \\((\\d+); (\\d+)\\)");
+        Matcher matcher;
+        switch (getType()) {
+            case MOVE:
+                matcher = patternMove.matcher(command);
+                return matcher.group(1) + " " + matcher.group(2);
+            case COMBO:
+                matcher = patternComboAttack.matcher(command);
+                StringBuilder result = new StringBuilder();
+                matcher = patternComboAttack.matcher(command);
+                while (matcher.find())
+                    result.append(matcher.group(1)).append(" ");
+                return result.toString();
+            case ATTACK:
+                matcher = patternAttack.matcher(command);
+                return matcher.group(1);
+            case USE_SPECIAL_POWER:
+                matcher = patternSpecialPower.matcher(command);
+                return matcher.group(1) + " " + matcher.group(2);
+        }
+        return null;
     }
 }
