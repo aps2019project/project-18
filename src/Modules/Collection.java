@@ -15,6 +15,10 @@ public class Collection {
         // TODO
     }
 
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
     public ArrayList<Card> getCards(){
         return cards;
     }
