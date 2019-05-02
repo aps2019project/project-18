@@ -23,4 +23,11 @@ public class Spell extends Card {
     public void execute() {
         // TODO
     }
+
+    @Override
+    public Card getCopyCard(Card card) {
+        Spell spell = (Spell) card;
+        Card copyCard = new Spell(spell.name, spell.description, spell.price, spell.manaPoint, spell.target);
+        return copyCard;
+    }
 }
