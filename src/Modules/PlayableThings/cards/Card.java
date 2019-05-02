@@ -12,6 +12,10 @@ public abstract class Card {
         this.price = price;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public Card() {
 
     }

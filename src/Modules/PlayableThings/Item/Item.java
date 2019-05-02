@@ -1,8 +1,5 @@
 package Modules.PlayableThings.Item;
 
-import Modules.PlayableThings.cards.Card;
-import Modules.PlayableThings.cards.Spell;
-
 public class Item {
     private String name;
     private String itemId;
