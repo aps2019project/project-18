@@ -95,7 +95,7 @@ public class PlayerRequest extends MainRequest {
     public String returnCommand() {
         Pattern patternInsert = Pattern.compile("Insert (\\w+) in \\((\\d); (\\d)\\)");
         Pattern patternCardInfo = Pattern.compile("Show card info (\\d+)");
-        Pattern patternSelect = Pattern.compile("elect (\\d+)")
+        Pattern patternSelect = Pattern.compile("elect (\\d+)");
         Matcher matcher;
         switch (getType()) {
             case INSERT_CARD:
