@@ -23,7 +23,7 @@ public class PlayerController {
                     human.showOptions(Show.get());
                     break;
                 case SELECT:
-                    selectMenu();
+                    selectMenu(request.returnCommand());
                     break;
                 case END_TURN:
                     in = false;
@@ -80,7 +80,11 @@ public class PlayerController {
         }
     }
 
-    public void selectMenu(){
-
+    public void selectMenu(String id2){
+        int id = Integer.parseInt(id2);
+        if (human.checkItem(id))
+            selectMenu(Item(id));
+        else if (human.getGame().checkCard(id , huamn))
+            selectMenuCard(id);
     }
 }
