@@ -1,19 +1,18 @@
 package Modules.PlayableThings.cards;
 
-public abstract class Card{
+public abstract class Card {
     protected String name;
     protected String id;
     protected String description;
     protected int price;
 
-    public Card(String name , String id , String description , int price){
+    public Card(String name, String description, int price) {
         this.name = name;
-        this.id = id;
         this.description = description;
         this.price = price;
     }
 
-    public Card(){
+    public Card() {
 
     }
 

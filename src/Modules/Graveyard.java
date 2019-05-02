@@ -6,7 +6,7 @@ import View.View.Show;
 import java.util.ArrayList;
 
 public class Graveyard {
-    private ArrayList<Card> cards = new ArrayList<Card>();
+    private ArrayList<Card> cards = new ArrayList<>();
 
     public void addCard(Card card) {
         cards.add(card);
