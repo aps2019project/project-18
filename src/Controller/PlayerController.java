@@ -1,10 +1,13 @@
 package Controller;
 
 import Modules.GameBusiness.Player.Human;
+import View.Request.Player.CardRequests.CardRequest;
 import View.Request.Player.Graveyard.GraveyardRequest;
 import View.Request.Player.Item.ItemRequest;
 import View.View.Show;
 import View.Request.Player.PlayerRequest;
+
+import java.util.Calendar;
 
 public class PlayerController {
     private Human human;
@@ -89,7 +92,30 @@ public class PlayerController {
     }
 
     public void selectMenuCard(String id){
+        CardRequest request = new CardRequest();
+        boolean in = true;
 
+        while (in){
+            request.getCommand();
+            if (!request.isValid())
+                continue;
+            switch (request.getType()){
+                case EXIT:
+                    return;
+                case ATTACK:
+                    break;
+                case COMBO:
+                    break;
+                case HELP:
+                    human.getGame().showMovablePlaces(id);
+                    human.getGame().showAttackableCards(id);
+                    break;
+                case MOVE:
+                    break;
+                case USE_SPECIAL_POWER:
+                    break;
+            }
+        }
     }
 
     public void selectMenuItem(String id){
