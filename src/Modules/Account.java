@@ -165,8 +165,36 @@ public class Account implements Comparator {
     }
 
     public void buyCard(Card card) {
-        Card copyCard = Card
-        collection.addCard(card);
+        Card copyCard = card.getCopyCard();
+        setIdCard(copyCard);
+        collection.addCard(copyCard);
+        System.out.println(copyCard.getId());
+    }
+
+    private void setIdCard(Card card) {
+        ArrayList<Integer> idNumber = new ArrayList<>();
+        String id;
+        for (Card _card : collection.getCards()) {
+            id = _card.getId();
+            if (_card.getName().equals(card.getName())) {
+                idNumber.add(Integer.parseInt(id.split("_")[2]));
+            }
+        }
+        int i = 1;
+        boolean flag = true;
+        while (flag) {
+            flag = false;
+            for (Integer integer : idNumber) {
+                flag = true;
+                if (i == integer) {
+                    i++;
+                } else {
+                    card.setId(userName + "_" + card.getName() + "_" + i);
+                    return;
+                }
+            }
+        }
+        card.setId(userName + "_" + card.getName() + "_" + i);
     }
 
     public void sellCard(String id) {
