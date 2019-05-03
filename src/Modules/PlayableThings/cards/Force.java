@@ -12,7 +12,7 @@ public abstract class Force extends Card {
     protected boolean canMove;
     protected boolean canAttack;
     protected int range;
-    protected ArrayList<Buff> buffs;
+    protected ArrayList<Buff> buffs = new ArrayList<>();
 
     void addBuff(Buff buff) {
         buffs.add(buff);
@@ -21,6 +21,21 @@ public abstract class Force extends Card {
     /*public boolean getFlag(){
         //todo
     }*/
+
+    public Force(String name, String description, int price, int attackPower, int hitPoint, String attackType, int range) {
+        super(name, description, price);
+        this.attackPower = attackPower;
+        this.hitPoint = hitPoint;
+        this.attackType = attackType;
+        this.range = range;
+    }
+
+    public Force(int attackPower, int hitPoint, String attackType, int range) {
+        this.attackPower = attackPower;
+        this.hitPoint = hitPoint;
+        this.attackType = attackType;
+        this.range = range;
+    }
 
     public boolean getCanAttack() {
         return getCanAttack();

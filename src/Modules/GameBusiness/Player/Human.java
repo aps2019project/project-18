@@ -2,6 +2,7 @@ package Modules.GameBusiness.Player;
 
 import Controller.PlayerController;
 import Modules.Account;
+import Modules.PlayableThings.Item.Item;
 import View.View.Show;
 
 public class Human extends Player {
@@ -31,9 +32,9 @@ public class Human extends Player {
 
     public void showOptions(Show show) {
         showCollectables(show);
-//        hand.showInsertables(manaPoint);
+        hand.showInsertables(manaPoint);
         game.showMoveAbleCards();
-        game.ShowAttackAbleCards();
+        game.showAttackAbleCards();
     }
 
     public void showGraveyard(boolean all , String id){

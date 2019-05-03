@@ -1,29 +1,34 @@
 package Modules.PlayableThings.BuffAndSpecialPowers.Buff;
 
+import Modules.PlayableThings.cards.Force;
+
 public abstract class Buff {
-    private boolean positivity;
-    protected int numberOfTurns;
-    protected int[] effectPoint = new int[2];
-    protected int dimension;
-
-    public Buff(){
-
-    }
-
-    public Buff(boolean positivity , int numberOfTurns , int x , int y , int dimension){
-        this.positivity = positivity;
-        this.numberOfTurns = numberOfTurns;
-        effectPoint[0] = x;
-        effectPoint[1] = y;
-        this.dimension = dimension;
-    }
-
-    public boolean getPositivity() {
-        return positivity;
-    }
-
+    private int numberOfTurns;
+    private int executeTime;
+    private int[] effectPoint = new int[2];
+    private int dimension;
+    private Boolean disarm;
+    private int attackpower;
+    private int healthPower;
+    private Boolean fireHouse;
+    private Boolean poisonHouse;
+    private int hit;
+    private Boolean holy;
+    private Boolean kill;
+    private Boolean stun;
+    private boolean isContinious;
+    private Boolean deleteNegative;
+    private Boolean deletePositive;
+    private Force enemy;
+    private int turnsOfAttack;
+    //todo target\
+    boolean ground;
+    int diminision;
+    boolean all;
+    boolean ally;
+    int count;
+    boolean hero;
     public void doEffect(){
         //todo
     }
-
 }

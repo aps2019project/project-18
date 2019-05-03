@@ -165,7 +165,35 @@ public class Account implements Comparator {
     }
 
     public void buyCard(Card card) {
-        collection.addCard(card);
+        Card copyCard = card.getCopyCard();
+        setIdCard(copyCard);
+        collection.addCard(copyCard);
+    }
+
+    private void setIdCard(Card card) {
+        ArrayList<Integer> idNumber = new ArrayList<>();
+        String id;
+        for (Card _card : collection.getCards()) {
+            id = _card.getId();
+            if (_card.getName().equals(card.getName())) {
+                idNumber.add(Integer.parseInt(id.split("_")[2]));
+            }
+        }
+        int i = 1;
+        boolean flag = true;
+        while (flag) {
+            flag = false;
+            for (Integer integer : idNumber) {
+                flag = true;
+                if (i == integer) {
+                    i++;
+                } else {
+                    card.setId(userName + "_" + card.getName() + "_" + i);
+                    return;
+                }
+            }
+        }
+        card.setId(userName + "_" + card.getName() + "_" + i);
     }
 
     public void sellCard(String id) {
@@ -183,7 +211,35 @@ public class Account implements Comparator {
     }
 
     public void buyItem(Item item) {
-        collection.addItem(item);
+        Item _item = item.copyItem();
+        setItemId(_item);
+        collection.addItem(_item);
+    }
+
+    private void setItemId(Item item) {
+        ArrayList<Integer> idNumber = new ArrayList<>();
+        String id;
+        for (Item _item : collection.getItems()) {
+            id = _item.getItemId();
+            if (_item.getName().equals(item.getName())) {
+                idNumber.add(Integer.parseInt(id.split("_")[2]));
+            }
+        }
+        int i = 1;
+        boolean flag = true;
+        while (flag) {
+            flag = false;
+            for (Integer integer : idNumber) {
+                flag = true;
+                if (i == integer) {
+                    i++;
+                } else {
+                    item.setItemId(userName + "_" + item.getName() + "_" + i);
+                    return;
+                }
+            }
+        }
+        item.setItemId(userName + "_" + item.getName() + "_" + i);
     }
 
     public void saveGameData(GameData gameData) {

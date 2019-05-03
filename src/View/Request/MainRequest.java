@@ -1,9 +1,11 @@
 package View.Request;
 
+import Modules.Main;
+
 import java.util.Scanner;
 
 public abstract class MainRequest {
-    private static Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = Main.scanner;
     protected String command;
 
     public void getNewCommand(){
