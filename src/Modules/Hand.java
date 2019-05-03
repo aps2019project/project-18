@@ -29,6 +29,20 @@ public class Hand {
         // TODO
     }
 
+    public void showInsertables(int manaPoint) {
+        for (Card card : hand) {
+            if (card instanceof Minion) {
+                if (((Minion) card).getManaPoint() < manaPoint) {
+                    Show.get().showCardId(card);
+                }
+            } else if (card instanceof Spell) {
+                if (((Spell) card).getMP() < manaPoint) {
+                    Show.get().showCardId(card);
+                }
+            }
+        }
+    }
+
     public Graveyard getGraveyard() {
         return graveyard;
     }
