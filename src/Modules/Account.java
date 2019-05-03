@@ -55,7 +55,9 @@ public class Account implements Comparator {
             account.userName = userName;
             ShowAccount.showEnterPassword();
             account.passWord = createPassword();
+            account.money = 100000000;
             Shop.getInstance().addSomeCardToCollectionForBeginning(account);
+            account.money = 15000;
             accounts.add(account);
             ShowAccount.showMenu();
             account.doOrderInAccount();
