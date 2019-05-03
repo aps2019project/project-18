@@ -50,12 +50,13 @@ public class Account implements Comparator {
     }
 
     public static void createAccount(String userName) {
-        if (checkExistUserName(userName) == false) {
+        if (!checkExistUserName(userName)) {
             Account account = new Account();
             account.player = new Human(account);
             account.userName = userName;
             ShowAccount.showEnterPassword();
             account.passWord = createPassword();
+            Shop.getInstance().addSomeCardToCollectionForBeginning(account);
             accounts.add(account);
             ShowAccount.showMenu();
             account.doOrderInAccount();

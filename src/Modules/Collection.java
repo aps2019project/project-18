@@ -16,7 +16,7 @@ public class Collection {
     public void menu() {
         Show.get().showCollectionMenu();
         String input;
-        while(true) {
+        while (true) {
             input = Main.scanner.nextLine();
             if (input.equalsIgnoreCase("exit")) {
                 ShowAccount.showMenu();
@@ -78,7 +78,7 @@ public class Collection {
         return items;
     }
 
-    public ArrayList<Card> getCards(){
+    public ArrayList<Card> getCards() {
         return cards;
     }
 
@@ -100,10 +100,10 @@ public class Collection {
     }
 
     public void show() {
-         Show.get().showHeroes(cards, true);
-         Show.get().showMinions(cards, true);
-         Show.get().showSpells(cards, true);
-         Show.get().showItems(items, true);
+        Show.get().showHeroes(cards, true);
+        Show.get().showMinions(cards, true);
+        Show.get().showSpells(cards, true);
+        Show.get().showItems(items, true);
     }
 
     public void addCard(Card card) {
@@ -193,4 +193,5 @@ public class Collection {
         }
         Show.get().setMainDeckErrorMessage();
     }
+
 }

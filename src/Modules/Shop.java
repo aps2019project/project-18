@@ -1,6 +1,7 @@
 package Modules;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import Modules.PlayableThings.Item.Item;
 import Modules.PlayableThings.cards.Card;
@@ -117,6 +118,66 @@ public class Shop {
 
     private void showHelp() {
         Show.get().showShopHelp();
+    }
+
+
+    public void addSomeCardToCollectionForBeginning(Account account) {
+        account.buyItem(items.get(0));
+        int random = new Random().nextInt(3) + 1;
+        switch (random) {
+            case 1:
+                account.buyCard(cards.get(0));
+                break;
+            case 2:
+                account.buyCard(cards.get(3));
+                break;
+            case 3:
+                account.buyCard(cards.get(9));
+        }
+        for (int i = 0; i < 9; i++) {
+            random = new Random().nextInt(6) + 1;
+            switch (random) {
+                case 1:
+                    account.buyCard(cards.get(10));
+                    break;
+                case 2:
+                    account.buyCard(cards.get(12));
+                    break;
+                case 3:
+                    account.buyCard(cards.get(13));
+                    break;
+                case 4:
+                    account.buyCard(cards.get(14));
+                    break;
+                case 5:
+                    account.buyCard(cards.get(15));
+                    break;
+                case 6:
+                    account.buyCard(cards.get(18));
+            }
+        }
+        for (int i = 0; i < 9; i++) {
+            random = new Random().nextInt(6) + 1;
+            switch (random) {
+                case 1:
+                    account.buyCard(cards.get(20));
+                    break;
+                case 2:
+                    account.buyCard(cards.get(21));
+                    break;
+                case 3:
+                    account.buyCard(cards.get(22));
+                    break;
+                case 4:
+                    account.buyCard(cards.get(23));
+                    break;
+                case 5:
+                    account.buyCard(cards.get(26));
+                    break;
+                case 6:
+                    account.buyCard(cards.get(30));
+            }
+        }
     }
 
     private void initializeCards() {
