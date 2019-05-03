@@ -7,8 +7,6 @@ import View.Request.Player.Item.ItemRequest;
 import View.View.Show;
 import View.Request.Player.PlayerRequest;
 
-import java.util.Calendar;
-
 public class PlayerController {
     private Human human;
 
@@ -33,7 +31,7 @@ public class PlayerController {
                     in = false;
                     break;
                 case GAME_INFO:
-                    human.getGame().showInfo();
+               //     human.getGame().showInfo();
                     break;
                 case SHOW_HAND:
                     haman.showHand();
@@ -46,19 +44,19 @@ public class PlayerController {
                     haman.insertCard(temp[0] , Integer.parseInt(temp[1]) , Integer.parseInt(temp[2]));
                     break;
                 case SHOW_CARD_INFO:
-                    haman.getGame().showCardInfo(request.returnCommand());
+                //    haman.getGame().showCardInfo(request.returnCommand());
                     break;
                 case ENTER_GRAVEYARD:
                     graveYardMenu();
                     break;
                 case SHOW_MY_MINIONS:
-                    human.getGame().showMyMinions();
+                 //   human.getGame().showMyMinions();
                     break;
                 case SHOW_COLLECTABLES:
                     haman.showCollectables(Show.get());
                     break;
                 case SHOW_OPPONENT_MINIONS:
-                    haman.getGame().showOpponentMinion();
+               //     haman.getGame().showOpponentMinion();
             }
         }
     }
@@ -85,10 +83,10 @@ public class PlayerController {
     }
 
     public void selectMenu(String id2){
-        if (human.checkItem(id))
-            selectMenuItem(id);
-        else if (human.getGame().checkCard(id , human))
-            selectMenuCard(id);
+   //     if (human.checkItem(id))
+    //        selectMenuItem(id);
+    //    else if (human.getGame().checkCard(id , human))
+     //       selectMenuCard(id);
     }
 
     public void selectMenuCard(String id){
@@ -107,8 +105,8 @@ public class PlayerController {
                 case COMBO:
                     break;
                 case HELP:
-                    human.getGame().showMovablePlaces(id);
-                    human.getGame().showAttackableCards(id);
+              //      human.getGame().showMovablePlaces(id);
+                //    human.getGame().showAttackableCards(id);
                     break;
                 case MOVE:
                     break;
@@ -140,6 +138,6 @@ public class PlayerController {
     }
     private void useItem(String id , String place){
         String[] deminision = place.split(" ");
-        human.getGame().useItem(human.getItem(id) , Integer.parseInt(deminision[0]) , Integer.parseInt(deminision[1]));
+        //human.getGame().useItem(human.getItem(id) , Integer.parseInt(deminision[0]) , Integer.parseInt(deminision[1]));
     }
 }

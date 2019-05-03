@@ -2,7 +2,6 @@ package Modules;
 
 import Modules.GameBusiness.Battle.Battle;
 import Modules.GameBusiness.Player.Human;
-import Modules.GameBusiness.Player.Player;
 import Modules.PlayableThings.Item.Item;
 import Modules.PlayableThings.cards.Card;
 import View.View.ShowAccount;
@@ -18,7 +17,7 @@ public class Account implements Comparator {
     private static ArrayList<Account> accounts = new ArrayList<>();
     private ArrayList<GameData> matchHistory = new ArrayList<>();
     private String userName, passWord;
-    private int winCount, money;
+    private int winCount, money = 15000;
     private Collection collection = new Collection();
     private Human player;
 
@@ -166,6 +165,11 @@ public class Account implements Comparator {
     }
 
     public void buyCard(Card card) {
+        if (card.getPrice() > money) {
+            ShowAccount.showNotEnoughMoney();
+            return;
+        }
+        money -= card.getPrice();
         Card copyCard = card.getCopyCard();
         setIdCard(copyCard);
         collection.addCard(copyCard);
@@ -202,6 +206,16 @@ public class Account implements Comparator {
             if (card.getId().equalsIgnoreCase(id)) {
                 collection.removeCard(card);
                 money += card.getPrice();
+                return;
+            }
+        }
+    }
+
+    public void sellItem(String id) {
+        for (Item item : collection.getItems()) {
+            if (item.getItemId().equalsIgnoreCase(id)) {
+                collection.removeItem(item);
+                money += item.getPrice();
                 return;
             }
         }
