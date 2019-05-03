@@ -141,7 +141,7 @@ public class Show {
     public static void showShopMenu() {
         System.out.print("1. show collection\n2. show\n3. search collection [ card name | item name ]\n" +
                 "4. search [ card name | item name ]\n5. buy [ card name | item name ]\n" +
-                "6. sell [ card name | item name ]\n7. exit : close the shop");
+                "6. sell [ card name | item name ]\n7. exit");
     }
 
     public void showShopHelp() {
@@ -206,6 +206,14 @@ public class Show {
         System.out.println("you can't add any more items to your collection");
     }
 
+    public void deckDoesNotExistMessage() {
+        System.out.println("deck does not exist");
+    }
+
+    public void itemOrCardNotInCollectionMessage() {
+        System.out.println("item/card not in collection");
+    }
+
     public void itemNotInCollectionMessage() {
         System.out.println("item not in collection");
     }
@@ -240,5 +248,43 @@ public class Show {
 
     public static void showTargetThatForceCanMoveTo(int x, int y) {
         System.out.println("{ " + x + " ," + y + " }");
+    }
+
+    public void deckValidMessage() {
+        System.out.println("deck is valid");
+    }
+
+    public void deckInvalidMessage() {
+        System.out.println("deck is invalid");
+    }
+
+    public void showCollectionMenu() {
+        System.out.println("1. show");
+        System.out.println("2. search [ card name | item name ]");
+        System.out.println("3. create deck [ deck name ]");
+        System.out.println("4. delete deck [ deck name ]");
+        System.out.println("5. add [ card id | item id ] to deck [ deck name ]");
+        System.out.println("6. remove [ card id | item id ] from deck [ deck name ]");
+        System.out.println("7. validate deck [ deck name ]");
+        System.out.println("8. select deck [ deck name ]");
+        System.out.println("9. show all decks");
+        System.out.println("10. show deck [ deck name ]");
+    }
+
+    public void showCollectionHelp() {
+        System.out.println("1. show : see cards and items in your collection");
+        System.out.println("2. search [ card name | item name ] : see the number of a specific card/item you own");
+        System.out.println("3. create deck [ deck name ] : create a new deck");
+        System.out.println("4. delete deck [ deck name ] : delete a deck");
+        System.out.println("5. add [ card id | item id ] to deck [ deck name ] : add a new card/item to a deck");
+        System.out.println("6. remove [ card id | item id ] from deck [ deck name ] : remove a card/item from a deck");
+        System.out.println("7. validate deck [ deck name ] : check if a deck is valid or not");
+        System.out.println("8. select deck [ deck name ] : set a deck as your main deck");
+        System.out.println("9. show all decks : see all of your decks");
+        System.out.println("10. show deck [ deck name ] : see a specific deck");
+    }
+
+    public void showCardId(Card card) {
+        System.out.println(card.getId());
     }
 }

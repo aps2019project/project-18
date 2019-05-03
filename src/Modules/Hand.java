@@ -7,7 +7,6 @@ public class Hand {
     private Deck deck;
     private Card[] hand = new Card[5];
     private Card nextCard;
-    private Hero hero;
     private Graveyard graveyard;
 
     public void showHand() {
@@ -28,6 +27,20 @@ public class Hand {
 
     public void insertCard(String cardId, int manaPoint) {
         // TODO
+    }
+
+    public void showInsertables(int manaPoint) {
+        for (Card card : hand) {
+            if (card instanceof Minion) {
+                if (((Minion) card).getManaPoint() < manaPoint) {
+                    Show.get().showCardId(card);
+                }
+            } else if (card instanceof Spell) {
+                if (((Spell) card).getMP() < manaPoint) {
+                    Show.get().showCardId(card);
+                }
+            }
+        }
     }
 
     public Graveyard getGraveyard() {
