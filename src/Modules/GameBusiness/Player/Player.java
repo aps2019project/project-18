@@ -55,4 +55,12 @@ public abstract class Player {
     public void showItem(String id){
         Show.get().showItem(getItem(id) , null);
     }
+    public boolean checkItem(String id){
+        for (Item item : items){
+            if (item.getItemId() == id){
+                return true;
+            }
+        }
+        return false;
+    }
 }
