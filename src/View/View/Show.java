@@ -283,4 +283,8 @@ public class Show {
         System.out.println("9. show all decks : see all of your decks");
         System.out.println("10. show deck [ deck name ] : see a specific deck");
     }
+
+    public void showCardId(Card card) {
+        System.out.println(card.getId());
+    }
 }
