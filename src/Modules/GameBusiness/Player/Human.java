@@ -13,9 +13,9 @@ public class Human extends Player {
     }
 
     @Override
-    public void playTurn() {
+    public void playTurn(int turn) {
+        super.playTurn(turn);
         new PlayerController().handlePlayerCommands(this);
-        //handleMana
     }
 
     public void showHand() {

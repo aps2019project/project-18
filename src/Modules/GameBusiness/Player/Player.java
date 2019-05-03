@@ -30,8 +30,8 @@ public abstract class Player {
         return numberOfTurnPlayeHaveFlag;
     }
 
-    public void playTurn() {
-
+    public void playTurn(int turn) {
+        manaPoint = turn + 2;
     }
 
     public Game getGame() {
