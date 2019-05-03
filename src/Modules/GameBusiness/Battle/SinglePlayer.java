@@ -6,6 +6,8 @@ import Modules.GameBusiness.Game.ModeCaptureHalfFlags;
 import Modules.GameBusiness.Game.ModeKillEnemyHero;
 import Modules.GameBusiness.Player.AI;
 import Modules.Main;
+import Modules.Shop;
+import View.View.Show;
 import View.View.ShowBattle;
 import View.View.ShowSinglePlayer;
 
@@ -68,19 +70,19 @@ public class SinglePlayer {
 
     private static AI levelOne() {
         AI ai = new AI();
-        //todo
+        ai.setDeck(Shop.getInstance().getDeckLevelOne());
         return ai;
     }
 
     private static AI levelTwo() {
         AI ai = new AI();
-        //todo
+        ai.setDeck(Shop.getInstance().getDeckLevelTwo());
         return ai;
     }
 
     private static AI levelThree() {
         AI ai = new AI();
-        //todo
+        ai.setDeck(Shop.getInstance().getDeckLevelThree());
         return ai;
     }
 
