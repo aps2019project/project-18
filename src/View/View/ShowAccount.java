@@ -33,6 +33,10 @@ public class ShowAccount {
         System.out.println("1. try another userName and password\n2. Back : use this word to back to previous menu");
     }
 
+    public static void showNotEnoughMoney(){
+        System.out.println("Not enough money");
+    }
+
     public static void showInvalidCommand() {
         System.out.println("Invalid command please use Help to show menu");
     }
