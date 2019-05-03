@@ -12,6 +12,7 @@ public class Collection {
     private Deck mainDeck;
     private ArrayList<Card> cards = new ArrayList<Card>();
     private ArrayList<Item> items = new ArrayList<Item>();
+    private int helpToShowOrNotShow = 0;
 
     public void menu() {
         Show.get().showCollectionMenu();
@@ -108,7 +109,10 @@ public class Collection {
 
     public void addCard(Card card) {
         cards.add(card);
-        Show.get().cardAddMessage();
+        if (helpToShowOrNotShow <= 20) {
+            helpToShowOrNotShow++;
+            Show.get().cardAddMessage();
+        }
     }
 
     public void removeCard(Card card) {
@@ -130,7 +134,10 @@ public class Collection {
     public void addItem(Item item) {
         if (items.size() < 3) {
             items.add(item);
-            Show.get().itemAddMessage();
+            if (helpToShowOrNotShow <= 20) {
+                helpToShowOrNotShow++;
+                Show.get().itemAddMessage();
+            }
         } else {
             Show.get().collectionItemsIsFullMessage();
         }

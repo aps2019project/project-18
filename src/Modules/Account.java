@@ -226,6 +226,11 @@ public class Account implements Comparator {
     }
 
     public void buyItem(Item item) {
+        if (item.getPrice() > money) {
+            ShowAccount.showNotEnoughMoney();
+            return;
+        }
+        money -= item.getPrice();
         Item _item = item.copyItem();
         setItemId(_item);
         collection.addItem(_item);
