@@ -24,6 +24,10 @@ public class Deck {
         this.item = item;
     }
 
+    public Item getItem() {
+        return item;
+    }
+
     public Card findCard(String cardId) {
         for (Card card : cards) {
             if (card.getId().compareTo(cardId) == 0) {
@@ -92,9 +96,7 @@ public class Deck {
     }
 
     public boolean checkValidity() {
-        if (hero == null || cards.size() < 20)
-            return false;
-        return true;
+        return !(hero == null || cards.size() < 20);
     }
 
     public void showDeck() {
