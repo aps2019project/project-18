@@ -35,33 +35,29 @@ public class Hand {
     public Card insertCard(String cardId, int manaPoint) {
         for (int i = 0; i < 5; i++) {
             if (hand[i].getId().equals(cardId)) {
-                if (hand[i] instanceof Minion) {
-                    if (((Minion) hand[i]).getManaPoint() <= manaPoint)
-                        return hand[i];
-                    else
-                        Show.get().notEnoughManaMessage();
-                } else {
-                    if (((Spell) hand[i]).getMP() <= manaPoint)
-                        return hand[i];
-                    else
-                        Show.get().notEnoughManaMessage();
-                }
+                if (hand[i].getManaPoint() <= manaPoint)
+                    return hand[i];
+                else
+                    Show.get().notEnoughManaMessage();
             }
         }
         Show.get().cardNotInHandMessage();
         return null;
     }
 
+    public void deleteCard(Card card) {
+        for (int i = 0; i < 5; i++) {
+            if (hand[i] == card) {
+                hand[i] = null;
+                break;
+            }
+        }
+    }
+
     public void showInsertables(int manaPoint) {
         for (Card card : hand) {
-            if (card instanceof Minion) {
-                if (((Minion) card).getManaPoint() < manaPoint) {
-                    Show.get().showCardId(card);
-                }
-            } else if (card instanceof Spell) {
-                if (((Spell) card).getMP() < manaPoint) {
-                    Show.get().showCardId(card);
-                }
+            if (card.getManaPoint() < manaPoint) {
+                Show.get().showCardId(card);
             }
         }
     }

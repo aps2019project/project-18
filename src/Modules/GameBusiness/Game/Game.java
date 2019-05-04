@@ -5,8 +5,7 @@ import Modules.GameBusiness.Player.Human;
 import Modules.GameBusiness.Player.Player;
 import Modules.GameData;
 import Modules.PlayableThings.Item.Item;
-import Modules.PlayableThings.cards.Force;
-import Modules.PlayableThings.cards.Hero;
+import Modules.PlayableThings.cards.*;
 import Modules.Playground;
 import View.View.Show;
 
@@ -41,7 +40,7 @@ public abstract class Game {
         if (turn % 2 == 0) {
             playerOne.playTurn(turn);
         } else {
-            playerTwo.playTurn();
+            playerTwo.playTurn(turn);
         }
         doWhatNeedDoAfterEachTurn();
     }
@@ -49,6 +48,35 @@ public abstract class Game {
     private void doWhatNeedDoAfterEachTurn() {
         turn++;
         checkEnd();
+    }
+
+    public boolean insertCard(Card card, int x, int y) {
+        if (x - 1 >= 0 && x - 1 < 9 && y - 1 >= 0 && y - 1 < 9) {
+            if (playground.getGround()[x - 1][y - 1] == null) {
+                if (card instanceof Spell) {
+                    Spell spell = (Spell) card;
+                    if (canExecuteSpell) {
+                        spell.execute();
+                        return true;
+                    } else {
+                        System.out.println("invalid target");
+                    }
+                } else {
+                    Minion minion = (Minion) card;
+                    if (canPlaceMinion(x, y)) {
+                        playground.getGround()[x - 1][y - 1].setCard(minion);
+                        return true;
+                    } else {
+                        System.out.println("minion can place near own forces");
+                    }
+                }
+            } else {
+                System.out.println("target place is already have card on it");
+            }
+        } else {
+            System.out.println("target out of play ground");
+        }
+        return false;
     }
 
     private void doWhatNeedDoAfterGameEnd() {
