@@ -2,6 +2,7 @@ package Modules.GameBusiness.Player;
 
 
 import Modules.Deck;
+import Modules.Hand;
 import Modules.PlayableThings.cards.Card;
 
 public class AI extends Player {
@@ -24,7 +25,7 @@ public class AI extends Player {
     }
 
     public void setDeck(Deck deck){
-        hand.setDeck();
+        hand =new Hand(deck);
     }
 
 }
