@@ -112,17 +112,16 @@ public class PlayerController {
                 case EXIT:
                     return;
                 case ATTACK:
-                    human.getGame().attack(force , request.returnCommand());
+                    human.getGame().Attack(force , request.returnCommand());
                     break;
                 case COMBO:
-                    human.getGame().comboAttack(force , request.returnCommand());
+
                     break;
                 case HELP:
               //      human.getGame().showMovablePlaces(id);
                 //    human.getGame().showAttackableCards(id);
                     break;
                 case MOVE:
-
                     break;
                 case USE_SPECIAL_POWER:
                     break;
