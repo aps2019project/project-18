@@ -160,24 +160,132 @@ public class Shop {
             random = new Random().nextInt(6) + 1;
             switch (random) {
                 case 1:
-                    account.buyCard(cards.get(20));
+                    account.buyCard(cards.get(30));
                     break;
                 case 2:
-                    account.buyCard(cards.get(21));
+                    account.buyCard(cards.get(31));
                     break;
                 case 3:
-                    account.buyCard(cards.get(22));
+                    account.buyCard(cards.get(32));
                     break;
                 case 4:
-                    account.buyCard(cards.get(23));
+                    account.buyCard(cards.get(33));
                     break;
                 case 5:
-                    account.buyCard(cards.get(26));
+                    account.buyCard(cards.get(36));
                     break;
                 case 6:
-                    account.buyCard(cards.get(30));
+                    account.buyCard(cards.get(40));
             }
         }
+    }
+
+    public Deck getDeckLevelOne() {
+        Deck deck = new Deck("AI");
+        //HERO
+        setCardToAiDeck(0, 1, deck);
+        //SPELLS
+        setCardToAiDeck(10, 1, deck);
+        setCardToAiDeck(16, 1, deck);
+        setCardToAiDeck(19, 1, deck);
+        setCardToAiDeck(20, 1, deck);
+        setCardToAiDeck(21, 1, deck);
+        setCardToAiDeck(27, 1, deck);
+        setCardToAiDeck(29, 1, deck);
+        //MINION
+        setCardToAiDeck(30, 1, deck);
+        setCardToAiDeck(38, 1, deck);
+        setCardToAiDeck(40, 1, deck);
+        setCardToAiDeck(40, 2, deck);
+        setCardToAiDeck(42, 1, deck);
+        setCardToAiDeck(46, 1, deck);
+        setCardToAiDeck(47, 1, deck);
+        setCardToAiDeck(50, 1, deck);
+        setCardToAiDeck(51, 1, deck);
+        setCardToAiDeck(55, 1, deck);
+        setCardToAiDeck(67, 1, deck);
+        setCardToAiDeck(65, 1, deck);
+        setCardToAiDeck(69, 1, deck);
+        //ITEM
+        Item item;
+        item = items.get(0).copyItem();
+        item.setItemId("AI" + "_" + item.getName() + "_" + "1");
+        deck.addItem(item);
+        return deck;
+    }
+
+    public Deck getDeckLevelTwo() {
+        Deck deck = new Deck("AI");
+        //HERO
+        setCardToAiDeck(4, 1, deck);
+        //SPELLS
+        setCardToAiDeck(11, 1, deck);
+        setCardToAiDeck(12, 1, deck);
+        setCardToAiDeck(14, 1, deck);
+        setCardToAiDeck(18, 1, deck);
+        setCardToAiDeck(17, 1, deck);
+        setCardToAiDeck(22, 1, deck);
+        setCardToAiDeck(28, 1, deck);
+        //MINION
+        setCardToAiDeck(31, 1, deck);
+        setCardToAiDeck(32, 1, deck);
+        setCardToAiDeck(34, 1, deck);
+        setCardToAiDeck(37, 1, deck);
+        setCardToAiDeck(41, 1, deck);
+        setCardToAiDeck(44, 1, deck);
+        setCardToAiDeck(44, 2, deck);
+        setCardToAiDeck(48, 1, deck);
+        setCardToAiDeck(52, 1, deck);
+        setCardToAiDeck(56, 1, deck);
+        setCardToAiDeck(59, 1, deck);
+        setCardToAiDeck(62, 1, deck);
+        setCardToAiDeck(68, 1, deck);
+        //ITEM
+        Item item;
+        item = items.get(17).copyItem();
+        item.setItemId("AI" + "_" + item.getName() + "_" + "1");
+        deck.addItem(item);
+        return deck;
+    }
+
+    public Deck getDeckLevelThree() {
+        Deck deck = new Deck("AI");
+        //HERO
+        setCardToAiDeck(6, 1, deck);
+        //SPELLS
+        setCardToAiDeck(15, 1, deck);
+        setCardToAiDeck(19, 1, deck);
+        setCardToAiDeck(21, 1, deck);
+        setCardToAiDeck(23, 1, deck);
+        setCardToAiDeck(24, 1, deck);
+        setCardToAiDeck(25, 1, deck);
+        setCardToAiDeck(26, 1, deck);
+        //MINION
+        setCardToAiDeck(35, 1, deck);
+        setCardToAiDeck(36, 1, deck);
+        setCardToAiDeck(39, 1, deck);
+        setCardToAiDeck(43, 1, deck);
+        setCardToAiDeck(45, 1, deck);
+        setCardToAiDeck(45, 2, deck);
+        setCardToAiDeck(49, 2, deck);
+        setCardToAiDeck(53, 1, deck);
+        setCardToAiDeck(54, 1, deck);
+        setCardToAiDeck(57, 1, deck);
+        setCardToAiDeck(58, 1, deck);
+        setCardToAiDeck(60, 1, deck);
+        setCardToAiDeck(63, 1, deck);
+        //ITEM
+        Item item;
+        item = items.get(11).copyItem();
+        item.setItemId("AI" + "_" + item.getName() + "_" + "1");
+        deck.addItem(item);
+        return deck;
+    }
+
+    private void setCardToAiDeck(int indexCard, int numberOfThatCard, Deck deck) {
+        Card card = cards.get(indexCard).getCopyCard();
+        card.setId("AI" + "_" + card.getName() + "_" + numberOfThatCard);
+        deck.addCard(card);
     }
 
     private void initializeCards() {
