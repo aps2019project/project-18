@@ -39,7 +39,7 @@ public abstract class Game {
             return;
         }
         if (turn % 2 == 0) {
-            playerOne.playTurn();
+            playerOne.playTurn(turn);
         } else {
             playerTwo.playTurn();
         }
