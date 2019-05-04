@@ -9,6 +9,12 @@ public class Hand {
     private Card nextCard;
     private Graveyard graveyard;
 
+    Hand (Deck deck) {
+        for (int i = 0; i < 5; i++)
+            this.hand[i] = deck.getRandomCard();
+        this.nextCard = deck.getRandomCard();
+    }
+
     public void showHand() {
         for (int i = 0; i < 5; i++) {
             if (hand[i] instanceof Spell)
