@@ -82,4 +82,22 @@ public abstract class Force extends Card {
     public void moved() {
         canMove = false;
     }
+
+    public void attack(Force force){
+        //check on attck an buffs
+        if (canAttack)
+            force.defend(this);
+        canAttack = false;
+        canMove = false;
+    }
+
+    private void defend(Force force){
+        //check on defence and buffs
+        hitPoint -= force.getAttackPower();
+    }
+
+    public void counterAttack(Force force){
+        //check conditions
+        force.defend(this);
+    }
 }
