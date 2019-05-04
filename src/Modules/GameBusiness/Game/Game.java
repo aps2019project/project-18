@@ -50,6 +50,17 @@ public abstract class Game {
         checkEnd();
     }
 
+    public Force getForce(String id) {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (playground.getGround()[i][j].getCard().getId().equals(id)) {
+                    return (Force) playground.getGround()[i][j].getCard();
+                }
+            }
+        }
+        return null;
+    }
+
     public boolean insertCard(Card card, int x, int y) {
         if (x - 1 >= 0 && x - 1 < 9 && y - 1 >= 0 && y - 1 < 9) {
             if (playground.getGround()[x - 1][y - 1] == null) {
@@ -63,7 +74,7 @@ public abstract class Game {
                     }
                 } else {
                     Minion minion = (Minion) card;
-                    if (canPlaceMinion(x, y)) {
+                    if (canPlaceMinion(x, y, card)) {
                         playground.getGround()[x - 1][y - 1].setCard(minion);
                         return true;
                     } else {
@@ -75,6 +86,23 @@ public abstract class Game {
             }
         } else {
             System.out.println("target out of play ground");
+        }
+        return false;
+    }
+
+    private boolean canPlaceMinion(int x, int y, Card card) {
+        //todo
+        Player player;
+        String userName = card.getName().split("_")[0];
+        if (userName.equals(playerOne.getAccount().getUserName())) {
+            player = playerOne;
+        } else {
+            player = playerTwo;
+        }
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 5; j++) {
+
+            }
         }
         return false;
     }

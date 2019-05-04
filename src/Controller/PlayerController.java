@@ -93,8 +93,7 @@ public class PlayerController {
 
     public void selectMenuCard(String id){
         CardRequest request = new CardRequest();
-        Force force = human.getGame().getForce(id);
-        if (force == null) {
+        if (!human.getGame().checkForce(id)) {
             System.out.println("you dont have such a card");
             return;
         }
@@ -112,10 +111,9 @@ public class PlayerController {
                 case EXIT:
                     return;
                 case ATTACK:
-                    human.getGame().Attack(force , request.returnCommand());
+                    human.getGame().Attack(id , request.returnCommand());
                     break;
                 case COMBO:
-
                     break;
                 case HELP:
               //      human.getGame().showMovablePlaces(id);
