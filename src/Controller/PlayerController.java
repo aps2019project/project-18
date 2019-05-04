@@ -111,7 +111,7 @@ public class PlayerController {
                 case EXIT:
                     return;
                 case ATTACK:
-
+                    human.getGame().Attack(id , request.returnCommand());
                     break;
                 case COMBO:
                     break;
