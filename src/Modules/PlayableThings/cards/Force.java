@@ -22,8 +22,8 @@ public abstract class Force extends Card {
         //todo
     }*/
 
-    public Force(String name, String description, int price, int attackPower, int hitPoint, String attackType, int range) {
-        super(name, description, price);
+    public Force(String name, String description, int price, int attackPower, int hitPoint, String attackType, int range , int manaPoint) {
+        super(name, description, price , manaPoint);
         this.attackPower = attackPower;
         this.hitPoint = hitPoint;
         this.attackType = attackType;

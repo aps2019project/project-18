@@ -7,7 +7,7 @@ public class Hero extends Force {
     private Spell spell;
 
     public Hero(String name, String description, int price, int attackPower, int hitPoint, String attackType, int range, int spellCoolDown, int spellMana) {
-        super(name, description, price, attackPower, hitPoint, attackType, range);
+        super(name, description, price, attackPower, hitPoint, attackType, range , 0);
         this.spellCoolDown = spellCoolDown;
         this.spellMana = spellMana;
     }
