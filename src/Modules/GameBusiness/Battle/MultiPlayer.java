@@ -32,7 +32,15 @@ public class MultiPlayer {
     private static void selectUser(String userName, Account account) {
         Account enemyAccount = new Account();
         enemyAccount = Account.findAccount(userName);
-        gameModeMenu(account, enemyAccount);
+        if (enemyAccount != null) {
+            if (enemyAccount.getCollection().getMainDeck().checkValidity() && enemyAccount.getCollection().getMainDeck().checkValidity()) {
+                gameModeMenu(account, enemyAccount);
+            } else {
+                System.out.println("Enemy main deck is not valid");
+            }
+        }else {
+            System.out.println("User name did is not exist");
+        }
     }
 
     private static void gameModeMenu(Account account, Account enemyAccount) {

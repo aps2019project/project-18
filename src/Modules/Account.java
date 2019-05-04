@@ -31,7 +31,11 @@ public class Account implements Comparator {
                 Shop.getInstance().menu(this);
             } else if (input.equalsIgnoreCase("Battle")) {
                 //todo check player
-                Battle.doOrder(this);
+                if (this.getCollection().getMainDeck().checkValidity() && this.getCollection().getMainDeck().checkValidity()) {
+                    Battle.doOrder(this);
+                } else {
+                    System.out.println("Main deck is not valid");
+                }
             } else if (input.equalsIgnoreCase("leaderboard")) {
                 showLeaderboard();
             } else if (input.equalsIgnoreCase("Logout")) {
