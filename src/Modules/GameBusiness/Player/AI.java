@@ -1,6 +1,7 @@
 package Modules.GameBusiness.Player;
 
 
+import Modules.Deck;
 import Modules.PlayableThings.cards.Card;
 
 public class AI extends Player {
@@ -19,6 +20,10 @@ public class AI extends Player {
         for (Card card : putableCards){
             int[][] placees= game.placesCanPut(this);
         }
+    }
+
+    public void setDeck(Deck deck){
+        hand.setDeck();
     }
 
 }
