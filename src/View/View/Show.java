@@ -287,4 +287,12 @@ public class Show {
     public void showCardId(Card card) {
         System.out.println(card.getId());
     }
+
+    public void notEnoughManaMessage() {
+        System.out.println("not enough mana");
+    }
+
+    public void cardNotInHandMessage() {
+        System.out.println("card not in hand");
+    }
 }

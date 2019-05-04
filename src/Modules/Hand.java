@@ -32,8 +32,24 @@ public class Hand {
             Show.get().showMinion((Minion) nextCard);
     }
 
-    public void insertCard(String cardId, int manaPoint) {
-        // TODO
+    public Card insertCard(String cardId, int manaPoint) {
+        for (int i = 0; i < 5; i++) {
+            if (hand[i].getId().equals(cardId)) {
+                if (hand[i] instanceof Minion) {
+                    if (((Minion) hand[i]).getManaPoint() <= manaPoint)
+                        return hand[i];
+                    else
+                        Show.get().notEnoughManaMessage();
+                } else {
+                    if (((Spell) hand[i]).getMP() <= manaPoint)
+                        return hand[i];
+                    else
+                        Show.get().notEnoughManaMessage();
+                }
+            }
+        }
+        Show.get().cardNotInHandMessage();
+        return null;
     }
 
     public void showInsertables(int manaPoint) {
