@@ -121,9 +121,10 @@ public class PlayerController {
                     //    human.getGame().showAttackableCards(id);
                     break;
                 case MOVE:
-
+                    human.getGame().move(force , request.returnCommand());
                     break;
                 case USE_SPECIAL_POWER:
+                    human.
                     break;
             }
         }
