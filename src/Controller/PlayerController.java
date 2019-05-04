@@ -84,11 +84,13 @@ public class PlayerController {
         }
     }
 
-    public void selectMenu(String id2) {
-        //     if (human.checkItem(id))
-        //        selectMenuItem(id);
-        //    else if (human.getGame().checkCard(id , human))
-        //       selectMenuCard(id);
+    public void selectMenu(String id) {
+             if (human.checkItem(id))
+                selectMenuItem(id);
+            else if (human.getGame().getForce(id) != null && human.checkCard(id))
+               selectMenuCard(id);
+            else
+                 System.out.println("There is not such a item or card");
     }
 
     public void selectMenuCard(String id) {
