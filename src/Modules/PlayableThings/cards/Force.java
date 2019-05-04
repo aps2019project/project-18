@@ -85,10 +85,13 @@ public abstract class Force extends Card {
 
     public void attack(Force force){
         //check on attck an buffs
-        if (canAttack)
+        if (canAttack) {
             force.defend(this);
-        canAttack = false;
-        canMove = false;
+            canAttack = false;
+            canMove = false;
+        }
+        else
+            System.out.println("This card has attacked");
     }
 
     private void defend(Force force){
