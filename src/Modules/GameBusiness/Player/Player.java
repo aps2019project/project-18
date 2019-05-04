@@ -17,7 +17,7 @@ public abstract class Player {
     protected Hand hand;
     protected Game game;
     protected ArrayList<Item> items = new ArrayList<>();
-    private int numberOfTurnPlayeHaveFlag;
+    private int numberOfTurnPlayeHaveFlag = 0;
 
     public Account getAccount() {
         return account;
@@ -35,6 +35,23 @@ public abstract class Player {
         manaPoint = (turn+1)/2 + 2;
         if (manaPoint > 9)
             manaPoint = 9;
+    }
+
+    public void takeFlag(){
+        numberOfFlag++;
+    }
+
+    public void looseFlag(){
+        numberOfFlag--;
+    }
+
+    public void aging(){
+        if (numberOfFlag == 1){
+            numberOfTurnPlayeHaveFlag++;
+        }else {
+            numberOfTurnPlayeHaveFlag = 0;
+        }
+        game.buffAging();
     }
 
     public Game getGame() {

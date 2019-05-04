@@ -16,6 +16,7 @@ public class AI extends Player {
         putableCards = hand.getPutableCards(manaPoint);
         putCards();
         handleNextCard();
+        aging();
     }
 
     private void putCards() {
