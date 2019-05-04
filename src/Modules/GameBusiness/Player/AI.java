@@ -10,8 +10,8 @@ public class AI extends Player {
 
     @Override
     public void playTurn(int turn) {
-        enemyHero = game.getEnemyHeroPlace();
         super.playTurn(turn);
+        enemyHero = game.getEnemyHeroPlace();
         putableCards = hand.getPutableCards(manaPoint);
         putCards();
     }

@@ -32,6 +32,8 @@ public abstract class Player {
 
     public void playTurn(int turn) {
         manaPoint = turn + 2;
+        if (manaPoint > 9)
+            manaPoint = 9;
     }
 
     public Game getGame() {
@@ -53,7 +55,7 @@ public abstract class Player {
         return null;
     }
     public void insertCard(String id, int x, int y) {
-        //todo
+
     }
     public void showItem(String id){
         Show.get().showItem(getItem(id) , null);
