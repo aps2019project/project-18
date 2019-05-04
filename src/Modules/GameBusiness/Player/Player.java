@@ -57,7 +57,9 @@ public abstract class Player {
     }
     public void insertCard(String id, int x, int y) {
         Card card = hand.insertCard(id , manaPoint);
-        game.insertCard(card , x , y);
+        card.getManaPoint();
+        if (game.insertCard(card , x , y))
+            hand.delete(card);
     }
 
     public void showItem(String id){
