@@ -71,8 +71,6 @@ public abstract class Force extends Card {
             buff.aging();
         }
         checkBuffs();
-        canAttack = true;
-        canMove = true;
     }
 
     public void takeFlag(Flag flag) {
@@ -106,5 +104,10 @@ public abstract class Force extends Card {
 
     public Flag[] getFlags(){
         return (Flag[])flags.toArray();
+    }
+
+    public void prepareForTurn(boolean isItMyTurn){
+        canAttack = true;
+        canMove = true;
     }
 }
