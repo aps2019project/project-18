@@ -31,4 +31,8 @@ public abstract class Buff {
     public void doEffect(){
         //todo
     }
+
+    public void aging(){
+        numberOfTurns--;
+    }
 }
