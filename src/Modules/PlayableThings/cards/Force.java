@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import Modules.PlayableThings.BuffAndSpecialPowers.Buff.Buff;
+import Modules.PlayableThings.Item.Flag;
 
 import javax.swing.text.html.HTMLDocument;
 
 public abstract class Force extends Card {
     protected int attackPower;
     protected int hitPoint;
-    protected boolean flag;
+    protected ArrayList<Flag> flags;
     protected String attackType;
     protected boolean canMove;
     protected boolean canAttack;
@@ -79,5 +80,9 @@ public abstract class Force extends Card {
             buff.aging();
         }
         checkBuffs();
+    }
+
+    public void takeFlag(Flag flag){
+        flags.add(flag);
     }
 }

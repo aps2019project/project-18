@@ -3,8 +3,10 @@ package Modules.GameBusiness.Player;
 import Modules.Account;
 import Modules.GameBusiness.Game.Game;
 import Modules.Hand;
+import Modules.PlayableThings.Item.Flag;
 import Modules.PlayableThings.Item.Item;
 import Modules.PlayableThings.cards.Card;
+import Modules.PlayableThings.cards.Force;
 import Modules.PlayableThings.cards.Hero;
 import View.View.Show;
 
@@ -95,5 +97,15 @@ public abstract class Player {
 
     public void handleNextCard(){
         hand.handleNextCard();
+    }
+
+    public void move(Force force , String command){
+        String[] spilletdCommand = command.split(" ");
+        Item item = game.move(force , Integer.parseInt(spilletdCommand[0]) , Integer.parseInt(spilletdCommand[1]));
+        if (item instanceof Flag) {
+            numberOfFlag++;
+            force.takeFlag((Flag)item);
+        }
+        items.add(item);
     }
 }

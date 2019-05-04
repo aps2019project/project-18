@@ -1,5 +1,11 @@
 package Modules.PlayableThings.BuffAndSpecialPowers.SpecialPower;
 
 public enum SpecialPowerType {
-    onAttack , onDefence , onSpawn , passive , combo , onDeath , onTurn;
+    ON_ATTACK,
+    ON_DEFENCE,
+    ON_SPAWN,
+    PASSIVE,
+    COMBO,
+    ON_DEATH,
+    ONTURN
 }
