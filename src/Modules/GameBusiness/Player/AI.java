@@ -14,6 +14,7 @@ public class AI extends Player {
         enemyHero = game.getEnemyHeroPlace();
         putableCards = hand.getPutableCards(manaPoint);
         putCards();
+        handleNextCard();
     }
 
     private void putCards() {

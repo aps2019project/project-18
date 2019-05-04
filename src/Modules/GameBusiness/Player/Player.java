@@ -68,4 +68,8 @@ public abstract class Player {
         }
         return false;
     }
+
+    public void handleNextCard(){
+        hand.handleNextCard();
+    }
 }
