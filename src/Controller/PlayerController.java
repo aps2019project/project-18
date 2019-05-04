@@ -29,7 +29,7 @@ public class PlayerController {
                     break;
                 case END_TURN:
                     in = false;
-                    human.handleNeextCard();
+                    human.handleNextCard();
                     break;
                 case GAME_INFO:
                //     human.getGame().showInfo();

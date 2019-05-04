@@ -57,6 +57,7 @@ public abstract class Player {
     public void insertCard(String id, int x, int y) {
 
     }
+
     public void showItem(String id){
         Show.get().showItem(getItem(id) , null);
     }
