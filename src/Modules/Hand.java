@@ -35,8 +35,6 @@ public class Hand {
         // TODO
     }
 
-    //todo meghdar dehi avaliye 5 ta card
-
     public void showInsertables(int manaPoint) {
         for (Card card : hand) {
             if (card instanceof Minion) {
