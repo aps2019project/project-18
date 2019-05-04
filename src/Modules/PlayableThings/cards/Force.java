@@ -13,8 +13,8 @@ public abstract class Force extends Card {
     protected int hitPoint;
     protected ArrayList<Flag> flags;
     protected String attackType;
-    protected boolean canMove;
-    protected boolean canAttack;
+    protected boolean canMove = false;
+    protected boolean canAttack = false;
     protected int range;
     protected ArrayList<Buff> buffs = new ArrayList<>();
 
@@ -39,10 +39,6 @@ public abstract class Force extends Card {
         this.hitPoint = hitPoint;
         this.attackType = attackType;
         this.range = range;
-    }
-
-    public boolean getCanAttack() {
-        return getCanAttack();
     }
 
     public boolean getCanMove() {
@@ -80,6 +76,8 @@ public abstract class Force extends Card {
             buff.aging();
         }
         checkBuffs();
+        canAttack = true;
+        canMove = true;
     }
 
     public void takeFlag(Flag flag){

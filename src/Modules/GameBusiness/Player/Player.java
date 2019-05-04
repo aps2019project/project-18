@@ -101,12 +101,16 @@ public abstract class Player {
 
     public void move(Force force , String command){
         String[] spilletdCommand = command.split(" ");
-        Item item = game.move(force , Integer.parseInt(spilletdCommand[0]) , Integer.parseInt(spilletdCommand[1]));
-        if (item instanceof Flag) {
-            numberOfFlag++;
-            force.takeFlag((Flag)item);
+        if (force.getCanMove()) {
+            Item item = game.move(force, Integer.parseInt(spilletdCommand[0]), Integer.parseInt(spilletdCommand[1]));
+            if (item instanceof Flag) {
+                numberOfFlag++;
+                force.takeFlag((Flag) item);
+            }
+            items.add(item);
         }
-        items.add(item);
+        else
+            System.out.println("force can not move");
     }
 
     public boolean checkCard(String id){
