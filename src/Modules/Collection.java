@@ -194,7 +194,7 @@ public class Collection {
     }
 
     private void setMainDeck(String name) {
-        if (findDeck(name) != null && findDeck(name).checkValidity()) {
+        if (findDeck(name) != null) {
             mainDeck = findDeck(name);
             Show.get().setMainDeckMessage(name);
             return;
