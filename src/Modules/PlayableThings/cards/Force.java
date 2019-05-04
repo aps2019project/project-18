@@ -94,7 +94,7 @@ public abstract class Force extends Card {
             System.out.println("This card has attacked");
     }
 
-    private void defend(Force force){
+    public void defend(Force force){
         //check on defence and buffs
         hitPoint -= force.getAttackPower();
     }

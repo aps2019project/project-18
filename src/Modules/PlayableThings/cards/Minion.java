@@ -30,11 +30,13 @@ public class Minion extends Force {
     public Spell die(){
         if (specialPower.getType() == SpecialPowerType.ON_DEATH)
             return specialPower.getSpell();
+        return null;
     }
 
     public Spell insert(){
         if (specialPower.getType() == SpecialPowerType.ON_SPAWN)
             return specialPower.getSpell();
+        return  null;
     }
 
 
