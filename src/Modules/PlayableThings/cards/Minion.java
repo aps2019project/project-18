@@ -21,7 +21,7 @@ public class Minion extends Force {
     }
 
     public boolean hasComboattack(){
-        if (specialPower.getType() == SpecialPowerType.CCOMBO)
+        if (specialPower.getType() == SpecialPowerType.COMBO)
             return true;
         return false;
     }
