@@ -84,7 +84,7 @@ public abstract class Force extends Card {
     }
 
     public void attack(Force force){
-        //check on attck an buffs
+        //check buffs
         if (canAttack) {
             force.defend(this);
             canAttack = false;
@@ -95,12 +95,12 @@ public abstract class Force extends Card {
     }
 
     public void defend(Force force){
-        //check on defence and buffs
+        //check buffs
         hitPoint -= force.getAttackPower();
     }
 
     public void counterAttack(Force force){
-        //check conditions
+        //check buff
         force.defend(this);
     }
 

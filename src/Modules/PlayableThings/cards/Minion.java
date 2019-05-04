@@ -38,6 +38,15 @@ public class Minion extends Force {
             return specialPower.getSpell();
         return  null;
     }
+//check syntax
+    public void attack(Force force){
+        //check on attack
+        super.attack(force);
+    }
 
+    public void defend(Force force){
+        //check on defence
+        super.defend(force);
+    }
 
 }
