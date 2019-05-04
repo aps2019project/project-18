@@ -71,7 +71,6 @@ public abstract class Force extends Card {
             Buff buff = iterator.next();
             if (buff.getNumberOfTurns() == 0)
                 iterator.remove();
-
         }
     }
 
