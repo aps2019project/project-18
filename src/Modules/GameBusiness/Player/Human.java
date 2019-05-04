@@ -10,7 +10,7 @@ public class Human extends Player {
 
     public Human(Account account) {
         this.account = account;
-        hand =new Hand(account.getCollection().getMainDeck());
+        hand = new Hand(account.getCollection().getMainDeck());
     }
 
     @Override
