@@ -108,4 +108,11 @@ public abstract class Player {
         }
         items.add(item);
     }
+
+    public boolean checkCard(String id){
+        String[] spillitedId = id.split("_");
+        if (spillitedId[0] == account.getUserName())
+            return true;
+        return false;
+    }
 }
