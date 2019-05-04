@@ -7,5 +7,5 @@ public enum SpecialPowerType {
     PASSIVE,
     COMBO,
     ON_DEATH,
-    ONTURN
+    ON_TURN
 }

@@ -2,6 +2,7 @@ package Modules.PlayableThings.cards;
 
 import Modules.PlayableThings.BuffAndSpecialPowers.SpecialPower.SpecialPower;
 import Modules.PlayableThings.BuffAndSpecialPowers.SpecialPower.SpecialPowerType;
+import Modules.PlayableThings.cards.Spell.Spell;
 
 public class Minion extends Force {
     private SpecialPower specialPower;
@@ -25,4 +26,16 @@ public class Minion extends Force {
             return true;
         return false;
     }
+
+    public Spell die(){
+        if (specialPower.getType() == SpecialPowerType.ON_DEATH)
+            return specialPower.getSpell();
+    }
+
+    public Spell insert(){
+        if (specialPower.getType() == SpecialPowerType.ON_SPAWN)
+            return specialPower.getSpell();
+    }
+
+
 }

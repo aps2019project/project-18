@@ -5,7 +5,6 @@ import java.util.Iterator;
 
 import Modules.PlayableThings.BuffAndSpecialPowers.Buff.Buff;
 import Modules.PlayableThings.Item.Flag;
-import Modules.PlayableThings.cards.Spell.Spell;
 
 
 public abstract class Force extends Card {
