@@ -6,7 +6,6 @@ import java.util.Iterator;
 import Modules.PlayableThings.BuffAndSpecialPowers.Buff.Buff;
 import Modules.PlayableThings.Item.Flag;
 
-import javax.swing.text.html.HTMLDocument;
 
 public abstract class Force extends Card {
     protected int attackPower;
@@ -22,12 +21,8 @@ public abstract class Force extends Card {
         buffs.add(buff);
     }
 
-    /*public boolean getFlag(){
-        //todo
-    }*/
-
-    public Force(String name, String description, int price, int attackPower, int hitPoint, String attackType, int range , int manaPoint) {
-        super(name, description, price , manaPoint);
+    public Force(String name, String description, int price, int attackPower, int hitPoint, String attackType, int range, int manaPoint) {
+        super(name, description, price, manaPoint);
         this.attackPower = attackPower;
         this.hitPoint = hitPoint;
         this.attackType = attackType;
@@ -64,15 +59,15 @@ public abstract class Force extends Card {
     public void checkBuffs() {
         //dorosteh
         Iterator<Buff> iterator = buffs.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             Buff buff = iterator.next();
             if (buff.getNumberOfTurns() == 0)
                 iterator.remove();
         }
     }
 
-    public void agging(){
-        for (Buff buff : buffs){
+    public void agging() {
+        for (Buff buff : buffs) {
             buff.aging();
         }
         checkBuffs();
@@ -80,11 +75,11 @@ public abstract class Force extends Card {
         canMove = true;
     }
 
-    public void takeFlag(Flag flag){
+    public void takeFlag(Flag flag) {
         flags.add(flag);
     }
 
-    public void moved(){
+    public void moved() {
         canMove = false;
     }
 }
