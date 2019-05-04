@@ -32,7 +32,7 @@ public abstract class Player {
     }
 
     public void playTurn(int turn) {
-        manaPoint = (turn+1) + 2;
+        manaPoint = (turn+1)/2 + 2;
         if (manaPoint > 9)
             manaPoint = 9;
     }
