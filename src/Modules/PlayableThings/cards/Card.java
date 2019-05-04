@@ -22,6 +22,10 @@ public abstract class Card {
 
     }
 
+    public int getManaPoint() {
+        return manaPoint;
+    }
+
     public abstract Card getCopyCard();
 
     public String getName() {

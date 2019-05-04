@@ -10,10 +10,6 @@ public class Spell extends Card {
         this.target = target;
     }
 
-    public int getMP() {
-        return manaPoint;
-    }
-
     public void executeBuff(Playground playground, int x, int y) {
         // TODO
     }

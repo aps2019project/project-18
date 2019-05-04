@@ -11,10 +11,6 @@ public class Minion extends Force {
         super(name, description, price, attackPower, hitPoint, attackType, range , manaPoint);
     }
 
-    public int getManaPoint() {
-        return manaPoint;
-    }
-
     public void excuteAbility() {
         //todo
     }
