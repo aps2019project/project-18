@@ -2,7 +2,7 @@ package Modules.GameBusiness.Player;
 
 import Controller.PlayerController;
 import Modules.Account;
-import Modules.PlayableThings.Item.Item;
+import Modules.Hand;
 import View.View.Show;
 
 public class Human extends Player {
@@ -10,6 +10,7 @@ public class Human extends Player {
 
     public Human(Account account) {
         this.account = account;
+        hand =new Hand(account.getCollection().getMainDeck());
     }
 
     @Override
