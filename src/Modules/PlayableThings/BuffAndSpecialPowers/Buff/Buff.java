@@ -35,4 +35,8 @@ public abstract class Buff {
     public void aging(){
         numberOfTurns--;
     }
+
+    public int getNumberOfTurns() {
+        return numberOfTurns;
+    }
 }

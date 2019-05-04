@@ -1,8 +1,11 @@
 package Modules.PlayableThings.cards;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import Modules.PlayableThings.BuffAndSpecialPowers.Buff.Buff;
+
+import javax.swing.text.html.HTMLDocument;
 
 public abstract class Force extends Card {
     protected int attackPower;
@@ -61,7 +64,21 @@ public abstract class Force extends Card {
         return hitPoint;
     }
 
-    public void checkBuff() {
-        //todo
+    public void checkBuffs() {
+        //dorosteh
+        Iterator<Buff> iterator = buffs.iterator();
+        while (iterator.hasNext()){
+            Buff buff = iterator.next();
+            if (buff.getNumberOfTurns() == 0)
+                iterator.remove();
+
+        }
+    }
+
+    public void agging(){
+        for (Buff buff : buffs){
+            buff.aging();
+        }
+        checkBuffs();
     }
 }
