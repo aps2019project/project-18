@@ -93,7 +93,7 @@ public class PlayerController {
 
     public void selectMenuCard(String id){
         CardRequest request = new CardRequest();
-        if (human.getGame().checkForce(id)) {
+        if (!human.getGame().checkForce(id)) {
             System.out.println("you dont have such a card");
             return;
         }
