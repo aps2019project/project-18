@@ -10,6 +10,7 @@ public class Hand {
     private Graveyard graveyard;
 
     Hand (Deck deck) {
+        this.deck = deck;
         for (int i = 0; i < 5; i++)
             this.hand[i] = deck.getRandomCard();
         this.nextCard = deck.getRandomCard();
@@ -51,5 +52,13 @@ public class Hand {
 
     public Graveyard getGraveyard() {
         return graveyard;
+    }
+
+    public void handleNextCard() {
+        for (int i = 0; i < 5; i++)
+            if (this.hand[i] == null) {
+                this.hand[i] = this.nextCard;
+                this.nextCard = deck.getRandomCard();
+            }
     }
 }
