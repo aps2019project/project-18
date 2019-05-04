@@ -110,7 +110,7 @@ public abstract class Player {
             items.add(item);
         }
         else
-            System.out.println("force can not move");
+            System.out.println("force have been moved");
     }
 
     public boolean checkCard(String id){
