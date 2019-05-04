@@ -11,17 +11,17 @@ import View.Request.Player.PlayerRequest;
 public class PlayerController {
     private Human human;
 
-    public void handlePlayerCommands(Human haman){
+    public void handlePlayerCommands(Human haman) {
         this.human = human;
         PlayerRequest request = new PlayerRequest();
         boolean in = true;
 
-        while (in){
+        while (in) {
             request.getNewCommand();
-            if (!request.isValid()){
+            if (!request.isValid()) {
                 continue;
             }
-            switch (request.getType()){
+            switch (request.getType()) {
                 case HELP:
                     human.showOptions(Show.get());
                     break;
@@ -33,7 +33,7 @@ public class PlayerController {
                     human.handleNextCard();
                     break;
                 case GAME_INFO:
-               //     human.getGame().showInfo();
+                    //     human.getGame().showInfo();
                     break;
                 case SHOW_HAND:
                     haman.showHand();
@@ -43,85 +43,85 @@ public class PlayerController {
                     break;
                 case INSERT_CARD:
                     String[] temp = request.returnCommand().split(" ");
-                    haman.insertCard(temp[0] , Integer.parseInt(temp[1]) , Integer.parseInt(temp[2]));
+                    haman.insertCard(temp[0], Integer.parseInt(temp[1]), Integer.parseInt(temp[2]));
                     break;
                 case SHOW_CARD_INFO:
-                //    haman.getGame().showCardInfo(request.returnCommand());
+                    //    haman.getGame().showCardInfo(request.returnCommand());
                     break;
                 case ENTER_GRAVEYARD:
                     graveYardMenu();
                     break;
                 case SHOW_MY_MINIONS:
-                 //   human.getGame().showMyMinions();
+                    //   human.getGame().showMyMinions();
                     break;
                 case SHOW_COLLECTABLES:
                     haman.showCollectables(Show.get());
                     break;
                 case SHOW_OPPONENT_MINIONS:
-               //     haman.getGame().showOpponentMinion();
+                    //     haman.getGame().showOpponentMinion();
             }
         }
     }
 
-    private void graveYardMenu(){
+    private void graveYardMenu() {
         GraveyardRequest request = new GraveyardRequest();
         boolean in = true;
 
-        while (in){
+        while (in) {
             request.getCommand();
             if (!request.isValid())
                 continue;
-            switch (request.getType()){
+            switch (request.getType()) {
                 case EXIT:
                     return;
                 case SHOW_CARD:
-                    human.showGraveyard(false , request.returnCommand());
+                    human.showGraveyard(false, request.returnCommand());
                     break;
                 case SHOW_CARDS:
-                    human.showGraveyard(true , "");
+                    human.showGraveyard(true, "");
                     break;
             }
         }
     }
 
-    public void selectMenu(String id2){
-   //     if (human.checkItem(id))
-    //        selectMenuItem(id);
-    //    else if (human.getGame().checkCard(id , human))
-     //       selectMenuCard(id);
+    public void selectMenu(String id2) {
+        //     if (human.checkItem(id))
+        //        selectMenuItem(id);
+        //    else if (human.getGame().checkCard(id , human))
+        //       selectMenuCard(id);
     }
 
-    public void selectMenuCard(String id){
+    public void selectMenuCard(String id) {
         CardRequest request = new CardRequest();
         Force force = human.getGame().getForce(id);
         if (force == null) {
             System.out.println("you dont have such a card");
             return;
-        }
-        else if (!human.checkCard(id)) {
+        } else if (!human.checkCard(id)) {
             System.out.println("its not your card");
             return;
         }
         boolean in = true;
 
-        while (in){
+        while (in) {
             request.getCommand();
             if (!request.isValid())
                 continue;
-            switch (request.getType()){
+            switch (request.getType()) {
                 case EXIT:
                     return;
                 case ATTACK:
-                    human.getGame().attack(force , request.returnCommand());
+                    human.getGame().attack(force, request.returnCommand());
                     break;
                 case COMBO:
-                    human.getGame().comboAttack(force , request.returnCommand());
+                    human.getGame().comboAttack(force, request.returnCommand());
                     break;
                 case HELP:
-              //      human.getGame().showMovablePlaces(id);
-                //    human.getGame().showAttackableCards(id);
+                    //      human.getGame().showMovablePlaces(id);
+                    //    human.getGame().showAttackableCards(id);
                     break;
                 case MOVE:
+
                     break;
                 case USE_SPECIAL_POWER:
                     break;
@@ -129,19 +129,19 @@ public class PlayerController {
         }
     }
 
-    public void selectMenuItem(String id){
+    public void selectMenuItem(String id) {
         ItemRequest request = new ItemRequest();
         boolean in = true;
 
-        while (in){
+        while (in) {
             request.getCommand();
             if (!request.isValid())
                 continue;
-            switch (request.getType()){
+            switch (request.getType()) {
                 case EXIT:
                     return;
                 case USE:
-                    useItem(id ,request.returnCommand());
+                    useItem(id, request.returnCommand());
                     break;
                 case SHOW_INFO:
                     human.showItem(id);
@@ -149,7 +149,8 @@ public class PlayerController {
             }
         }
     }
-    private void useItem(String id , String place){
+
+    private void useItem(String id, String place) {
         String[] deminision = place.split(" ");
         //human.getGame().useItem(human.getItem(id) , Integer.parseInt(deminision[0]) , Integer.parseInt(deminision[1]));
     }
