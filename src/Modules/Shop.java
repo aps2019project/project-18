@@ -7,7 +7,7 @@ import Modules.PlayableThings.Item.Item;
 import Modules.PlayableThings.cards.Card;
 import Modules.PlayableThings.cards.Hero;
 import Modules.PlayableThings.cards.Minion;
-import Modules.PlayableThings.cards.Spell;
+import Modules.PlayableThings.cards.Spell.Spell;
 import View.View.Show;//why? u fucked mvc module should not use view
 import View.View.ShowAccount;
 

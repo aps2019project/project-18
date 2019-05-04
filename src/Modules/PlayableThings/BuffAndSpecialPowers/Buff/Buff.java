@@ -21,13 +21,7 @@ public abstract class Buff {
     private Boolean deletePositive;
     private Force enemy;
     private int turnsOfAttack;
-    //todo target\
-    boolean ground;
-    int diminision;
-    boolean all;
-    boolean ally;
-    int count;
-    boolean hero;
+
     public void doEffect(){
         //todo
     }

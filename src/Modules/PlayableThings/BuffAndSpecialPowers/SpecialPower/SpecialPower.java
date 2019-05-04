@@ -1,6 +1,6 @@
 package Modules.PlayableThings.BuffAndSpecialPowers.SpecialPower;
 
-import Modules.PlayableThings.cards.Spell;
+import Modules.PlayableThings.cards.Spell.Spell;
 
 public class SpecialPower {
     SpecialPowerType type;

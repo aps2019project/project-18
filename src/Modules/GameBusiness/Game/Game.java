@@ -6,6 +6,7 @@ import Modules.GameBusiness.Player.Player;
 import Modules.GameData;
 import Modules.PlayableThings.Item.Item;
 import Modules.PlayableThings.cards.*;
+import Modules.PlayableThings.cards.Spell.Spell;
 import Modules.Playground;
 import View.View.Show;
 

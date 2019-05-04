@@ -2,6 +2,7 @@ package View.View;
 
 import Modules.PlayableThings.cards.*;
 import Modules.PlayableThings.Item.*;
+import Modules.PlayableThings.cards.Spell.Spell;
 
 import java.util.ArrayList;
 
