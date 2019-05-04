@@ -13,4 +13,8 @@ public class SpecialPower {
     public void excute(){
         //todo
     }
+
+    public Spell getSpell() {
+        return spell;
+    }
 }
