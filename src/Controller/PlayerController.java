@@ -1,6 +1,7 @@
 package Controller;
 
 import Modules.GameBusiness.Player.Human;
+import Modules.PlayableThings.cards.Force;
 import View.Request.Player.CardRequests.CardRequest;
 import View.Request.Player.Graveyard.GraveyardRequest;
 import View.Request.Player.Item.ItemRequest;
@@ -92,6 +93,7 @@ public class PlayerController {
 
     public void selectMenuCard(String id){
         CardRequest request = new CardRequest();
+        Force force = human.getGame().getCard(id , human);
         boolean in = true;
 
         while (in){
