@@ -4,6 +4,7 @@ import Modules.Account;
 import Modules.GameBusiness.Game.Game;
 import Modules.Hand;
 import Modules.PlayableThings.Item.Item;
+import Modules.PlayableThings.cards.Card;
 import Modules.PlayableThings.cards.Hero;
 import View.View.Show;
 
@@ -55,8 +56,12 @@ public abstract class Player {
         return null;
     }
     public void insertCard(String id, int x, int y) {
-
+        Card card = hand.insertCard(id , manaPoint);
+        card.getManaPoint();
+        if (game.insertCard(card , x , y))
+            hand.delete(card);
     }
+
     public void showItem(String id){
         Show.get().showItem(getItem(id) , null);
     }
