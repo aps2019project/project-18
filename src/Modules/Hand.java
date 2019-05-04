@@ -9,7 +9,7 @@ public class Hand {
     private Card nextCard;
     private Graveyard graveyard;
 
-    Hand (Deck deck) {
+    public Hand (Deck deck) {
         this.deck = deck;
         for (int i = 0; i < 5; i++)
             this.hand[i] = deck.getRandomCard();
