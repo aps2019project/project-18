@@ -52,6 +52,9 @@ public abstract class Player {
         }
         return null;
     }
+    public void insertCard(String id, int x, int y) {
+        //todo
+    }
     public void showItem(String id){
         Show.get().showItem(getItem(id) , null);
     }

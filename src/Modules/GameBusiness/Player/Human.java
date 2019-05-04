@@ -26,10 +26,6 @@ public class Human extends Player {
         hand.showNextCard();
     }
 
-    public void insertCard(String id, int x, int y) {
-        //todo
-    }
-
     public void showOptions(Show show) {
         showCollectables(show);
         hand.showInsertables(manaPoint);
