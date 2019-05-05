@@ -8,8 +8,8 @@ import View.View.Show;
 
 public class Minion extends Force {
 
-    public Minion(String name, String description, int price, int attackPower, int hitPoint, String attackType, int range, int manaPoint) {
-        super(name, description, price, attackPower, hitPoint, attackType, range , manaPoint);
+    public Minion(String name, String description, int price, int attackPower, int hitPoint, String attackType, int range, int manaPoint , SpecialPower specialPower) {
+        super(name, description, price, attackPower, hitPoint, attackType, range , manaPoint , specialPower);
     }
 
     public void excuteAbility() {
@@ -18,8 +18,10 @@ public class Minion extends Force {
 
     @Override
     public Card getCopyCard() {
-        return new Minion(this.name, this.description, this.price, this.attackPower,
-                this.hitPoint, this.attackType, this.range, this.manaPoint);
+        if (specialPowers.size() == 0)
+            return new Minion( name,  description,  price,  attackPower,  hitPoint,  attackType,  range,  manaPoint ,  specialPowers.get(0));
+        else
+            return new Minion( name,  description,  price,  attackPower,  hitPoint,  attackType,  range,  manaPoint ,  null);
     }
 
     public void showCard() {
