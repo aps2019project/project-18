@@ -19,7 +19,7 @@ public abstract class Player {
     protected Hand hand;
     protected Game game;
     protected ArrayList<Item> items = new ArrayList<>();
-    private int numberOfTurnPlayeHaveFlag = 0;
+    private int numberOfTurnPlayerHaveFlag = 0;
 
     public Account getAccount() {
         return account;
@@ -30,7 +30,7 @@ public abstract class Player {
     }
 
     public int getNumberOfTurnPlayerHaveFlag() {
-        return numberOfTurnPlayeHaveFlag;
+        return numberOfTurnPlayerHaveFlag;
     }
 
     public void playTurn(int turn) {
@@ -49,9 +49,9 @@ public abstract class Player {
 
     public void aging(){
         if (numberOfFlag == 1){
-            numberOfTurnPlayeHaveFlag++;
+            numberOfTurnPlayerHaveFlag++;
         }else {
-            numberOfTurnPlayeHaveFlag = 0;
+            numberOfTurnPlayerHaveFlag = 0;
         }
     }
 
