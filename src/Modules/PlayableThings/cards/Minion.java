@@ -9,8 +9,9 @@ public class Minion extends Force {
     private SpecialPower specialPower;
     private boolean combo;
 
-    public Minion(String name, String description, int price, int attackPower, int hitPoint, String attackType, int range, int manaPoint) {
+    public Minion(String name, String description, int price, int attackPower, int hitPoint, String attackType, int range, int manaPoint, boolean combo) {
         super(name, description, price, attackPower, hitPoint, attackType, range, manaPoint);
+        this.combo = combo;
     }
 
     public void excuteAbility() {
@@ -25,7 +26,7 @@ public class Minion extends Force {
 
     public Card getCopyCard() {
         return new Minion(this.name, this.description, this.price, this.attackPower,
-                this.hitPoint, this.attackType, this.range, this.manaPoint);
+                this.hitPoint, this.attackType, this.range, this.manaPoint, this.combo);
     }
 
     @Override
