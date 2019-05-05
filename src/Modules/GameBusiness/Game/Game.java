@@ -69,7 +69,7 @@ public abstract class Game {
             playground.move(getPosition(force)[0], getPosition(force)[1], x - 1, y - 1);
             force.moved();
             System.out.println("card moved");
-            return playground.getGround()[x][y].getItem();
+            return playground.getGround()[x - 1][y - 1].getItem();
         }
     }
 
