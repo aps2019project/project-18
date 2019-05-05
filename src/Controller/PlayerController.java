@@ -52,7 +52,7 @@ public class PlayerController {
                     graveYardMenu();
                     break;
                 case SHOW_MY_MINIONS:
-                    //   human.getGame().showMyMinions();
+                       human.getGame().showMyMinions();
                     break;
                 case SHOW_COLLECTABLES:
                     haman.showCollectables(Show.get());

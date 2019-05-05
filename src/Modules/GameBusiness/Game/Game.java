@@ -239,6 +239,16 @@ public abstract class Game {
         }
     }
 
+    public void showMyMinions() {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (getEnemyForce(i, j) != null) continue;
+                if (getEnemyForce(i, j) instanceof Hero) continue;
+                //todo show card now
+            }
+        }
+    }
+
     private Player getEnemyPlayer() {
         if (turn % 2 == 0) {
             return playerTwo;
