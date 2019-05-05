@@ -166,7 +166,8 @@ public abstract class Game {
             if (playground.getGround()[x - 1][y - 1] == null) {
                 if (card instanceof Spell) {
                     Spell spell = (Spell) card;
-                    if (canExecuteSpell) {
+                    if (canExecuteSpell()) {
+                        //todo
                         spell.execute();
                         return true;
                     } else {
