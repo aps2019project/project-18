@@ -17,6 +17,14 @@ public class Spell extends Card {
         this.target = target;
     }
 
+    public Spell(){
+
+    }
+
+    public void setTarget(Target target) {
+        this.target = target;
+    }
+
     public Spell addBuff(Buff buff) {
         buffs.add(buff);
         return this;
