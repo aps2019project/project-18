@@ -8,4 +8,7 @@ public class Target {
     private int count;
     private boolean hero;
     private boolean aroundHero;
+    private boolean hybride;
+    private boolean ranged;
+    private boolean melee;
 }

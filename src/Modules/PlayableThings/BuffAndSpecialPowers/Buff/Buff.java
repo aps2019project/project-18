@@ -15,7 +15,7 @@ public abstract class Buff {
     private boolean fireHouse;
     private boolean poison;
     private int hit;
-    private boolean holy;
+    private Boolean holy;
     private boolean kill;
     private boolean stun;
     private boolean isContinious;
@@ -25,6 +25,7 @@ public abstract class Buff {
     private boolean risingAttackWithTurns;
     private HashMap<Force , Integer> attackedPerson = new HashMap<>();
     private boolean dispel;
+    int rangeRising;
 
     public void doEffect(){
         //todo
@@ -33,6 +34,8 @@ public abstract class Buff {
     public void aging(){
         if (!infitinive && isContinious)
             numberOfTurns--;
+        if (executeTime > 0)
+            executeTime--;
     }
 
     public int getNumberOfTurns() {
