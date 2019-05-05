@@ -101,9 +101,9 @@ public abstract class Player {
     }
 
     public void move(Force force , String command){
-        String[] spilletdCommand = command.split(" ");
+        String[] splittedCommand = command.split(" ");
         if (force.getCanMove()) {
-            Item item = game.move(force, Integer.parseInt(spilletdCommand[0]), Integer.parseInt(spilletdCommand[1]));
+            Item item = game.move(force, Integer.parseInt(splittedCommand[0]), Integer.parseInt(splittedCommand[1]));
             if (item instanceof Flag) {
                 numberOfFlag++;
                 force.takeFlag((Flag) item);
