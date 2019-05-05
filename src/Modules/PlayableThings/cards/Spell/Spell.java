@@ -1,6 +1,8 @@
 package Modules.PlayableThings.cards.Spell;
 
+import Modules.Collection;
 import Modules.PlayableThings.BuffAndSpecialPowers.Buff.Buff;
+import Modules.PlayableThings.BuffAndSpecialPowers.SpecialPower.SpecialPower;
 import Modules.PlayableThings.cards.Card;
 import Modules.Playground;
 import View.View.Show;
@@ -15,6 +17,12 @@ public class Spell extends Card {
     public Spell(String name, String description, int price, int manaPoint, Target target) {
         super(name, description, price, manaPoint);
         this.target = target;
+    }
+
+    public Spell(String name, String description, int price, int manaPoint, Target target , ArrayList<Buff> buffs) {
+        super(name, description, price, manaPoint);
+        this.target = target;
+        this.buffs.addAll(buffs);
     }
 
     public Spell addBuff(Buff buff) {
@@ -32,7 +40,7 @@ public class Spell extends Card {
 
     @Override
     public Card getCopyCard() {
-        return new Spell(this.name, this.description, this.price, this.manaPoint, this.target);
+        return new Spell(this.name, this.description, this.price, this.manaPoint, this.target , buffs);
     }
 
     @Override
