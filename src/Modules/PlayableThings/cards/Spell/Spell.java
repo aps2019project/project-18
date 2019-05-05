@@ -1,8 +1,6 @@
 package Modules.PlayableThings.cards.Spell;
 
-import Modules.Collection;
 import Modules.PlayableThings.BuffAndSpecialPowers.Buff.Buff;
-import Modules.PlayableThings.BuffAndSpecialPowers.SpecialPower.SpecialPower;
 import Modules.PlayableThings.cards.Card;
 import Modules.Playground;
 import View.View.Show;
@@ -23,6 +21,14 @@ public class Spell extends Card {
         super(name, description, price, manaPoint);
         this.target = target;
         this.buffs.addAll(buffs);
+    }
+
+    public Spell(){
+
+    }
+
+    public void setTarget(Target target) {
+        this.target = target;
     }
 
     public Spell addBuff(Buff buff) {
