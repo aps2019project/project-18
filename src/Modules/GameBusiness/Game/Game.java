@@ -41,6 +41,20 @@ public abstract class Game {
         checkEnd();
     }
 
+    public void attack(Force force, String command) {
+
+    }
+
+    public Item move(Force force, int x, int y) {
+        if (force.getCanMove() && Math.abs(getPosition(force)[0] - x) + Math.abs(getPosition(force)[1] - y) <= 2) {
+            playground.move(getPosition(force)[0], getPosition(force)[1], x, y);
+            force.moved();
+            System.out.println("card moved");
+            return playground.getGround()[x][y].getItem();
+        }
+        return null;
+    }
+
     public void comboAttack(Force force, String command) {
         String[] splittedCommand = command.split(" ");
         if (((Minion) force).hasComboAttack()) {
@@ -105,6 +119,10 @@ public abstract class Game {
                     break;
                 }
         return result;
+    }
+
+    private int[] getPosition(Force force) {
+        return getPosition(force.getId());
     }
 
     private int distance(String firstCardId, String secondCardId) {
