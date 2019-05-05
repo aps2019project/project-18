@@ -43,15 +43,55 @@ public abstract class Game {
 
     public void comboAttack(Force force, String command) {
         String[] splittedCommand = command.split(" ");
-        if (((Minion) force).hasCombo()) {
+        if (((Minion) force).hasComboAttack()) {
             if (!getEnemyPlayer().checkCard(splittedCommand[0])) {
-                System.out.println("selected card does not belong to enemy");
+                System.out.println("target card does not belong to enemy");
+                return;
+            }
+            if (getForce(splittedCommand[0]) == null) {
+                System.out.println("target card is not on the ground");
                 return;
             }
             for (int i = 1; i < command.split(" ").length; i++) {
-
+                if (!getMyPlayer().checkCard(splittedCommand[i])) {
+                    System.out.println("one of the selected cards is not your card");
+                    return;
+                }
+                if (getForce(splittedCommand[i]) == null) {
+                    System.out.println("one of the selected cards is not on the ground");
+                    return;
+                }
             }
         }
+    }
+
+    private boolean canAttack(String attackerId, String defenderId) {
+        if (getForce(attackerId).getAttackType().equals("melee")) {
+            if (distance(attackerId, defenderId) == 1 || (distance(attackerId, defenderId) == 2 &&
+                    (getPosition(attackerId)[0] != getPosition(defenderId)[0] || getPosition(attackerId)[1] != getPosition(defenderId)[1]))) {
+                return true;
+            } else
+                return false;
+        }
+    }
+
+    private int[] getPosition(String cardId) {
+        int[] result = new int[2];
+        for (int i = 0; i < 9; i++)
+            for (int j = 0; j < 5; j++)
+                if (playground.getGround()[i][j].getCard().getId().equals(cardId)) {
+                    result[0] = i;
+                    result[1] = j;
+                    break;
+                }
+        return result;
+    }
+
+    private int distance(String firstCardId, String secondCardId) {
+        int[] firstCardPosition, secondCardPosition;
+        firstCardPosition = getPosition(firstCardId);
+        secondCardPosition = getPosition(secondCardId);
+        return Math.abs(firstCardPosition[0] - secondCardPosition[0]) + Math.abs(firstCardPosition[1] - secondCardPosition[1]);
     }
 
     public Force getForce(String id) {
@@ -247,6 +287,10 @@ public abstract class Game {
 
     private Player getEnemyPlayer() {
         return players[(turn + 1) % 2];
+    }
+
+    private Player getMyPlayer() {
+        return players[turn % 2];
     }
 
     public Hero getEnemyHero() {
