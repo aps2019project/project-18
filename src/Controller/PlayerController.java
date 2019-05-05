@@ -97,10 +97,7 @@ public class PlayerController {
         CardRequest request = new CardRequest();
         Force force = human.getGame().getForce(id);
         if (force == null) {
-            System.out.println("you dont have such a card");
-            return;
-        } else if (!human.checkCard(id)) {
-            System.out.println("its not your card");
+            System.out.println("The card is not on ground");
             return;
         }
         boolean in = true;

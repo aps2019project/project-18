@@ -21,36 +21,51 @@ public class Minion extends Force {
     @Override
     public Card getCopyCard() {
         return new Minion(this.name, this.description, this.price, this.attackPower,
-                this.hitPoint, this.attackType, this.range, this.manaPoint, this.combo);
+                this.hitPoint, this.attackType, this.range, this.manaPoint);
     }
 
     public void showCard() {
-        Show.showMinionCardInfo(name, hitPoint, attackPower, manaPoint, range, combo, price, description);
+        Show.showMinionCardInfo(name, hitPoint, attackPower, manaPoint, range, price, description);
     }
 
     public boolean hasComboAttack(){
-        if (specialPower.getType() == SpecialPowerType.COMBO)
-            return true;
+        for (SpecialPower specialPower : specialPowers) {
+            if (specialPower.getType() == SpecialPowerType.COMBO)
+                return true;
+        }
         return false;
     }
 
     public Spell die() {
-        if (specialPower.getType() == SpecialPowerType.ON_DEATH)
-            return specialPower.getSpell();
+        for (SpecialPower specialPower : specialPowers) {
+            if (specialPower.getType() == SpecialPowerType.ON_DEATH)
+                return specialPower.getSpell();
+        }
         return null;
     }
 
     public Spell insert() {
-        //on spawn
-        if (specialPower.getType() == SpecialPowerType.ON_SPAWN)
-            return specialPower.getSpell();
+        for (SpecialPower specialPower : specialPowers) {
+            //on spawn
+            if (specialPower.getType() == SpecialPowerType.ON_SPAWN)
+                return specialPower.getSpell();
+        }
         return null;
+    }
+
+    @Override
+    public boolean getCanAttck() {
+        return super.getCanAttck();
     }
 
     //check syntax
     public void attack(Force force) {
-        //check on attack
-        super.attack(force);
+        if (canAttack) {
+            //check on attack
+            super.attack(force);
+        }
+        else
+            System.out.println("you cant attack");
     }
 
     public void defend(Force force) {

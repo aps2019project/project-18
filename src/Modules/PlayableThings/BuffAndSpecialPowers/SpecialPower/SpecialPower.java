@@ -8,7 +8,7 @@ public class SpecialPower {
     private boolean dontAffectHoly;
     private boolean dontAffectDisarm;
     private boolean dontAffectpoison;
-    private boolean dontAffectNegative;
+    private boolean dontAffectNegativeK;
 
     public SpecialPowerType getType() {
         return type;
