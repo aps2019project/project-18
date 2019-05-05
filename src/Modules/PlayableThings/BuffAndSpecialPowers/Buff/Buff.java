@@ -50,4 +50,156 @@ public abstract class Buff {
     public boolean isContinious(){
         return isContinious;
     }
+
+    public void setNumberOfTurns(int numberOfTurns) {
+        this.numberOfTurns = numberOfTurns;
+    }
+
+    public void setExecuteTime(int executeTime) {
+        this.executeTime = executeTime;
+    }
+
+    public void setDimension(int dimension) {
+        this.dimension = dimension;
+    }
+
+    public void setDisarm(boolean disarm) {
+        this.disarm = disarm;
+    }
+
+    public void setAttackPower(int attackPower) {
+        this.attackPower = attackPower;
+    }
+
+    public void setHitPoint(int hitPoint) {
+        this.hitPoint = hitPoint;
+    }
+
+    public void setFireHouse(boolean fireHouse) {
+        this.fireHouse = fireHouse;
+    }
+
+    public void setPoison(boolean poison) {
+        this.poison = poison;
+    }
+
+    public void setHit(int hit) {
+        this.hit = hit;
+    }
+
+    public void setHoly(Boolean holy) {
+        this.holy = holy;
+    }
+
+    public void setKill(boolean kill) {
+        this.kill = kill;
+    }
+
+    public void setStun(boolean stun) {
+        this.stun = stun;
+    }
+
+    public void setContinious(boolean continious) {
+        isContinious = continious;
+    }
+
+    public void setInfitinive(boolean infitinive) {
+        this.infitinive = infitinive;
+    }
+
+    public void setDeleteNegative(boolean deleteNegative) {
+        this.deleteNegative = deleteNegative;
+    }
+
+    public void setDeletePositive(boolean deletePositive) {
+        this.deletePositive = deletePositive;
+    }
+
+    public void setRisingAttackWithTurns(boolean risingAttackWithTurns) {
+        this.risingAttackWithTurns = risingAttackWithTurns;
+    }
+
+    public void setAttackedPerson(HashMap<Force, Integer> attackedPerson) {
+        this.attackedPerson = attackedPerson;
+    }
+
+    public void setDispel(boolean dispel) {
+        this.dispel = dispel;
+    }
+
+    public void setRangeRising(int rangeRising) {
+        this.rangeRising = rangeRising;
+    }
+
+    public int getExecuteTime() {
+        return executeTime;
+    }
+
+    public int getDimension() {
+        return dimension;
+    }
+
+    public boolean isDisarm() {
+        return disarm;
+    }
+
+    public int getAttackPower() {
+        return attackPower;
+    }
+
+    public int getHitPoint() {
+        return hitPoint;
+    }
+
+    public boolean isFireHouse() {
+        return fireHouse;
+    }
+
+    public boolean isPoison() {
+        return poison;
+    }
+
+    public int getHit() {
+        return hit;
+    }
+
+    public Boolean getHoly() {
+        return holy;
+    }
+
+    public boolean isKill() {
+        return kill;
+    }
+
+    public boolean isStun() {
+        return stun;
+    }
+
+    public boolean isInfitinive() {
+        return infitinive;
+    }
+
+    public boolean isDeleteNegative() {
+        return deleteNegative;
+    }
+
+    public boolean isDeletePositive() {
+        return deletePositive;
+    }
+
+    public boolean isRisingAttackWithTurns() {
+        return risingAttackWithTurns;
+    }
+
+    public HashMap<Force, Integer> getAttackedPerson() {
+        return attackedPerson;
+    }
+
+    public boolean isDispel() {
+        return dispel;
+    }
+
+    public int getRangeRising() {
+        return rangeRising;
+    }
 }
