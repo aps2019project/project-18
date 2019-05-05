@@ -119,8 +119,8 @@ public class PlayerController {
                     human.getGame().comboAttack(force, request.returnCommand());
                     break;
                 case HELP:
-                    //      human.getGame().showMovablePlaces(id);
-                    //    human.getGame().showAttackableCards(id);
+                          human.getGame().showMovablePlaces(id);
+                          human.getGame().showAttackAbleCards();
                     break;
                 case MOVE:
                     human.move(force , request.returnCommand());

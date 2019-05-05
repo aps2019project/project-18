@@ -276,7 +276,19 @@ public abstract class Game {
         }
     }
 
-    public void showAllPlaceCanForceMoveTo(Force force, int i, int j) {
+    public void showMovablePlaces(String id) {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (playground.getGround()[i][j].getCard() == null) continue;
+                if (playground.getGround()[i][j].getCard().getId().equals(id)) {
+                    showAllPlaceCanForceMoveTo(getForce(id), i, j);
+                    return;
+                }
+            }
+        }
+    }
+
+    private void showAllPlaceCanForceMoveTo(Force force, int i, int j) {
         if (!force.getCanMove()) {
             return;
         }
