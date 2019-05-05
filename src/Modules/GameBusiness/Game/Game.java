@@ -14,8 +14,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public abstract class Game {
-    Player playerOne;
-    Player playerTwo;
+    Player[] players = new Player[2];
     private int turn = 0;
     boolean end;
     int winnerPlayer;
@@ -23,14 +22,9 @@ public abstract class Game {
     private static ArrayList<Item> collectableItems = new ArrayList<>();
     private static ArrayList<Integer[]> targetPositionCanAttackTo;
 
-    Game(Human playerOne, Human playerTwo) {
-        this.playerOne = playerOne;
-        this.playerTwo = playerTwo;
-    }
-
-    Game(Human playerOne, AI playerTwo) {
-        this.playerOne = playerOne;
-        this.playerTwo = playerTwo;
+    Game(Player playerOne, Player playerTwo) {
+        this.players[0] = playerOne;
+        this.players[1] = playerTwo;
     }
 
     public void turn() {
@@ -38,11 +32,7 @@ public abstract class Game {
             doWhatNeedDoAfterGameEnd();
             return;
         }
-        if (turn % 2 == 0) {
-            playerOne.playTurn(turn);
-        } else {
-            playerTwo.playTurn(turn);
-        }
+        players[turn%2].playTurn(turn);
         doWhatNeedDoAfterEachTurn();
     }
 
@@ -90,11 +80,12 @@ public abstract class Game {
         }
         return false;
     }
-
+    //wrong
     private boolean canPlaceMinion(int x, int y, Card card) {
         Player player;
         String userName = card.getName().split("_")[0];
         if (userName.equals(playerOne.getAccount().getUserName())) {
+            //wrong
             player = players[0].getUserName;
         } else {
             player = players[1].getUserName;
@@ -116,8 +107,8 @@ public abstract class Game {
     }
 
     private void saveData() {
-        String playerOneName = playerOne.getAccount().getUserName();
-        String playerTwoName = playerTwo.getAccount().getUserName();
+        String playerOneName = players[0].getAccount().getUserName();
+        String playerTwoName = players[1].getAccount().getUserName();
         String matchResultPlayerOne, matchResultPlayerTwo;
         if (winnerPlayer == 1) {
             matchResultPlayerOne = "win";
@@ -126,8 +117,8 @@ public abstract class Game {
             matchResultPlayerOne = "lose";
             matchResultPlayerTwo = "win";
         }
-        playerOne.getAccount().saveGameData(new GameData(playerTwoName, matchResultPlayerOne));
-        playerTwo.getAccount().saveGameData(new GameData(playerOneName, matchResultPlayerTwo));
+        players[0].getAccount().saveGameData(new GameData(playerTwoName, matchResultPlayerOne));
+        players[1].getAccount().saveGameData(new GameData(playerOneName, matchResultPlayerTwo));
     }
 
     static Item getRandomCollectableItem() {
@@ -157,13 +148,9 @@ public abstract class Game {
 
     private Force getPlayerForce(int x, int y) {
         String userNamePlayerWhoHaveTurn;
-        if (turn % 2 == 0) {
-            userNamePlayerWhoHaveTurn = playerOne.getAccount().getUserName();
-        } else {
-            userNamePlayerWhoHaveTurn = playerTwo.getAccount().getUserName();
-        }
+        Player player = players[turn%2]
         //player should have card to move it
-        if (playground.getGround()[x][y].getCard().getId().contains(userNamePlayerWhoHaveTurn)) {
+        if (player.checkCard(playground.getGround()[x][y].getCard().getId())) {
             if (playground.getGround()[x][y].getCard() instanceof Force) {
                 return (Force) playground.getGround()[x][y].getCard();
             }
@@ -233,7 +220,6 @@ public abstract class Game {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
                 if (getEnemyForce(i, j) == null) continue;
-                if (getEnemyForce(i, j) instanceof Hero) continue;
                 //todo show card now
             }
         }
@@ -243,23 +229,19 @@ public abstract class Game {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
                 if (getEnemyForce(i, j) != null) continue;
-                if (getEnemyForce(i, j) instanceof Hero) continue;
                 //todo show card now
             }
         }
     }
 
     private Player getEnemyPlayer() {
-        if (turn % 2 == 0) {
-            return playerTwo;
-        } else {
-            return playerOne;
-        }
+        return players[(turn+1)%2];
     }
 
     public Hero getEnemyHero() {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
+                //change
                 if (playground.getGround()[i][j].getCard().getId().contains
                         (getEnemyPlayer().getAccount().getUserName())) {
                     continue;
