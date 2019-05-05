@@ -38,7 +38,7 @@ public abstract class Force extends Card {
         this.range = range;
     }
 
-    public boolean getCanAttck(){
+    public boolean getCanAttack(){
         return canAttack;
     }
 
