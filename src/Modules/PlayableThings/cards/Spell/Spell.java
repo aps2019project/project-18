@@ -17,6 +17,11 @@ public class Spell extends Card {
         this.target = target;
     }
 
+    public Spell addBuff(Buff buff) {
+        buffs.add(buff);
+        return this;
+    }
+
     public void executeBuff(Playground playground, int x, int y) {
         // TODO
     }
