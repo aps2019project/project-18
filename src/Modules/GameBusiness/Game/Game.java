@@ -44,6 +44,7 @@ public abstract class Game {
     public void comboAttack(Force force, String command) {
         String[] splittedCommand = command.split(" ");
         if (((Minion) force).hasComboAttack()) {
+            force.attack(getForce(splittedCommand[0]));
             if (!getEnemyPlayer().checkCard(splittedCommand[0])) {
                 System.out.println("target card does not belong to enemy");
                 return;
@@ -52,22 +53,22 @@ public abstract class Game {
                 System.out.println("target card is not on the ground");
                 return;
             }
-            for (int i = 1; i < command.split(" ").length; i++) {
+            for (int i = 1; i < splittedCommand.length; i++) {
                 if (!getMyPlayer().checkCard(splittedCommand[i])) {
                     System.out.println("one of the selected cards is not your card");
-                    force.attack(getForce(splittedCommand[0]));
                     return;
                 }
                 if (getForce(splittedCommand[i]) == null) {
                     System.out.println("one of the selected cards is not on the ground");
-                    force.attack(getForce(splittedCommand[0]));
                     return;
                 }
                 if (!canAttack(splittedCommand[i], splittedCommand[0]) || !getForce(splittedCommand[i]).getCanAttack()) {
                     System.out.println("one of the selected cards can not attack target card");
-                    force.attack(getForce(splittedCommand[0]));
                     return;
                 }
+            }
+            for (int i = 1; i < splittedCommand.length; i++) {
+                getForce(splittedCommand[i]).attack(getForce(splittedCommand[0]));
             }
         }
     }
