@@ -55,8 +55,12 @@ public class Minion extends Force {
 
     //check syntax
     public void attack(Force force) {
-        //check on attack
-        super.attack(force);
+        if (canAttack) {
+            //check on attack
+            super.attack(force);
+        }
+        else
+            System.out.println("you cant attack");
     }
 
     public void defend(Force force) {

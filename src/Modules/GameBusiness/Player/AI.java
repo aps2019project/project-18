@@ -6,23 +6,20 @@ import Modules.Hand;
 import Modules.PlayableThings.cards.Card;
 
 public class AI extends Player {
-    Card[] putableCards;
     int[] enemyHero = new int[2];
 
     @Override
     public void playTurn(int turn) {
         super.playTurn(turn);
         enemyHero = game.getEnemyHeroPlace();
-        putableCards = hand.getPutableCards(manaPoint);
-        putCards();
+        Card card = hand.getPutableCard(manaPoint);
+        putCard(card);
         handleNextCard();
         aging();
     }
 
-    private void putCards() {
-        for (Card card : putableCards){
-            int[][] placees= game.placesCanPut(this);
-        }
+    private void putCard(Card card) {
+        game.insertCardNearestToEnemyHero(card);
     }
 
     public void setDeck(Deck deck){
