@@ -15,7 +15,7 @@ public class Target {
     private boolean melee;
     private boolean row;
     private boolean column;
-    private boolean game;
+    private boolean game = true;
     private boolean graveyard;
     private boolean aroundIt;
     private boolean it;

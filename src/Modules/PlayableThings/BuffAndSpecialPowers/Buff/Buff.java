@@ -70,7 +70,7 @@ public class Buff {
     }
 
     public void aging(){
-        if (!infitinive && isContinious)
+        if (!infitinive && isContinious && executeTime == 0)
             numberOfTurns--;
         if (executeTime > 0)
             executeTime--;

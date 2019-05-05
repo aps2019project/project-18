@@ -20,7 +20,7 @@ public class AI extends Player {
         Card[] cards = game.getMyCards();
         attackAndMove(cards);
         while(true) {
-            Card[] cards = hand.getPutableCards(manaPoint);
+            cards = hand.getPutableCards(manaPoint);
             if (cards.length == 0)
                 break;
             Card card = judgePutCard(cards);
