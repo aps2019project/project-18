@@ -18,6 +18,13 @@ public class Hero extends Force {
         this.spellMana = spellMana;
     }
 
+    public Hero(String name, String description, int price, int attackPower, int hitPoint, String attackType, int range, Spell spell , int spellCoolDown, int spellMana , SpecialPower specialPower) {
+        super(name, description, price, attackPower, hitPoint, attackType, range, 0 , specialPower);
+        this.spell = spell;
+        this.spellCoolDown = spellCoolDown;
+        this.spellMana = spellMana;
+    }
+
     public Hero(String name, String description, int price, int attackPower, int hitPoint, String attackType, int range) {
         super(name, description, price, attackPower, hitPoint, attackType, range, 0);
         spell = null;
@@ -47,8 +54,10 @@ public class Hero extends Force {
 
     @Override
     public Card getCopyCard() {
-        return new Hero(this.name, this.description, this.price, this.attackPower, this.hitPoint,
-                this.attackType, this.range, this.spellCoolDown, this.spellMana);
+        if (specialPowers.size() == 1)
+            return new Hero( name,  description,  price,  attackPower,  hitPoint,  attackType,  range,  spell ,  spellCoolDown,  spellMana ,  specialPowers.get(0));
+        else
+            return new Hero( name,  description,  price,  attackPower,  hitPoint,  attackType,  range,  spell ,  spellCoolDown,  spellMana ,  null);
     }
 
     @Override

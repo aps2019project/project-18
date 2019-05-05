@@ -17,6 +17,12 @@ public class Spell extends Card {
         this.target = target;
     }
 
+    public Spell(String name, String description, int price, int manaPoint, Target target , ArrayList<Buff> buffs) {
+        super(name, description, price, manaPoint);
+        this.target = target;
+        this.buffs.addAll(buffs);
+    }
+
     public Spell(){
 
     }
@@ -40,7 +46,7 @@ public class Spell extends Card {
 
     @Override
     public Card getCopyCard() {
-        return new Spell(this.name, this.description, this.price, this.manaPoint, this.target);
+        return new Spell(this.name, this.description, this.price, this.manaPoint, this.target , buffs);
     }
 
     @Override
