@@ -26,7 +26,9 @@ public class Graveyard {
                 } else {
                     Show.get().showSpell((Spell) card);
                 }
+                return;
             }
         }
+        Show.get().cardNotInGraveyardMessage();
     }
 }
