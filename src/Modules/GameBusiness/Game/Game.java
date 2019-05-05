@@ -55,10 +55,17 @@ public abstract class Game {
             for (int i = 1; i < command.split(" ").length; i++) {
                 if (!getMyPlayer().checkCard(splittedCommand[i])) {
                     System.out.println("one of the selected cards is not your card");
+                    force.attack(getForce(splittedCommand[0]));
                     return;
                 }
                 if (getForce(splittedCommand[i]) == null) {
                     System.out.println("one of the selected cards is not on the ground");
+                    force.attack(getForce(splittedCommand[0]));
+                    return;
+                }
+                if (!canAttack(splittedCommand[i], splittedCommand[0]) || !getForce(splittedCommand[i]).getCanAttack()) {
+                    System.out.println("one of the selected cards can not attack target card");
+                    force.attack(getForce(splittedCommand[0]));
                     return;
                 }
             }
@@ -68,9 +75,21 @@ public abstract class Game {
     private boolean canAttack(String attackerId, String defenderId) {
         if (getForce(attackerId).getAttackType().equals("melee")) {
             if (distance(attackerId, defenderId) == 1 || (distance(attackerId, defenderId) == 2 &&
-                    (getPosition(attackerId)[0] != getPosition(defenderId)[0] || getPosition(attackerId)[1] != getPosition(defenderId)[1]))) {
+                    (getPosition(attackerId)[0] != getPosition(defenderId)[0] ||
+                            getPosition(attackerId)[1] != getPosition(defenderId)[1]))) {
                 return true;
             } else
+                return false;
+        } else if (getForce(attackerId).getAttackType().equals("ranged")) {
+            if (distance(attackerId, defenderId) > 1 &&
+                    distance(attackerId, defenderId) <= getForce(attackerId).getRange())
+                return true;
+            else
+                return false;
+        } else {
+            if (distance(attackerId, defenderId) <= getForce(attackerId).getRange())
+                return true;
+            else
                 return false;
         }
     }
