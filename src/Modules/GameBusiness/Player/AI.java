@@ -5,22 +5,23 @@ import Modules.Deck;
 import Modules.Hand;
 import Modules.PlayableThings.BuffAndSpecialPowers.SpecialPower.SpecialPower;
 import Modules.PlayableThings.cards.Card;
+import Modules.PlayableThings.cards.Force;
 import Modules.PlayableThings.cards.Minion;
 import Modules.PlayableThings.cards.Spell.Spell;
 
 import java.util.ArrayList;
 
 public class AI extends Player {
-    int[] enemyHero = new int[2];
+    int[] enemyHero;
 
     @Override
     public void playTurn(int turn) {
         super.playTurn(turn);
         enemyHero = game.getEnemyHeroPlace();
-        Card[] cards = game.getMyCards();
-        attackAndMove(cards);
+        Force[] forces = game.getMyCards();
+        attackAndMove(forces);
         while(true) {
-            cards = hand.getPutableCards(manaPoint);
+            Card[] cards = hand.getPutableCards(manaPoint);
             if (cards.length == 0)
                 break;
             Card card = judgePutCard(cards);
@@ -51,12 +52,33 @@ public class AI extends Player {
         return cards[max];
     }
 
-    private void attackAndMove(Card[] cards){
-
+    private void attackAndMove(Force[] forces){
+        for (Force force : forces){
+            judgeMove(force);
+        }
     }
 
     public void setDeck(Deck deck){
         hand =new Hand(deck);
+    }
+
+    private void judgeMove(Force force) {
+        int[][] places = game.getMovablePlaces(force);
+        if (places.length == 0)
+            return;;
+        int[] destination = judgeDestination(places);
+        move(force , ((Integer)(destination[0] + 1)).toString() + " " + ((Integer)(destination[1] + 1)).toString());
+    }
+
+    private int[] judgeDestination(int[][] places){
+        int[] destination = places[0];
+        if (places.length == 1)
+            return destination;
+        for (int i = 1; i < places.length ; i++){
+            if (Math.abs(enemyHero[0] - places[i][0]) + Math.abs(enemyHero[1] - places[i][1]) < Math.abs(enemyHero[0] - destination[0]) + Math.abs(enemyHero[1] -destination[1]))
+                destination = places[i];
+        }
+        return destination;
     }
 
 }
