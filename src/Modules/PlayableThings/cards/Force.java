@@ -67,7 +67,7 @@ public abstract class Force extends Card {
         Iterator<Buff> iterator = buffs.iterator();
         while (iterator.hasNext()) {
             Buff buff = iterator.next();
-            if (buff.getNumberOfTurns() == 0 && !buff.isContinious() && !buff.isInfinitive())
+            if (buff.getNumberOfTurns() == 0 && !buff.isContinious() && !buff.isInfinitive() && buff.getExecuteTime() == 0)
                 iterator.remove();
         }
     }

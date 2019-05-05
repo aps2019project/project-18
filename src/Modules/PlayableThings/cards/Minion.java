@@ -25,7 +25,7 @@ public class Minion extends Force {
     }
 
     public void showCard() {
-        Show.showMinionCardInfo(name, hitPoint, attackPower, manaPoint, range, price, description);
+        Show.showMinionCardInfo(name, hitPoint, attackPower, manaPoint, range, hasComboAttack() ,price, description );
     }
 
     public boolean hasComboAttack(){
@@ -51,11 +51,6 @@ public class Minion extends Force {
                 return specialPower.getSpell();
         }
         return null;
-    }
-
-    @Override
-    public boolean getCanAttck() {
-        return super.getCanAttck();
     }
 
     //check syntax
