@@ -29,6 +29,8 @@ public abstract class Force extends Card {
         this.range = range;
     }
 
+
+
     public Force(int attackPower, int hitPoint, String attackType, int range) {
         this.attackPower = attackPower;
         this.hitPoint = hitPoint;

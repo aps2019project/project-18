@@ -33,7 +33,7 @@ public class PlayerController {
                     human.handleNextCard();
                     break;
                 case GAME_INFO:
-                    //     human.getGame().showInfo();
+                         human.getGame().showInfo();
                     break;
                 case SHOW_HAND:
                     haman.showHand();

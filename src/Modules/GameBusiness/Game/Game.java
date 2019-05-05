@@ -366,6 +366,8 @@ public abstract class Game {
         }
     }
 
+    abstract public void showInfo();
+
     public void showTargetThatForceCanAttackTo(Force force, int i, int j) {
         if (!canAttack(force, i, j)) return;
         int x, y;
