@@ -108,10 +108,15 @@ public abstract class Player {
                 numberOfFlag++;
                 force.takeFlag((Flag) item);
             }
-            items.add(item);
+            else
+                items.add(item);
         }
         else
             System.out.println("force have been moved");
+    }
+
+    public void losseFlag(int count){
+        numberOfFlag -= count;
     }
 
     public boolean checkCard(String id){
