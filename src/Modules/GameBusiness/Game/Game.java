@@ -42,7 +42,14 @@ public abstract class Game {
     }
 
     public void attack(Force force, String defenderId) {
-
+        if (canAttack(force.getId(), defenderId)) {
+            force.attack(getForce(defenderId));
+            if (canAttack(defenderId, force.getId())) {
+                getForce(defenderId).counterAttack(force);
+            }
+        } else {
+            System.out.println("card is not able to attack");
+        }
     }
 
     public Item move(Force force, int x, int y) {
@@ -75,7 +82,7 @@ public abstract class Game {
 
     public void comboAttack(Force force, String command) {
         String[] splittedCommand = command.split(" ");
-        if (!force.getCanAttack() || !canAttack(force.getId(), splittedCommand[0])) {
+        if (!canAttack(force.getId(), splittedCommand[0])) {
             System.out.println("card can not attack");
             return;
         } else if (((Minion) force).hasComboAttack()) {
