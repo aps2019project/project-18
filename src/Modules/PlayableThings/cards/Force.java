@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import Modules.PlayableThings.BuffAndSpecialPowers.Buff.Buff;
+import Modules.PlayableThings.BuffAndSpecialPowers.SpecialPower.SpecialPower;
 import Modules.PlayableThings.Item.Flag;
 
 
@@ -16,6 +17,7 @@ public abstract class Force extends Card {
     protected boolean canAttack = false;
     protected int range;
     protected ArrayList<Buff> buffs = new ArrayList<>();
+    protected ArrayList<SpecialPower> specialPowers = new ArrayList<>();
 
     void addBuff(Buff buff) {
         buffs.add(buff);
@@ -29,7 +31,23 @@ public abstract class Force extends Card {
         this.range = range;
     }
 
+    public Force(String name, String description, int price, int attackPower, int hitPoint, String attackType, int range, int manaPoint , SpecialPower specialPower) {
+        super(name, description, price, manaPoint);
+        this.attackPower = attackPower;
+        this.hitPoint = hitPoint;
+        this.attackType = attackType;
+        this.range = range;
+        specialPowers.add(specialPower);
+    }
 
+    public Force(String name, String description, int price, int attackPower, int hitPoint, String attackType, int range, int manaPoint , Buff buff) {
+        super(name, description, price, manaPoint);
+        this.attackPower = attackPower;
+        this.hitPoint = hitPoint;
+        this.attackType = attackType;
+        this.range = range;
+        buffs.add(buff);
+    }
 
     public Force(int attackPower, int hitPoint, String attackType, int range) {
         this.attackPower = attackPower;

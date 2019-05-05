@@ -53,7 +53,6 @@ public abstract class Player {
         }else {
             numberOfTurnPlayeHaveFlag = 0;
         }
-        game.buffAging();
     }
 
     public Game getGame() {
@@ -75,13 +74,18 @@ public abstract class Player {
         return null;
     }
     public void insertCard(String id, int x, int y) {
-        //card.insert
         Card card = hand.insertCard(id , manaPoint);
         if (card != null) {
             manaPoint -= card.getManaPoint();
-            if (game.insertCard(card, x, y))
+            if (game.insertCard(card, x, y)) {
                 hand.deleteCard(card);
+                System.out.format("%s is inserted in (%d , %d)\n" , id , x ,y);
+            }
+            else
+                System.out.println("Invalid destination");
         }
+        else
+            System.out.println("This card is not in your hand");
     }
 
     public void showItem(String id){
@@ -101,9 +105,9 @@ public abstract class Player {
     }
 
     public void move(Force force , String command){
-        String[] spilletdCommand = command.split(" ");
+        String[] splittedCommand = command.split(" ");
         if (force.getCanMove()) {
-            Item item = game.move(force, Integer.parseInt(spilletdCommand[0]), Integer.parseInt(spilletdCommand[1]));
+            Item item = game.move(force, Integer.parseInt(splittedCommand[0]), Integer.parseInt(splittedCommand[1]));
             if (item instanceof Flag) {
                 numberOfFlag++;
                 force.takeFlag((Flag) item);
@@ -112,7 +116,7 @@ public abstract class Player {
                 items.add(item);
         }
         else
-            System.out.println("force have been moved");
+            System.out.println("force have been moved before");
     }
 
     public void losseFlag(int count){

@@ -317,4 +317,8 @@ public class Show {
     public void cardNotInHandMessage() {
         System.out.println("card not in hand");
     }
+
+    public void cardNotInGraveyardMessage() {
+        System.out.println("card not in graveyard");
+    }
 }
