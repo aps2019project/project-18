@@ -13,8 +13,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public abstract class Game {
-    Player playerOne;
-    Player playerTwo;
+    Player[] players = new Player [2];
     private int turn = 0;
     boolean end;
     int winnerPlayer;
@@ -22,14 +21,9 @@ public abstract class Game {
     private static ArrayList<Item> collectableItems = new ArrayList<>();
     private static ArrayList<Integer[]> targetPositionCanAttackTo;
 
-    Game(Human playerOne, Human playerTwo) {
-        this.playerOne = playerOne;
-        this.playerTwo = playerTwo;
-    }
-
-    Game(Human playerOne, AI playerTwo) {
-        this.playerOne = playerOne;
-        this.playerTwo = playerTwo;
+    Game(Player playerOne, Player playerTwo) {
+        this.players[0] = playerOne;
+        this.players[1] = playerTwo;
     }
 
     public void turn() {
@@ -37,17 +31,26 @@ public abstract class Game {
             doWhatNeedDoAfterGameEnd();
             return;
         }
-        if (turn % 2 == 0) {
-            playerOne.playTurn(turn);
-        } else {
-            playerTwo.playTurn(turn);
-        }
+        players[turn % 2].playTurn(turn);
         doWhatNeedDoAfterEachTurn();
     }
 
     private void doWhatNeedDoAfterEachTurn() {
         turn++;
         checkEnd();
+    }
+
+    public void comboAttack(Force force, String command) {
+        String[] splittedCommand = command.split(" ");
+        if (((Minion) force).hasCombo()) {
+            if (!getEnemyPlayer().checkCard(splittedCommand[0])) {
+                System.out.println("selected card does not belong to enemy");
+                return;
+            }
+            for (int i = 1; i < command.split(" ").length; i++) {
+
+            }
+        }
     }
 
     public Force getForce(String id) {
@@ -94,10 +97,10 @@ public abstract class Game {
         //todo
         Player player;
         String userName = card.getName().split("_")[0];
-        if (userName.equals(playerOne.getAccount().getUserName())) {
-            player = playerOne;
+        if (userName.equals(players[0].getAccount().getUserName())) {
+            player = players[0];
         } else {
-            player = playerTwo;
+            player = players[1];
         }
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
@@ -112,8 +115,8 @@ public abstract class Game {
     }
 
     private void saveData() {
-        String playerOneName = playerOne.getAccount().getUserName();
-        String playerTwoName = playerTwo.getAccount().getUserName();
+        String playerOneName = players[0].getAccount().getUserName();
+        String playerTwoName = players[1].getAccount().getUserName();
         String matchResultPlayerOne, matchResultPlayerTwo;
         if (winnerPlayer == 1) {
             matchResultPlayerOne = "win";
@@ -122,8 +125,8 @@ public abstract class Game {
             matchResultPlayerOne = "lose";
             matchResultPlayerTwo = "win";
         }
-        playerOne.getAccount().saveGameData(new GameData(playerTwoName, matchResultPlayerOne));
-        playerTwo.getAccount().saveGameData(new GameData(playerOneName, matchResultPlayerTwo));
+        players[0].getAccount().saveGameData(new GameData(playerTwoName, matchResultPlayerOne));
+        players[1].getAccount().saveGameData(new GameData(playerOneName, matchResultPlayerTwo));
     }
 
     static Item getRandomCollectableItem() {
@@ -153,11 +156,7 @@ public abstract class Game {
 
     private Force getPlayerForce(int x, int y) {
         String userNamePlayerWhoHaveTurn;
-        if (turn % 2 == 0) {
-            userNamePlayerWhoHaveTurn = playerOne.getAccount().getUserName();
-        } else {
-            userNamePlayerWhoHaveTurn = playerTwo.getAccount().getUserName();
-        }
+        userNamePlayerWhoHaveTurn = players[turn % 2].getAccount().getUserName();
         //player should have card to move it
         if (playground.getGround()[x][y].getCard().getId().contains(userNamePlayerWhoHaveTurn)) {
             if (playground.getGround()[x][y].getCard() instanceof Force) {
@@ -226,11 +225,7 @@ public abstract class Game {
     }
 
     private Player getEnemyPlayer() {
-        if (turn % 2 == 0) {
-            return playerTwo;
-        } else {
-            return playerOne;
-        }
+        return players[(turn + 1) % 2];
     }
 
     public Hero getEnemyHero() {
