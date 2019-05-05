@@ -3,7 +3,12 @@ package Modules.GameBusiness.Player;
 
 import Modules.Deck;
 import Modules.Hand;
+import Modules.PlayableThings.BuffAndSpecialPowers.SpecialPower.SpecialPower;
 import Modules.PlayableThings.cards.Card;
+import Modules.PlayableThings.cards.Minion;
+import Modules.PlayableThings.cards.Spell.Spell;
+
+import java.util.ArrayList;
 
 public class AI extends Player {
     int[] enemyHero = new int[2];
@@ -15,9 +20,10 @@ public class AI extends Player {
         Card[] cards = game.getMyCards();
         attackAndMove(cards);
         while(true) {
-            Card card = hand.getPutableCard(manaPoint);
-            if (card == null)
+            Card[] cards = hand.getPutableCards(manaPoint);
+            if (cards.length == 0)
                 break;
+            Card card = judgePutCard(cards);
             putCard(card);
         }
         handleNextCard();
@@ -26,6 +32,17 @@ public class AI extends Player {
 
     private void putCard(Card card) {
         game.insertCardNearestToEnemyHero(card);
+    }
+
+    private Card judgePutCard(Card[] cards){
+        ArrayList<Integer> points = new ArrayList<>();
+        for (Card card : cards){
+            if (card instanceof Spell)
+                return card;
+            Minion minion = (Minion)card;
+            int point = minion.getAttackPower() * minion.getHitPoint() + minion.getRange() * minion.getRange() +
+            points.add( );
+        }
     }
 
     private void attackAndMove(Card[] cards){

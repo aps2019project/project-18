@@ -53,6 +53,11 @@ public class Minion extends Force {
         return null;
     }
 
+    @Override
+    public boolean getCanAttck() {
+        return super.getCanAttck();
+    }
+
     //check syntax
     public void attack(Force force) {
         if (canAttack) {
