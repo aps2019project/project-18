@@ -5,10 +5,8 @@ import Modules.PlayableThings.BuffAndSpecialPowers.SpecialPower.SpecialPowerType
 import Modules.PlayableThings.cards.Spell.Spell;
 import View.View.Show;
 
-import java.util.ArrayList;
 
 public class Minion extends Force {
-    private ArrayList<SpecialPower> specialPowers = new ArrayList<>();
 
     public Minion(String name, String description, int price, int attackPower, int hitPoint, String attackType, int range, int manaPoint) {
         super(name, description, price, attackPower, hitPoint, attackType, range , manaPoint);
