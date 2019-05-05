@@ -32,7 +32,7 @@ public abstract class Game {
             doWhatNeedDoAfterGameEnd();
             return;
         }
-        players[turn%2].playTurn(turn);
+        players[turn % 2].playTurn(turn);
         doWhatNeedDoAfterEachTurn();
     }
 
@@ -80,15 +80,13 @@ public abstract class Game {
         }
         return false;
     }
-    //wrong
+
     private boolean canPlaceMinion(int x, int y, Card card) {
-        Player player;
-        String userName = card.getName().split("_")[0];
-        if (userName.equals(playerOne.getAccount().getUserName())) {
-            //wrong
-            player = players[0].getUserName;
+        String player;
+        if (players[0].checkCard(card.getId())) {
+            player = players[0].getAccount().getUserName();
         } else {
-            player = players[1].getUserName;
+            player = players[1].getAccount().getUserName();
         }
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
@@ -148,7 +146,7 @@ public abstract class Game {
 
     private Force getPlayerForce(int x, int y) {
         String userNamePlayerWhoHaveTurn;
-        Player player = players[turn%2]
+        Player player = players[turn % 2]
         //player should have card to move it
         if (player.checkCard(playground.getGround()[x][y].getCard().getId())) {
             if (playground.getGround()[x][y].getCard() instanceof Force) {
@@ -235,7 +233,7 @@ public abstract class Game {
     }
 
     private Player getEnemyPlayer() {
-        return players[(turn+1)%2];
+        return players[(turn + 1) % 2];
     }
 
     public Hero getEnemyHero() {
