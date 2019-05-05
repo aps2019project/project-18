@@ -75,7 +75,7 @@ public abstract class Game {
                     }
                 } else {
                     Minion minion = (Minion) card;
-                    if (canPlaceMinion(x, y, card)) {
+                    if (canPlaceMinion(x - 1, y - 1, card)) {
                         playground.getGround()[x - 1][y - 1].setCard(minion);
                         return true;
                     } else {
@@ -92,17 +92,20 @@ public abstract class Game {
     }
 
     private boolean canPlaceMinion(int x, int y, Card card) {
-        //todo
         Player player;
         String userName = card.getName().split("_")[0];
         if (userName.equals(playerOne.getAccount().getUserName())) {
-            player = playerOne;
+            player = players[0].getUserName;
         } else {
-            player = playerTwo;
+            player = players[1].getUserName;
         }
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
-
+                if (Math.abs(i - x) <= 1 && Math.abs(j - y) <= 1) {
+                    if (playground.getGround()[x][y].getCard() == null) continue;
+                    if (!playground.getGround()[x][y].getCard().getId().contains(player)) continue;
+                    return true;
+                }
             }
         }
         return false;
