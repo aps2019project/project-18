@@ -52,13 +52,13 @@ public class PlayerController {
                     graveYardMenu();
                     break;
                 case SHOW_MY_MINIONS:
-                    //   human.getGame().showMyMinions();
+                       human.getGame().showMyMinions();
                     break;
                 case SHOW_COLLECTABLES:
                     haman.showCollectables(Show.get());
                     break;
                 case SHOW_OPPONENT_MINIONS:
-                    //     haman.getGame().showOpponentMinion();
+                         haman.getGame().showOpponentMinion();
             }
         }
     }
@@ -119,8 +119,8 @@ public class PlayerController {
                     human.getGame().comboAttack(force, request.returnCommand());
                     break;
                 case HELP:
-                    //      human.getGame().showMovablePlaces(id);
-                    //    human.getGame().showAttackableCards(id);
+                          human.getGame().showMovablePlaces(id);
+                          human.getGame().showAttackAbleCards();
                     break;
                 case MOVE:
                     human.move(force , request.returnCommand());
@@ -155,6 +155,7 @@ public class PlayerController {
 
     private void useItem(String id, String place) {
         String[] deminision = place.split(" ");
-        //human.getGame().useItem(human.getItem(id) , Integer.parseInt(deminision[0]) , Integer.parseInt(deminision[1]));
+        //hame itema tasirat passive dare asan rajebe in ke koja gharar bgire harfi zade nashode yani farghi nmikone koja zade she tasiresh moshakhase
+        human.getGame().useItem(human.getItem(id) , Integer.parseInt(deminision[0]) , Integer.parseInt(deminision[1]));
     }
 }
