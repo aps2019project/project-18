@@ -12,14 +12,24 @@ public class AI extends Player {
     public void playTurn(int turn) {
         super.playTurn(turn);
         enemyHero = game.getEnemyHeroPlace();
-        Card card = hand.getPutableCard(manaPoint);
-        putCard(card);
+        Card[] cards = game.getMyCards();
+        attackAndMove(cards);
+        while(true) {
+            Card card = hand.getPutableCard(manaPoint);
+            if (card == null)
+                break;
+            putCard(card);
+        }
         handleNextCard();
         aging();
     }
 
     private void putCard(Card card) {
         game.insertCardNearestToEnemyHero(card);
+    }
+
+    private void attackAndMove(Card[] cards){
+
     }
 
     public void setDeck(Deck deck){
