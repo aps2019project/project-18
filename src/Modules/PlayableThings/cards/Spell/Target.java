@@ -7,4 +7,5 @@ public class Target {
     private boolean ally;
     private int count;
     private boolean hero;
+    private boolean aroundHero;
 }

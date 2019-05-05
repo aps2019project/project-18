@@ -34,7 +34,7 @@ public class Minion extends Force {
     }
 
     public Spell insert(){
-        //passive
+        //on spawn
         if (specialPower.getType() == SpecialPowerType.ON_SPAWN)
             return specialPower.getSpell();
         return  null;
@@ -53,7 +53,7 @@ public class Minion extends Force {
     public void prepareForTurn(boolean isItMyTurn){
         super.prepareForTurn(isItMyTurn);
         if (isItMyTurn){
-            //Onturn & continuos
+            //Onturn & passive
         }
     }
 }

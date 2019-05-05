@@ -2,35 +2,48 @@ package Modules.PlayableThings.BuffAndSpecialPowers.Buff;
 
 import Modules.PlayableThings.cards.Force;
 
+import java.util.HashMap;
+
 public abstract class Buff {
     private int numberOfTurns;
     private int executeTime;
     private int[] effectPoint = new int[2];
     private int dimension;
-    private Boolean disarm;
+    private boolean disarm;
     private int attackpower;
     private int healthPower;
-    private Boolean fireHouse;
-    private Boolean poisonHouse;
+    private boolean fireHouse;
+    private boolean poison;
     private int hit;
-    private Boolean holy;
-    private Boolean kill;
-    private Boolean stun;
+    private boolean holy;
+    private boolean kill;
+    private boolean stun;
     private boolean isContinious;
-    private Boolean deleteNegative;
-    private Boolean deletePositive;
-    private Force enemy;
-    private int turnsOfAttack;
+    private boolean infitinive;
+    private boolean deleteNegative;
+    private boolean deletePositive;
+    private boolean risingAttackWithTurns;
+    private HashMap<Force , Integer> attackedPerson = new HashMap<>();
+    private boolean dispel;
 
     public void doEffect(){
         //todo
     }
 
     public void aging(){
-        numberOfTurns--;
+        if (!infitinive && isContinious)
+            numberOfTurns--;
     }
 
     public int getNumberOfTurns() {
         return numberOfTurns;
+    }
+
+    public boolean isInfinitive(){
+        return infitinive;
+    }
+
+    public boolean isContinious(){
+        return isContinious;
     }
 }
