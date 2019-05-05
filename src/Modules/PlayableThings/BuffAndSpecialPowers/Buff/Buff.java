@@ -7,11 +7,10 @@ import java.util.HashMap;
 public abstract class Buff {
     private int numberOfTurns;
     private int executeTime;
-    private int[] effectPoint = new int[2];
     private int dimension;
     private boolean disarm;
-    private int attackpower;
-    private int healthPower;
+    private int attackPower;
+    private int hitPoint;
     private boolean fireHouse;
     private boolean poison;
     private int hit;
@@ -25,7 +24,9 @@ public abstract class Buff {
     private boolean risingAttackWithTurns;
     private HashMap<Force , Integer> attackedPerson = new HashMap<>();
     private boolean dispel;
-    int rangeRising;
+    private int rangeRising;
+    //check
+
 
     public void doEffect(){
         //todo

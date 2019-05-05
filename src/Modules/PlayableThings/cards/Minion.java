@@ -4,8 +4,11 @@ import Modules.PlayableThings.BuffAndSpecialPowers.SpecialPower.SpecialPower;
 import Modules.PlayableThings.BuffAndSpecialPowers.SpecialPower.SpecialPowerType;
 import Modules.PlayableThings.cards.Spell.Spell;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class Minion extends Force {
-    private SpecialPower specialPower;
+    private ArrayList<SpecialPower> specialPowers = new ArrayList<>();
 
     public Minion(String name, String description, int price, int attackPower, int hitPoint, String attackType, int range, int manaPoint) {
         super(name, description, price, attackPower, hitPoint, attackType, range , manaPoint);
