@@ -2,6 +2,8 @@ package Modules.GameBusiness.Game;
 
 import Modules.GameBusiness.Player.AI;
 import Modules.GameBusiness.Player.Human;
+import Modules.PlayableThings.cards.Card;
+import Modules.PlayableThings.cards.Hero;
 
 import java.util.Random;
 
@@ -41,6 +43,19 @@ public class ModeKillEnemyHero extends Game {
         } else if (playerTwo.getHeroCard().getHitPoint() <= 0) {
             winnerPlayer = 1;
             end = true;
+        }
+    }
+
+    @Override
+    public void showInfo() {
+        Card card;
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 5; j++) {
+                card = playground.getGround()[i][j].getCard();
+                if (card instanceof Hero) {
+                    System.out.println("Player have hero : " + card.getPlayerUserNameWhoHaveThisCard() + "Hero HP" + ((Hero) card).getHitPoint());
+                }
+            }
         }
     }
 }

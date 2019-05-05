@@ -6,6 +6,7 @@ import Modules.GameBusiness.Player.Player;
 import Modules.GameData;
 import Modules.PlayableThings.Item.Item;
 import Modules.PlayableThings.cards.*;
+import Modules.PlayableThings.cards.Spell.Spell;
 import Modules.Playground;
 import View.View.Show;
 
@@ -94,17 +95,19 @@ public abstract class Game {
     }
 
     private boolean canPlaceMinion(int x, int y, Card card) {
-        //todo
-        Player player;
-        String userName = card.getName().split("_")[0];
-        if (userName.equals(players[0].getAccount().getUserName())) {
-            player = players[0];
+        String player;
+        if (players[0].checkCard(card.getId())) {
+            player = players[0].getAccount().getUserName();
         } else {
-            player = players[1];
+            player = players[1].getAccount().getUserName();
         }
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
-
+                if (Math.abs(i - x) <= 1 && Math.abs(j - y) <= 1) {
+                    if (playground.getGround()[x][y].getCard() == null) continue;
+                    if (!playground.getGround()[x][y].getCard().getId().contains(player)) continue;
+                    return true;
+                }
             }
         }
         return false;
@@ -156,9 +159,9 @@ public abstract class Game {
 
     private Force getPlayerForce(int x, int y) {
         String userNamePlayerWhoHaveTurn;
-        userNamePlayerWhoHaveTurn = players[turn % 2].getAccount().getUserName();
+        Player player = players[turn % 2]
         //player should have card to move it
-        if (playground.getGround()[x][y].getCard().getId().contains(userNamePlayerWhoHaveTurn)) {
+        if (player.checkCard(playground.getGround()[x][y].getCard().getId())) {
             if (playground.getGround()[x][y].getCard() instanceof Force) {
                 return (Force) playground.getGround()[x][y].getCard();
             }
@@ -224,6 +227,24 @@ public abstract class Game {
         return null;
     }
 
+    public void showOpponentMinion() {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (getEnemyForce(i, j) == null) continue;
+                //todo show card now
+            }
+        }
+    }
+
+    public void showMyMinions() {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (getEnemyForce(i, j) != null) continue;
+                //todo show card now
+            }
+        }
+    }
+
     private Player getEnemyPlayer() {
         return players[(turn + 1) % 2];
     }
@@ -267,7 +288,23 @@ public abstract class Game {
         }
     }
 
-    public void showAllPlaceCanForceMoveTo(Force force, int i, int j) {
+    public void showMovablePlaces(String id) {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (playground.getGround()[i][j].getCard() == null) continue;
+                if (playground.getGround()[i][j].getCard().getId().equals(id)) {
+                    showAllPlaceCanForceMoveTo(getForce(id), i, j);
+                    return;
+                }
+            }
+        }
+    }
+
+    public void useItem(Item item) {
+        item.execute();//todo handle daghigh
+    }
+
+    private void showAllPlaceCanForceMoveTo(Force force, int i, int j) {
         if (!force.getCanMove()) {
             return;
         }
@@ -320,6 +357,8 @@ public abstract class Game {
             Show.showTargetThatForceCanMoveTo(i - 1, j + 1);
         }
     }
+
+    abstract public void showInfo();
 
     public void showTargetThatForceCanAttackTo(Force force, int i, int j) {
         if (!canAttack(force, i, j)) return;

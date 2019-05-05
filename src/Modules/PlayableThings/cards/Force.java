@@ -1,16 +1,19 @@
 package Modules.PlayableThings.cards;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import Modules.PlayableThings.BuffAndSpecialPowers.Buff.Buff;
+import Modules.PlayableThings.Item.Flag;
+
 
 public abstract class Force extends Card {
     protected int attackPower;
     protected int hitPoint;
-    protected boolean flag;
+    protected ArrayList<Flag> flags;
     protected String attackType;
-    protected boolean canMove;
-    protected boolean canAttack;
+    protected boolean canMove = false;
+    protected boolean canAttack = false;
     protected int range;
     protected ArrayList<Buff> buffs = new ArrayList<>();
 
@@ -18,27 +21,21 @@ public abstract class Force extends Card {
         buffs.add(buff);
     }
 
-    /*public boolean getFlag(){
-        //todo
-    }*/
-
-    public Force(String name, String description, int price, int attackPower, int hitPoint, String attackType, int range , int manaPoint) {
-        super(name, description, price , manaPoint);
+    public Force(String name, String description, int price, int attackPower, int hitPoint, String attackType, int range, int manaPoint) {
+        super(name, description, price, manaPoint);
         this.attackPower = attackPower;
         this.hitPoint = hitPoint;
         this.attackType = attackType;
         this.range = range;
     }
+
+
 
     public Force(int attackPower, int hitPoint, String attackType, int range) {
         this.attackPower = attackPower;
         this.hitPoint = hitPoint;
         this.attackType = attackType;
         this.range = range;
-    }
-
-    public boolean getCanAttack() {
-        return getCanAttack();
     }
 
     public boolean getCanMove() {
@@ -61,7 +58,58 @@ public abstract class Force extends Card {
         return hitPoint;
     }
 
-    public void checkBuff() {
-        //todo
+    public void checkBuffs() {
+        //dorosteh
+        Iterator<Buff> iterator = buffs.iterator();
+        while (iterator.hasNext()) {
+            Buff buff = iterator.next();
+            if (buff.getNumberOfTurns() == 0 && !buff.isContinious() && !buff.isInfinitive())
+                iterator.remove();
+        }
+    }
+
+    public void agging() {
+        for (Buff buff : buffs) {
+            buff.aging();
+        }
+        checkBuffs();
+    }
+
+    public void takeFlag(Flag flag) {
+        flags.add(flag);
+    }
+
+    public void moved() {
+        canMove = false;
+    }
+
+    public void attack(Force force){
+        //check buffs
+        if (canAttack) {
+            force.defend(this);
+            canAttack = false;
+            canMove = false;
+        }
+        else
+            System.out.println("This card has attacked");
+    }
+
+    public void defend(Force force){
+        //check buffs
+        hitPoint -= force.getAttackPower();
+    }
+
+    public void counterAttack(Force force){
+        //check buff
+        force.defend(this);
+    }
+
+    public Flag[] getFlags(){
+        return (Flag[])flags.toArray();
+    }
+
+    public void prepareForTurn(boolean isItMyTurn){
+        canAttack = true;
+        canMove = true;
     }
 }

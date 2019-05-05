@@ -17,6 +17,7 @@ public class Human extends Player {
     public void playTurn(int turn) {
         super.playTurn(turn);
         new PlayerController().handlePlayerCommands(this);
+        aging();
     }
 
     public void showHand() {

@@ -1,6 +1,7 @@
 package Modules;
 
 import Modules.PlayableThings.cards.*;
+import Modules.PlayableThings.cards.Spell.Spell;
 import View.View.Show;
 
 public class Hand {

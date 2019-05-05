@@ -1,5 +1,7 @@
 package Modules.PlayableThings.cards;
 
+import Modules.PlayableThings.cards.Spell.Spell;
+
 public class Hero extends Force {
     private int spellCoolDown;
     private int spellMana;
