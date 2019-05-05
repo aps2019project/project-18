@@ -6,13 +6,13 @@ public class Target {
     private int distance;
     private boolean all;
     private Boolean ally;
-    private int count;
+    private int count = 1;
     private boolean hero;
     private boolean minion;
     private boolean aroundHero;
-    private boolean hybride;
-    private boolean ranged;
-    private boolean melee;
+    private boolean hybride = true;
+    private boolean ranged = true;
+    private boolean melee = true;
     private boolean row;
     private boolean column;
     private boolean game = true;

@@ -310,6 +310,7 @@ public class Shop {
         target = new Target();
         target.setHero(true);
         target.setMinion(true);
+        target.setAll(true);
         target.setAlly(false);
         spell.setTarget(target);
         cards.add(new Hero("simorgh", "Stun all enemy force for 1 turn", 9000, 4, 50, "melee", 0, spell, 8, 5));
