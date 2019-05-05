@@ -155,6 +155,7 @@ public class PlayerController {
 
     private void useItem(String id, String place) {
         String[] deminision = place.split(" ");
-        //human.getGame().useItem(human.getItem(id) , Integer.parseInt(deminision[0]) , Integer.parseInt(deminision[1]));
+        //hame itema tasirat passive dare asan rajebe in ke koja gharar bgire harfi zade nashode yani farghi nmikone koja zade she tasiresh moshakhase
+        human.getGame().useItem(human.getItem(id) , Integer.parseInt(deminision[0]) , Integer.parseInt(deminision[1]));
     }
 }

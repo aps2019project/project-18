@@ -308,6 +308,10 @@ public abstract class Game {
         }
     }
 
+    public void useItem(Item item) {
+        item.execute();//todo handle daghigh
+    }
+
     private void showAllPlaceCanForceMoveTo(Force force, int i, int j) {
         if (!force.getCanMove()) {
             return;
