@@ -30,7 +30,7 @@ public abstract class Player {
     }
 
     public int getNumberOfTurnPlayerHaveFlag() {
-        return numberOfTurnPlayeHaveFlag;
+        return numberOfTurnPlayerHaveFlag;
     }
 
     public void playTurn(int turn) {
