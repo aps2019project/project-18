@@ -18,6 +18,11 @@ public class Hero extends Force {
         this.spellMana = spellMana;
     }
 
+    public Hero(String name, String description, int price, int attackPower, int hitPoint, String attackType, int range) {
+        super(name, description, price, attackPower, hitPoint, attackType, range, 0);
+        spell = null;
+    }
+
     public Hero(String name, String description, int price, int attackPower, int hitPoint, String attackType, int range, int manaPoint , SpecialPower specialPower) {
         super(name, description, price, attackPower, hitPoint, attackType, range, manaPoint , specialPower);
         spell = null;
