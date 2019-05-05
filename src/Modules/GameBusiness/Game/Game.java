@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public abstract class Game {
-    Player[] players = new Player[2];
+    Player[] players = new Player [2];
     private int turn = 0;
     boolean end;
     int winnerPlayer;
@@ -32,13 +32,26 @@ public abstract class Game {
             doWhatNeedDoAfterGameEnd();
             return;
         }
-        players[turn%2].playTurn(turn);
+        players[turn % 2].playTurn(turn);
         doWhatNeedDoAfterEachTurn();
     }
 
     private void doWhatNeedDoAfterEachTurn() {
         turn++;
         checkEnd();
+    }
+
+    public void comboAttack(Force force, String command) {
+        String[] splittedCommand = command.split(" ");
+        if (((Minion) force).hasCombo()) {
+            if (!getEnemyPlayer().checkCard(splittedCommand[0])) {
+                System.out.println("selected card does not belong to enemy");
+                return;
+            }
+            for (int i = 1; i < command.split(" ").length; i++) {
+
+            }
+        }
     }
 
     public Force getForce(String id) {
@@ -65,7 +78,7 @@ public abstract class Game {
                     }
                 } else {
                     Minion minion = (Minion) card;
-                    if (canPlaceMinion(x - 1, y - 1, card)) {
+                    if (canPlaceMinion(x, y, card)) {
                         playground.getGround()[x - 1][y - 1].setCard(minion);
                         return true;
                     } else {
@@ -80,15 +93,13 @@ public abstract class Game {
         }
         return false;
     }
-    //wrong
+
     private boolean canPlaceMinion(int x, int y, Card card) {
-        Player player;
-        String userName = card.getName().split("_")[0];
-        if (userName.equals(playerOne.getAccount().getUserName())) {
-            //wrong
-            player = players[0].getUserName;
+        String player;
+        if (players[0].checkCard(card.getId())) {
+            player = players[0].getAccount().getUserName();
         } else {
-            player = players[1].getUserName;
+            player = players[1].getAccount().getUserName();
         }
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
@@ -148,7 +159,7 @@ public abstract class Game {
 
     private Force getPlayerForce(int x, int y) {
         String userNamePlayerWhoHaveTurn;
-        Player player = players[turn%2]
+        Player player = players[turn % 2];
         //player should have card to move it
         if (player.checkCard(playground.getGround()[x][y].getCard().getId())) {
             if (playground.getGround()[x][y].getCard() instanceof Force) {
@@ -235,13 +246,12 @@ public abstract class Game {
     }
 
     private Player getEnemyPlayer() {
-        return players[(turn+1)%2];
+        return players[(turn + 1) % 2];
     }
 
     public Hero getEnemyHero() {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
-                //change
                 if (playground.getGround()[i][j].getCard().getId().contains
                         (getEnemyPlayer().getAccount().getUserName())) {
                     continue;
@@ -292,6 +302,10 @@ public abstract class Game {
 
     public void useItem(Item item) {
         item.execute();//todo handle daghigh
+    }
+
+    public void showCardInfo(String id) {
+        playground.getCard(id).showCard();
     }
 
     private void showAllPlaceCanForceMoveTo(Force force, int i, int j) {
@@ -347,6 +361,8 @@ public abstract class Game {
             Show.showTargetThatForceCanMoveTo(i - 1, j + 1);
         }
     }
+
+    abstract public void showInfo();
 
     public void showTargetThatForceCanAttackTo(Force force, int i, int j) {
         if (!canAttack(force, i, j)) return;

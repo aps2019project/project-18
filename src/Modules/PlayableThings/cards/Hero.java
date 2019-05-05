@@ -1,6 +1,7 @@
 package Modules.PlayableThings.cards;
 
 import Modules.PlayableThings.cards.Spell.Spell;
+import View.View.Show;
 
 public class Hero extends Force {
     private int spellCoolDown;
@@ -9,7 +10,7 @@ public class Hero extends Force {
     private Spell spell;
 
     public Hero(String name, String description, int price, int attackPower, int hitPoint, String attackType, int range, int spellCoolDown, int spellMana) {
-        super(name, description, price, attackPower, hitPoint, attackType, range , 0);
+        super(name, description, price, attackPower, hitPoint, attackType, range, 0);
         this.spellCoolDown = spellCoolDown;
         this.spellMana = spellMana;
     }
@@ -31,4 +32,10 @@ public class Hero extends Force {
         return new Hero(this.name, this.description, this.price, this.attackPower, this.hitPoint,
                 this.attackType, this.range, this.spellCoolDown, this.spellMana);
     }
+
+    @Override
+    public void showCard() {
+        Show.showHeroCardInfo(name, price, description);
+    }
+
 }

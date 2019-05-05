@@ -1,5 +1,7 @@
 package Modules;
 
+import Modules.PlayableThings.cards.Card;
+
 public class Playground {
     private House[][] houses = new House[9][5];
 
@@ -17,6 +19,10 @@ public class Playground {
             }
         }
         return null;
+    }
+
+    public Card getCard(String id) {
+        return houses[isCardOnGround(id)[0]][isCardOnGround(id)[1]].getCard();
     }
 
     public House[][] getGround() {

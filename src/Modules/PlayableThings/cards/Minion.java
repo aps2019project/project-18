@@ -3,8 +3,8 @@ package Modules.PlayableThings.cards;
 import Modules.PlayableThings.BuffAndSpecialPowers.SpecialPower.SpecialPower;
 import Modules.PlayableThings.BuffAndSpecialPowers.SpecialPower.SpecialPowerType;
 import Modules.PlayableThings.cards.Spell.Spell;
+import View.View.Show;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Minion extends Force {
@@ -21,41 +21,46 @@ public class Minion extends Force {
     @Override
     public Card getCopyCard() {
         return new Minion(this.name, this.description, this.price, this.attackPower,
-                this.hitPoint, this.attackType, this.range, this.manaPoint);
+                this.hitPoint, this.attackType, this.range, this.manaPoint, this.combo);
     }
 
-    public boolean hasComboattack(){
+    public void showCard() {
+        Show.showMinionCardInfo(name, hitPoint, attackPower, manaPoint, range, combo, price, description);
+    }
+
+    public boolean hasComboAttack(){
         if (specialPower.getType() == SpecialPowerType.COMBO)
             return true;
         return false;
     }
 
-    public Spell die(){
+    public Spell die() {
         if (specialPower.getType() == SpecialPowerType.ON_DEATH)
             return specialPower.getSpell();
         return null;
     }
 
-    public Spell insert(){
+    public Spell insert() {
         //on spawn
         if (specialPower.getType() == SpecialPowerType.ON_SPAWN)
             return specialPower.getSpell();
-        return  null;
+        return null;
     }
-//check syntax
-    public void attack(Force force){
+
+    //check syntax
+    public void attack(Force force) {
         //check on attack
         super.attack(force);
     }
 
-    public void defend(Force force){
+    public void defend(Force force) {
         //check on defence
         super.defend(force);
     }
 
-    public void prepareForTurn(boolean isItMyTurn){
+    public void prepareForTurn(boolean isItMyTurn) {
         super.prepareForTurn(isItMyTurn);
-        if (isItMyTurn){
+        if (isItMyTurn) {
             //Onturn & passive
         }
     }

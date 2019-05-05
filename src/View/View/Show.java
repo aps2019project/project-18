@@ -57,7 +57,7 @@ public class Show {
         System.out.println("Spells : ");
         for (Card card : cards) {
             if (card instanceof Spell) {
-                System.out.println("        " + i + ". Name : " + card.getName() + " - MP : " + ((Spell) card).getMP()
+                System.out.println("        " + i + ". Name : " + card.getName() + " - MP : " + ((Spell) card).getManaPoint()
                         + " - Desc" + card.getDescription());
 
                 if (sell == null) {
@@ -73,7 +73,7 @@ public class Show {
     }
 
     public void showSpell(Spell spell) {
-        System.out.println("spell :    Name : " + spell.getName() + " - MP : " + spell.getMP()
+        System.out.println("spell :    Name : " + spell.getName() + " - MP : " + spell.getManaPoint()
                 + " - Desc" + spell.getDescription());
     }
 
@@ -249,6 +249,27 @@ public class Show {
 
     public static void showTargetThatForceCanMoveTo(int x, int y) {
         System.out.println("{ " + x + " ," + y + " }");
+    }
+
+    public static void showSpellCardInfo(String name, int mana, int cost, String desc) {
+        System.out.println("Name : " + name);
+        System.out.println("MP : " + mana);
+        System.out.println("Cost : " + cost);
+        System.out.println("Desc : " + desc);
+    }
+
+    public static void showHeroCardInfo(String name, int cost, String desc) {
+        System.out.println("Name : " + name);
+        System.out.println("Cost : " + cost);
+        System.out.println("Desc : " + desc);
+    }
+
+    public static void showMinionCardInfo(String name, int HP, int AP, int MP, int Range, boolean combo, int cost, String desc) {
+        System.out.println("Name : " + name);
+        System.out.println("HP : " + HP + "  AP : " + AP + "  MP : " + MP);
+        System.out.println("Combo-ability : " + combo);
+        System.out.println("Cost : " + cost);
+        System.out.println("Desk : " + desc);
     }
 
     public void deckValidMessage() {
