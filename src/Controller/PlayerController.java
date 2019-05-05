@@ -58,7 +58,7 @@ public class PlayerController {
                     haman.showCollectables(Show.get());
                     break;
                 case SHOW_OPPONENT_MINIONS:
-                    //     haman.getGame().showOpponentMinion();
+                         haman.getGame().showOpponentMinion();
             }
         }
     }
