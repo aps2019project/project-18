@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import Modules.PlayableThings.BuffAndSpecialPowers.Buff.Buff;
+import Modules.PlayableThings.BuffAndSpecialPowers.SpecialPower.SpecialPower;
 import Modules.PlayableThings.Item.Flag;
 
 
@@ -16,6 +17,7 @@ public abstract class Force extends Card {
     protected boolean canAttack = false;
     protected int range;
     protected ArrayList<Buff> buffs = new ArrayList<>();
+    private ArrayList<SpecialPower> specialPowers = new ArrayList<>();
 
     void addBuff(Buff buff) {
         buffs.add(buff);
