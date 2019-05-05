@@ -40,9 +40,15 @@ public class AI extends Player {
             if (card instanceof Spell)
                 return card;
             Minion minion = (Minion)card;
-            int point = minion.getAttackPower() * minion.getHitPoint() + minion.getRange() * minion.getRange() +
-            points.add( );
+            int point = minion.getAttackPower() * minion.getHitPoint() + minion.getRange() * minion.getRange() + minion.getRange() - minion.getManaPoint();
+            points.add(point);
         }
+        int max = 0;
+        for (int i = 0 ; i < points.size() ; i++){
+            if (points.get(i) > points.get(max))
+                max = i;
+        }
+        return cards[max];
     }
 
     private void attackAndMove(Card[] cards){
