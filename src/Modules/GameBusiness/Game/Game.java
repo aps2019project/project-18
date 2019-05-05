@@ -146,7 +146,7 @@ public abstract class Game {
 
     private Force getPlayerForce(int x, int y) {
         String userNamePlayerWhoHaveTurn;
-        Player player = players[turn % 2]
+        Player player = players[turn % 2];
         //player should have card to move it
         if (player.checkCard(playground.getGround()[x][y].getCard().getId())) {
             if (playground.getGround()[x][y].getCard() instanceof Force) {
@@ -290,6 +290,10 @@ public abstract class Game {
 
     public void useItem(Item item) {
         item.execute();//todo handle daghigh
+    }
+
+    public void showCardInfo(String id) {
+        playground.getCard(id).showCard();
     }
 
     private void showAllPlaceCanForceMoveTo(Force force, int i, int j) {

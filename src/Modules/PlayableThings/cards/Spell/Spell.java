@@ -2,12 +2,13 @@ package Modules.PlayableThings.cards.Spell;
 
 import Modules.PlayableThings.cards.Card;
 import Modules.Playground;
+import View.View.Show;
 
 public class Spell extends Card {
     private Target target;
 
     public Spell(String name, String description, int price, int manaPoint, Target target) {
-        super(name, description, price , manaPoint);
+        super(name, description, price, manaPoint);
         this.target = target;
     }
 
@@ -22,5 +23,10 @@ public class Spell extends Card {
     @Override
     public Card getCopyCard() {
         return new Spell(this.name, this.description, this.price, this.manaPoint, this.target);
+    }
+
+    @Override
+    public void showCard() {
+        Show.showSpellCardInfo(name, manaPoint, price, description);
     }
 }

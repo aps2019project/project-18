@@ -47,4 +47,6 @@ public abstract class Card {
     public String getId() {
         return id;
     }
+
+    abstract public void showCard();
 }

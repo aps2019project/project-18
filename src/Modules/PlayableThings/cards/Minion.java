@@ -3,56 +3,69 @@ package Modules.PlayableThings.cards;
 import Modules.PlayableThings.BuffAndSpecialPowers.SpecialPower.SpecialPower;
 import Modules.PlayableThings.BuffAndSpecialPowers.SpecialPower.SpecialPowerType;
 import Modules.PlayableThings.cards.Spell.Spell;
+import View.View.Show;
 
 public class Minion extends Force {
     private SpecialPower specialPower;
+    private boolean combo;
 
     public Minion(String name, String description, int price, int attackPower, int hitPoint, String attackType, int range, int manaPoint) {
-        super(name, description, price, attackPower, hitPoint, attackType, range , manaPoint);
+        super(name, description, price, attackPower, hitPoint, attackType, range, manaPoint);
     }
 
     public void excuteAbility() {
         //todo
     }
 
+    public boolean isCombo() {
+        return combo;
+    }
+
     @Override
+
     public Card getCopyCard() {
         return new Minion(this.name, this.description, this.price, this.attackPower,
                 this.hitPoint, this.attackType, this.range, this.manaPoint);
     }
 
-    public boolean hasComboattack(){
+    @Override
+    public void showCard() {
+        Show.showMinionCardInfo(name, hitPoint, attackPower, manaPoint, range, combo, price, description);
+    }
+
+    public boolean hasComboattack() {
         if (specialPower.getType() == SpecialPowerType.COMBO)
             return true;
         return false;
     }
 
-    public Spell die(){
+    public Spell die() {
         if (specialPower.getType() == SpecialPowerType.ON_DEATH)
             return specialPower.getSpell();
         return null;
     }
 
-    public Spell insert(){
+    public Spell insert() {
         //on spawn
         if (specialPower.getType() == SpecialPowerType.ON_SPAWN)
             return specialPower.getSpell();
-        return  null;
+        return null;
     }
-//check syntax
-    public void attack(Force force){
+
+    //check syntax
+    public void attack(Force force) {
         //check on attack
         super.attack(force);
     }
 
-    public void defend(Force force){
+    public void defend(Force force) {
         //check on defence
         super.defend(force);
     }
 
-    public void prepareForTurn(boolean isItMyTurn){
+    public void prepareForTurn(boolean isItMyTurn) {
         super.prepareForTurn(isItMyTurn);
-        if (isItMyTurn){
+        if (isItMyTurn) {
             //Onturn & passive
         }
     }
