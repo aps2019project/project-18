@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public abstract class Game {
-    Player[] players = new Player[2];
+    Player[] players = new Player [2];
     private int turn = 0;
     boolean end;
     int winnerPlayer;
@@ -41,6 +41,19 @@ public abstract class Game {
         checkEnd();
     }
 
+    public void comboAttack(Force force, String command) {
+        String[] splittedCommand = command.split(" ");
+        if (((Minion) force).hasCombo()) {
+            if (!getEnemyPlayer().checkCard(splittedCommand[0])) {
+                System.out.println("selected card does not belong to enemy");
+                return;
+            }
+            for (int i = 1; i < command.split(" ").length; i++) {
+
+            }
+        }
+    }
+
     public Force getForce(String id) {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
@@ -65,7 +78,7 @@ public abstract class Game {
                     }
                 } else {
                     Minion minion = (Minion) card;
-                    if (canPlaceMinion(x - 1, y - 1, card)) {
+                    if (canPlaceMinion(x, y, card)) {
                         playground.getGround()[x - 1][y - 1].setCard(minion);
                         return true;
                     } else {
@@ -239,7 +252,6 @@ public abstract class Game {
     public Hero getEnemyHero() {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
-                //change
                 if (playground.getGround()[i][j].getCard().getId().contains
                         (getEnemyPlayer().getAccount().getUserName())) {
                     continue;
