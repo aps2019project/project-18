@@ -46,13 +46,31 @@ public abstract class Game {
     }
 
     public Item move(Force force, int x, int y) {
-        if (force.getCanMove() && Math.abs(getPosition(force)[0] - x) + Math.abs(getPosition(force)[1] - y) <= 2) {
-            playground.move(getPosition(force)[0], getPosition(force)[1], x, y);
+        if (!force.getCanMove()) {
+            System.out.println("card can not move");
+            return null;
+        } else if (playground.getGround()[x - 1][y - 1].getCard() != null) {
+            System.out.println("destination house is full");
+            return null;
+        } else if (x - 1 == getPosition(force)[0] && ((getPosition(force)[1] - y + 1 == 2 &&
+                playground.getGround()[x - 1][y].getCard() != null) || (getPosition(force)[1] - y + 1 == -2 &&
+                playground.getGround()[x - 1][y - 2].getCard() != null))) {
+            System.out.println("there is an obstacle in the way, card can not move!");
+            return null;
+        } else if (y - 1 == getPosition(force)[1] && ((getPosition(force)[0] - x + 1 == 2 &&
+                playground.getGround()[x][y - 1].getCard() != null) || (getPosition(force)[0] - x + 1 == -2 &&
+                playground.getGround()[x - 2][y - 1].getCard() != null))) {
+            System.out.println("there is an obstacle in the way, card can not move!");
+            return null;
+        } else if (Math.abs(getPosition(force)[0] - x + 1) + Math.abs(getPosition(force)[1] - y + 1) > 2) {
+            System.out.println("destination too far");
+            return null;
+        } else {
+            playground.move(getPosition(force)[0], getPosition(force)[1], x - 1, y - 1);
             force.moved();
             System.out.println("card moved");
             return playground.getGround()[x][y].getItem();
         }
-        return null;
     }
 
     public void comboAttack(Force force, String command) {
