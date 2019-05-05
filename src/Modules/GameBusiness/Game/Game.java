@@ -41,8 +41,15 @@ public abstract class Game {
         checkEnd();
     }
 
-    public void attack(Force force, String command) {
-
+    public void attack(Force force, String defenderId) {
+        if (canAttack(force.getId(), defenderId)) {
+            force.attack(getForce(defenderId));
+            if (canAttack(defenderId, force.getId())) {
+                getForce(defenderId).counterAttack(force);
+            }
+        } else {
+            System.out.println("card is not able to attack");
+        }
     }
 
     public Item move(Force force, int x, int y) {
@@ -75,8 +82,13 @@ public abstract class Game {
 
     public void comboAttack(Force force, String command) {
         String[] splittedCommand = command.split(" ");
-        if (((Minion) force).hasComboAttack()) {
+        if (!canAttack(force.getId(), splittedCommand[0])) {
+            System.out.println("card can not attack");
+            return;
+        } else if (((Minion) force).hasComboAttack()) {
             force.attack(getForce(splittedCommand[0]));
+            if (canAttack(splittedCommand[0], force.getId()))
+                getForce(splittedCommand[0]).counterAttack(force);
             if (!getEnemyPlayer().checkCard(splittedCommand[0])) {
                 System.out.println("target card does not belong to enemy");
                 return;
@@ -102,6 +114,8 @@ public abstract class Game {
             for (int i = 1; i < splittedCommand.length; i++) {
                 getForce(splittedCommand[i]).attack(getForce(splittedCommand[0]));
             }
+        } else {
+            System.out.println("card doesn't have the ability to combo attack");
         }
     }
 
