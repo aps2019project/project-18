@@ -4,17 +4,54 @@ import Modules.PlayableThings.cards.Force;
 
 import java.util.HashMap;
 
-public abstract class Buff {
+public class Buff {
     private int numberOfTurns;
     private int executeTime;
     private int dimension;
     private boolean disarm;
+    private int disarmCount;
     private int attackPower;
     private int hitPoint;
     private boolean fireHouse;
+    private int fireCount;
     private boolean poison;
+    private int poisonCount;
     private int hit;
     private Boolean holy;
+    private int holyCount;
+
+    public int getDisarmCount() {
+        return disarmCount;
+    }
+
+    public int getFireCount() {
+        return fireCount;
+    }
+
+    public int getPoisonCount() {
+        return poisonCount;
+    }
+
+    public int getHolyCount() {
+        return holyCount;
+    }
+
+    public void setDisarmCount(int disarmCount) {
+        this.disarmCount = disarmCount;
+    }
+
+    public void setFireCount(int fireCount) {
+        this.fireCount = fireCount;
+    }
+
+    public void setPoisonCount(int poisonCount) {
+        this.poisonCount = poisonCount;
+    }
+
+    public void setHolyCount(int holyCount) {
+        this.holyCount = holyCount;
+    }
+
     private boolean kill;
     private boolean stun;
     private boolean isContinious;
