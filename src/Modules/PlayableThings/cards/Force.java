@@ -151,6 +151,7 @@ public abstract class Force extends Card {
     }
 
     public void prepareForTurn(boolean isItMyTurn){
+        //todo check some buffs
         canAttack = true;
         canMove = true;
     }

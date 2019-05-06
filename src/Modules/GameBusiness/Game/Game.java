@@ -16,7 +16,7 @@ public abstract class Game {
     private int turn = 0;
     boolean end;
     int winnerPlayer;
-    private boolean resume = true;
+    private boolean cancel = false;
     Playground playground = new Playground();
     private static ArrayList<Item> collectableItems = new ArrayList<>();
     private static ArrayList<Integer[]> targetPositionCanAttackTo;
@@ -50,10 +50,9 @@ public abstract class Game {
     }
 
     private void doWhatNeedDoAfterEachTurn() {
-        if (end)
+        checkEnd();
+        if (cancel && !end)
             winnerPlayer = turn%2 + 1;
-        else
-            checkEnd();
         turn++;
     }
 
@@ -64,24 +63,23 @@ public abstract class Game {
                 getForce(defenderId).counterAttack(force);
             }
             if (checkDeath(force)) {
-                force.die();
-                Item[] items = force.getFlags();
-                players[turn % 2].loseFlag(items.length);
-                //todo move flags to house
-                players[turn % 2].die(force);
-                playground.getGround()[getPosition(force)[0]][getPosition(force)[1]].removeCard();
+                death(force);
             }
             if (checkDeath(getForce(defenderId))) {
-                getForce(defenderId).die();
-                Item[] items = getForce(defenderId).getFlags();
-                players[(turn + 1) % 2].loseFlag(items.length);
-                //todo move flags to house
-                players[(turn + 1) % 2].die(force);
-                playground.getGround()[getPosition(getForce(defenderId))[0]][getPosition(getForce(defenderId))[1]].removeCard();
+                death(getForce(defenderId));
             }
         } else {
             System.out.println("card is not able to attack");
         }
+    }
+
+    public void death(Force force) {
+        force.die();
+        Item[] items = force.getFlags();
+        players[(turn + 1) % 2].loseFlag(items.length);
+        //todo move flags to house
+        players[(turn + 1) % 2].die(force);
+        playground.getGround()[getPosition(force)[0]][getPosition(force)[1]].removeCard();
     }
 
     public Item move(Force force, int x, int y) {
@@ -111,13 +109,12 @@ public abstract class Game {
 
     public void comboAttack(Force force, String command) {
         String[] splittedCommand = command.split(" ");
+        Force enemyForce = getForce(splittedCommand[0]);
         if (!canAttack(force.getId(), splittedCommand[0])) {
             System.out.println("card can not attack");
             return;
         } else if (((Minion) force).hasComboAttack()) {
-            force.attack(getForce(splittedCommand[0]));
-            if (canAttack(splittedCommand[0], force.getId()))
-                getForce(splittedCommand[0]).counterAttack(force);
+            attack(force, splittedCommand[0]);
             if (!getEnemyPlayer().checkCard(splittedCommand[0])) {
                 System.out.println("target card does not belong to enemy");
                 return;
@@ -141,10 +138,14 @@ public abstract class Game {
                 }
             }
             for (int i = 1; i < splittedCommand.length; i++) {
-                getForce(splittedCommand[i]).attack(getForce(splittedCommand[0]));
+                if (!checkDeath(enemyForce))
+                    getForce(splittedCommand[i]).attack(enemyForce);
+                else {
+                    death(enemyForce);
+                }
             }
         } else {
-            System.out.println("card doesn't have the ability to combo attack");
+            attack(force, splittedCommand[0]);
         }
     }
 
@@ -216,7 +217,7 @@ public abstract class Game {
     }
 
     public void cancelGame(){
-        end = true;
+        cancel = true;
     }
 
     public boolean insertCard(Card card, int x, int y) {
