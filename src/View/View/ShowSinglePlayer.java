@@ -2,7 +2,7 @@ package View.View;
 
 public class ShowSinglePlayer {
     public static void showMenu() {
-        System.out.print("1. Story\n2. Custom\n3. Back\n4. Help");
+        System.out.print("1. Story\n2. Custom\n3. Back\n4. Help\n");
     }
 
     public static void showHelpMenu() {

@@ -29,6 +29,8 @@ public class Deck {
     }
 
     public Card findCard(String cardId) {
+        if (hero.getId().compareTo(cardId) == 0)
+            return hero;
         for (Card card : cards) {
             if (card.getId().compareTo(cardId) == 0) {
                 return card;
