@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public abstract class Game {
-    Player[] players = new Player [2];
+    Player[] players = new Player[2];
     private int turn = 0;
     boolean end;
     int winnerPlayer;
@@ -423,7 +423,7 @@ public abstract class Game {
         }
     }
 
-    public void useItem(Item item) {
+    public void useItem(Item item, int x, int y) {
         item.execute();//todo handle daghigh
     }
 
