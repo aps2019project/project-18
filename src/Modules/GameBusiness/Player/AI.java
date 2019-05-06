@@ -38,11 +38,15 @@ public class AI extends Player {
     private Card judgePutCard(Card[] cards){
         ArrayList<Integer> points = new ArrayList<>();
         for (Card card : cards){
-            if (card instanceof Spell)
-                return card;
-            Minion minion = (Minion)card;
-            int point = minion.getAttackPower() * minion.getHitPoint() + minion.getRange() * minion.getRange() + minion.getRange() - minion.getManaPoint();
-            points.add(point);
+            if (card instanceof Spell) {
+                points.add(-333);
+                //return card;
+            }
+            else {
+                Minion minion = (Minion) card;
+                int point = minion.getAttackPower() * minion.getHitPoint() + minion.getRange() * minion.getRange() + minion.getRange() - minion.getManaPoint();
+                points.add(point);
+            }
         }
         int max = 0;
         for (int i = 0 ; i < points.size() ; i++){
