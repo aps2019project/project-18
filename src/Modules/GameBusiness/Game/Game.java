@@ -53,10 +53,7 @@ public abstract class Game {
     }
 
     public Item move(Force force, int x, int y) {
-        if (!force.getCanMove()) {
-            System.out.println("card can not move");
-            return null;
-        } else if (playground.getGround()[x - 1][y - 1].getCard() != null) {
+        if (playground.getGround()[x - 1][y - 1].getCard() != null) {
             System.out.println("destination house is full");
             return null;
         } else if (x - 1 == getPosition(force)[0] && ((getPosition(force)[1] - y + 1 == 2 &&
@@ -141,7 +138,7 @@ public abstract class Game {
         }
     }
 
-    private int[] getPosition(String cardId) {
+    public int[] getPosition(String cardId) {
         int[] result = new int[2];
         for (int i = 0; i < 9; i++)
             for (int j = 0; j < 5; j++)
@@ -167,12 +164,23 @@ public abstract class Game {
     public Force getForce(String id) {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
-                if (playground.getGround()[i][j].getCard().getId().equals(id)) {
+                if (playground.getGround()[i][j].getCardId().equals(id)) {
                     return (Force) playground.getGround()[i][j].getCard();
                 }
             }
         }
         return null;
+    }
+
+    public Force[] getMyCards() {
+        ArrayList<Force> cards = new ArrayList<>();
+        for (int i = 0; i < 9; i++)
+            for (int j = 0; j < 5; j++) {
+                if (playground.getGround()[i][j] != null &&
+                        players[turn % 2].checkCard(playground.getGround()[i][j].getCardId()))
+                    cards.add((Force) playground.getGround()[i][j].getCard());
+            }
+        return (Force[]) cards.toArray();
     }
 
     public boolean insertCard(Card card, int x, int y) {

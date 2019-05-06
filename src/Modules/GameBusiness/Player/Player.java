@@ -64,7 +64,7 @@ public abstract class Player {
     }
 
     public Hero getHeroCard() {
-        return account.getCollection().getMainDeck().getHero();
+        return hand.getHero();
     }
     public Item getItem(String id){
         for (Item item : items) {

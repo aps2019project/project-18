@@ -33,14 +33,14 @@ public class GraveyardRequest extends MainRequest {
     }
 
     private boolean checkShowCard(){
-        if (command.matches("Show info (\\d+)"))
+        if (command.matches("Show info (\\w+_\\w+_\\d+)"))
             return true;
         return false;
     }
 
     public String returnCommand(){
         if (getType() == GraveyardRequestType.SHOW_CARD){
-            Pattern patternCardInfo = Pattern.compile("Show card (\\d+)");
+            Pattern patternCardInfo = Pattern.compile("Show card (\\w+_\\w+_\\d+)");
             Matcher matcher = patternCardInfo.matcher(command);
             matcher.find();
             return matcher.group(1);

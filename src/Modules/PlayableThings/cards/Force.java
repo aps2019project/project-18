@@ -5,7 +5,10 @@ import java.util.Iterator;
 
 import Modules.PlayableThings.BuffAndSpecialPowers.Buff.Buff;
 import Modules.PlayableThings.BuffAndSpecialPowers.SpecialPower.SpecialPower;
+import Modules.PlayableThings.BuffAndSpecialPowers.SpecialPower.SpecialPowerType;
 import Modules.PlayableThings.Item.Flag;
+import Modules.PlayableThings.Item.Item;
+import Modules.PlayableThings.cards.Spell.Spell;
 
 
 public abstract class Force extends Card {
@@ -54,6 +57,24 @@ public abstract class Force extends Card {
         this.hitPoint = hitPoint;
         this.attackType = attackType;
         this.range = range;
+    }
+
+    public Spell die() {
+        for (SpecialPower specialPower : specialPowers) {
+            if (specialPower.getType() == SpecialPowerType.ON_DEATH)
+                return specialPower.getSpell();
+        }
+        return null;
+    }
+
+    public Spell insert(Flag flag) {
+        takeFlag(flag);
+        for (SpecialPower specialPower : specialPowers) {
+            //on spawn
+            if (specialPower.getType() == SpecialPowerType.ON_SPAWN)
+                return specialPower.getSpell();
+        }
+        return null;
     }
 
     public boolean getCanAttack(){

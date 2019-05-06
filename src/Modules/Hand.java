@@ -4,6 +4,8 @@ import Modules.PlayableThings.cards.*;
 import Modules.PlayableThings.cards.Spell.Spell;
 import View.View.Show;
 
+import java.util.ArrayList;
+
 public class Hand {
     private Deck deck;
     private Card[] hand = new Card[5];
@@ -15,6 +17,18 @@ public class Hand {
         for (int i = 0; i < 5; i++)
             this.hand[i] = deck.getRandomCard();
         this.nextCard = deck.getRandomCard();
+    }
+
+    public Card[] getPutableCards(int mana) {
+        ArrayList<Card> cards = new ArrayList<>();
+        for (int i = 0; i < 5; i++)
+            if (hand[i].getManaPoint() <= mana)
+                cards.add(hand[i]);
+        return (Card[]) cards.toArray();
+    }
+
+    public Hero getHero(){
+        return deck.getHero();
     }
 
     public void showHand() {

@@ -75,27 +75,27 @@ public class PlayerRequest extends MainRequest {
     }
 
     private boolean checkCardInfoCommand() {
-        if (command.matches("Show card info (\\d+)"))
+        if (command.matches("Show card info (\\w+_\\w+_\\d+)"))
             return true;
         return false;
     }
 
     private boolean checkInsertCommand() {
-        if (command.matches("Insert \\d+ in \\(\\d+; \\d+\\)"))
+        if (command.matches("Insert \\w+_\\w+_\\d+ in \\(\\d+; \\d+\\)"))
             return true;
         return false;
     }
 
     private boolean checkSelectCommand(){
-        if (command.matches("elect \\d+"))
+        if (command.matches("Select \\w+_\\w+_\\d+"))
             return true;
         return false;
     }
 
     public String returnCommand() {
-        Pattern patternInsert = Pattern.compile("Insert (\\d+) in \\((\\d); (\\d)\\)");
-        Pattern patternCardInfo = Pattern.compile("Show card info (\\d+)");
-        Pattern patternSelect = Pattern.compile("elect (\\d+)");
+        Pattern patternInsert = Pattern.compile("Insert (\\w+_\\w+_\\d+) in \\((\\d); (\\d)\\)");
+        Pattern patternCardInfo = Pattern.compile("Show card info (\\w+_\\w+_\\d+)");
+        Pattern patternSelect = Pattern.compile("Select (\\w+_\\w+_\\d+)");
         Matcher matcher;
         switch (getType()) {
             case INSERT_CARD:
