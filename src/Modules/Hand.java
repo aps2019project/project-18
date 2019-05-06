@@ -17,6 +17,10 @@ public class Hand {
         this.nextCard = deck.getRandomCard();
     }
 
+    public Hero getHero(){
+        return deck.getHero();
+    }
+
     public void showHand() {
         for (int i = 0; i < 5; i++) {
             if (hand[i] instanceof Spell)
