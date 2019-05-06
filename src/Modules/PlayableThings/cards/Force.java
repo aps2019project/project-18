@@ -138,11 +138,14 @@ public abstract class Force extends Card {
     }
 
     public void defend(Force force){
-
+        force.hitPoint -= force.getAttackPower();
     }
 
     public void counterAttack(Force force){
-        //check buff
+        for (Buff buff : buffs){
+            if (buff.getExecuteTime() == 0 && (buff.isDisarm() || buff.isStun()))
+                return;
+        }
         force.defend(this);
     }
 

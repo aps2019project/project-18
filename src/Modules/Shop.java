@@ -549,14 +549,19 @@ public class Shop {
         buff.setStun(true);
         buff.setNumberOfTurns(1);
         buff.setExecuteTime(1);
+        spell.addBuff(buff);
         specialPower.setType(SpecialPowerType.ON_ATTACK);
         specialPower.setSpell(spell);
         cards.add(new Minion("PersianSwordsman", "On attack stun target for next turn", 400, 4, 6, "melee", 0, 2, specialPower));
         cards.add(new Minion("PersianLancer", "", 500, 3, 5, "hybrid", 3, 1, null));
         cards.add(new Minion("PersianHorseman", "", 200, 6, 10, "melee", 0, 4, null));
         specialPower = new SpecialPower();
+        spell = new Spell();
+        buff = new Buff();
+        buff.setRisingAttackWithTurns(true);
+        spell.addBuff(buff);
         specialPower.setType(SpecialPowerType.ON_ATTACK);
-        //todo
+        specialPower.setSpell(spell);
         cards.add(new Minion("PersianHero", "be tedad dafaAti ke dar nobat haye ghabl be yek niro hamle karde 5 vahed bishtar be an zarbe mizanad", 600, 6, 24, "melee", 0, 9, specialPower));
         specialPower = new SpecialPower();
         specialPower.setType(SpecialPowerType.COMBO);
