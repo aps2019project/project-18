@@ -77,7 +77,9 @@ public abstract class Game {
         force.die();
         Item[] items = force.getFlags();
         players[(turn + 1) % 2].loseFlag(items.length);
-        //todo move flags to house
+        for (Item item : items) {
+            playground.getGround()[getPosition(force)[0]][getPosition(force)[1]].setItem(item);
+        }
         players[(turn + 1) % 2].die(force);
         playground.getGround()[getPosition(force)[0]][getPosition(force)[1]].removeCard();
     }
