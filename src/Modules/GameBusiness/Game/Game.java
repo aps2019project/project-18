@@ -27,6 +27,10 @@ public abstract class Game {
         this.players[1] = playerTwo;
     }
 
+    public Playground getPlayground() {
+        return playground;
+    }
+
     public void turn() {
         if (end) {
             doWhatNeedDoAfterGameEnd();
