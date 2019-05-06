@@ -290,19 +290,34 @@ public class Shop {
         Deck deck = new Deck("AI");
         //Item
         int random = new Random().nextInt(11);
-        deck.addItem(items.get(random));
+        Item item = items.get(random).copyItem();
+        item.setItemId("AI" + "_" + item.getName() + "_" + "1");
+        deck.addItem(item);
         //Hero
-        deck.addCard(cards.get(new Random().nextInt(10)));
+        Card card = cards.get(new Random().nextInt(10)).getCopyCard();
+        card.setId("AI" + "_" + card.getName() + "_" + 1);
+        deck.addCard(card);
         //Spell
         for (int i = 0; i < 9; i++) {
-            deck.addCard(cards.get(new Random().nextInt(20) + 10));
+            card = cards.get(new Random().nextInt(20) + 10).getCopyCard();
+            deck.addCard(card);
         }
         //Minion
         for (int i = 0; i < 9; i++) {
-            deck.addCard(cards.get(new Random().nextInt(40) + 30));
+            deck.addCard(cards.get(new Random().nextInt(40) + 30).getCopyCard());
+        }
+        for (int i = 0; i < 19; i++) {
+            int id = 1;
+            for (int j = i + 1; j < 19; j++) {
+                if (deck.getCards().get(i).getName().equals(deck.getCards().get(j))) {
+                    id++;
+                }
+            }
+            deck.getCards().get(i).setId("AI" + "_" + deck.getCards().get(i).getName() + "_" + id);
         }
         return deck;
     }
+
 
     private void setCardToAiDeck(int indexCard, int numberOfThatCard, Deck deck) {
         Card card = cards.get(indexCard).getCopyCard();
