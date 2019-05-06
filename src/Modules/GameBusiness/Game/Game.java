@@ -1,7 +1,5 @@
 package Modules.GameBusiness.Game;
 
-import Modules.GameBusiness.Player.AI;
-import Modules.GameBusiness.Player.Human;
 import Modules.GameBusiness.Player.Player;
 import Modules.GameData;
 import Modules.PlayableThings.Item.Item;
@@ -283,7 +281,6 @@ public abstract class Game {
     abstract protected void checkEnd();
 
     private Force getPlayerForce(int x, int y) {
-        String userNamePlayerWhoHaveTurn;
         Player player = players[turn % 2];
         //player should have card to move it
         if (player.checkCard(playground.getGround()[x][y].getCard().getId())) {
@@ -356,7 +353,7 @@ public abstract class Game {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
                 if (getEnemyForce(i, j) == null) continue;
-                //todo show card now
+                showCardInfo(getEnemyForce(i, j).getId());
             }
         }
     }
@@ -365,7 +362,7 @@ public abstract class Game {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
                 if (getEnemyForce(i, j) != null) continue;
-                //todo show card now
+                showCardInfo(getEnemyForce(i, j).getId());
             }
         }
     }
@@ -398,7 +395,7 @@ public abstract class Game {
             for (int j = 0; j < 5; j++) {
                 if (getPlayerForce(i, j) != null) {
                     if (getPlayerForce(i, j).getCanMove()) {
-                        //show card
+                        showCardInfo(getPlayerForce(i, j).getId());
                     }
                 }
             }
@@ -411,7 +408,7 @@ public abstract class Game {
                 if (getPlayerForce(i, j) == null) continue;
                 if (!getPlayerForce(i, j).getCanAttack()) continue;
                 if (canAttack(getPlayerForce(i, j), i, j)) {
-                    //show card
+                    showCardInfo(getPlayerForce(i, j).getId());
                 }
             }
         }
