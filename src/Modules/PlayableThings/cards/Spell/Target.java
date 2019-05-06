@@ -5,6 +5,8 @@ import Modules.GameBusiness.Player.Player;
 import Modules.PlayableThings.cards.Hero;
 import Modules.Playground;
 
+import java.util.Random;
+
 public class Target {
     private boolean ground;
     private int dimension;
@@ -367,8 +369,25 @@ public class Target {
     }
 
     private Integer[][] oneRandomMinionAroundOwnHero(Game game, Playground playground, String id) {
-        return null;
-        //
-        // game.
+        int[] a = game.getPosition(game.getEnemyHero().getId());
+        int[][] b = new int[8][2];
+        int index = 0;
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (Math.abs(a[0] - i) > 1) continue;
+                if (Math.abs(a[1] - j) > 1) continue;
+                if (playground.getGround()[i][j].getCard() == null) continue;
+                if (playground.getGround()[i][j].getCard() instanceof Hero) continue;
+                if (playground.getGround()[i][j].getCard().getId().contains(id)) continue;
+                b[index][0] = i;
+                b[index][1] = j;
+                index++;
+            }
+        }
+        int random = new Random().nextInt(index);
+        Integer[][] c = new Integer[1][2];
+        c[0][0] = b[random][0];
+        c[0][1] = b[random][1];
+        return c;
     }
 }

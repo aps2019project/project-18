@@ -72,6 +72,8 @@ public class Collection {
                 }
             } else if (input.equalsIgnoreCase("help")) {
                 Show.get().showCollectionHelp();
+            } else {
+                Show.get().invalidCommandMessage();
             }
         }
     }
@@ -185,7 +187,7 @@ public class Collection {
     }
 
     private void deleteDeck(Deck deck) {
-        if (findDeck(deck.getName()) == null) {
+        if (deck == null) {
             Show.get().deleteDeckErrorMessage();
             return;
         }

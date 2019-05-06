@@ -40,7 +40,7 @@ public class Spell extends Card {
     }
 
     public void executeBuff(Playground playground, int x, int y) {
-        // TODO
+       // if (target.isGround())
     }
 
     public void execute(Game game , int x , int y) {
