@@ -1,6 +1,7 @@
 package Modules.GameBusiness.Player;
 
 
+import Modules.Account;
 import Modules.Deck;
 import Modules.Hand;
 import Modules.PlayableThings.BuffAndSpecialPowers.SpecialPower.SpecialPower;
@@ -14,6 +15,10 @@ import java.util.ArrayList;
 public class AI extends Player {
     int[] enemyHero;
 
+    public AI(){
+        account =new Account();
+        account.setUserName("AI");
+    }
     @Override
     public void playTurn(int turn) {
         super.playTurn(turn);

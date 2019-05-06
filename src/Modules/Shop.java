@@ -434,7 +434,6 @@ public class Shop {
         targetOneEnemyForce.setGround(true);
         targetOneEnemyForce.setDimension(2);
         buff = new Buff();
-        // TODO: 5/5/2019 is it correct ??
         buff.setDeleteNegative(true);
         buff.setDeletePositive(true);
         cards.add(new Spell("Area Dispel", "Destroy all enemy force positive buff and all own force negative buff in 2*2 area", 1500, 2, targetOneMoraba).addBuff(buff));
@@ -531,7 +530,9 @@ public class Shop {
         buff1 = new Buff();
         buff1.setAttackPower(8);
         cards.add(new Spell("Sacrifice", "Add one weakness buff with decrease 6 HP and add one power buff with increase 8 AP to one own minion", 1600, 2, targetOneOwnMinion).addBuff(buff).addBuff(buff1));
-        //todo target
+        target = new Target();
+        target.setAroundHero(true);
+        target.setAlly(true);
         buff = new Buff();
         buff.setKill(true);
         cards.add(new Spell("Kings Guard", "Kill one random enemy minion in own hero side", 1750, 9, null).addBuff(buff));
@@ -606,7 +607,19 @@ public class Shop {
         specialPower.setType(SpecialPowerType.ON_ATTACK);
         cards.add(new Minion("Wild lion", "Target holy buff doesn't decrease Wild lion AP", 600, 8, 1, "melee", 0, 2, specialPower));
         specialPower = new SpecialPower();
-        // TODO: 5/6/2019
+        target = new Target();
+        target.setDistance(2);
+        target.setMinion(true);
+        target.setAll(true);
+        target.setAlly(false);
+        spell = new Spell();
+        buff = new Buff();
+        buff.setHoly(true);
+        buff.setHolyCount(-1);
+        spell.setTarget(target);
+        spell.addBuff(buff);
+        specialPower.setSpell(spell);
+        specialPower.setType(SpecialPowerType.ON_SPAWN);
         cards.add(new Minion("Big snake", "vaghti big snake spawn mishe minion haye dar khane haye ta 2 vahed fasele be tor daem hamishe 1 vahed bishtar zarbe mikhorand", 500, 7, 14, "ranged", 5, 8, specialPower));
         specialPower = new SpecialPower();
         spell = new Spell();
@@ -639,10 +652,43 @@ public class Shop {
         specialPower.setType(SpecialPowerType.ON_ATTACK);
         cards.add(new Minion("Wolf", "When attack to minion next turn decrease 6", 400, 1, 6, "melee", 0, 3, specialPower));
         specialPower = new SpecialPower();
-        // TODO: 5/6/2019
+        target = new Target();
+        target.setIt(true);
+        target.setAroundIt(true);
+        target.setAlly(true);
+        target.setAll(true);
+        target.setMinion(true);
+        buff = new Buff();
+        buff.setAttackPower(2);
+        buff.setNumberOfTurns(1);
+        buff1 = new Buff();
+        buff1.setHitPoint(-1);
+        buff1.setNumberOfTurns(1);
+        spell = new Spell();
+        spell.setTarget(target);
+        spell.addBuff(buff).addBuff(buff1);
+        specialPower.setSpell(spell);
+        specialPower.setType(SpecialPowerType.PASSIVE);
         cards.add(new Minion("Witch", "For his self and all own minion from his sides add one power buff with increase 2 AP and one weakness buff with decrease 1 HP for 1 turn", 550, 4, 5, "ranged", 3, 4, specialPower));
         specialPower = new SpecialPower();
-        //todo
+        target = new Target();
+        target.setIt(true);
+        target.setAroundIt(true);
+        target.setAlly(true);
+        target.setAll(true);
+        target.setMinion(true);
+        buff = new Buff();
+        buff.setAttackPower(2);
+        buff.setContinious(true);
+        buff1 = new Buff();
+        buff1.setHoly(true);
+        buff1.setHolyCount(1);
+        buff1.setContinious(true);
+        spell = new Spell();
+        spell.setTarget(target);
+        spell.addBuff(buff).addBuff(buff1);
+        specialPower.setSpell(spell);
+        specialPower.setType(SpecialPowerType.PASSIVE);
         cards.add(new Minion("Grand witch", "For his self and all own minion from his sides add one continuous power buff with increase 2 AP and one continuous holy buff", 550, 6, 6, "ranged", 5, 6, specialPower));
         specialPower = new SpecialPower();
         spell = new Spell();
@@ -671,15 +717,48 @@ public class Shop {
         specialPower.setDontAffectNegativeK(true);
         specialPower.setType(SpecialPowerType.ON_DEFENCE);
         cards.add(new Minion("Giv", "Doesn't take any negativity", 450, 7, 5, "ranged", 5, 4, specialPower));
-        //todo
+        buff = new Buff();
+        buff.setHit(16);
+        target = new Target();
+        target.setMinion(true);
+        target.setRandom(true);
+        target.setCount(1);
+        spell.setTarget(target);
+        specialPower = new SpecialPower();
+        specialPower.setSpell(spell);
+        specialPower.setType(SpecialPowerType.ON_SPAWN);
         cards.add(new Minion("Bahman", "On respawn decrease 16 HP random enemy minion", 450, 9, 16, "melee", 0, 8, specialPower));
-        //todo...
+        specialPower = new SpecialPower();
+        specialPower.setDontTakeDamageFromWeaker(true);
+        specialPower.setType(SpecialPowerType.ON_DEFENCE);
         cards.add(new Minion("Ashkbos", "Force with lower AP can't hit him", 400, 8, 14, "melee", 0, 7, specialPower));
         cards.add(new Minion("Iranj", "", 500, 20, 6, "ranged", 3, 4, null));
         cards.add(new Minion("Big ogre", "", 600, 8, 30, "hybrid", 2, 9, null));
-        // TODO: 5/6/2019
+        specialPower = new SpecialPower();
+        specialPower.setType(SpecialPowerType.ON_ATTACK);
+        target = new Target();
+        target.setAlly(false);
+        target.setCount(1);
+        buff = new Buff();
+        buff.setDeletePositive(true);
+        spell.setTarget(target);
+        specialPower.setSpell(spell);
+        specialPower.setType(SpecialPowerType.ON_ATTACK);
         cards.add(new Minion("Ogre with two head", "When attack to force destroy all target positive buff", 550, 4, 10, "melee", 0, 4, specialPower));
-        // TODO: 5/6/2019  
+        target = new Target();
+        target.setAroundIt(true);
+        target.setAlly(false);
+        target.setAll(true);
+        target.setMinion(true);
+        spell = new Spell();
+        buff = new Buff();
+        buff.setStun(true);
+        buff.setNumberOfTurns(1);
+        spell.addBuff(buff);
+        spell.setTarget(target);
+        specialPower = new SpecialPower();
+        specialPower.setSpell(spell);
+        specialPower.setType(SpecialPowerType.ON_ATTACK);
         cards.add(new Minion("Nane sarma", "On spawn Stun all enemy minion on her sides", 500, 4, 3, "ranged", 5, 3, specialPower));
         specialPower = new SpecialPower();
         spell = new Spell();

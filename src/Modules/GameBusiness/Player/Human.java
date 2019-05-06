@@ -6,7 +6,6 @@ import Modules.Hand;
 import View.View.Show;
 
 public class Human extends Player {
-    private Account account;
 
     public Human( Account account) {
         this.account = account;
@@ -46,10 +45,4 @@ public class Human extends Player {
             hand.getGraveyard().showCard(id);
     }
 
-    public boolean checkCard(String id){
-        String[] splittedId = id.split("_");
-        if (splittedId[0] == account.getUserName())
-            return true;
-        return false;
-    }
 }

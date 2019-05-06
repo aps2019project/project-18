@@ -8,6 +8,32 @@ public class SpecialPower {
     private boolean dontAffectHoly;
     private boolean dontAffectDisarm;
     private boolean dontAffectpoison;
+    private boolean dontTakeDamageFromWeaker;
+    private boolean dontAffectNegativeK;
+
+    public boolean isDontTakeDamageFromWeaker() {
+        return dontTakeDamageFromWeaker;
+    }
+
+    public void setDontTakeDamageFromWeaker(boolean dontTakeDamageFromWeaker) {
+        this.dontTakeDamageFromWeaker = dontTakeDamageFromWeaker;
+    }
+
+    public boolean isDontAffectHoly() {
+        return dontAffectHoly;
+    }
+
+    public boolean isDontAffectDisarm() {
+        return dontAffectDisarm;
+    }
+
+    public boolean isDontAffectpoison() {
+        return dontAffectpoison;
+    }
+
+    public boolean isDontAffectNegativeK() {
+        return dontAffectNegativeK;
+    }
 
     public void setType(SpecialPowerType type) {
         this.type = type;
@@ -17,7 +43,6 @@ public class SpecialPower {
         this.spell = spell;
     }
 
-    private boolean dontAffectNegativeK;
 
     public void setDontAffectHoly(boolean dontAffectHoly) {
         this.dontAffectHoly = dontAffectHoly;

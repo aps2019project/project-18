@@ -27,8 +27,9 @@ public class Spell extends Card {
 
     }
 
-    public void setTarget(Target target) {
+    public Spell setTarget(Target target) {
         this.target = target;
+        return this;
     }
 
     public Spell addBuff(Buff buff) {
@@ -53,4 +54,6 @@ public class Spell extends Card {
     public void showCard() {
         Show.showSpellCardInfo(name, manaPoint, price, description);
     }
+
+
 }

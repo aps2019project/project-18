@@ -13,6 +13,7 @@ import View.View.Show;
 import java.util.ArrayList;
 
 public abstract class Player {
+    protected Account account;
     protected int numberOfFlag = 0;
     protected int manaPoint;
     protected Hand hand;
@@ -44,6 +45,10 @@ public abstract class Player {
         }else {
             numberOfTurnPlayerHaveFlag = 0;
         }
+    }
+
+    public Account getAccount() {
+        return account;
     }
 
     public Game getGame() {
@@ -133,5 +138,17 @@ public abstract class Player {
 
     public void setGame(Game game) {
         this.game = game;
+    }
+
+
+    public boolean checkCard(String id){
+        String[] splittedId = id.split("_");
+        if (splittedId[0] == account.getUserName())
+            return true;
+        return false;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 }

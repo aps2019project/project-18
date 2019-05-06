@@ -288,4 +288,7 @@ public class Account implements Comparator {
         }
     }
 
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 }
