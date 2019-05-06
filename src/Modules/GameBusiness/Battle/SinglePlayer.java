@@ -1,13 +1,13 @@
 package Modules.GameBusiness.Battle;
 
 import Modules.Account;
+import Modules.GameBusiness.Game.Game;
 import Modules.GameBusiness.Game.ModeCaptureFlag6Turn;
 import Modules.GameBusiness.Game.ModeCaptureHalfFlags;
 import Modules.GameBusiness.Game.ModeKillEnemyHero;
 import Modules.GameBusiness.Player.AI;
 import Modules.Main;
 import Modules.Shop;
-import View.View.Show;
 import View.View.ShowBattle;
 import View.View.ShowSinglePlayer;
 
@@ -32,28 +32,19 @@ public class SinglePlayer {
         }
     }
 
-    private static void gameMode(Account account, AI ai) {
+    private static Game gameMode(Account account, AI ai) {
         ShowBattle.showGameModeMenu();
         while (true) {
             String string = Main.scanner.nextLine().trim();
             if (string.equalsIgnoreCase("Kill enemy hero")) {
-                ModeKillEnemyHero killEnemyHero = new ModeKillEnemyHero(account.getPlayer(), ai);
-                killEnemyHero.turn();
-                return;
+                return new ModeKillEnemyHero(account.getPlayer(), ai);
             } else if (string.equalsIgnoreCase("Capture flag for 6 turn")) {
-                ModeCaptureFlag6Turn modeCaptureFlag6Turn = new ModeCaptureFlag6Turn(account.getPlayer(), ai);
-                modeCaptureFlag6Turn.turn();
-                return;
+                return new ModeCaptureFlag6Turn(account.getPlayer(), ai);
             } else if (string.split(" ")[0].equalsIgnoreCase("Capture more than half flags")) {
                 if (string.split(" ").length > 1) {
-                    ModeCaptureHalfFlags modeCaptureHalfFlags = new ModeCaptureHalfFlags(account.getPlayer(), ai,
-                            Integer.parseInt(string.trim().split(" ")[1]));
-                    modeCaptureHalfFlags.turn();
-                    return;
+                    return new ModeCaptureHalfFlags(account.getPlayer(), ai, Integer.parseInt(string.trim().split(" ")[1]));
                 } else {
-                    ModeCaptureHalfFlags modeCaptureHalfFlags = new ModeCaptureHalfFlags(account.getPlayer(), ai);
-                    modeCaptureHalfFlags.turn();
-                    return;
+                    return new ModeCaptureHalfFlags(account.getPlayer(), ai);
                 }
             } else if (string.equalsIgnoreCase("Help")) {
                 ShowBattle.showHelpGameModeMenu();
@@ -64,8 +55,41 @@ public class SinglePlayer {
     }
 
     private static void storyMode(Account account) {
-        gameMode(account, levelOne());
-        //todo if win go to next level
+        if (!storyMode(account, levelOne())) {
+            return;
+        }
+        if (!storyMode(account, levelTwo())) {
+            return;
+        }
+        if (!storyMode(account, levelThree())) {
+            return;
+        }
+        System.out.println("Congratulation you win story mode");
+    }
+
+    private static boolean storyMode(Account account, AI ai) {
+        Game game = gameMode(account, ai);
+        game.turn();
+        while (true)
+            if (game.getWinnerPlayer() instanceof AI) {
+                System.out.println("1. Rematch");
+                System.out.println("2. Give up");
+                while (true) {
+                    String s = Main.scanner.nextLine();
+                    if (s.equalsIgnoreCase("Rematch")) {
+                        game = gameMode(account, ai);
+                        game.turn();
+                        break;
+                    }
+                    if (s.equalsIgnoreCase("Give up")) {
+                        return false;
+                    }
+                }
+            } else {
+                System.out.println("Player win");
+                break;
+            }
+        return true;
     }
 
     private static AI levelOne() {
@@ -88,7 +112,7 @@ public class SinglePlayer {
 
     private static void customGame(Account account) {
         AI ai = new AI();
-        //todo
+        ai.setDeck(Shop.getInstance().setCustomDeck());
         gameMode(account, ai);
     }
 }

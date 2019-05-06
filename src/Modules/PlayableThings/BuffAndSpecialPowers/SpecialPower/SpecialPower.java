@@ -8,6 +8,15 @@ public class SpecialPower {
     private boolean dontAffectHoly;
     private boolean dontAffectDisarm;
     private boolean dontAffectpoison;
+
+    public void setType(SpecialPowerType type) {
+        this.type = type;
+    }
+
+    public void setSpell(Spell spell) {
+        this.spell = spell;
+    }
+
     private boolean dontAffectNegativeK;
 
     public void setDontAffectHoly(boolean dontAffectHoly) {
