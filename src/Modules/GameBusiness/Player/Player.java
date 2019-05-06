@@ -84,7 +84,7 @@ public abstract class Player {
                             takeFlag();
                         } else
                             this.items.add(item);
-                        game.getPlayground().getGround()[x - 1][y - 1].removeItem();
+                        game.getPlayground().getGround()[x - 1][y - 1].removeItems();
                     }
                 }
                 System.out.format("%s is inserted in (%d , %d)\n" , id , x ,y);

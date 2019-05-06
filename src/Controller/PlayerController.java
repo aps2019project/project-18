@@ -120,14 +120,14 @@ public class PlayerController {
                     human.getGame().comboAttack(force, request.returnCommand());
                     break;
                 case HELP:
-                          human.getGame().showMovablePlaces(id);
-                          human.getGame().showAttackAbleCards();
+                    human.getGame().showMovablePlaces(id);
+                    human.getGame().showAttackAbleCards();
                     break;
                 case MOVE:
                     human.move(force , request.returnCommand());
                     break;
                 case USE_SPECIAL_POWER:
-                    human.
+                    //human.
                     break;
             }
         }
