@@ -167,12 +167,23 @@ public abstract class Game {
     public Force getForce(String id) {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
-                if (playground.getGround()[i][j].getCard().getId().equals(id)) {
+                if (playground.getGround()[i][j].getCardId().equals(id)) {
                     return (Force) playground.getGround()[i][j].getCard();
                 }
             }
         }
         return null;
+    }
+
+    public Force[] getMyCards() {
+        ArrayList<Force> cards = new ArrayList<>();
+        for (int i = 0; i < 9; i++)
+            for (int j = 0; j < 5; j++) {
+                if (playground.getGround()[i][j] != null &&
+                        players[turn % 2].checkCard(playground.getGround()[i][j].getCardId()))
+                    cards.add((Force) playground.getGround()[i][j].getCard());
+            }
+        return (Force[]) cards.toArray();
     }
 
     public boolean insertCard(Card card, int x, int y) {
