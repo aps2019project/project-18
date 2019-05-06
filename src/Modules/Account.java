@@ -70,13 +70,13 @@ public class Account implements Comparator {
         }
     }
 
-    public static void singIn(String userName, String passWord) {
+    public static void signIn(String userName, String passWord) {
         for (Account account : accounts) {
             if (account.userName.equalsIgnoreCase(userName)) {
                 if (account.passWord.equals(passWord)) {
                     ShowAccount.showMenu();
                     account.doOrderInAccount();
-                    break;
+                    return;
                 }
             }
         }
@@ -86,7 +86,7 @@ public class Account implements Comparator {
             ShowMain.showMenu();
             return;
         } else {
-            singIn(input, scanner.nextLine());
+            signIn(input, scanner.nextLine());
         }
     }
 

@@ -142,7 +142,7 @@ public class Show {
     public static void showShopMenu() {
         System.out.print("1. show collection\n2. show\n3. search collection [ card name | item name ]\n" +
                 "4. search [ card name | item name ]\n5. buy [ card name | item name ]\n" +
-                "6. sell [ card name | item name ]\n7. exit");
+                "6. sell [ card name | item name ]\n7. exit\n");
     }
 
     public void showShopHelp() {
@@ -240,7 +240,7 @@ public class Show {
     }
 
     public void setMainDeckErrorMessage() {
-        System.out.println("deck is not valid or does not exist");
+        System.out.println("deck does not exist");
     }
 
     public static void showTargetThatForceCanAttackTo(int x, int y) {
@@ -291,6 +291,7 @@ public class Show {
         System.out.println("8. select deck [ deck name ]");
         System.out.println("9. show all decks");
         System.out.println("10. show deck [ deck name ]");
+        System.out.println("11. exit");
     }
 
     public void showCollectionHelp() {
@@ -304,6 +305,7 @@ public class Show {
         System.out.println("8. select deck [ deck name ] : set a deck as your main deck");
         System.out.println("9. show all decks : see all of your decks");
         System.out.println("10. show deck [ deck name ] : see a specific deck");
+        System.out.println("11. exit : return to account menu");
     }
 
     public void showCardId(Card card) {
@@ -320,5 +322,9 @@ public class Show {
 
     public void cardNotInGraveyardMessage() {
         System.out.println("card not in graveyard");
+    }
+
+    public void invalidCommandMessage() {
+        System.out.println("invalid command, please use help to see commands list");
     }
 }

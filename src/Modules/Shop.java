@@ -40,7 +40,7 @@ public class Shop {
             } else if (input.compareTo("show collection") == 0) {
                 account.getCollection().show();
             } else if (input.matches("search collection .+")) {
-                account.getCollection().search(input.substring(17));
+                account.getCollection().search(input.substring(18));
             } else if (input.matches("search .+")) {
                 search(input.substring(7));
             } else if (input.matches("buy .+")) {

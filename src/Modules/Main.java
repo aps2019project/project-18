@@ -41,7 +41,7 @@ public class Main {
         ShowMain.showTextForSignIn();
         String userName = scanner.nextLine();
         String password = scanner.nextLine();
-        Account.singIn(userName, password);
+        Account.signIn(userName, password);
     }
 
     private static void signUp() {
