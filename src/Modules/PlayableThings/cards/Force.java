@@ -41,7 +41,7 @@ public abstract class Force extends Card {
         this.range = range;
     }
 
-    public Force(String name, String description, int price, int attackPower, int hitPoint, String attackType, int range, int manaPoint, SpecialPower specialPower) {
+    public Force(String name, String description, int price, int attackPower, int hitPoint, String attackType, int range, int manaPoint , SpecialPower specialPower) {
         super(name, description, price, manaPoint);
         this.attackPower = attackPower;
         this.hitPoint = hitPoint;
@@ -50,7 +50,7 @@ public abstract class Force extends Card {
         specialPowers.add(specialPower);
     }
 
-    public Force(String name, String description, int price, int attackPower, int hitPoint, String attackType, int range, int manaPoint, Buff buff) {
+    public Force(String name, String description, int price, int attackPower, int hitPoint, String attackType, int range, int manaPoint , Buff buff) {
         super(name, description, price, manaPoint);
         this.attackPower = attackPower;
         this.hitPoint = hitPoint;
@@ -84,7 +84,7 @@ public abstract class Force extends Card {
         return null;
     }
 
-    public boolean getCanAttack() {
+    public boolean getCanAttack(){
         return canAttack;
     }
 
@@ -133,33 +133,46 @@ public abstract class Force extends Card {
         canMove = false;
     }
 
-    public void attack(Force force) {
-        //check buffs
+    public boolean canMove(){
+        for (Buff buff : buffs) {
+            if (buff.isStun())
+                return false;
+        }
+        return canMove;
+    }
+
+    public void attack(Force force){
         if (canAttack) {
             force.defend(this);
             canAttack = false;
             canMove = false;
-        } else
+            //check buffs
+            force.hitPoint -= force.getAttackPower();
+        }
+        else
             System.out.println("This card has attacked");
     }
 
-    public void defend(Force force) {
-        //check buffs
-        hitPoint -= force.getAttackPower();
+    public void defend(Force force){
+        force.hitPoint -= force.getAttackPower();
     }
 
-    public void counterAttack(Force force) {
-        //check buff
+    public void counterAttack(Force force){
+        for (Buff buff : buffs){
+            if (buff.getExecuteTime() == 0 && (buff.isDisarm() || buff.isStun()))
+                return;
+        }
         force.defend(this);
     }
 
-    public Flag[] getFlags() {
-        return (Flag[]) flags.toArray();
+    public Flag[] getFlags(){
+        return (Flag[])flags.toArray();
     }
 
-    public void prepareForTurn(boolean isItMyTurn) {
+    public void prepareForTurn(boolean isItMyTurn){
         //todo check some buffs
         canAttack = true;
         canMove = true;
     }
+
 }
