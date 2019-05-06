@@ -59,20 +59,20 @@ public class CardRequest extends MainRequest {
     }
 
     private boolean checkAttack() {
-        if (command.matches("Attack \\d+"))
+        if (command.matches("Attack \\w+_\\w+_\\d+"))
             return true;
         return false;
     }
 
     private boolean checkCombo(){
-        if (command.matches("Attack combo (\\d+)(( \\d+)+)"))
+        if (command.matches("Attack combo (\\w+_\\w+_\\d+)(( \\w+_\\w+_\\d+)+)"))
             return true;
         return false;
     }
 
     public String returnCommand(){
-        Pattern patternAttack = Pattern.compile("Attack (\\d+)");
-        Pattern patternComboAttack = Pattern.compile("(\\d+)");
+        Pattern patternAttack = Pattern.compile("Attack (\\w+_\\w+_\\d+)");
+        Pattern patternComboAttack = Pattern.compile("(\\w+_\\w+_\\d+)");
         Pattern patternMove = Pattern.compile("Move to \\((\\d+), (\\d+)\\)");
         Pattern patternSpecialPower = Pattern.compile("Use special power \\((\\d+); (\\d+)\\)");
         Matcher matcher;
