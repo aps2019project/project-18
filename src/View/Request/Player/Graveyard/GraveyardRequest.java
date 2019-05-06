@@ -35,6 +35,7 @@ public class GraveyardRequest extends MainRequest {
     private boolean checkShowCard(){
         if (command.matches("Show info (\\w+_\\w+_\\d+)"))
             return true;
+        System.out.println("Invalid syntax of Show info");
         return false;
     }
 

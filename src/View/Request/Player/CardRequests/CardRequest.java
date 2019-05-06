@@ -49,24 +49,28 @@ public class CardRequest extends MainRequest {
     private boolean checkMove() {
         if (command.matches("Move to \\(\\d+, \\d+\\)"))
             return true;
+        System.out.println("Invalid syntax of Move to");
         return false;
     }
 
     private boolean checkSpecialPower() {
         if (command.matches("Use special power \\(\\d+; \\d+\\)"))
             return true;
+        System.out.println("Invalid syntax of use special power");
         return false;
     }
 
     private boolean checkAttack() {
         if (command.matches("Attack \\w+_\\w+_\\d+"))
             return true;
+        System.out.println("Invalid syntax of attack");
         return false;
     }
 
     private boolean checkCombo(){
         if (command.matches("Attack combo (\\w+_\\w+_\\d+)(( \\w+_\\w+_\\d+)+)"))
             return true;
+        System.out.println("Invalid syntax of combo");
         return false;
     }
 
