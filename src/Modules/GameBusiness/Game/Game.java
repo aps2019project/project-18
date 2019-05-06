@@ -40,14 +40,15 @@ public abstract class Game {
             return;
         }
         players[turn % 2].playTurn(turn);
-        if (!resume)
-            return;
         doWhatNeedDoAfterEachTurn();
     }
 
     private void doWhatNeedDoAfterEachTurn() {
+        if (end)
+            winnerPlayer = turn%2 + 1;
+        else
+            checkEnd();
         turn++;
-        checkEnd();
     }
 
     public void attack(Force force, String defenderId) {
@@ -193,7 +194,7 @@ public abstract class Game {
     }
 
     public void cancelGame(){
-        resume = false;
+        end = true;
     }
 
     public boolean insertCard(Card card, int x, int y) {

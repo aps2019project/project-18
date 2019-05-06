@@ -75,7 +75,7 @@ public abstract class Player {
     }
     public void insertCard(String id, int x, int y) {
         Card card = hand.insertCard(id , manaPoint);
-        Item item = new Item();
+        Item item;
         if (card != null) {
             manaPoint -= card.getManaPoint();
             if (game.insertCard(card, x, y)) {
