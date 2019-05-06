@@ -114,7 +114,7 @@ public abstract class Player {
 
     public void move(Force force , String command){
         String[] splittedCommand = command.split(" ");
-        if (force.getCanMove()) {
+        if (force.canMove()) {
             Item[] items = game.move(force, Integer.parseInt(splittedCommand[0]), Integer.parseInt(splittedCommand[1]));
             for (Item item : items) {
                 if (item instanceof Flag) {

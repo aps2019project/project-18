@@ -21,7 +21,15 @@ public abstract class Force extends Card {
     protected ArrayList<Buff> buffs = new ArrayList<>();
     protected ArrayList<SpecialPower> specialPowers = new ArrayList<>();
 
-    void addBuff(Buff buff) {
+    public void setAttackPower(int attackPower) {
+        this.attackPower = attackPower;
+    }
+
+    public void setHitPoint(int hitPoint) {
+        this.hitPoint = hitPoint;
+    }
+
+    public void addBuff(Buff buff) {
         buffs.add(buff);
     }
 
@@ -125,6 +133,14 @@ public abstract class Force extends Card {
         canMove = false;
     }
 
+    public boolean canMove(){
+        for (Buff buff : buffs) {
+            if (buff.isStun())
+                return false;
+        }
+        return canMove;
+    }
+
     public void attack(Force force){
         if (canAttack) {
             force.defend(this);
@@ -138,11 +154,14 @@ public abstract class Force extends Card {
     }
 
     public void defend(Force force){
-
+        force.hitPoint -= force.getAttackPower();
     }
 
     public void counterAttack(Force force){
-        //check buff
+        for (Buff buff : buffs){
+            if (buff.getExecuteTime() == 0 && (buff.isDisarm() || buff.isStun()))
+                return;
+        }
         force.defend(this);
     }
 
