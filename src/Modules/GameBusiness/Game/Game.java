@@ -56,6 +56,70 @@ public abstract class Game {
         turn++;
     }
 
+    public int[][] getMovablePlaces(Force force) {
+        int[][] movablePlaces = new int[2][13];
+        int counter = 0;
+        for (int i = -1; i < 2; i++) {
+            for (int j = -1; j < 2; j++) {
+                movablePlaces[0][counter] = getPosition(force)[0] + i;
+                movablePlaces[1][counter] = getPosition(force)[1] + j;
+                counter++;
+            }
+        }
+        movablePlaces[0][counter] = getPosition(force)[0] + 2;
+        movablePlaces[1][counter] = getPosition(force)[1];
+        counter++;
+        movablePlaces[0][counter] = getPosition(force)[0];
+        movablePlaces[1][counter] = getPosition(force)[1] + 2;
+        counter++;
+        movablePlaces[0][counter] = getPosition(force)[0] - 2;
+        movablePlaces[1][counter] = getPosition(force)[1];
+        counter++;
+        movablePlaces[0][counter] = getPosition(force)[0];
+        movablePlaces[1][counter] = getPosition(force)[1] - 2;
+        int[][] finalResult = new int[2][];
+        counter = 0;
+        for (int i = 0; i < 9; i++) {
+            if (movablePlaces[0][i] >= 0 && movablePlaces[0][i] <= 9 && movablePlaces[1][i] >= 0 &&
+                    movablePlaces[1][i] <= 5 && (movablePlaces[0][i] != getPosition(force)[0] ||
+                    movablePlaces[1][i] != getPosition(force)[1]) &&
+                    playground.getGround()[movablePlaces[0][i]][movablePlaces[1][i]].getCard() == null) {
+                finalResult[0][counter] = movablePlaces[0][i];
+                finalResult[1][counter] = movablePlaces[1][i];
+                counter++;
+            }
+        }
+        if (movablePlaces[0][9] >= 0 && movablePlaces[0][9] <= 9 && movablePlaces[1][9] >= 0 && movablePlaces[1][9] <= 5
+                && playground.getGround()[movablePlaces[0][9]][movablePlaces[1][9]] == null &&
+                playground.getGround()[movablePlaces[0][9] - 1][movablePlaces[1][9]] == null) {
+            finalResult[0][counter] = movablePlaces[0][9];
+            finalResult[1][counter] = movablePlaces[1][9];
+            counter++;
+        }
+        if (movablePlaces[0][10] >= 0 && movablePlaces[0][10] <= 9 && movablePlaces[1][10] >= 0 &&
+                movablePlaces[1][10] <= 5 && playground.getGround()[movablePlaces[0][10]][movablePlaces[1][10]] == null
+                && playground.getGround()[movablePlaces[0][10]][movablePlaces[1][10] - 1] == null) {
+            finalResult[0][counter] = movablePlaces[0][10];
+            finalResult[1][counter] = movablePlaces[1][10];
+            counter++;
+        }
+        if (movablePlaces[0][11] >= 0 && movablePlaces[0][11] <= 9 && movablePlaces[1][11] >= 0 &&
+                movablePlaces[1][11] <= 5 && playground.getGround()[movablePlaces[0][11]][movablePlaces[1][11]] == null
+                && playground.getGround()[movablePlaces[0][11] + 1][movablePlaces[1][11]] == null) {
+            finalResult[0][counter] = movablePlaces[0][11];
+            finalResult[1][counter] = movablePlaces[1][11];
+            counter++;
+        }
+        if (movablePlaces[0][12] >= 0 && movablePlaces[0][12] <= 9 && movablePlaces[1][12] >= 0 &&
+                movablePlaces[1][12] <= 5 && playground.getGround()[movablePlaces[0][12]][movablePlaces[1][12]] == null
+                && playground.getGround()[movablePlaces[0][12]][movablePlaces[1][12] + 1] == null) {
+            finalResult[0][counter] = movablePlaces[0][12];
+            finalResult[1][counter] = movablePlaces[1][12];
+            counter++;
+        }
+        return finalResult;
+    }
+
     public void attack(Force force, String defenderId) {
         if (canAttack(force.getId(), defenderId)) {
             force.attack(getForce(defenderId));
