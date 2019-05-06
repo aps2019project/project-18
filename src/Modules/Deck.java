@@ -138,4 +138,8 @@ public class Deck {
             return true;
         return false;
     }
+
+    public ArrayList<Card> getCards() {
+        return cards;
+    }
 }

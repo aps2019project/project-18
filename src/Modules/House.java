@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class House {
     private Card card;
-    private Item item;
+    private ArrayList<Item> items = new ArrayList<>();
     private ArrayList<Integer> fireTurns = new ArrayList<>();
     private ArrayList<Integer> poisonTurns = new ArrayList();
     private ArrayList<Integer> holyTurns = new ArrayList();
@@ -20,8 +20,8 @@ public class House {
         return card;
     }
 
-    public Item getItem() {
-        return item;
+    public Item[] getItem() {
+        return (Item[]) items.toArray();
     }
 
     public void setCard(Card card) {
@@ -29,15 +29,15 @@ public class House {
     }
 
     public void setItem(Item item) {
-        this.item = item;
+        this.items.add(item);
     }
 
     public void removeCard() {
         card = null;
     }
 
-    public void removeItem() {
-        item = null;
+    public void removeItems() {
+        items = new ArrayList<>();
     }
 
     public void addFireBuff(int numberOfFireTurn) {
@@ -53,7 +53,7 @@ public class House {
     }
 
     public boolean isCardOnIt() {
-        if (card == null && item == null) {
+        if (card == null && items.size() == 0) {
             return false;
         }
         return true;
