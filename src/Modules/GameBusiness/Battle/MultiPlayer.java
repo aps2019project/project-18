@@ -30,8 +30,7 @@ public class MultiPlayer {
     }
 
     private static void selectUser(String userName, Account account) {
-        Account enemyAccount = new Account();
-        enemyAccount = Account.findAccount(userName);
+        Account enemyAccount = Account.findAccount(userName);
         if (enemyAccount != null) {
             if (enemyAccount.getCollection().getMainDeck().checkValidity() && enemyAccount.getCollection().getMainDeck().checkValidity()) {
                 gameModeMenu(account, enemyAccount);

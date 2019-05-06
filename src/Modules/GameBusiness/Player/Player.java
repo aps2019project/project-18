@@ -13,17 +13,13 @@ import View.View.Show;
 import java.util.ArrayList;
 
 public abstract class Player {
+    protected Account account;
     protected int numberOfFlag = 0;
     protected int manaPoint;
-    protected Account account;
     protected Hand hand;
     protected Game game;
     protected ArrayList<Item> items = new ArrayList<>();
     private int numberOfTurnPlayerHaveFlag = 0;
-
-    public Account getAccount() {
-        return account;
-    }
 
     public int getNumberOfFlag() {
         return numberOfFlag;
@@ -51,6 +47,10 @@ public abstract class Player {
         }
     }
 
+    public Account getAccount() {
+        return account;
+    }
+
     public Game getGame() {
         return game;
     }
@@ -71,19 +71,22 @@ public abstract class Player {
     }
     public void insertCard(String id, int x, int y) {
         Card card = hand.insertCard(id , manaPoint);
-        Item item;
+        Item[] items;
         if (card != null) {
             manaPoint -= card.getManaPoint();
             if (game.insertCard(card, x, y)) {
                 hand.deleteCard(card);
-                item = game.getPlayground().getGround()[x - 1][y - 1].getItem();
-                if (card instanceof Force && item != null)
-                    if (item instanceof Flag) {
-                        ((Force) card).insert((Flag) item);
-                        takeFlag();
+                items = game.getPlayground().getGround()[x - 1][y - 1].getItem();
+                for (Item item : items) {
+                    if (card instanceof Force) {
+                        if (item instanceof Flag) {
+                            ((Force) card).insert((Flag) item);
+                            takeFlag();
+                        } else
+                            this.items.add(item);
+                        game.getPlayground().getGround()[x - 1][y - 1].removeItems();
                     }
-                    else
-                        items.add(item);
+                }
                 System.out.format("%s is inserted in (%d , %d)\n" , id , x ,y);
             }
             else
@@ -112,13 +115,14 @@ public abstract class Player {
     public void move(Force force , String command){
         String[] splittedCommand = command.split(" ");
         if (force.getCanMove()) {
-            Item item = game.move(force, Integer.parseInt(splittedCommand[0]), Integer.parseInt(splittedCommand[1]));
-            if (item instanceof Flag) {
-                numberOfFlag++;
-                force.takeFlag((Flag) item);
+            Item[] items = game.move(force, Integer.parseInt(splittedCommand[0]), Integer.parseInt(splittedCommand[1]));
+            for (Item item : items) {
+                if (item instanceof Flag) {
+                    numberOfFlag++;
+                    force.takeFlag((Flag) item);
+                } else if (item != null)
+                    this.items.add(item);
             }
-            else if (item != null)
-                items.add(item);
         }
         else
             System.out.println("force have been moved before");
@@ -128,6 +132,15 @@ public abstract class Player {
         numberOfFlag -= count;
     }
 
+    public void die(Card card){
+        hand.getGraveyard().addCard(card);
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
+
     public boolean checkCard(String id){
         String[] splittedId = id.split("_");
         if (splittedId[0] == account.getUserName())
@@ -135,7 +148,7 @@ public abstract class Player {
         return false;
     }
 
-    public void die(Card card){
-        hand.getGraveyard().addCard(card);
+    public void setAccount(Account account) {
+        this.account = account;
     }
 }
