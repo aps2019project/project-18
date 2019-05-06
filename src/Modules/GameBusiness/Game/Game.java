@@ -53,10 +53,7 @@ public abstract class Game {
     }
 
     public Item move(Force force, int x, int y) {
-        if (!force.getCanMove()) {
-            System.out.println("card can not move");
-            return null;
-        } else if (playground.getGround()[x - 1][y - 1].getCard() != null) {
+        if (playground.getGround()[x - 1][y - 1].getCard() != null) {
             System.out.println("destination house is full");
             return null;
         } else if (x - 1 == getPosition(force)[0] && ((getPosition(force)[1] - y + 1 == 2 &&
