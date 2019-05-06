@@ -27,6 +27,10 @@ public abstract class Game {
         this.players[1] = playerTwo;
     }
 
+    public Player getWinnerPlayer() {
+        return players[winnerPlayer - 1];
+    }
+
     public Playground getPlayground() {
         return playground;
     }
