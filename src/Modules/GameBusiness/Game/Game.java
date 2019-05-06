@@ -120,6 +120,22 @@ public abstract class Game {
         return finalResult;
     }
 
+    public void insertCardNearestToEnemyHero(Card card) {
+        int distance = 20;
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (playground.getGround()[i][j].getCard() != null &&
+                        getMyPlayer().checkCard(playground.getGround()[i][j].getCardId())) {
+                    if (distance > distance(playground.getGround()[i][j].getCardId(),
+                            getEnemyPlayer().getHeroCard().getId())) {
+                        distance = distance(playground.getGround()[i][j].getCardId(),
+                                getEnemyPlayer().getHeroCard().getId());
+                    }
+                }
+            }
+        }
+    }
+
     public void attack(Force force, String defenderId) {
         if (canAttack(force.getId(), defenderId)) {
             force.attack(getForce(defenderId));
