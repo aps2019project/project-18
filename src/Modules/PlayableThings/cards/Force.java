@@ -21,7 +21,15 @@ public abstract class Force extends Card {
     protected ArrayList<Buff> buffs = new ArrayList<>();
     protected ArrayList<SpecialPower> specialPowers = new ArrayList<>();
 
-    void addBuff(Buff buff) {
+    public void setAttackPower(int attackPower) {
+        this.attackPower = attackPower;
+    }
+
+    public void setHitPoint(int hitPoint) {
+        this.hitPoint = hitPoint;
+    }
+
+    public void addBuff(Buff buff) {
         buffs.add(buff);
     }
 

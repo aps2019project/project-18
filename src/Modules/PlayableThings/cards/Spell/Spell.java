@@ -3,6 +3,8 @@ package Modules.PlayableThings.cards.Spell;
 import Modules.GameBusiness.Game.Game;
 import Modules.PlayableThings.BuffAndSpecialPowers.Buff.Buff;
 import Modules.PlayableThings.cards.Card;
+import Modules.PlayableThings.cards.Force;
+import Modules.PlayableThings.cards.Hero;
 import Modules.Playground;
 import View.View.Show;
 
@@ -19,13 +21,13 @@ public class Spell extends Card {
         this.target = target;
     }
 
-    public Spell(String name, String description, int price, int manaPoint, Target target , ArrayList<Buff> buffs) {
+    public Spell(String name, String description, int price, int manaPoint, Target target, ArrayList<Buff> buffs) {
         super(name, description, price, manaPoint);
         this.target = target;
         this.buffs.addAll(buffs);
     }
 
-    public Spell(){
+    public Spell() {
 
     }
 
@@ -39,17 +41,54 @@ public class Spell extends Card {
         return this;
     }
 
-    public void executeBuff(Playground playground, int x, int y) {
-       // if (target.isGround())
+    public void executeBuff(Game game, int x, int y, String userNamePlayerHAveTurn) {
+        Integer[][] targets = target.getTargets(game, x, y, userNamePlayerHAveTurn);
+        if (targets == null) return;
+        if (target.isGround()) {
+            for (Buff buff : buffs) {
+                if (buff.getHolyCount() > 0) {
+                    for (Integer[] integers : targets) {
+                        game.getPlayground().getGround()[integers[0]][integers[1]].addHolyBuff(buff.getNumberOfTurns());
+                    }
+                }
+                if (buff.getPoisonCount() > 0) {
+                    for (Integer[] integers : targets) {
+                        game.getPlayground().getGround()[integers[0]][integers[1]].addHolyBuff(buff.getNumberOfTurns());
+                    }
+                }
+                if (buff.getFireCount() > 0) {
+                    for (Integer[] integers : targets) {
+                        game.getPlayground().getGround()[integers[0]][integers[1]].addHolyBuff(buff.getNumberOfTurns());
+                    }
+                }
+            }
+        } else {
+            for (Buff buff : buffs) {
+                for (Integer[] integers : targets) {
+                    Force force = (Force) game.getPlayground().getGround()[integers[0]][integers[1]].getCard();
+                    if (buff.isBuff()) {
+                        force.addBuff(buff);
+                    } else {
+                        execute(buff, force);
+                    }
+                }
+            }
+        }
     }
 
-    public void execute(Game game , int x , int y) {
-        targets = target.getTargets(game , x , y , id.split("_")[0]);
+    private void execute(Buff buff, Force force) {
+        force.setAttackPower(force.getAttackPower() + buff.getAttackPower());
+        force.setHitPoint(force.getHitPoint() - buff.getHit());
+        //todo spell 19
+    }
+
+    public void execute(Game game, int x, int y) {
+        targets = target.getTargets(game, x, y, id.split("_")[0]);
     }
 
     @Override
     public Card getCopyCard() {
-        return new Spell(this.name, this.description, this.price, this.manaPoint, this.target , buffs);
+        return new Spell(this.name, this.description, this.price, this.manaPoint, this.target, buffs);
     }
 
     @Override
