@@ -126,19 +126,19 @@ public abstract class Force extends Card {
     }
 
     public void attack(Force force){
-        //check buffs
         if (canAttack) {
             force.defend(this);
             canAttack = false;
             canMove = false;
+            //check buffs
+            force.hitPoint -= force.getAttackPower();
         }
         else
             System.out.println("This card has attacked");
     }
 
     public void defend(Force force){
-        //check buffs
-        hitPoint -= force.getAttackPower();
+
     }
 
     public void counterAttack(Force force){
@@ -155,4 +155,5 @@ public abstract class Force extends Card {
         canAttack = true;
         canMove = true;
     }
+
 }
