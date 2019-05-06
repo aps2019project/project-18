@@ -18,7 +18,11 @@ public class PlayerController {
 
         while (in) {
             request.getNewCommand();
-            if (!request.isValid()) {
+            if (!request.isValid() && request.getType() == null){
+                System.out.println("Invalid command");
+                continue;
+            }
+            else if (!request.isValid()) {
                 continue;
             }
             switch (request.getType()) {
@@ -73,7 +77,11 @@ public class PlayerController {
 
         while (in) {
             request.getCommand();
-            if (!request.isValid())
+            if (!request.isValid() && request.getType() == null){
+                System.out.println("Invalid command");
+                continue;
+            }
+            else if (!request.isValid())
                 continue;
             switch (request.getType()) {
                 case EXIT:
@@ -108,8 +116,13 @@ public class PlayerController {
 
         while (in) {
             request.getCommand();
-            if (!request.isValid())
+            if (!request.isValid() && request.getType() == null){
+                System.out.println("Invalid command");
                 continue;
+            }
+            else if (!request.isValid()) {
+                continue;
+            }
             switch (request.getType()) {
                 case EXIT:
                     return;
@@ -139,7 +152,11 @@ public class PlayerController {
 
         while (in) {
             request.getCommand();
-            if (!request.isValid())
+            if (!request.isValid() && request.getType() == null){
+                System.out.println("Invalid command");
+                continue;
+            }
+            else if (!request.isValid())
                 continue;
             switch (request.getType()) {
                 case EXIT:

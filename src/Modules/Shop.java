@@ -160,7 +160,7 @@ public class Shop {
                     account.buyCard(cards.get(18));
             }
         }
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 11; i++) {
             random = new Random().nextInt(6) + 1;
             switch (random) {
                 case 1:
@@ -298,7 +298,7 @@ public class Shop {
         card.setId("AI" + "_" + card.getName() + "_" + 1);
         deck.addCard(card);
         //Spell
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 11; i++) {
             card = cards.get(new Random().nextInt(20) + 10).getCopyCard();
             deck.addCard(card);
         }
@@ -306,9 +306,9 @@ public class Shop {
         for (int i = 0; i < 9; i++) {
             deck.addCard(cards.get(new Random().nextInt(40) + 30).getCopyCard());
         }
-        for (int i = 0; i < 19; i++) {
+        for (int i = 0; i < 21; i++) {
             int id = 1;
-            for (int j = i + 1; j < 19; j++) {
+            for (int j = i + 1; j < 21; j++) {
                 if (deck.getCards().get(i).getName().equals(deck.getCards().get(j))) {
                     id++;
                 }
@@ -335,7 +335,7 @@ public class Shop {
         target.setHero(true);
         target.setAlly(true);
         spell.setTarget(target);
-        cards.add(new Hero("dive sepid", "Add 1 power buff with 4 AP increase to his self for hole game", 8000, 4, 50, "melee", 0, spell, 2, 1));
+        cards.add(new Hero("diveSepid", "Add 1 power buff with 4 AP increase to his self for hole game", 8000, 4, 50, "melee", 0, spell, 2, 1));
         spell = new Spell();
         buff = new Buff();
         buff.setStun(true);
@@ -358,7 +358,7 @@ public class Shop {
         target.setMinion(true);
         target.setAlly(false);
         spell.setTarget(target);
-        cards.add(new Hero("Dragon with 7 head", "Disarm 1 force", 8000, 4, 50, "melee", 0, spell, 1, 0));
+        cards.add(new Hero("DragonWith7Head", "Disarm 1 force", 8000, 4, 50, "melee", 0, spell, 1, 0));
         spell = new Spell();
         buff = new Buff();
         buff.setStun(true);
@@ -429,14 +429,14 @@ public class Shop {
         buff = new Buff();
         buff.setDisarm(true);
         buff.setInfitinive(true);
-        cards.add(new Spell("Total Disarm", "Disarm one enemy force for hole game", 1000, 0, targetOneEnemyForce).addBuff(buff));
+        cards.add(new Spell("TotalDisarm", "Disarm one enemy force for hole game", 1000, 0, targetOneEnemyForce).addBuff(buff));
         Target targetOneMoraba = new Target();
         targetOneEnemyForce.setGround(true);
         targetOneEnemyForce.setDimension(2);
         buff = new Buff();
         buff.setDeleteNegative(true);
         buff.setDeletePositive(true);
-        cards.add(new Spell("Area Dispel", "Destroy all enemy force positive buff and all own force negative buff in 2*2 area", 1500, 2, targetOneMoraba).addBuff(buff));
+        cards.add(new Spell("AreaDispel", "Destroy all enemy force positive buff and all own force negative buff in 2*2 area", 1500, 2, targetOneMoraba).addBuff(buff));
         Target targetOwnForce = new Target();
         targetOneEnemyForce.setAlly(true);
         targetOneEnemyForce.setHero(true);
@@ -452,7 +452,7 @@ public class Shop {
         targetOneEnemyForce.setHero(true);
         buff = new Buff();
         buff.setAttackPower(4);
-        cards.add(new Spell("God Strength", "Add 4 AP to own hero", 450, 2, targetOwnHero).addBuff(buff));
+        cards.add(new Spell("GodStrength", "Add 4 AP to own hero", 450, 2, targetOwnHero).addBuff(buff));
         buff = new Buff();
         buff.setFireHouse(true);
         buff.setNumberOfTurns(2);
@@ -462,13 +462,13 @@ public class Shop {
         targetOneEnemyForce.setHero(true);
         buff = new Buff();
         buff.setHitPoint(8);
-        cards.add(new Spell("Lighting Bolt", "Hit 8 HP to enemy hero", 1250, 2, targetEnemyHero).addBuff(buff));
+        cards.add(new Spell("LightingBolt", "Hit 8 HP to enemy hero", 1250, 2, targetEnemyHero).addBuff(buff));
         targetOneMoraba.setDimension(3);
         buff = new Buff();
         buff.setPoison(true);
         buff.setNumberOfTurns(1);
         buff.setNumberOfTurns(1);
-        cards.add(new Spell("Poison Lake", "For 1 turn make target point poison place", 900, 5, targetOneMoraba).addBuff(buff));
+        cards.add(new Spell("PoisonLake", "For 1 turn make target point poison place", 900, 5, targetOneMoraba).addBuff(buff));
         buff = new Buff();
         buff.setNumberOfTurns(3);
         buff.setAttackPower(4);
@@ -483,11 +483,11 @@ public class Shop {
         buff = new Buff();
         buff.setDisarm(true);
         buff.setNumberOfTurns(1);
-        cards.add(new Spell("All Disarm", "All enemy force disarm for 1 turn", 2000, 9, targetAllEnemyForce).addBuff(buff));
+        cards.add(new Spell("AllDisarm", "All enemy force disarm for 1 turn", 2000, 9, targetAllEnemyForce).addBuff(buff));
         buff = new Buff();
         buff.setPoison(true);
         buff.setNumberOfTurns(4);
-        cards.add(new Spell("All poison", "All enemy force poison for 4 turns", 1500, 8, targetAllEnemyForce).addBuff(buff));
+        cards.add(new Spell("AllPoison", "All enemy force poison for 4 turns", 1500, 8, targetAllEnemyForce).addBuff(buff));
         buff = new Buff();
         buff.setHitPoint(-6);
         buff1 = new Buff();
@@ -497,8 +497,8 @@ public class Shop {
         cards.add(new Spell("Dispel", "Destroy all positive buff one enemy force or all negative buff one own force", 2100, 0, new Target()).addBuff(buff).addBuff(buff1));
         buff = new Buff();
         buff.setAttackPower(6);
-        cards.add(new Spell("Health with profit", "Add one weakness buff with decrease 6 HP to one own force but give it 2 holy buff for 3 turns", 2250, 0, targetOwnForce).addBuff(buff));
-        cards.add(new Spell("Power Up", "Add one power buff with increase 6 AP to one own force", 2500, 2, targetOwnForce));
+        cards.add(new Spell("HealthWithProfit", "Add one weakness buff with decrease 6 HP to one own force but give it 2 holy buff for 3 turns", 2250, 0, targetOwnForce).addBuff(buff));
+        cards.add(new Spell("PowerUp", "Add one power buff with increase 6 AP to one own force", 2500, 2, targetOwnForce));
         Target targetAllOwnForce = new Target();
         targetAllEnemyForce.setAll(true);
         targetAllEnemyForce.setMinion(true);
@@ -507,7 +507,7 @@ public class Shop {
         buff = new Buff();
         buff.setAttackPower(2);
         buff.setInfitinive(true);
-        cards.add(new Spell("All power", "Add one power buff with increase 2 AP to all own force for hole game", 2000, 4, targetAllOwnForce).addBuff(buff));
+        cards.add(new Spell("AllPower", "Add one power buff with increase 2 AP to all own force for hole game", 2000, 4, targetAllOwnForce).addBuff(buff));
         Target targetAllEnemyForceInOneColumn = new Target();
         targetAllEnemyForce.setAlly(false);
         targetAllEnemyForce.setColumn(true);
@@ -515,7 +515,7 @@ public class Shop {
         targetAllEnemyForce.setMinion(true);
         buff = new Buff();
         buff.setHit(6);
-        cards.add(new Spell("All Attack", "Hit 6 HP to all enemy forces in target column", 1500, 4, targetAllEnemyForceInOneColumn).addBuff(buff));
+        cards.add(new Spell("AllAttack", "Hit 6 HP to all enemy forces in target column", 1500, 4, targetAllEnemyForceInOneColumn).addBuff(buff));
         Target targetOneEnemyMinion = new Target();
         targetAllEnemyForce.setMinion(true);
         targetAllEnemyForce.setAlly(false);
@@ -537,12 +537,12 @@ public class Shop {
         target.setRandom(true);
         buff = new Buff();
         buff.setKill(true);
-        cards.add(new Spell("Kings Guard", "Kill one random enemy minion in own hero side", 1750, 9, null).addBuff(buff));
+        cards.add(new Spell("KingsGuard", "Kill one random enemy minion in own hero side", 1750, 9, null).addBuff(buff));
         buff = new Buff();
         buff.setStun(true);
         buff.setNumberOfTurns(2);
         cards.add(new Spell("Shock", "Stun one enemy force for 2 turn", 1200, 1, targetOneEnemyForce).addBuff(buff));
-        cards.add(new Minion("Persian crossbowman", "", 300, 4, 6, "ranged", 7, 2, null));
+        cards.add(new Minion("PersianCrossbowman", "", 300, 4, 6, "ranged", 7, 2, null));
         specialPower = new SpecialPower();
         spell = new Spell();
         buff = new Buff();
@@ -551,19 +551,19 @@ public class Shop {
         buff.setExecuteTime(1);
         specialPower.setType(SpecialPowerType.ON_ATTACK);
         specialPower.setSpell(spell);
-        cards.add(new Minion("Persian swordsman", "On attack stun target for next turn", 400, 4, 6, "melee", 0, 2, specialPower));
-        cards.add(new Minion("Persian lancer", "", 500, 3, 5, "hybrid", 3, 1, null));
-        cards.add(new Minion("Persian horseman", "", 200, 6, 10, "melee", 0, 4, null));
+        cards.add(new Minion("PersianSwordsman", "On attack stun target for next turn", 400, 4, 6, "melee", 0, 2, specialPower));
+        cards.add(new Minion("PersianLancer", "", 500, 3, 5, "hybrid", 3, 1, null));
+        cards.add(new Minion("PersianHorseman", "", 200, 6, 10, "melee", 0, 4, null));
         specialPower = new SpecialPower();
         specialPower.setType(SpecialPowerType.ON_ATTACK);
         //todo
-        cards.add(new Minion("Persian hero", "be tedad dafaAti ke dar nobat haye ghabl be yek niro hamle karde 5 vahed bishtar be an zarbe mizanad", 600, 6, 24, "melee", 0, 9, specialPower));
+        cards.add(new Minion("PersianHero", "be tedad dafaAti ke dar nobat haye ghabl be yek niro hamle karde 5 vahed bishtar be an zarbe mizanad", 600, 6, 24, "melee", 0, 9, specialPower));
         specialPower = new SpecialPower();
         specialPower.setType(SpecialPowerType.COMBO);
-        cards.add(new Minion("Persian commander-in-chief", "", 800, 4, 12, "melee", 0, 7, specialPower));
-        cards.add(new Minion("Torani crossbowman", "", 500, 4, 3, "ranged", 5, 1, null));
-        cards.add(new Minion("Torani sling", "", 600, 2, 4, "ranged", 7, 1, null));
-        cards.add(new Minion("Torani lancer", "", 600, 4, 4, "hybrid", 3, 1, null));
+        cards.add(new Minion("PersianCommander-in-chief", "", 800, 4, 12, "melee", 0, 7, specialPower));
+        cards.add(new Minion("ToraniCrossbowman", "", 500, 4, 3, "ranged", 5, 1, null));
+        cards.add(new Minion("ToraniSling", "", 600, 2, 4, "ranged", 7, 1, null));
+        cards.add(new Minion("ToraniLancer", "", 600, 4, 4, "hybrid", 3, 1, null));
         specialPower = new SpecialPower();
         spell = new Spell();
         buff = new Buff();
@@ -576,13 +576,13 @@ public class Shop {
         spell.addBuff(buff).addBuff(buff1);
         specialPower.setSpell(spell);
         specialPower.setType(SpecialPowerType.ON_ATTACK);
-        cards.add(new Minion("Torani spy", "Disarm target for 1 turn and poison it for 4 turns", 700, 6, 6, "melee", 0, 4, specialPower));
-        cards.add(new Minion("Gorz dare Torani", "", 450, 10, 3, "melee", 0, 2, null));
+        cards.add(new Minion("ToraniSpy", "Disarm target for 1 turn and poison it for 4 turns", 700, 6, 6, "melee", 0, 4, specialPower));
+        cards.add(new Minion("GorzDareTorani", "", 450, 10, 3, "melee", 0, 2, null));
         specialPower = new SpecialPower();
         specialPower.setType(SpecialPowerType.COMBO);
-        cards.add(new Minion("Torani prince", "", 800, 10, 6, "melee", 0, 6, specialPower));
-        cards.add(new Minion("Black demon", "", 300, 10, 14, "hybrid", 7, 9, null));
-        cards.add(new Minion("Demon throw rock", "", 300, 12, 12, "ranged", 7, 9, null));
+        cards.add(new Minion("ToraniPrince", "", 800, 10, 6, "melee", 0, 6, specialPower));
+        cards.add(new Minion("BlackDemon", "", 300, 10, 14, "hybrid", 7, 9, null));
+        cards.add(new Minion("DemonThrowRock", "", 300, 12, 12, "ranged", 7, 9, null));
         specialPower = new SpecialPower();
         spell = new Spell();
         buff = new Buff();
@@ -590,10 +590,10 @@ public class Shop {
         spell.addBuff(buff);
         specialPower.setType(SpecialPowerType.PASSIVE);
         cards.add(new Minion("Eagle", "Have 10 power buf with increase 1 HP (Passive)", 200, 2, 0, "ranged", 3, 2, specialPower));
-        cards.add(new Minion("Demon ride swine", "", 300, 8, 16, "melee", 0, 6, null));
+        cards.add(new Minion("DemonRideSwine", "", 300, 8, 16, "melee", 0, 6, null));
         specialPower = new SpecialPower();
         //todo
-        cards.add(new Minion("Demon with one eye", "On death hit 2 HP to all minion in its side", 500, 11, 12, "hybrid", 3, 7, specialPower));
+        cards.add(new Minion("DemonWithOneEye", "On death hit 2 HP to all minion in its side", 500, 11, 12, "hybrid", 3, 7, specialPower));
         specialPower = new SpecialPower();
         spell = new Spell();
         buff = new Buff();
@@ -602,12 +602,12 @@ public class Shop {
         spell.addBuff(buff);
         specialPower.setSpell(spell);
         specialPower.setType(SpecialPowerType.ON_ATTACK);
-        cards.add(new Minion("Poison snake", "Poison target for 3 turns", 300, 6, 5, "ranged", 4, 4, specialPower));
-        cards.add(new Minion("Dragon throw fire", "", 250, 5, 9, "ranged", 4, 5, null));
+        cards.add(new Minion("PoisonSnake", "Poison target for 3 turns", 300, 6, 5, "ranged", 4, 4, specialPower));
+        cards.add(new Minion("DragonThrowFire", "", 250, 5, 9, "ranged", 4, 5, null));
         specialPower = new SpecialPower();
         specialPower.setDontAffectHoly(true);
         specialPower.setType(SpecialPowerType.ON_ATTACK);
-        cards.add(new Minion("Wild lion", "Target holy buff doesn't decrease Wild lion AP", 600, 8, 1, "melee", 0, 2, specialPower));
+        cards.add(new Minion("WildLion", "Target holy buff doesn't decrease Wild lion AP", 600, 8, 1, "melee", 0, 2, specialPower));
         specialPower = new SpecialPower();
         target = new Target();
         target.setDistance(2);
@@ -622,7 +622,7 @@ public class Shop {
         spell.addBuff(buff);
         specialPower.setSpell(spell);
         specialPower.setType(SpecialPowerType.ON_SPAWN);
-        cards.add(new Minion("Big snake", "vaghti big snake spawn mishe minion haye dar khane haye ta 2 vahed fasele be tor daem hamishe 1 vahed bishtar zarbe mikhorand", 500, 7, 14, "ranged", 5, 8, specialPower));
+        cards.add(new Minion("BigSnake", "vaghti big snake spawn mishe minion haye dar khane haye ta 2 vahed fasele be tor daem hamishe 1 vahed bishtar zarbe mikhorand", 500, 7, 14, "ranged", 5, 8, specialPower));
         specialPower = new SpecialPower();
         spell = new Spell();
         buff = new Buff();
@@ -634,7 +634,7 @@ public class Shop {
         spell.addBuff(buff).addBuff(buff1);
         specialPower.setSpell(spell);
         specialPower.setType(SpecialPowerType.ON_ATTACK);
-        cards.add(new Minion("White wolf", "When attack to minion next turn decrease 6 HP and next turn 4 HP", 400, 2, 8, "melee", 0, 5, specialPower));
+        cards.add(new Minion("WhiteWolf", "When attack to minion next turn decrease 6 HP and next turn 4 HP", 400, 2, 8, "melee", 0, 5, specialPower));
         specialPower = new SpecialPower();
         spell = new Spell();
         buff = new Buff();
@@ -691,7 +691,7 @@ public class Shop {
         spell.addBuff(buff).addBuff(buff1);
         specialPower.setSpell(spell);
         specialPower.setType(SpecialPowerType.PASSIVE);
-        cards.add(new Minion("Grand witch", "For his self and all own minion from his sides add one continuous power buff with increase 2 AP and one continuous holy buff", 550, 6, 6, "ranged", 5, 6, specialPower));
+        cards.add(new Minion("GrandWitch", "For his self and all own minion from his sides add one continuous power buff with increase 2 AP and one continuous holy buff", 550, 6, 6, "ranged", 5, 6, specialPower));
         specialPower = new SpecialPower();
         spell = new Spell();
         buff = new Buff();
@@ -710,7 +710,7 @@ public class Shop {
         specialPower = new SpecialPower();
         specialPower.setDontAffectDisarm(true);
         specialPower.setType(SpecialPowerType.ON_DEFENCE);
-        cards.add(new Minion("Wild swine", "It won't become disarm", 500, 14, 10, "melee", 0, 6, specialPower));
+        cards.add(new Minion("WildSwine", "It won't become disarm", 500, 14, 10, "melee", 0, 6, specialPower));
         specialPower = new SpecialPower();
         specialPower.setDontAffectpoison(true);
         specialPower.setType(SpecialPowerType.ON_DEFENCE);
@@ -746,7 +746,7 @@ public class Shop {
         spell.setTarget(target);
         specialPower.setSpell(spell);
         specialPower.setType(SpecialPowerType.ON_ATTACK);
-        cards.add(new Minion("Ogre with two head", "When attack to force destroy all target positive buff", 550, 4, 10, "melee", 0, 4, specialPower));
+        cards.add(new Minion("OgreWithTwoHead", "When attack to force destroy all target positive buff", 550, 4, 10, "melee", 0, 4, specialPower));
         target = new Target();
         target.setAroundIt(true);
         target.setAlly(false);
@@ -761,7 +761,7 @@ public class Shop {
         specialPower = new SpecialPower();
         specialPower.setSpell(spell);
         specialPower.setType(SpecialPowerType.ON_ATTACK);
-        cards.add(new Minion("Nane sarma", "On spawn Stun all enemy minion on her sides", 500, 4, 3, "ranged", 5, 3, specialPower));
+        cards.add(new Minion("NaneSarma", "On spawn Stun all enemy minion on her sides", 500, 4, 3, "ranged", 5, 3, specialPower));
         specialPower = new SpecialPower();
         spell = new Spell();
         buff = new Buff();
@@ -771,7 +771,7 @@ public class Shop {
         spell.addBuff(buff);
         specialPower.setSpell(spell);
         specialPower.setType(SpecialPowerType.PASSIVE);
-        cards.add(new Minion("Folad zereh", "Have 12 continuous holy buff", 650, 1, 1, "melee", 3, 0, specialPower));
+        cards.add(new Minion("FoladZereh", "Have 12 continuous holy buff", 650, 1, 1, "melee", 3, 0, specialPower));
         specialPower = new SpecialPower();
         spell = new Spell();
         buff = new Buff();
@@ -786,23 +786,23 @@ public class Shop {
         cards.add(new Minion("Siyavash", "On death hit 6 HP to enemy hero", 350, 5, 8, "melee", 0, 4, specialPower));
         specialPower = new SpecialPower();
         specialPower.setType(SpecialPowerType.COMBO);
-        cards.add(new Minion("Shah ghol", "", 600, 4, 10, "melee", 0, 5, specialPower));
+        cards.add(new Minion("ShahGhol", "", 600, 4, 10, "melee", 0, 5, specialPower));
         specialPower = new SpecialPower();
         specialPower.setType(SpecialPowerType.COMBO);
-        cards.add(new Minion("Arzhang div", "", 600, 6, 6, "melee", 0, 3, specialPower));
+        cards.add(new Minion("ArzhangDiv", "", 600, 6, 6, "melee", 0, 3, specialPower));
     }
 
     private void initializeItems() {
-        items.add(new Item("Crown of knowledge", 300, "Add 1 mana in 3 first turn"));
+        items.add(new Item("CrownOfKnowledge", 300, "Add 1 mana in 3 first turn"));
         items.add(new Item("Parisa", 4000, "Active 12 holy buff to own hero"));
-        items.add(new Item("Damol's arrow", 30000, "Only for ranged adn hybrid : when attacked on own hero enemy disarm for 1 turn"));
+        items.add(new Item("Damol'sArrow", 30000, "Only for ranged adn hybrid : when attacked on own hero enemy disarm for 1 turn"));
         items.add(new Item("Phoenix'wing", 3500, "if enemy hero is ranged or hybrid decrease 2 AP"));
-        items.add(new Item("Terror Hood", 5000, "On attack, add one weakness buff with decrease 2 AP on random force"));
-        items.add(new Item("King Wisdom ", 9000, "In all turns add 1 mana"));
-        items.add(new Item("Assassination Dagger", 15000, "When put each own force card on field hit 1 HP to enemy hero"));
-        items.add(new Item("Poisonous Dagger", 7000, "On own attack add one poison buff for 1 turn to random enemy force"));
-        items.add(new Item("Shock Hammer", 15000, "Own hero on attack for 1 turn disarm enemy force"));
-        items.add(new Item("Soul Eater", 25000, "On death of each own force add 1 power buff with 1 increase AP too random force"));
+        items.add(new Item("TerrorHood", 5000, "On attack, add one weakness buff with decrease 2 AP on random force"));
+        items.add(new Item("KingWisdom ", 9000, "In all turns add 1 mana"));
+        items.add(new Item("AssassinationDagger", 15000, "When put each own force card on field hit 1 HP to enemy hero"));
+        items.add(new Item("PoisonousDagger", 7000, "On own attack add one poison buff for 1 turn to random enemy force"));
+        items.add(new Item("ShockHammer", 15000, "Own hero on attack for 1 turn disarm enemy force"));
+        items.add(new Item("SoulEater", 25000, "On death of each own force add 1 power buff with 1 increase AP too random force"));
         items.add(new Item("B‌aptism'ablution", 20000, "Each minion on spawn give 2 turns holy buff"));
     }
 }

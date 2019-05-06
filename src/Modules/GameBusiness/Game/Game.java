@@ -618,13 +618,13 @@ public abstract class Game {
 
     public static void initializeItems() {
         collectableItems.add(new Item("Antidote", 0, "Increase 6 HP random force"));
-        collectableItems.add(new Item("Fucking arrow", 0, "Increase one random ranged or hybrid force 2 AP"));
+        collectableItems.add(new Item("FuckingArrow", 0, "Increase one random ranged or hybrid force 2 AP"));
         collectableItems.add(new Item("Eٍlixir", 0, "Increase 3 HP and add one power buff with 3 increase AP for random minion"));
         collectableItems.add(new Item("Mana'alectuary", 0, "Increase 3 mana for next turn"));
         collectableItems.add(new Item("Brazen-bodied'alectuary", 0, "Add 10 holy buff to random own force for 2 turn"));
         collectableItems.add(new Item("Death'curse", 0, "Add ability to random minion : ability is hit 8 HP to nearest force on death"));
-        collectableItems.add(new Item("Random damage", 0, "Hit 2 HP to random force"));
-        collectableItems.add(new Item("Blades of agility", 0, "Increase 6 AP to random force"));
-        collectableItems.add(new Item("Chinese sword", 0, "Increase 5 AP to all melee force"));
+        collectableItems.add(new Item("RandomDamage", 0, "Hit 2 HP to random force"));
+        collectableItems.add(new Item("BladesOfAgility", 0, "Increase 6 AP to random force"));
+        collectableItems.add(new Item("ChineseSword", 0, "Increase 5 AP to all melee force"));
     }
 }

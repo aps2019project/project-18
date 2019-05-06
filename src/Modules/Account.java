@@ -214,6 +214,7 @@ public class Account implements Comparator {
                 return;
             }
         }
+        System.out.println("Card not find");
     }
 
     public void sellItem(String id) {
@@ -224,6 +225,7 @@ public class Account implements Comparator {
                 return;
             }
         }
+        System.out.println("Item not find");
     }
 
     public void winReward(int reward) {
