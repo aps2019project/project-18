@@ -43,10 +43,6 @@ public abstract class Player {
         numberOfFlag++;
     }
 
-    public void looseFlag(){
-        numberOfFlag--;
-    }
-
     public void aging(){
         if (numberOfFlag == 1){
             numberOfTurnPlayerHaveFlag++;
