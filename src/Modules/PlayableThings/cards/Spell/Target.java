@@ -1,6 +1,7 @@
 package Modules.PlayableThings.cards.Spell;
 
 import Modules.GameBusiness.Game.Game;
+import Modules.GameBusiness.Player.Player;
 import Modules.PlayableThings.cards.Hero;
 import Modules.Playground;
 
@@ -186,38 +187,39 @@ public class Target {
         return count;
     }
 
-    public Integer[][] getTargets(Game game, int x, int y, String id) {
+    public Integer[][] getTargets(Game game, int x, int y, String userNamePlayerHaveTurn) {
         Playground playground = game.getPlayground();
         if (minion && hero && !ally) {
-            return oneEnemyForce(playground, x, y);
+            return oneEnemyForce(playground, x, y, userNamePlayerHaveTurn);
         } else if (ground) {
-            return ground(playground x, y);
+            return ground(x, y);
         } else if (minion && hero && ally) {
-            return oneOwnForce(playground, x, y);
+            return oneOwnForce(playground, x, y, userNamePlayerHaveTurn);
         } else if (hero && ally) {
-            return ownHero(playground);
+            return ownHero(playground, userNamePlayerHaveTurn);
         } else if (hero && !ally) {
-            return enemyHero(playground);
+            return enemyHero(playground, userNamePlayerHaveTurn);
         } else if (minion && hero && !ally && all) {
-            return allEnemyForce(playground);
+            return allEnemyForce(playground, userNamePlayerHaveTurn);
         } else if (minion && hero && ally == null) {
             return oneOwnOrEnemyForce(playground, x, y);
         } else if (minion && hero && ally && all) {
-            return allOwnForce(playground);
+            return allOwnForce(playground, userNamePlayerHaveTurn);
         } else if (column && minion && hero && !ally) {
-            return allEnemyInOneColumn(playground, x, y);
+            return allEnemyInOneColumn(playground, x, y, userNamePlayerHaveTurn);
         } else if (minion && !ally) {
-            return oneEnemyMinion(playground, x, y);
+            return oneEnemyMinion(playground, x, y, userNamePlayerHaveTurn);
         } else if (minion && ally) {
-            return oneOwnMinion(playground, x, y);
-        } else if () {
-
+            return oneOwnMinion(playground, x, y, userNamePlayerHaveTurn);
+        } else if (minion && !ally && random && aroundHero) {
+            return oneRandomMinionAroundOwnHero(playground, userNamePlayerHaveTurn);
         }
+        return null;
     }
 
-    private Integer[][] oneEnemyForce(Playground playground, int x, int y) {
+    private Integer[][] oneEnemyForce(Playground playground, int x, int y, String id) {
         if (playground.getGround()[x][y].getCard() != null) {
-            //todo check if this card for enemy
+            if (playground.getGround()[x][y].getCard().getId().contains(id)) return null;
             Integer[][] integers = new Integer[1][2];
             integers[0][0] = x;
             integers[0][1] = y;
@@ -226,7 +228,7 @@ public class Target {
         return null;
     }
 
-    private Integer[][] ground(Playground playground, int x, int y) {
+    private Integer[][] ground(int x, int y) {
         Integer[][] integers = new Integer[dimension][2];
         int index = 0;
         for (int i = x; i < x + dimension && i < 9; i++) {
@@ -240,9 +242,11 @@ public class Target {
     }
 
 
-    private Integer[][] oneOwnForce(Playground playground, int x, int y) {
+    private Integer[][] oneOwnForce(Playground playground, int x, int y, String id) {
         if (playground.getGround()[x][y].getCard() != null) {
-            //todo check if this card for own
+            if (!playground.getGround()[x][y].getCard().getId().contains(id)) {
+                return null;
+            }
             Integer[][] integers = new Integer[1][2];
             integers[0][0] = x;
             integers[0][1] = y;
@@ -251,14 +255,14 @@ public class Target {
         return null;
     }
 
-    private Integer[][] ownHero(Playground playground, int x, int y) {
+    private Integer[][] ownHero(Playground playground, String id) {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
-                if (playground.getGround()[x][y].getCard() != null && playground.getGround()[x][y].getCard() instanceof Hero) {
-                    //todo check if this card for own
+                if (playground.getGround()[i][j].getCard() != null && playground.getGround()[i][j].getCard() instanceof Hero) {
+                    if (!playground.getGround()[i][j].getCard().getId().contains(id)) continue;
                     Integer[][] integers = new Integer[1][2];
-                    integers[0][0] = x;
-                    integers[0][1] = y;
+                    integers[0][0] = i;
+                    integers[0][1] = j;
                     return integers;
                 }
             }
@@ -266,14 +270,14 @@ public class Target {
         return null;
     }
 
-    private Integer[][] enemyHero(Playground playground, int x, int y) {
+    private Integer[][] enemyHero(Playground playground, String id) {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
-                if (playground.getGround()[x][y].getCard() != null && playground.getGround()[x][y].getCard() instanceof Hero) {
-                    //todo check if this card for enemy
+                if (playground.getGround()[i][j].getCard() != null && playground.getGround()[i][j].getCard() instanceof Hero) {
+                    if (playground.getGround()[i][j].getCard().getId().contains(id)) continue;
                     Integer[][] integers = new Integer[1][2];
-                    integers[0][0] = x;
-                    integers[0][1] = y;
+                    integers[0][0] = i;
+                    integers[0][1] = j;
                     return integers;
                 }
             }
@@ -281,12 +285,12 @@ public class Target {
         return null;
     }
 
-    private Integer[][] allEnemyForce(Playground playground) {
+    private Integer[][] allEnemyForce(Playground playground, String id) {
         Integer[][] integers = new Integer[15][2];
         int index = 0;
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
-                if () {
+                if (!playground.getGround()[i][j].getCard().getId().contains(id)) {
                     integers[index][0] = i;
                     integers[index][1] = j;
                     index++;
@@ -296,12 +300,12 @@ public class Target {
         return integers;
     }
 
-    private Integer[][] allOwnForce(Playground playground) {
+    private Integer[][] allOwnForce(Playground playground, String id) {
         Integer[][] integers = new Integer[15][2];
         int index = 0;
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
-                if () {
+                if (playground.getGround()[i][j].getCard().getId().contains(id)) {
                     integers[index][0] = i;
                     integers[index][1] = j;
                     index++;
@@ -321,13 +325,13 @@ public class Target {
         return null;
     }
 
-    private Integer[][] allEnemyInOneColumn(Playground playground, int x, int y) {
+    private Integer[][] allEnemyInOneColumn(Playground playground, int x, int y, String id) {
         if (x < 0 || x > 9) return null;
         Integer[][] integers = new Integer[5][2];
         int index = 0;
         for (int j = 0; j < 5; j++) {
             if (playground.getGround()[x][j].getCard() == null) continue;
-            if (checkEnemy) {
+            if (!playground.getGround()[x][j].getCard().getId().contains(id)) {
                 integers[index][0] = x;
                 integers[index][1] = y;
                 index++;
@@ -336,10 +340,10 @@ public class Target {
         return integers;
     }
 
-    private Integer[][] oneEnemyMinion(Playground playground, int x, int y) {
+    private Integer[][] oneEnemyMinion(Playground playground, int x, int y, String id) {
         if (playground.getGround()[x][y].getCard() != null) {
             if (playground.getGround()[x][y].getCard() instanceof Hero) return null;
-            if (checkEnemy) {
+            if (!playground.getGround()[x][y].getCard().getId().contains(id)) {
                 Integer[][] integers = new Integer[1][2];
                 integers[0][0] = x;
                 integers[0][1] = y;
@@ -349,16 +353,20 @@ public class Target {
         return null;
     }
 
-    private Integer[][] oneOwnMinion(Playground playground, int x, int y) {
+    private Integer[][] oneOwnMinion(Playground playground, int x, int y, String id) {
         if (playground.getGround()[x][y].getCard() != null) {
             if (playground.getGround()[x][y].getCard() instanceof Hero) return null;
-            if (checkOwn) {
+            if (playground.getGround()[x][y].getCard().getId().contains(id)) {
                 Integer[][] integers = new Integer[1][2];
                 integers[0][0] = x;
                 integers[0][1] = y;
                 return integers;
             }
         }
+        return null;
+    }
+
+    private Integer[][] oneRandomMinionAroundOwnHero(Playground playground, String id) {
         return null;
     }
 }
