@@ -125,6 +125,14 @@ public abstract class Force extends Card {
         canMove = false;
     }
 
+    public boolean canMove(){
+        for (Buff buff : buffs) {
+            if (buff.isStun())
+                return false;
+        }
+        return canMove;
+    }
+
     public void attack(Force force){
         if (canAttack) {
             force.defend(this);
