@@ -285,6 +285,24 @@ public class Shop {
         return deck;
     }
 
+    public Deck setCustomDeck() {
+        Deck deck = new Deck("AI");
+        //Item
+        int random = new Random().nextInt(11);
+        deck.addItem(items.get(random));
+        //Hero
+        deck.addCard(cards.get(new Random().nextInt(10)));
+        //Spell
+        for (int i = 0; i < 9; i++) {
+            deck.addCard(cards.get(new Random().nextInt(20) + 10));
+        }
+        //Minion
+        for (int i = 0; i < 9; i++) {
+            deck.addCard(cards.get(new Random().nextInt(40) + 30));
+        }
+        return deck;
+    }
+
     private void setCardToAiDeck(int indexCard, int numberOfThatCard, Deck deck) {
         Card card = cards.get(indexCard).getCopyCard();
         card.setId("AI" + "_" + card.getName() + "_" + numberOfThatCard);
