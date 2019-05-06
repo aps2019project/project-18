@@ -17,7 +17,7 @@ public class AI extends Player {
     @Override
     public void playTurn(int turn) {
         super.playTurn(turn);
-        enemyHero = game.getEnemyHeroPlace();
+        enemyHero = game.getPosition(hand.getHero().getId());
         Force[] forces = game.getMyCards();
         attackAndMove(forces);
         while(true) {

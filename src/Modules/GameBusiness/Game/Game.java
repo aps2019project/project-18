@@ -141,7 +141,7 @@ public abstract class Game {
         }
     }
 
-    private int[] getPosition(String cardId) {
+    public int[] getPosition(String cardId) {
         int[] result = new int[2];
         for (int i = 0; i < 9; i++)
             for (int j = 0; j < 5; j++)
