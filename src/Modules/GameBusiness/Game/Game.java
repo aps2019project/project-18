@@ -82,7 +82,7 @@ public abstract class Game {
         playground.getGround()[getPosition(force)[0]][getPosition(force)[1]].removeCard();
     }
 
-    public Item move(Force force, int x, int y) {
+    public Item[] move(Force force, int x, int y) {
         if (playground.getGround()[x - 1][y - 1].getCard() != null) {
             System.out.println("destination house is full");
             return null;
@@ -103,7 +103,9 @@ public abstract class Game {
             playground.move(getPosition(force)[0], getPosition(force)[1], x - 1, y - 1);
             force.moved();
             System.out.println("card moved");
-            return playground.getGround()[x - 1][y - 1].getItem();
+            Item[] items = playground.getGround()[x - 1][y - 1].getItem();
+            playground.getGround()[x - 1][y - 1].removeItems();
+            return items;
         }
     }
 
