@@ -51,8 +51,10 @@ public abstract class Game {
 
     private void doWhatNeedDoAfterEachTurn() {
         checkEnd();
-        if (cancel && !end)
-            winnerPlayer = turn%2 + 1;
+        if (cancel && !end) {
+            winnerPlayer = (turn + 1) % 2 + 1;
+            doWhatNeedDoAfterGameEnd();
+        }
         turn++;
     }
 
