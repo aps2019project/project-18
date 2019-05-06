@@ -26,9 +26,18 @@ public class Buff {
     private boolean deleteNegative;
     private boolean deletePositive;
     private boolean risingAttackWithTurns;
-    private HashMap<Force , Integer> attackedPerson = new HashMap<>();
+    private HashMap<Force, Integer> attackedPerson = new HashMap<>();
     private boolean dispel;
     private int rangeRising;
+    private boolean buff;
+
+    public boolean isBuff() {
+        return buff;
+    }
+
+    public void setBuff(boolean buff) {
+        this.buff = buff;
+    }
 
     public int getDisarmCount() {
         return disarmCount;
@@ -62,11 +71,11 @@ public class Buff {
         this.holyCount = holyCount;
     }
 
-    public void doEffect(){
+    public void doEffect() {
         //todo
     }
 
-    public void aging(){
+    public void aging() {
         if (!infitinive && isContinious && executeTime == 0)
             numberOfTurns--;
         if (executeTime > 0)
@@ -77,11 +86,11 @@ public class Buff {
         return numberOfTurns;
     }
 
-    public boolean isInfinitive(){
+    public boolean isInfinitive() {
         return infitinive;
     }
 
-    public boolean isContinious(){
+    public boolean isContinious() {
         return isContinious;
     }
 

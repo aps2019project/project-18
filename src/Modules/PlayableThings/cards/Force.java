@@ -21,7 +21,15 @@ public abstract class Force extends Card {
     protected ArrayList<Buff> buffs = new ArrayList<>();
     protected ArrayList<SpecialPower> specialPowers = new ArrayList<>();
 
-    void addBuff(Buff buff) {
+    public void setAttackPower(int attackPower) {
+        this.attackPower = attackPower;
+    }
+
+    public void setHitPoint(int hitPoint) {
+        this.hitPoint = hitPoint;
+    }
+
+    public void addBuff(Buff buff) {
         buffs.add(buff);
     }
 
@@ -33,7 +41,7 @@ public abstract class Force extends Card {
         this.range = range;
     }
 
-    public Force(String name, String description, int price, int attackPower, int hitPoint, String attackType, int range, int manaPoint , SpecialPower specialPower) {
+    public Force(String name, String description, int price, int attackPower, int hitPoint, String attackType, int range, int manaPoint, SpecialPower specialPower) {
         super(name, description, price, manaPoint);
         this.attackPower = attackPower;
         this.hitPoint = hitPoint;
@@ -42,7 +50,7 @@ public abstract class Force extends Card {
         specialPowers.add(specialPower);
     }
 
-    public Force(String name, String description, int price, int attackPower, int hitPoint, String attackType, int range, int manaPoint , Buff buff) {
+    public Force(String name, String description, int price, int attackPower, int hitPoint, String attackType, int range, int manaPoint, Buff buff) {
         super(name, description, price, manaPoint);
         this.attackPower = attackPower;
         this.hitPoint = hitPoint;
@@ -76,7 +84,7 @@ public abstract class Force extends Card {
         return null;
     }
 
-    public boolean getCanAttack(){
+    public boolean getCanAttack() {
         return canAttack;
     }
 
@@ -125,32 +133,31 @@ public abstract class Force extends Card {
         canMove = false;
     }
 
-    public void attack(Force force){
+    public void attack(Force force) {
         //check buffs
         if (canAttack) {
             force.defend(this);
             canAttack = false;
             canMove = false;
-        }
-        else
+        } else
             System.out.println("This card has attacked");
     }
 
-    public void defend(Force force){
+    public void defend(Force force) {
         //check buffs
         hitPoint -= force.getAttackPower();
     }
 
-    public void counterAttack(Force force){
+    public void counterAttack(Force force) {
         //check buff
         force.defend(this);
     }
 
-    public Flag[] getFlags(){
-        return (Flag[])flags.toArray();
+    public Flag[] getFlags() {
+        return (Flag[]) flags.toArray();
     }
 
-    public void prepareForTurn(boolean isItMyTurn){
+    public void prepareForTurn(boolean isItMyTurn) {
         //todo check some buffs
         canAttack = true;
         canMove = true;
