@@ -81,6 +81,13 @@ public abstract class Player {
             if (game.insertCard(card, x, y)) {
                 hand.deleteCard(card);
                 item = game.getPlayground().getGround()[x - 1][y - 1].getItem();
+                if (card instanceof Force && item != null)
+                    if (item instanceof Flag) {
+                        ((Force) card).insert((Flag) item);
+                        takeFlag();
+                    }
+                    else
+                        items.add(item);
                 System.out.format("%s is inserted in (%d , %d)\n" , id , x ,y);
             }
             else

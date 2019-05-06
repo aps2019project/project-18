@@ -196,8 +196,6 @@ public abstract class Game {
                         //todo
                         spell.execute();
                         return true;
-                    } else {
-                        System.out.println("invalid target");
                     }
                 } else {
                     Minion minion = (Minion) card;
