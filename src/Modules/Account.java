@@ -55,7 +55,6 @@ public class Account implements Comparator {
     public static void createAccount(String userName) {
         if (!checkExistUserName(userName)) {
             Account account = new Account();
-            account.player = new Human(account);
             account.userName = userName;
             ShowAccount.showEnterPassword();
             account.passWord = createPassword();
