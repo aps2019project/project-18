@@ -1,5 +1,6 @@
 package Modules.PlayableThings.cards.Spell;
 
+import Modules.GameBusiness.Game.Game;
 import Modules.PlayableThings.BuffAndSpecialPowers.Buff.Buff;
 import Modules.PlayableThings.cards.Card;
 import Modules.Playground;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 public class Spell extends Card {
     private Target target;
     private ArrayList<Buff> buffs = new ArrayList<>();
+    Integer[][] targets;
 
 
     public Spell(String name, String description, int price, int manaPoint, Target target) {
@@ -41,8 +43,8 @@ public class Spell extends Card {
         // TODO
     }
 
-    public void execute() {
-        // TODO
+    public void execute(Game game , int x , int y) {
+        targets = target.getTargets(game , x , y , id.split("_")[0]);
     }
 
     @Override

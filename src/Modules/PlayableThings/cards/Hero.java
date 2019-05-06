@@ -47,9 +47,11 @@ public class Hero extends Force {
         }
     }
 
-    public void decreaseCoolDown() {
+    @Override
+    public void agging() {
         if (usedSpellCoolDown > 0)
             usedSpellCoolDown--;
+        super.agging();
     }
 
     @Override
