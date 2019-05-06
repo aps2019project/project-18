@@ -212,7 +212,7 @@ public class Target {
         } else if (minion && ally) {
             return oneOwnMinion(playground, x, y, userNamePlayerHaveTurn);
         } else if (minion && !ally && random && aroundHero) {
-            return oneRandomMinionAroundOwnHero(playground, userNamePlayerHaveTurn);
+            return oneRandomMinionAroundOwnHero(game, playground, userNamePlayerHaveTurn);
         }
         return null;
     }
@@ -366,7 +366,9 @@ public class Target {
         return null;
     }
 
-    private Integer[][] oneRandomMinionAroundOwnHero(Playground playground, String id) {
+    private Integer[][] oneRandomMinionAroundOwnHero(Game game, Playground playground, String id) {
         return null;
+        //
+        // game.
     }
 }
