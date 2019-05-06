@@ -108,12 +108,11 @@ public class Show {
     }
 
     public void showHero(Hero hero, Boolean sell) {
-        System.out.println("Hero :");
-        System.out.print("        " + ". Name : " + hero.getName() + " - AP : " + hero.getAttackPower() +
+        System.out.println("Hero :    Name : " + hero.getName() + " - AP : " + hero.getAttackPower() +
                 " - HP : " + hero.getHitPoint() + " - Special Power : " + hero.getDescription());
-        if (sell) {
+        if (sell != null && sell) {
             System.out.println(" - Sell Cost : " + hero.getPrice() / 10);
-        } else if (!sell) {
+        } else if (sell != null && !sell) {
             System.out.println(" - Buy Cost : " + hero.getPrice());
         } else {
             System.out.println();
@@ -121,14 +120,13 @@ public class Show {
     }
 
     public void showItem(Item item, Boolean sell) {
-        System.out.println("Item :");
-        System.out.print("        " + ". Name : " + item.getName() + " - Desc : " + item.getDescription());
-        if (sell) {
-            System.out.println(" - Sell Cost : " + item.getPrice() / 10);
+        System.out.println("Item :    Name : " + item.getName() + " - Desc : " + item.getDescription());
+        if (sell == null) {
+            System.out.println();
         } else if (!sell) {
             System.out.println(" - Buy Cost : " + item.getPrice());
         } else {
-            System.out.println();
+            System.out.println(" - Sell Cost : " + item.getPrice() / 10);
         }
     }
 
