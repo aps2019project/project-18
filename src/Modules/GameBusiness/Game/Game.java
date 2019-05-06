@@ -16,7 +16,7 @@ public abstract class Game {
     private int turn = 0;
     boolean end;
     int winnerPlayer;
-    private boolean resume = true;
+    private boolean cancel = false;
     Playground playground = new Playground();
     private static ArrayList<Item> collectableItems = new ArrayList<>();
     private static ArrayList<Integer[]> targetPositionCanAttackTo;
@@ -50,10 +50,9 @@ public abstract class Game {
     }
 
     private void doWhatNeedDoAfterEachTurn() {
-        if (end)
+        checkEnd();
+        if (cancel && !end)
             winnerPlayer = turn%2 + 1;
-        else
-            checkEnd();
         turn++;
     }
 
@@ -218,7 +217,7 @@ public abstract class Game {
     }
 
     public void cancelGame(){
-        end = true;
+        cancel = true;
     }
 
     public boolean insertCard(Card card, int x, int y) {
