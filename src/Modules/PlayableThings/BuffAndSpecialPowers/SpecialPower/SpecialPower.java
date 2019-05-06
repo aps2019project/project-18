@@ -10,6 +10,23 @@ public class SpecialPower {
     private boolean dontAffectpoison;
     private boolean dontAffectNegativeK;
 
+    public void setDontAffectHoly(boolean dontAffectHoly) {
+        this.dontAffectHoly = dontAffectHoly;
+    }
+
+    public void setDontAffectDisarm(boolean dontAffectDisarm) {
+        this.dontAffectDisarm = dontAffectDisarm;
+    }
+
+    public void setDontAffectpoison(boolean dontAffectpoison) {
+        this.dontAffectpoison = dontAffectpoison;
+    }
+
+    public void setDontAffectNegativeK(boolean dontAffectNegativeK) {
+        this.dontAffectNegativeK = dontAffectNegativeK;
+    }
+
+
     public SpecialPowerType getType() {
         return type;
     }

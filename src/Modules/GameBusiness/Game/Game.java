@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public abstract class Game {
-    Player[] players = new Player [2];
+    Player[] players = new Player[2];
     private int turn = 0;
     boolean end;
     int winnerPlayer;
@@ -25,6 +25,10 @@ public abstract class Game {
     Game(Player playerOne, Player playerTwo) {
         this.players[0] = playerOne;
         this.players[1] = playerTwo;
+    }
+
+    public Playground getPlayground() {
+        return playground;
     }
 
     public void turn() {
@@ -53,10 +57,7 @@ public abstract class Game {
     }
 
     public Item move(Force force, int x, int y) {
-        if (!force.getCanMove()) {
-            System.out.println("card can not move");
-            return null;
-        } else if (playground.getGround()[x - 1][y - 1].getCard() != null) {
+        if (playground.getGround()[x - 1][y - 1].getCard() != null) {
             System.out.println("destination house is full");
             return null;
         } else if (x - 1 == getPosition(force)[0] && ((getPosition(force)[1] - y + 1 == 2 &&
@@ -426,7 +427,7 @@ public abstract class Game {
         }
     }
 
-    public void useItem(Item item) {
+    public void useItem(Item item, int x, int y) {
         item.execute();//todo handle daghigh
     }
 

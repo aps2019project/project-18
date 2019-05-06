@@ -285,6 +285,24 @@ public class Shop {
         return deck;
     }
 
+    public Deck setCustomDeck() {
+        Deck deck = new Deck("AI");
+        //Item
+        int random = new Random().nextInt(11);
+        deck.addItem(items.get(random));
+        //Hero
+        deck.addCard(cards.get(new Random().nextInt(10)));
+        //Spell
+        for (int i = 0; i < 9; i++) {
+            deck.addCard(cards.get(new Random().nextInt(20) + 10));
+        }
+        //Minion
+        for (int i = 0; i < 9; i++) {
+            deck.addCard(cards.get(new Random().nextInt(40) + 30));
+        }
+        return deck;
+    }
+
     private void setCardToAiDeck(int indexCard, int numberOfThatCard, Deck deck) {
         Card card = cards.get(indexCard).getCopyCard();
         card.setId("AI" + "_" + card.getName() + "_" + numberOfThatCard);
@@ -338,7 +356,7 @@ public class Shop {
         cards.add(new Hero("Rakhsh", "Stun 1 enemy force for 1 turn", 8000, 4, 50, "melee", 0, spell, 2, 1));
         SpecialPower specialPower = new SpecialPower();
         //todo zahhak
-        cards.add(new Hero("Zahhak", "On attack poison his target for 3 turn", 10000, 2, 50, "melee", 0, 0, 0));
+        cards.add(new Hero("Zahhak", "On attack poison his target for 3 turn", 10000, 2, 50, "melee", 0, null, 0, 0, specialPower));
         spell = new Spell();
         buff = new Buff();
         buff.setHoly(true);
@@ -497,46 +515,141 @@ public class Shop {
         buff.setStun(true);
         buff.setNumberOfTurns(2);
         cards.add(new Spell("Shock", "Stun one enemy force for 2 turn", 1200, 1, targetOneEnemyForce).addBuff(buff));
-        cards.add(new Minion("Persian crossbowman", "", 300, 4, 6, "ranged", 7, 2, false));
-        cards.add(new Minion("Persian swordsman", "On attack stun target for next turn", 400, 4, 6, "melee", 0, 2, false));
-        cards.add(new Minion("Persian lancer", "", 500, 3, 5, "hybrid", 3, 1, false));
-        cards.add(new Minion("Persian horseman", "", 200, 6, 10, "melee", 0, 4, false));
-        cards.add(new Minion("Persian hero", "be tedad dafaAti ke dar nobat haye ghabl be yek niro hamle karde 5 vahed bishtar be an zarbe mizanad", 600, 6, 24, "melee", 0, 9, false));
-        cards.add(new Minion("Persian commander-in-chief", "", 800, 4, 12, "melee", 0, 7, true));
-        cards.add(new Minion("Torani crossbowman", "", 500, 4, 3, "ranged", 5, 1, false));
-        cards.add(new Minion("Torani sling", "", 600, 2, 4, "ranged", 7, 1, false));
-        cards.add(new Minion("Torani lancer", "", 600, 4, 4, "hybrid", 3, 1, false));
-        cards.add(new Minion("Torani spy", "Disarm target for 1 turn and poison it for 4 turns", 700, 6, 6, "melee", 0, 4, false));
-        cards.add(new Minion("Gorz dare Torani", "", 450, 10, 3, "melee", 0, 2, false));
-        cards.add(new Minion("Torani prince", "", 800, 10, 6, "melee", 0, 6, true));
-        cards.add(new Minion("Black demon", "", 300, 10, 14, "hybrid", 7, 9, false));
-        cards.add(new Minion("Demon throw rock", "", 300, 12, 12, "ranged", 7, 9, false));
-        cards.add(new Minion("Eagle", "Have 10 power buf with increase 1 HP (Passive)", 200, 2, 0, "ranged", 3, 2, false));
-        cards.add(new Minion("Demon ride swine", "", 300, 8, 16, "melee", 0, 6, false));
-        cards.add(new Minion("Demon with one eye", "On death hit 2 HP to all minion in its side", 500, 11, 12, "hybrid", 3, 7, false));
-        cards.add(new Minion("Poison snake", "Poison target for 3 turns", 300, 6, 5, "ranged", 4, 4, false));
-        cards.add(new Minion("Dragon throw fire", "", 250, 5, 9, "ranged", 4, 5, false));
-        cards.add(new Minion("Wild lion", "Target holy buff doesn't decrease Wild lion AP", 600, 8, 1, "melee", 0, 2, false));
-        cards.add(new Minion("Big snake", "vaghti big snake spawn mishe minion haye dar khane haye ta 2 vahed fasele be tor daem hamishe 1 vahed bishtar zarbe mikhorand", 500, 7, 14, "ranged", 5, 8, false));
-        cards.add(new Minion("White wolf", "When attack to minion next turn decrease 6 HP and next turn 4 HP", 400, 2, 8, "melee", 0, 5, false));
-        cards.add(new Minion("Leopard", "When attack to minion next turn decrease 8 HP", 400, 2, 6, "melee", 0, 4, false));
-        cards.add(new Minion("Wolf", "When attack to minion next turn decrease 6", 400, 1, 6, "melee", 0, 3, false));
-        cards.add(new Minion("Witch", "For his self and all own minion from his sides add one power buff with increase 2 AP and one weakness buff with decrease 1 HP for 1 turn", 550, 4, 5, "ranged", 3, 4, false));
-        cards.add(new Minion("Grand witch", "For his self and all own minion from his sides add one continuous power buff with increase 2 AP and one continuous holy buff", 550, 6, 6, "ranged", 5, 6, false));
-        cards.add(new Minion("Jen", "Give all won minions one continuous power buff with increase 1 AP", 500, 4, 10, "ranged", 4, 5, false));
-        cards.add(new Minion("Wild swine", "It won't become disarm", 500, 14, 10, "melee", 0, 6, false));
-        cards.add(new Minion("Piran", "He won't become poison", 400, 20, 8, "melee", 0, 8, false));
-        cards.add(new Minion("Giv", "Doesn't take any negativity", 450, 7, 5, "ranged", 5, 4, false));
-        cards.add(new Minion("Bahman", "On respawn decrease 16 HP random enemy minion", 450, 9, 16, "melee", 0, 8, false));
-        cards.add(new Minion("Ashkbos", "Force with lower AP can't hit him", 400, 8, 14, "melee", 0, 7, false));
-        cards.add(new Minion("Iranj", "", 500, 20, 6, "ranged", 3, 4, false));
-        cards.add(new Minion("Big ogre", "", 600, 8, 30, "hybrid", 2, 9, false));
-        cards.add(new Minion("Ogre with two head", "When attack to force destroy all target positive buff", 550, 4, 10, "melee", 0, 4, false));
-        cards.add(new Minion("Nane sarma", "On spawn Stun all enemy minion on her sides", 500, 4, 3, "ranged", 5, 3, false));
-        cards.add(new Minion("Folaf zereh", "Have 12 continuous holy buff", 650, 1, 1, "melee", 3, 0, false));
-        cards.add(new Minion("Siyavash", "On death hit 6 HP to enemy hero", 350, 5, 8, "melee", 0, 4, false));
-        cards.add(new Minion("Shah ghol", "", 600, 4, 10, "melee", 0, 5, true));
-        cards.add(new Minion("Arzhang div", "", 600, 6, 6, "melee", 0, 3, true));
+        cards.add(new Minion("Persian crossbowman", "", 300, 4, 6, "ranged", 7, 2, null));
+        spell = new Spell();
+        buff = new Buff();
+        buff.setStun(true);
+        buff.setNumberOfTurns(1);
+        buff.setExecuteTime(1);
+        //todo
+        cards.add(new Minion("Persian swordsman", "On attack stun target for next turn", 400, 4, 6, "melee", 0, 2, specialPower));
+        cards.add(new Minion("Persian lancer", "", 500, 3, 5, "hybrid", 3, 1, null));
+        cards.add(new Minion("Persian horseman", "", 200, 6, 10, "melee", 0, 4, null));
+        specialPower = new SpecialPower();
+        //todo
+        cards.add(new Minion("Persian hero", "be tedad dafaAti ke dar nobat haye ghabl be yek niro hamle karde 5 vahed bishtar be an zarbe mizanad", 600, 6, 24, "melee", 0, 9, specialPower));
+        specialPower = new SpecialPower();
+        //todo combo
+        cards.add(new Minion("Persian commander-in-chief", "", 800, 4, 12, "melee", 0, 7, specialPower));
+        cards.add(new Minion("Torani crossbowman", "", 500, 4, 3, "ranged", 5, 1, null));
+        cards.add(new Minion("Torani sling", "", 600, 2, 4, "ranged", 7, 1, null));
+        cards.add(new Minion("Torani lancer", "", 600, 4, 4, "hybrid", 3, 1, null));
+        specialPower = new SpecialPower();
+        spell = new Spell();
+        buff = new Buff();
+        buff.setDisarm(true);
+        buff.setNumberOfTurns(1);
+        buff1 = new Buff();
+        buff1.setPoison(true);
+        buff1.setPoisonCount(1);
+        buff1.setNumberOfTurns(4);
+        spell.addBuff(buff).addBuff(buff1);
+        //todo
+        cards.add(new Minion("Torani spy", "Disarm target for 1 turn and poison it for 4 turns", 700, 6, 6, "melee", 0, 4, specialPower));
+        cards.add(new Minion("Gorz dare Torani", "", 450, 10, 3, "melee", 0, 2, null));
+        specialPower = new SpecialPower();
+        //todo combo
+        cards.add(new Minion("Torani prince", "", 800, 10, 6, "melee", 0, 6, specialPower));
+        cards.add(new Minion("Black demon", "", 300, 10, 14, "hybrid", 7, 9, null));
+        cards.add(new Minion("Demon throw rock", "", 300, 12, 12, "ranged", 7, 9, null));
+        specialPower = new SpecialPower();
+        spell = new Spell();
+        buff = new Buff();
+        buff.setHitPoint(10);
+        spell.addBuff(buff);
+        //todo passive
+        cards.add(new Minion("Eagle", "Have 10 power buf with increase 1 HP (Passive)", 200, 2, 0, "ranged", 3, 2, specialPower));
+        cards.add(new Minion("Demon ride swine", "", 300, 8, 16, "melee", 0, 6, null));
+        specialPower = new SpecialPower();
+        //todo
+        cards.add(new Minion("Demon with one eye", "On death hit 2 HP to all minion in its side", 500, 11, 12, "hybrid", 3, 7, specialPower));
+        specialPower = new SpecialPower();
+        spell = new Spell();
+        buff = new Buff();
+        buff.setPoison(true);
+        buff.setPoisonCount(3);
+        spell.addBuff(buff);
+        //todo onAttack
+        cards.add(new Minion("Poison snake", "Poison target for 3 turns", 300, 6, 5, "ranged", 4, 4, specialPower));
+        cards.add(new Minion("Dragon throw fire", "", 250, 5, 9, "ranged", 4, 5, null));
+        specialPower = new SpecialPower();
+        specialPower.setDontAffectHoly(true);
+        //todo onAttack
+        cards.add(new Minion("Wild lion", "Target holy buff doesn't decrease Wild lion AP", 600, 8, 1, "melee", 0, 2, specialPower));
+        specialPower = new SpecialPower();
+        // TODO: 5/6/2019
+        cards.add(new Minion("Big snake", "vaghti big snake spawn mishe minion haye dar khane haye ta 2 vahed fasele be tor daem hamishe 1 vahed bishtar zarbe mikhorand", 500, 7, 14, "ranged", 5, 8, specialPower));
+        specialPower = new SpecialPower();
+        spell = new Spell();
+        buff = new Buff();
+        buff.setHit(6);
+        buff.setExecuteTime(1);
+        buff1 = new Buff();
+        buff1.setHit(4);
+        buff1.setExecuteTime(2);
+        spell.addBuff(buff).addBuff(buff1);
+        // TODO: onAttack
+        cards.add(new Minion("White wolf", "When attack to minion next turn decrease 6 HP and next turn 4 HP", 400, 2, 8, "melee", 0, 5, specialPower));
+        specialPower = new SpecialPower();
+        spell = new Spell();
+        buff = new Buff();
+        buff.setHit(8);
+        buff.setExecuteTime(1);
+        spell.addBuff(buff);
+        // TODO: onAttack
+        cards.add(new Minion("Leopard", "When attack to minion next turn decrease 8 HP", 400, 2, 6, "melee", 0, 4, specialPower));
+        specialPower = new SpecialPower();
+        spell = new Spell();
+        buff = new Buff();
+        buff.setHit(6);
+        buff.setExecuteTime(1);
+        spell.addBuff(buff);
+        // TODO: onAttack
+        cards.add(new Minion("Wolf", "When attack to minion next turn decrease 6", 400, 1, 6, "melee", 0, 3, specialPower));
+        specialPower = new SpecialPower();
+        // TODO: 5/6/2019
+        cards.add(new Minion("Witch", "For his self and all own minion from his sides add one power buff with increase 2 AP and one weakness buff with decrease 1 HP for 1 turn", 550, 4, 5, "ranged", 3, 4, specialPower));
+        specialPower = new SpecialPower();
+        //todo
+        cards.add(new Minion("Grand witch", "For his self and all own minion from his sides add one continuous power buff with increase 2 AP and one continuous holy buff", 550, 6, 6, "ranged", 5, 6, specialPower));
+        specialPower = new SpecialPower();
+        spell = new Spell();
+        buff = new Buff();
+        buff.setAttackPower(1);
+        buff.setInfitinive(true);
+        buff.setContinious(true);
+        target = new Target();
+        target.setAlly(true);
+        target.setAll(true);
+        target.setMinion(true);
+        spell.setTarget(target);
+        spell.addBuff(buff);
+        //todo
+        cards.add(new Minion("Jen", "Give all won minions one continuous power buff with increase 1 AP", 500, 4, 10, "ranged", 4, 5, specialPower));
+        specialPower = new SpecialPower();
+        specialPower.setDontAffectDisarm(true);
+        //on defend
+        cards.add(new Minion("Wild swine", "It won't become disarm", 500, 14, 10, "melee", 0, 6, specialPower));
+        specialPower = new SpecialPower();
+        specialPower.setDontAffectpoison(true);
+        //on defend
+        cards.add(new Minion("Piran", "He won't become poison", 400, 20, 8, "melee", 0, 8, specialPower));
+        specialPower = new SpecialPower();
+        specialPower.setDontAffectNegativeK(true);
+        //todo on defend
+        cards.add(new Minion("Giv", "Doesn't take any negativity", 450, 7, 5, "ranged", 5, 4, specialPower));
+        //todo
+        cards.add(new Minion("Bahman", "On respawn decrease 16 HP random enemy minion", 450, 9, 16, "melee", 0, 8, specialPower));
+        //todo...
+        cards.add(new Minion("Ashkbos", "Force with lower AP can't hit him", 400, 8, 14, "melee", 0, 7, specialPower));
+        cards.add(new Minion("Iranj", "", 500, 20, 6, "ranged", 3, 4, null));
+        cards.add(new Minion("Big ogre", "", 600, 8, 30, "hybrid", 2, 9, null));
+        cards.add(new Minion("Ogre with two head", "When attack to force destroy all target positive buff", 550, 4, 10, "melee", 0, 4, specialPower));
+        cards.add(new Minion("Nane sarma", "On spawn Stun all enemy minion on her sides", 500, 4, 3, "ranged", 5, 3, specialPower));
+        cards.add(new Minion("Folaf zereh", "Have 12 continuous holy buff", 650, 1, 1, "melee", 3, 0, specialPower));
+        cards.add(new Minion("Siyavash", "On death hit 6 HP to enemy hero", 350, 5, 8, "melee", 0, 4, specialPower));
+        cards.add(new Minion("Shah ghol", "", 600, 4, 10, "melee", 0, 5, specialPower));
+        cards.add(new Minion("Arzhang div", "", 600, 6, 6, "melee", 0, 3, specialPower));
     }
 
     private void initializeItems() {

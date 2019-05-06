@@ -75,10 +75,12 @@ public abstract class Player {
     }
     public void insertCard(String id, int x, int y) {
         Card card = hand.insertCard(id , manaPoint);
+        Item item = new Item();
         if (card != null) {
             manaPoint -= card.getManaPoint();
             if (game.insertCard(card, x, y)) {
                 hand.deleteCard(card);
+                item = game.getPlayground().getGround()[x - 1][y - 1].getItem();
                 System.out.format("%s is inserted in (%d , %d)\n" , id , x ,y);
             }
             else
