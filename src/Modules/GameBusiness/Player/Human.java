@@ -8,9 +8,13 @@ import View.View.Show;
 public class Human extends Player {
     private Account account;
 
-    public Human(Account account) {
+    public Human( Account account) {
         this.account = account;
         hand = new Hand(account.getCollection().getMainDeck());
+    }
+
+    public Account getAccount() {
+        return account;
     }
 
     @Override
