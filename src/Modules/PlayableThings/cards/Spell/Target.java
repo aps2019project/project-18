@@ -24,6 +24,15 @@ public class Target {
     private boolean aroundIt;
     private boolean it;
     private boolean hand;
+    private boolean random;
+
+    public boolean isRandom() {
+        return random;
+    }
+
+    public void setRandom(boolean random) {
+        this.random = random;
+    }
 
     public Boolean getAlly() {
         return ally;
