@@ -19,6 +19,16 @@ public class Buff {
     private int hit;
     private Boolean holy;
     private int holyCount;
+    private boolean kill;
+    private boolean stun;
+    private boolean isContinious;
+    private boolean infitinive;
+    private boolean deleteNegative;
+    private boolean deletePositive;
+    private boolean risingAttackWithTurns;
+    private HashMap<Force , Integer> attackedPerson = new HashMap<>();
+    private boolean dispel;
+    private int rangeRising;
 
     public int getDisarmCount() {
         return disarmCount;
@@ -51,19 +61,6 @@ public class Buff {
     public void setHolyCount(int holyCount) {
         this.holyCount = holyCount;
     }
-
-    private boolean kill;
-    private boolean stun;
-    private boolean isContinious;
-    private boolean infitinive;
-    private boolean deleteNegative;
-    private boolean deletePositive;
-    private boolean risingAttackWithTurns;
-    private HashMap<Force , Integer> attackedPerson = new HashMap<>();
-    private boolean dispel;
-    private int rangeRising;
-    //check
-
 
     public void doEffect(){
         //todo

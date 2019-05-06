@@ -75,7 +75,7 @@ public abstract class Player {
     }
     public void insertCard(String id, int x, int y) {
         Card card = hand.insertCard(id , manaPoint);
-        Item item = new Item();
+        Item item;
         if (card != null) {
             manaPoint -= card.getManaPoint();
             if (game.insertCard(card, x, y)) {
@@ -137,5 +137,9 @@ public abstract class Player {
         if (splittedId[0] == account.getUserName())
             return true;
         return false;
+    }
+
+    public void die(Card card){
+        hand.getGraveyard().addCard(card);
     }
 }
