@@ -15,15 +15,10 @@ import java.util.ArrayList;
 public abstract class Player {
     protected int numberOfFlag = 0;
     protected int manaPoint;
-    protected Account account;
     protected Hand hand;
     protected Game game;
     protected ArrayList<Item> items = new ArrayList<>();
     private int numberOfTurnPlayerHaveFlag = 0;
-
-    public Account getAccount() {
-        return account;
-    }
 
     public int getNumberOfFlag() {
         return numberOfFlag;
