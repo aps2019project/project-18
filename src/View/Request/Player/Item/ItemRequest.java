@@ -37,6 +37,7 @@ public class ItemRequest extends MainRequest {
     private boolean checkUse(){
         if (command.matches("Use\\[(\\d+),(\\d+)\\]"))
             return true;
+        System.out.println("Invalid syntax of use");
         return false;
     }
 
