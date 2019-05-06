@@ -112,7 +112,7 @@ public abstract class Player {
                 numberOfFlag++;
                 force.takeFlag((Flag) item);
             }
-            else
+            else if (item != null)
                 items.add(item);
         }
         else
