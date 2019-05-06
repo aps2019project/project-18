@@ -138,4 +138,8 @@ public abstract class Player {
             return true;
         return false;
     }
+
+    public void die(Card card){
+        hand.getGraveyard().addCard(card);
+    }
 }
