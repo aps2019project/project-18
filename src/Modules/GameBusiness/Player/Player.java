@@ -124,13 +124,13 @@ public abstract class Player {
             System.out.println("force have been moved before");
     }
 
-    public void losseFlag(int count){
+    public void loseFlag(int count){
         numberOfFlag -= count;
     }
 
     public boolean checkCard(String id){
-        String[] spillitedId = id.split("_");
-        if (spillitedId[0] == account.getUserName())
+        String[] splittedId = id.split("_");
+        if (splittedId[0] == account.getUserName())
             return true;
         return false;
     }

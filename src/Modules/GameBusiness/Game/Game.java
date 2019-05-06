@@ -34,6 +34,12 @@ public abstract class Game {
         return playground;
     }
 
+    public boolean checkDeath(Force force) {
+        if (force.getHitPoint() <= 0)
+            return true;
+        return false;
+    }
+
     public void turn() {
         if (end) {
             doWhatNeedDoAfterGameEnd();
@@ -55,6 +61,22 @@ public abstract class Game {
             force.attack(getForce(defenderId));
             if (canAttack(defenderId, force.getId())) {
                 getForce(defenderId).counterAttack(force);
+            }
+            if (checkDeath(force)) {
+                force.die();
+                Item[] items = force.getFlags();
+                players[turn % 2].loseFlag(items.length);
+                //todo move flags to house
+                players[turn % 2].die(force);
+                playground.getGround()[getPosition(force)[0]][getPosition(force)[1]].removeCard();
+            }
+            if (checkDeath(getForce(defenderId))) {
+                getForce(defenderId).die();
+                Item[] items = getForce(defenderId).getFlags();
+                players[(turn + 1) % 2].loseFlag(items.length);
+                //todo move flags to house
+                players[(turn + 1) % 2].die(force);
+                playground.getGround()[getPosition(getForce(defenderId))[0]][getPosition(getForce(defenderId))[1]].removeCard();
             }
         } else {
             System.out.println("card is not able to attack");
@@ -204,6 +226,7 @@ public abstract class Game {
                     if (canExecuteSpell()) {
                         //todo
                         spell.execute();
+                        players[turn % 2].die(spell);
                         return true;
                     }
                 } else {
