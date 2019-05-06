@@ -30,7 +30,7 @@ public class Account implements Comparator {
             } else if (input.equalsIgnoreCase("Shop")) {
                 Shop.getInstance().menu(this);
             } else if (input.equalsIgnoreCase("Battle")) {
-                if (this.getCollection().getMainDeck().checkValidity() && this.getCollection().getMainDeck().checkValidity()) {
+                if (this.getCollection().getMainDeck() != null && this.getCollection().getMainDeck().checkValidity() && this.getCollection().getMainDeck().checkValidity()) {
                     this.player = new Human(this);
                     Battle.doOrder(this);
                 } else {
