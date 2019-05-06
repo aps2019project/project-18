@@ -45,4 +45,11 @@ public class Human extends Player {
         else
             hand.getGraveyard().showCard(id);
     }
+
+    public boolean checkCard(String id){
+        String[] splittedId = id.split("_");
+        if (splittedId[0] == account.getUserName())
+            return true;
+        return false;
+    }
 }

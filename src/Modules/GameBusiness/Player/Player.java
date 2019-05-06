@@ -127,14 +127,11 @@ public abstract class Player {
         numberOfFlag -= count;
     }
 
-    public boolean checkCard(String id){
-        String[] splittedId = id.split("_");
-        if (splittedId[0] == account.getUserName())
-            return true;
-        return false;
-    }
-
     public void die(Card card){
         hand.getGraveyard().addCard(card);
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 }
