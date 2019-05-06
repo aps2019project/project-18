@@ -20,6 +20,7 @@ public class PlayerRequest extends MainRequest {
     private static final String SHOW_NEXT_CARD = "Show Next Card";
     private static final String ENTER_GRAVEYARD = "Enter graveyard";
     private static final String HELP = "Help";
+    private static final String CANCEL = "Cancel game";
 
     public PlayerRequestType getType() {
         if (command == null || command.equals("")) {
@@ -39,7 +40,8 @@ public class PlayerRequest extends MainRequest {
             return PlayerRequestType.HELP;
         } else if (command.substring(0, 5).equals(INSERT_CARD)) {
             return PlayerRequestType.INSERT_CARD;
-        }
+        }else if (command.equals(CANCEL))
+            return PlayerRequestType.CANCEL_GAME;
         return null;
     }
 

@@ -12,5 +12,6 @@ public enum PlayerRequestType {
     SELECT,
     SHOW_NEXT_CARD,
     ENTER_GRAVEYARD,
-    HELP
+    HELP,
+    CANCEL_GAME
 }

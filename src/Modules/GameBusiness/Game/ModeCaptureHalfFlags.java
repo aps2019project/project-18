@@ -34,8 +34,8 @@ public class ModeCaptureHalfFlags extends Game {
     @Override
     void setPlayground() {
         int indexX, indexY;
-        playground.getGround()[0][2].setCard(playerOne.getHeroCard());
-        playground.getGround()[8][2].setCard(playerTwo.getHeroCard());
+        playground.getGround()[0][2].setCard(players[0].getHeroCard());
+        playground.getGround()[8][2].setCard(players[1].getHeroCard());
         for (int i = 0; i < numberOfFlags; i++) {
             indexX = new Random().nextInt(9);
             indexY = new Random().nextInt(5);
@@ -49,24 +49,28 @@ public class ModeCaptureHalfFlags extends Game {
 
     @Override
     protected void checkEnd() {
-        if (playerOne.getHeroCard().getHitPoint() <= 0) {
+        if (players[0].getHeroCard().getHitPoint() <= 0) {
             winnerPlayer = 2;
             end = true;
             return;
         }
-        if (playerTwo.getHeroCard().getHitPoint() <= 0) {
+        if (players[1].getHeroCard().getHitPoint() <= 0) {
             winnerPlayer = 1;
             end = true;
             return;
         }
-        if (playerOne.getNumberOfFlag() >= numberOfFlags / 2) {
+        if (players[0].getNumberOfFlag() >= numberOfFlags / 2) {
             winnerPlayer = 1;
             end = true;
             return;
         }
-        if (playerTwo.getNumberOfFlag() >= numberOfFlags / 2) {
+        if (players[1].getNumberOfFlag() >= numberOfFlags / 2) {
             winnerPlayer = 2;
             end = true;
         }
+    }
+
+    public void showInfo(){
+        //todo
     }
 }

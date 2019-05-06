@@ -18,6 +18,7 @@ public abstract class Game {
     private int turn = 0;
     boolean end;
     int winnerPlayer;
+    private boolean resume = true;
     Playground playground = new Playground();
     private static ArrayList<Item> collectableItems = new ArrayList<>();
     private static ArrayList<Integer[]> targetPositionCanAttackTo;
@@ -37,6 +38,8 @@ public abstract class Game {
             return;
         }
         players[turn % 2].playTurn(turn);
+        if (!resume)
+            return;
         doWhatNeedDoAfterEachTurn();
     }
 
@@ -185,6 +188,10 @@ public abstract class Game {
                     cards.add((Force) playground.getGround()[i][j].getCard());
             }
         return (Force[]) cards.toArray();
+    }
+
+    public void cancelGame(){
+        resume = false;
     }
 
     public boolean insertCard(Card card, int x, int y) {
