@@ -434,7 +434,6 @@ public class Shop {
         targetOneEnemyForce.setGround(true);
         targetOneEnemyForce.setDimension(2);
         buff = new Buff();
-        // TODO: 5/5/2019 is it correct ??
         buff.setDeleteNegative(true);
         buff.setDeletePositive(true);
         cards.add(new Spell("Area Dispel", "Destroy all enemy force positive buff and all own force negative buff in 2*2 area", 1500, 2, targetOneMoraba).addBuff(buff));
@@ -531,7 +530,9 @@ public class Shop {
         buff1 = new Buff();
         buff1.setAttackPower(8);
         cards.add(new Spell("Sacrifice", "Add one weakness buff with decrease 6 HP and add one power buff with increase 8 AP to one own minion", 1600, 2, targetOneOwnMinion).addBuff(buff).addBuff(buff1));
-        //todo target
+        target = new Target();
+        target.setAroundHero(true);
+        target.setAlly(true);
         buff = new Buff();
         buff.setKill(true);
         cards.add(new Spell("Kings Guard", "Kill one random enemy minion in own hero side", 1750, 9, null).addBuff(buff));
