@@ -24,6 +24,11 @@ public class Main {
     }
 
     private static void doOrder(String input) {
+        Account.createAccount("diveSepid", "Aa!12345");
+        Account.findAccount("diveSepid").getCollection().setMainDeck(Shop.getInstance().getDeckLevelOne());
+        Account.createAccount("zahhak", "Aa!12345");
+        Account.findAccount("zahhak").getCollection().setMainDeck(Shop.getInstance().getDeckLevelOne());
+
         if (input.equalsIgnoreCase("sign in")) {
             signIn();
         } else if (input.equalsIgnoreCase("sign up")) {
