@@ -153,4 +153,8 @@ public abstract class Player {
     public void setAccount(Account account) {
         this.account = account;
     }
+
+    private void executeUncollectableItem(){
+        Item item = new Item();
+    }
 }
