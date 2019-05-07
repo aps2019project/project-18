@@ -69,9 +69,16 @@ public class Account implements Comparator {
         }
     }
 
+    public static void createAccount(String userName, String password) {
+        Account account = new Account();
+        account.userName = userName;
+        account.passWord = password;
+        accounts.add(account);
+    }
+
     public static void signIn(String userName, String passWord) {
         for (Account account : accounts) {
-            if (account.userName.equalsIgnoreCase(userName)) {
+            if (account.userName.equals(userName)) {
                 if (account.passWord.equals(passWord)) {
                     ShowAccount.showMenu();
                     account.doOrderInAccount();

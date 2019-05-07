@@ -210,4 +210,7 @@ public class Collection {
         Show.get().setMainDeckErrorMessage();
     }
 
+    public void setMainDeck(Deck deck) {
+        this.mainDeck = deck;
+    }
 }
