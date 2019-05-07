@@ -25,11 +25,11 @@ public class GraveyardRequest extends MainRequest {
     }
 
     public boolean isValid(){
-        if (getType() == GraveyardRequestType.SHOW_CARD)
+        if (getType() == null)
+            return false;
+        else if (getType() == GraveyardRequestType.SHOW_CARD)
             return checkShowCard();
-        else if (getType() != null)
-            return true;
-        return false;
+        return true;
     }
 
     private boolean checkShowCard(){

@@ -35,6 +35,8 @@ public class CardRequest extends MainRequest {
 
     public boolean isValid() {
         CardRequestType type = getType();
+        if (type == null)
+            return false;
         if (type == CardRequestType.MOVE)
             return checkMove();
         else if (type == CardRequestType.COMBO)
@@ -43,7 +45,7 @@ public class CardRequest extends MainRequest {
             return checkAttack();
         else if (type == CardRequestType.USE_SPECIAL_POWER)
             return checkSpecialPower();
-        return false;
+        return true;
     }
 
     private boolean checkMove() {
@@ -101,5 +103,9 @@ public class CardRequest extends MainRequest {
                 return matcher.group(1) + " " + matcher.group(2);
         }
         return null;
+    }
+
+    public void show(){
+        System.out.println();
     }
 }

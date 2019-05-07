@@ -63,6 +63,8 @@ public class PlayerRequest extends MainRequest {
     }
 
     public boolean isValid() {
+        if (getType() == null)
+            return false;
         switch (getType()) {
             case SHOW_CARD_INFO:
                 return checkCardInfoCommand();
@@ -71,8 +73,6 @@ public class PlayerRequest extends MainRequest {
             case SELECT:
                 return checkSelectCommand();
         }
-        if (getType() == null)
-            return false;
         return true;
     }
 

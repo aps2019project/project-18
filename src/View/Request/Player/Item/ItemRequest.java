@@ -27,11 +27,11 @@ public class ItemRequest extends MainRequest {
     }
 
     public boolean isValid(){
-        if (getType() == ItemRequestType.USE)
+        if (getType() == null)
+            return false;
+        else if (getType() == ItemRequestType.USE)
             return checkUse();
-        else if (getType() != null)
-            return true;
-        return false;
+        return true;
     }
 
     private boolean checkUse(){
