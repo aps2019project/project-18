@@ -123,14 +123,32 @@ public abstract class Force extends Card {
         Iterator<Buff> iterator = buffs.iterator();
         while (iterator.hasNext()) {
             Buff buff = iterator.next();
-            if (buff.getNumberOfTurns() == 0 && !buff.isContinious() && !buff.isInfinitive() && buff.getExecuteTime() == 0)
+            if (buff.getNumberOfTurns() == 0 && !buff.isContinious() && !buff.isInfinitive() && buff.getExecuteTime() == 0) {
+                attackPower -= buff.getAttackPower();
+                hitPoint -= buff.getHitPoint();
                 iterator.remove();
+            }
         }
     }
 
     public void agging() {
-        for (Buff buff : buffs) {
+        for (int i = buffs.size() - 1 ;i >= 0 ; i--) {
+            boolean canNotExcute = false;
+            boolean canExcute = false;
+            Buff buff = buffs.get(i);
+            if (buff.getExecuteTime() > 0)
+                canNotExcute = true;
             buff.aging();
+            if (buff.getExecuteTime() == 0) {
+                canExcute = true;
+            }
+            if (canExcute && canNotExcute) {
+                if (!buff.isBuff()) {
+                    attackPower += buff.getAttackPower();
+                    hitPoint += (buff.getHitPoint() - buff.getHit());
+                    buffs.remove(buff);
+                }
+            }
         }
         checkBuffs();
     }

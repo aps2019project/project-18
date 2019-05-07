@@ -84,7 +84,7 @@ public class Buff {
     }
 
     public void aging() {
-        if (!infitinive && isContinious && executeTime == 0)
+        if (!infitinive && !isContinious && executeTime == 0)
             numberOfTurns--;
         if (executeTime > 0)
             executeTime--;
