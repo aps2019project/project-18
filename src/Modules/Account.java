@@ -19,7 +19,6 @@ public class Account implements Comparator {
     private String userName, passWord;
     private int winCount, money = 15000;
     private Collection collection = new Collection();
-    private Human player;
 
     private void doOrderInAccount() {
         String input;
@@ -156,10 +155,6 @@ public class Account implements Comparator {
 
     private void sortAccounts() {
         accounts.sort(this::compare);
-    }
-
-    public Human getPlayer() {
-        return player;
     }
 
     public static Account findAccount(String userName) {
