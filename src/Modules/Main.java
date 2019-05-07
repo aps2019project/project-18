@@ -2,14 +2,17 @@ package Modules;
 
 import Modules.GameBusiness.Game.Game;
 import View.View.ShowMain;
+import netscape.javascript.JSObject;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 
 public class Main {
     public static Scanner scanner = new Scanner(System.in);
     private static boolean exit = false;
-
     public static void main(String[] args) {
         Game.initializeItems();
         ShowMain.showMenu();

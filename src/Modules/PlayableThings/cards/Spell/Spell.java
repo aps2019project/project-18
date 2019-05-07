@@ -82,7 +82,9 @@ public class Spell extends Card {
 
     private void execute(Buff buff, Force force, String playerHaveTurn) {
         force.setAttackPower(force.getAttackPower() + buff.getAttackPower());
+        if (force.getAttackPower() < 0) force.setAttackPower(0);
         force.setHitPoint(force.getHitPoint() - buff.getHit());
+        if (force.getHitPoint() < 0) force.setHitPoint(0);
         if (force.getId().contains(playerHaveTurn)) {
             //own force
             force.diepell(false);
