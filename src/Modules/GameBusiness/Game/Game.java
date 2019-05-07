@@ -221,11 +221,7 @@ public abstract class Game {
                 }
             }
             for (int i = 1; i < splittedCommand.length; i++) {
-                if (!checkDeath(enemyForce))
-                    getForce(splittedCommand[i]).attack(enemyForce);
-                else {
-                    death(enemyForce);
-                }
+                getForce(splittedCommand[i]).attack(enemyForce , false ,false);
             }
         } else {
             attack(force, splittedCommand[0]);

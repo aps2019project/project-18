@@ -186,7 +186,9 @@ public abstract class Force extends Card {
                 }
             }
             force.hitPoint -= (attackPower - defence);
-            if (haveCounterAttack &canCounterAttack)
+            if (force.hitPoint < 0)
+                force.hitPoint = 0;
+            if (haveCounterAttack && canCounterAttack)
                 force.counterAttack(this);
         }
         else
