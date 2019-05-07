@@ -207,12 +207,17 @@ public abstract class Force extends Card {
     }
 
     public void defend(Force force){
-        force.hitPoint -= force.getAttackPower();
+        int counter = 0;
+        for (Buff buff : buffs){
+            if (buff.getHoly())
+                counter += buff.getHolyCount();
+        }
+        hitPoint -= (force.getAttackPower() -  counter);
     }
 
     public void counterAttack(Force force){
         for (Buff buff : buffs){
-            if (buff.getExecuteTime() == 0 && (buff.isDisarm() || buff.isStun()))
+            if ((buff.isDisarm() || buff.isStun()))
                 return;
         }
         force.defend(this);
