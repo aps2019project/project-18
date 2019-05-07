@@ -493,7 +493,7 @@ public class Shop {
         buff.setNumberOfTurns(4);
         buff.setBuff(true);
         cards.add(new Spell("AllPoison", "All enemy force poison for 4 turns", 1500, 8, targetAllEnemyForce).addBuff(buff));
-//todo
+
         cards.add(new Spell("Dispel", "Destroy all positive buff one enemy force or all negative buff one own force", 2100, 0, new Target()));
         buff = new Buff();
         buff.setHitPoint(-6);
