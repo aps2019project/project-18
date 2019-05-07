@@ -35,21 +35,6 @@ public class Minion extends Force {
         return false;
     }
 
-    //check syntax
-    public void attack(Force force) {
-        if (canAttack) {
-            //check on attack
-            super.attack(force);
-        }
-        else
-            System.out.println("you cant attack");
-    }
-
-    public void defend(Force force) {
-        //check on defence
-        super.defend(force);
-    }
-
     public void prepareForTurn(boolean isItMyTurn) {
         super.prepareForTurn(isItMyTurn);
         if (isItMyTurn) {
