@@ -69,7 +69,10 @@ public class Deck {
             Show.get().cardNotInDeckMessage();
             return;
         } else {
-            cards.remove(card);
+            if (card instanceof Hero)
+                this.hero = null;
+            else
+                cards.remove(card);
             Show.get().cardRemovedMessage();
             return;
         }
