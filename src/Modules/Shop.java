@@ -618,6 +618,7 @@ public class Shop {
         buff = new Buff();
         buff.setPoison(true);
         buff.setPoisonCount(3);
+        buff.setBuff(true);
         spell.addBuff(buff);
         specialPower.setSpell(spell);
         specialPower.setType(SpecialPowerType.ON_ATTACK);
@@ -646,8 +647,10 @@ public class Shop {
         spell = new Spell();
         buff = new Buff();
         buff.setHit(6);
+        buff.setBuff(true);
         buff.setExecuteTime(1);
         buff1 = new Buff();
+        buff1.setBuff(true);
         buff1.setHit(4);
         buff1.setExecuteTime(2);
         spell.addBuff(buff).addBuff(buff1);
@@ -659,6 +662,7 @@ public class Shop {
         buff = new Buff();
         buff.setHit(8);
         buff.setExecuteTime(1);
+        buff.setBuff(true);
         spell.addBuff(buff);
         specialPower.setSpell(spell);
         specialPower.setType(SpecialPowerType.ON_ATTACK);
@@ -668,6 +672,7 @@ public class Shop {
         buff = new Buff();
         buff.setHit(6);
         buff.setExecuteTime(1);
+        buff.setBuff(true);
         spell.addBuff(buff);
         specialPower.setSpell(spell);
         specialPower.setType(SpecialPowerType.ON_ATTACK);
