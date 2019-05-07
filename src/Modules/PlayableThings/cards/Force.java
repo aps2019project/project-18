@@ -30,6 +30,16 @@ public abstract class Force extends Card {
     }
 
     public void addBuff(Buff buff) {
+        for (SpecialPower specialPower : specialPowers){
+            if (specialPower.getType() == SpecialPowerType.ON_DEFENCE) {
+                if (specialPower.isDontAffectNegativeK() && buff.isNegative())
+                    return;
+                else if (specialPower.isDontAffectDisarm() && buff.isDisarm())
+                    return;
+                else if (specialPower.isDontAffectpoison() && buff.isPoison())
+                    return;
+            }
+        }
         buffs.add(buff);
     }
 
@@ -148,17 +158,28 @@ public abstract class Force extends Card {
                 return;
         }for (Buff buff : force.buffs){
             if (buff.getHoly())
-                defence++;
+                defence += buff.getHolyCount();
         }
         if (canAttack) {
             canAttack = false;
             canMove = false;
             for (SpecialPower specialPower: specialPowers){
-                if (specialPower.getType() == SpecialPowerType.ON_ATTACK)
+                if (specialPower.getType() == SpecialPowerType.ON_ATTACK) {
                     if (specialPower.getSpell() != null)
                         specialPower.getSpell().execute(force);
                     else if (specialPower.isDontAffectHoly())
                         defence = 0;
+                }
+            }
+            for (SpecialPower specialPower : force.specialPowers) {
+                if (specialPower.getType() == SpecialPowerType.ON_DEFENCE) {
+                    if (specialPower.isDontTakeDamageFromWeaker()) {
+                        if (force.getAttackPower() > attackPower)
+                            return;
+                    }
+                    else if (specialPower.isDontAffectNegativeK())
+                        return;
+                }
             }
             force.hitPoint -= force.getAttackPower();
         }
