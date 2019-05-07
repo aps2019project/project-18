@@ -80,17 +80,15 @@ public abstract class Player {
                 for (Item item : items) {
                     if (card instanceof Force) {
                         if (item instanceof Flag) {
-                            if (((Force) card).insert((Flag) item) != null)
-                                ((Force) card).insert(null).execute(game , x - 1 , y -1);
+                            ((Force) card).insert((Flag) item);
                             takeFlag();
                         } else {
                             this.items.add(item);
-                            if (((Force) card).insert(null) != null)
-                                ((Force) card).insert(null).execute(game , x - 1 , y -1);
                         }
-                        game.getPlayground().getGround()[x - 1][y - 1].removeItems();
                     }
                 }
+                game.getPlayground().getGround()[x - 1][y - 1].removeItems();
+                ((Force) card).insert(null).execute(game , x - 1 , y -1);
                 System.out.format("%s is inserted in (%d , %d)\n" , id , x ,y);
             }
             else
