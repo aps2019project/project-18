@@ -130,10 +130,6 @@ public class Buff {
         this.hit = hit;
     }
 
-    public void setHoly(Boolean holy) {
-        this.holy = holy;
-    }
-
     public void setKill(boolean kill) {
         this.kill = kill;
     }
@@ -253,5 +249,53 @@ public class Buff {
             attackedPerson.put(force , attackedPerson.get(force)+1);
             return value;
         }return 0;
+    }
+
+    public void setHoly(boolean holy) {
+        this.holy = holy;
+    }
+
+    public Buff getBuffCopy() {
+        return new Buff(this.numberOfTurns, this.executeTime, this.dimension, this.disarm, this.disarmCount,
+                this.attackPower, this.hitPoint, this.fireHouse, this.fireCount, this.poison, this.poisonCount,
+                this.hit, this.holy, this.holyCount, this.kill, this.stun, this.isContinious, this.infitinive,
+                this.deleteNegative, this.deletePositive, this.risingAttackWithTurns, new HashMap<Force, Integer>(),
+                this.dispel, this.rangeRising, this.buff);
+    }
+
+    private Buff(int numberOfTurns, int executeTime, int dimension, boolean disarm, int disarmCount, int attackPower,
+                 int hitPoint, boolean fireHouse, int fireCount, boolean poison, int poisonCount, int hit,
+                 boolean holy, int holyCount, boolean kill, boolean stun, boolean isContinious, boolean infitinive,
+                 boolean deleteNegative, boolean deletePositive, boolean risingAttackWithTurns,
+                 HashMap<Force, Integer> attackedPerson, boolean dispel, int rangeRising, boolean buff) {
+        this.numberOfTurns = numberOfTurns;
+        this.executeTime = executeTime;
+        this.dimension = dimension;
+        this.disarm = disarm;
+        this.disarmCount = disarmCount;
+        this.attackPower = attackPower;
+        this.hitPoint = hitPoint;
+        this.fireHouse = fireHouse;
+        this.fireCount = fireCount;
+        this.poison = poison;
+        this.poisonCount = poisonCount;
+        this.hit = hit;
+        this.holy = holy;
+        this.holyCount = holyCount;
+        this.kill = kill;
+        this.stun = stun;
+        this.isContinious = isContinious;
+        this.infitinive = infitinive;
+        this.deleteNegative = deleteNegative;
+        this.deletePositive = deletePositive;
+        this.risingAttackWithTurns = risingAttackWithTurns;
+        this.attackedPerson = attackedPerson;
+        this.dispel = dispel;
+        this.rangeRising = rangeRising;
+        this.buff = buff;
+    }
+
+    public Buff() {
+
     }
 }

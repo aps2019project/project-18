@@ -57,9 +57,9 @@ public class Hero extends Force {
     @Override
     public Card getCopyCard() {
         if (specialPowers.size() == 1)
-            return new Hero( name,  description,  price,  attackPower,  hitPoint,  attackType,  range,  spell ,  spellCoolDown,  spellMana ,  specialPowers.get(0));
+            return new Hero( name,  description,  price,  attackPower,  hitPoint,  attackType,  range,  (Spell) spell.getCopyCard() ,  spellCoolDown,  spellMana ,  specialPowers.get(0));
         else
-            return new Hero( name,  description,  price,  attackPower,  hitPoint,  attackType,  range,  spell ,  spellCoolDown,  spellMana ,  null);
+            return new Hero( name,  description,  price,  attackPower,  hitPoint,  attackType,  range,  (Spell) spell.getCopyCard() ,  spellCoolDown,  spellMana ,  null);
     }
 
     @Override
