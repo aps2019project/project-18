@@ -220,6 +220,20 @@ public abstract class Force extends Card {
         hitPoint -= (force.getAttackPower() -  counter);
     }
 
+    public void diepell(boolean positive){
+        for (Buff buff : buffs) {
+            if (buff.isPositive() == true && positive == true){
+                attackPower -= buff.getAttackPower();
+                hitPoint -= buff.getHitPoint();
+                buffs.remove(buff);
+            }else if (buff.isNegative() == true && positive == false){
+                attackPower -= buff.getAttackPower();
+                hitPoint -= buff.getHitPoint();
+                buffs.remove(buff);
+            }
+        }
+    }
+
     public void counterAttack(Force force){
         for (Buff buff : buffs){
             if ((buff.isDisarm() || buff.isStun()))
