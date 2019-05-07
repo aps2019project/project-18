@@ -1,5 +1,7 @@
 package Modules.GameBusiness.Game;
 
+import Modules.GameBusiness.Player.AI;
+import Modules.GameBusiness.Player.Human;
 import Modules.GameBusiness.Player.Player;
 import Modules.GameData;
 import Modules.PlayableThings.Item.Item;
@@ -140,7 +142,7 @@ public abstract class Game {
 
     public void attack(Force force, String defenderId) {
         if (canAttack(force.getId(), defenderId)) {
-            force.attack(getForce(defenderId) , true  ,canAttack(defenderId, force.getId()));
+            force.attack(getForce(defenderId), true, canAttack(defenderId, force.getId()));
             if (checkDeath(force)) {
                 death(force);
             }
@@ -221,7 +223,7 @@ public abstract class Game {
                 }
             }
             for (int i = 1; i < splittedCommand.length; i++) {
-                getForce(splittedCommand[i]).attack(enemyForce , false ,false);
+                getForce(splittedCommand[i]).attack(enemyForce, false, false);
             }
         } else {
             attack(force, splittedCommand[0]);
@@ -295,7 +297,7 @@ public abstract class Game {
         return (Force[]) cards.toArray();
     }
 
-    public void cancelGame(){
+    public void cancelGame() {
         cancel = true;
     }
 
@@ -349,6 +351,27 @@ public abstract class Game {
 
     private void doWhatNeedDoAfterGameEnd() {
         saveData();
+        handlePrize();
+    }
+
+    private void handlePrize() {
+        if (players[winnerPlayer - 1] instanceof AI) return;
+        if (players[winnerPlayer % 2] instanceof Human) {
+            players[winnerPlayer - 1].getAccount().winReward(100);
+            return;
+        }
+        AI ai = (AI) players[winnerPlayer % 2];
+        switch (ai.getAiLevel()) {
+            case 0:
+            case 2:
+                players[winnerPlayer - 1].getAccount().winReward(1000);
+                return;
+            case 1:
+                players[winnerPlayer - 1].getAccount().winReward(500);
+                return;
+            case 3:
+                players[winnerPlayer - 1].getAccount().winReward(1500);
+        }
     }
 
     private void saveData() {
