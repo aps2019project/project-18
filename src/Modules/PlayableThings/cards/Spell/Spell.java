@@ -71,7 +71,7 @@ public class Spell extends Card {
                 for (Integer[] integers : targets) {
                     Force force = (Force) game.getPlayground().getGround()[integers[0]][integers[1]].getCard();
                     if (buff.isBuff()) {
-                        force.addBuff(buff);
+                        force.addBuff(buff.getBuffCopy());
                     } else {
                         execute(buff, force);
                     }
