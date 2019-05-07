@@ -142,11 +142,24 @@ public abstract class Force extends Card {
     }
 
     public void attack(Force force){
+        int defence = 0;
+        for (Buff buff : buffs){
+            if (buff.isStun())
+                return;
+        }for (Buff buff : force.buffs){
+            if (buff.getHoly())
+                defence++;
+        }
         if (canAttack) {
-            force.defend(this);
             canAttack = false;
             canMove = false;
-            //check buffs
+            for (SpecialPower specialPower: specialPowers){
+                if (specialPower.getType() == SpecialPowerType.ON_ATTACK)
+                    if (specialPower.getSpell() != null)
+                        specialPower.getSpell().execute(force);
+                    else if (specialPower.isDontAffectHoly())
+                        defence = 0;
+            }
             force.hitPoint -= force.getAttackPower();
         }
         else
