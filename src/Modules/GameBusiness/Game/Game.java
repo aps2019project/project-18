@@ -123,24 +123,49 @@ public abstract class Game {
     }
 
     public void insertCardNearestToEnemyHero(Card card) {
-        int distance = 20;
-        for (int i = 0; i < 9; i++) {
+        int[] nearestPosition;
+        nearestPosition = getInsertablePlaces()[0];
+        for (int[] position : getInsertablePlaces()) {
+            if (distance(position, getPosition(getEnemyHero())) <
+                    distance(nearestPosition, getPosition(getEnemyHero()))) {
+                nearestPosition = position;
+            }
+        }
+        insertCard(card, nearestPosition[0], nearestPosition[1]);
+    }
+
+    private int[][] getInsertablePlaces() {
+        int[][] result = new int[2][];
+        int counter = 0;
+        for (int i = 0; i < 9; i++)
             for (int j = 0; j < 5; j++) {
                 if (playground.getGround()[i][j].getCard() != null &&
                         getMyPlayer().checkCard(playground.getGround()[i][j].getCardId())) {
-                    if (distance > distance(playground.getGround()[i][j].getCardId(),
-                            getEnemyPlayer().getHeroCard().getId())) {
-                        distance = distance(playground.getGround()[i][j].getCardId(),
-                                getEnemyPlayer().getHeroCard().getId());
-                    }
+                    for (int k = -1; k < 2; k++)
+                        for (int l = -1; l < 2; l++) {
+                            if (checkPlaceValidity(i + k, j + l) &&
+                                    playground.getGround()[i + k][j + l].getCard() == null) {
+                                result[0][counter] = i + k;
+                                result[1][counter] = j + l;
+                                counter++;
+                            }
+                        }
                 }
             }
-        }
+        return result;
+    }
+
+    private boolean checkPlaceValidity(int x, int y) {
+        return !(x > 9 || x < 0 || y > 5 || y < 0);
+    }
+
+    private int distance(int[] position1, int[] position2) {
+        return Math.abs(position1[0] - position2[0]) + Math.abs(position1[1] - position2[1]);
     }
 
     public void attack(Force force, String defenderId) {
         if (canAttack(force.getId(), defenderId)) {
-            force.attack(getForce(defenderId) , true  ,canAttack(defenderId, force.getId()));
+            force.attack(getForce(defenderId), true, canAttack(defenderId, force.getId()));
             if (checkDeath(force)) {
                 death(force);
             }
@@ -221,7 +246,7 @@ public abstract class Game {
                 }
             }
             for (int i = 1; i < splittedCommand.length; i++) {
-                getForce(splittedCommand[i]).attack(enemyForce , false ,false);
+                getForce(splittedCommand[i]).attack(enemyForce, false, false);
             }
         } else {
             attack(force, splittedCommand[0]);
@@ -295,7 +320,7 @@ public abstract class Game {
         return (Force[]) cards.toArray();
     }
 
-    public void cancelGame(){
+    public void cancelGame() {
         cancel = true;
     }
 
