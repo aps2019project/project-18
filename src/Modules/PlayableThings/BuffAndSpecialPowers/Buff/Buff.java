@@ -31,6 +31,14 @@ public class Buff {
     private int rangeRising = 0;
     private boolean buff;
 
+    public boolean isNegative(){
+        return poison || holyCount < 0 || hit > 0 || hitPoint < 0 || attackPower < 0 || disarm || stun || kill ;
+    }
+
+    public boolean isPositive(){
+        return attackPower > 0 || hitPoint > 0 || holyCount > 0;
+    }
+
     public boolean isBuff() {
         return buff;
     }

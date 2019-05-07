@@ -73,17 +73,35 @@ public class Spell extends Card {
                     if (buff.isBuff()) {
                         force.addBuff(buff.getBuffCopy());
                     } else {
-                        execute(buff, force);
+                        execute(buff, force, userNamePlayerHAveTurn);
                     }
                 }
             }
         }
     }
 
-    private void execute(Buff buff, Force force) {
+    private void execute(Buff buff, Force force, String playerHaveTurn) {
         force.setAttackPower(force.getAttackPower() + buff.getAttackPower());
         force.setHitPoint(force.getHitPoint() - buff.getHit());
+        if (force.getId().contains(playerHaveTurn)) {
+            //own force
+            force.diepell(false);
+        }
+        if (!force.getId().contains(playerHaveTurn)) {
+            //enemy force
+            force.diepell(true);
+        }
         //todo spell 19
+    }
+
+    public void executeOnAttack(Force force) {
+        for (Buff buff : buffs) {
+            if (buff.isDeletePositive()) {
+                force.diepell(true);
+            } else {
+                force.addBuff(buff);
+            }
+        }
     }
 
     public void execute(Game game, int x, int y) {

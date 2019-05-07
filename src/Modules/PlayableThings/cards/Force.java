@@ -30,7 +30,7 @@ public abstract class Force extends Card {
     }
 
     public void addBuff(Buff buff) {
-        /*for (SpecialPower specialPower : specialPowers){
+        for (SpecialPower specialPower : specialPowers){
             if (specialPower.getType() == SpecialPowerType.ON_DEFENCE) {
                 if (specialPower.isDontAffectNegativeK() && buff.isNegative())
                     return;
@@ -40,7 +40,7 @@ public abstract class Force extends Card {
                     return;
             }
         }
-        buffs.add(buff);*/
+        buffs.add(buff);
     }
 
     public Force(String name, String description, int price, int attackPower, int hitPoint, String attackType, int range, int manaPoint) {
@@ -208,11 +208,36 @@ public abstract class Force extends Card {
 
     public void defend(Force force){
         int counter = 0;
+        for (SpecialPower specialPower : specialPowers){
+            if (specialPower.getType() == SpecialPowerType.ON_DEFENCE && specialPower.isDontTakeDamageFromWeaker())
+                if (attackPower > force.attackPower)
+                    return;
+        }
         for (Buff buff : buffs){
             if (buff.getHoly())
                 counter += buff.getHolyCount();
         }
         hitPoint -= (force.getAttackPower() -  counter);
+    }
+
+    public void diepell(boolean positive){
+        for (Buff buff : buffs) {
+            if (buff.isPositive() == true && positive == true){
+                attackPower -= buff.getAttackPower();
+                hitPoint -= buff.getHitPoint();
+                if (buff.isContinious())
+                    buff.setExecuteTime(1);
+                else
+                    buffs.remove(buff);
+            }else if (buff.isNegative() == true && positive == false){
+                attackPower -= buff.getAttackPower();
+                hitPoint -= buff.getHitPoint();
+                if (buff.isContinious())
+                    buff.setExecuteTime(1);
+                else
+                    buffs.remove(buff);
+            }
+        }
     }
 
     public void counterAttack(Force force){

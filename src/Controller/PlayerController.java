@@ -28,6 +28,7 @@ public class PlayerController {
             }
             switch (request.getType()) {
                 case HELP:
+                    request.show();
                     human.showOptions(Show.get());
                     break;
                 case SELECT:
@@ -93,6 +94,8 @@ public class PlayerController {
                 case SHOW_CARDS:
                     human.showGraveyard(true, "");
                     break;
+                case HELP:
+                    request.show();
             }
         }
     }
@@ -181,6 +184,8 @@ public class PlayerController {
                 case SHOW_INFO:
                     human.showItem(id);
                     break;
+                case HELP:
+                    request.show();
             }
         }
     }

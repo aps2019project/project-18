@@ -493,7 +493,7 @@ public class Shop {
         buff.setNumberOfTurns(4);
         buff.setBuff(true);
         cards.add(new Spell("AllPoison", "All enemy force poison for 4 turns", 1500, 8, targetAllEnemyForce).addBuff(buff));
-//todo
+
         cards.add(new Spell("Dispel", "Destroy all positive buff one enemy force or all negative buff one own force", 2100, 0, new Target()));
         buff = new Buff();
         buff.setHitPoint(-6);
@@ -618,6 +618,7 @@ public class Shop {
         buff = new Buff();
         buff.setPoison(true);
         buff.setPoisonCount(3);
+        buff.setBuff(true);
         spell.addBuff(buff);
         specialPower.setSpell(spell);
         specialPower.setType(SpecialPowerType.ON_ATTACK);
@@ -646,8 +647,10 @@ public class Shop {
         spell = new Spell();
         buff = new Buff();
         buff.setHit(6);
+        buff.setBuff(true);
         buff.setExecuteTime(1);
         buff1 = new Buff();
+        buff1.setBuff(true);
         buff1.setHit(4);
         buff1.setExecuteTime(2);
         spell.addBuff(buff).addBuff(buff1);
@@ -659,6 +662,7 @@ public class Shop {
         buff = new Buff();
         buff.setHit(8);
         buff.setExecuteTime(1);
+        buff.setBuff(true);
         spell.addBuff(buff);
         specialPower.setSpell(spell);
         specialPower.setType(SpecialPowerType.ON_ATTACK);
@@ -668,6 +672,7 @@ public class Shop {
         buff = new Buff();
         buff.setHit(6);
         buff.setExecuteTime(1);
+        buff.setBuff(true);
         spell.addBuff(buff);
         specialPower.setSpell(spell);
         specialPower.setType(SpecialPowerType.ON_ATTACK);

@@ -13,6 +13,17 @@ import Modules.PlayableThings.cards.Spell.Spell;
 import java.util.ArrayList;
 
 public class AI extends Player {
+    int aiLevel;
+//i(omid) need this for handling prize
+
+    public void setAiLevel(int aiLevel) {
+        this.aiLevel = aiLevel;
+    }
+
+    public int getAiLevel() {
+        return aiLevel;
+    }
+
     int[] enemyHero;
 
     public AI(){

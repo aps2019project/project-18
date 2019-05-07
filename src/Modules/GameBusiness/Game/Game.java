@@ -1,5 +1,7 @@
 package Modules.GameBusiness.Game;
 
+import Modules.GameBusiness.Player.AI;
+import Modules.GameBusiness.Player.Human;
 import Modules.GameBusiness.Player.Player;
 import Modules.GameData;
 import Modules.PlayableThings.Item.Item;
@@ -374,6 +376,27 @@ public abstract class Game {
 
     private void doWhatNeedDoAfterGameEnd() {
         saveData();
+        handlePrize();
+    }
+
+    private void handlePrize() {
+        if (players[winnerPlayer - 1] instanceof AI) return;
+        if (players[winnerPlayer % 2] instanceof Human) {
+            players[winnerPlayer - 1].getAccount().winReward(100);
+            return;
+        }
+        AI ai = (AI) players[winnerPlayer % 2];
+        switch (ai.getAiLevel()) {
+            case 0:
+            case 2:
+                players[winnerPlayer - 1].getAccount().winReward(1000);
+                return;
+            case 1:
+                players[winnerPlayer - 1].getAccount().winReward(500);
+                return;
+            case 3:
+                players[winnerPlayer - 1].getAccount().winReward(1500);
+        }
     }
 
     private void saveData() {
