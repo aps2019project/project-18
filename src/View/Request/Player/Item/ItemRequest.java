@@ -22,6 +22,8 @@ public class ItemRequest extends MainRequest {
             return ItemRequestType.SHOW_INFO;
         } else if (command.length() >= 3 && command.substring(0, 2).equals(USE)) {
             return ItemRequestType.USE;
+        }else if(command.equals(HELP)){
+            return ItemRequestType.HELP;
         }
         return null;
     }
@@ -35,7 +37,7 @@ public class ItemRequest extends MainRequest {
     }
 
     private boolean checkUse(){
-        if (command.matches("Use\\[(\\d+),(\\d+)\\]"))
+        if (command.matches("Use\\((\\d+),(\\d+)\\)"))
             return true;
         System.out.println("Invalid syntax of use");
         return false;
@@ -43,7 +45,7 @@ public class ItemRequest extends MainRequest {
 
     public String returnCommand(){
         if (getType() == ItemRequestType.USE){
-            Pattern patternCardInfo = Pattern.compile("Use\\[(\\d+),(\\d+)\\]");
+            Pattern patternCardInfo = Pattern.compile("Use\\((\\d+),(\\d+)\\)");
             Matcher matcher = patternCardInfo.matcher(command);
             matcher.find();
             return matcher.group(1) + " " + matcher.group(2);
@@ -52,6 +54,10 @@ public class ItemRequest extends MainRequest {
     }
 
     public void show(){
-
+        System.out.println("commands:");
+        System.out.println("Exit");
+        System.out.println("Help");
+        System.out.println("Show info");
+        System.out.println("Use (x, y)");
     }
 }
