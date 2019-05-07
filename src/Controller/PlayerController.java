@@ -2,6 +2,7 @@ package Controller;
 
 import Modules.GameBusiness.Player.Human;
 import Modules.PlayableThings.cards.Force;
+import Modules.PlayableThings.cards.Hero;
 import View.Request.Player.CardRequests.CardRequest;
 import View.Request.Player.Graveyard.GraveyardRequest;
 import View.Request.Player.Item.ItemRequest;
@@ -133,8 +134,7 @@ public class PlayerController {
                     human.getGame().comboAttack(force, request.returnCommand());
                     break;
                 case HELP:
-                    human.getGame().showMovablePlaces(id);
-                    human.getGame().showAttackAbleCards();
+                    cardHelp(id);
                     break;
                 case MOVE:
                     human.move(force , request.returnCommand());
@@ -143,6 +143,21 @@ public class PlayerController {
                     //human.
                     break;
             }
+        }
+    }
+
+    private void cardHelp(String id){
+
+        CardRequest.show();
+        System.out.println("Others:");
+        Force force = human.getGame().getForce(id);
+        if (force.canMove())
+            human.getGame().showMovablePlaces(id);
+        if (force.canAttack())
+            human.getGame().showAttackAbleCards();
+        if (force instanceof Hero) {
+            Hero hero = (Hero)force;
+            System.out.println("Can use spell:" + hero.canUseSpell());
         }
     }
 
