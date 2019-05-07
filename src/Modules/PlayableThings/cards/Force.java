@@ -152,6 +152,16 @@ public abstract class Force extends Card {
         return canMove;
     }
 
+    public boolean canAttack(){
+        if (!canAttack)
+            return false;
+        for (Buff buff : buffs) {
+            if (buff.isStun())
+                return false;
+        }
+
+    }
+
     public void attack(Force force , boolean haveCounterAttack , boolean canCounterAttack){
         int defence = 0;
         for (Buff buff : buffs){

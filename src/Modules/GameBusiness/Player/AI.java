@@ -63,8 +63,15 @@ public class AI extends Player {
 
     private void attackAndMove(Force[] forces){
         for (Force force : forces){
-            judgeMove(force);
+            if (force.canMove())
+                judgeMove(force);
+            if (force.canAttack())
+                judgeAttack(force);
         }
+    }
+
+    private void judgeAttack(Force force){
+
     }
 
     public void setDeck(Deck deck){
