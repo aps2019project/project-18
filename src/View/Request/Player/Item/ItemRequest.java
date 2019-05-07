@@ -20,7 +20,7 @@ public class ItemRequest extends MainRequest {
             return ItemRequestType.EXIT;
         } else if (command.equals(SHOW_INFO)) {
             return ItemRequestType.SHOW_INFO;
-        } else if (command.substring(0, 2).equals(USE)) {
+        } else if (command.length() >= 3 && command.substring(0, 2).equals(USE)) {
             return ItemRequestType.USE;
         }
         return null;
