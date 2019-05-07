@@ -64,16 +64,18 @@ public class Deck {
         }
     }
 
-    public void removeCard(Card card) {
+    public void removeCard(Card card, boolean sell) {
         if (findCard(card.getId()) == null) {
-            Show.get().cardNotInDeckMessage();
+            if (!sell)
+                Show.get().cardNotInDeckMessage();
             return;
         } else {
             if (card instanceof Hero)
                 this.hero = null;
             else
                 cards.remove(card);
-            Show.get().cardRemovedMessage();
+            if (!sell)
+                Show.get().cardRemovedMessage();
             return;
         }
     }
@@ -89,13 +91,15 @@ public class Deck {
         }
     }
 
-    public void removeItem(Item item) {
+    public void removeItem(Item item, boolean sell) {
         if (this.item.getItemId().compareTo(item.getItemId()) == 0) {
             this.item = null;
-            Show.get().itemRemovedMessage();
+            if (!sell)
+                Show.get().itemRemovedMessage();
             return;
         } else {
-            Show.get().itemNotInDeckMessage();
+            if (!sell)
+                Show.get().itemNotInDeckMessage();
             return;
         }
     }

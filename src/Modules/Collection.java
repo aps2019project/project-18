@@ -45,9 +45,9 @@ public class Collection {
                 if (findDeck(input.split(" ")[4]) == null) {
                     Show.get().deckDoesNotExistMessage();
                 } else if (findCard(input.split(" ")[1]) != null) {
-                    findDeck(input.split(" ")[4]).removeCard(findCard(input.split(" ")[1]));
+                    findDeck(input.split(" ")[4]).removeCard(findCard(input.split(" ")[1]), false);
                 } else if (findItem(input.split(" ")[1]) != null) {
-                    findDeck(input.split(" ")[4]).removeItem(findItem(input.split(" ")[1]));
+                    findDeck(input.split(" ")[4]).removeItem(findItem(input.split(" ")[1]), false);
                 } else {
                     Show.get().itemOrCardNotInCollectionMessage();
                 }
@@ -118,9 +118,12 @@ public class Collection {
         }
     }
 
-    public void removeCard(Card card) {
+    public void removeCard(Card card, boolean sell) {
         if (findCard(card.getId()) != null) {
             cards.remove(card);
+            for (Deck deck : decks) {
+                deck.removeCard(card, sell);
+            }
             Show.get().cardRemovedMessage();
         } else {
             Show.get().cardNotInCollection();
@@ -146,9 +149,12 @@ public class Collection {
         }
     }
 
-    public void removeItem(Item item) {
+    public void removeItem(Item item, boolean sell) {
         if (findItem(item.getItemId()) != null) {
             items.remove(item);
+            for (Deck deck : decks) {
+                deck.removeItem(item, sell);
+            }
             Show.get().itemRemovedMessage();
         } else {
             Show.get().itemNotInCollectionMessage();

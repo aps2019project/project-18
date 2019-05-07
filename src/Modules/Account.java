@@ -31,7 +31,6 @@ public class Account implements Comparator {
                 Shop.getInstance().menu(this);
             } else if (input.equalsIgnoreCase("Battle")) {
                 if (this.getCollection().getMainDeck() != null && this.getCollection().getMainDeck().checkValidity() && this.getCollection().getMainDeck().checkValidity()) {
-                    this.player = new Human(this);
                     Battle.doOrder(this);
                 } else {
                     System.out.println("Main deck is not valid");
@@ -209,8 +208,8 @@ public class Account implements Comparator {
     public void sellCard(String id) {
         for (Card card : collection.getCards()) {
             if (card.getId().equalsIgnoreCase(id)) {
-                collection.removeCard(card);
-                money += card.getPrice();
+                collection.removeCard(card, true);
+                money += card.getPrice() / 10;
                 return;
             }
         }
@@ -220,8 +219,8 @@ public class Account implements Comparator {
     public void sellItem(String id) {
         for (Item item : collection.getItems()) {
             if (item.getItemId().equalsIgnoreCase(id)) {
-                collection.removeItem(item);
-                money += item.getPrice();
+                collection.removeItem(item, true);
+                money += item.getPrice() / 10;
                 return;
             }
         }
