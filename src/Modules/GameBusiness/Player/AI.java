@@ -49,8 +49,8 @@ public class AI extends Player {
 
     private void putCard(Card card) {
         //age gozashti ok bood true bede
-        if (game.insertCardNearestToEnemyHero(card))
-            manaPoint -= card.getManaPoint();
+        /*if (game.insertCardNearestToEnemyHero(card))
+            manaPoint -= card.getManaPoint();*/
     }
 
     private Card judgePutCard(Card[] cards){

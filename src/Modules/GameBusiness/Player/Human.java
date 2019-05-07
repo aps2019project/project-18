@@ -7,6 +7,7 @@ import View.View.Show;
 
 public class Human extends Player {
 
+
     public Human(Account account) {
         this.account = account;
         hand = new Hand(account.getCollection().getMainDeck());
@@ -19,7 +20,7 @@ public class Human extends Player {
     @Override
     public void playTurn(int turn) {
         super.playTurn(turn);
-        new PlayerController().handlePlayerCommands(this);
+        PlayerController.get().handlePlayerCommands(this);
         aging();
     }
 

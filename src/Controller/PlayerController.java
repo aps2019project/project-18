@@ -1,6 +1,7 @@
 package Controller;
 
 import Modules.GameBusiness.Player.Human;
+import Modules.GameBusiness.Player.Player;
 import Modules.PlayableThings.cards.Force;
 import Modules.PlayableThings.cards.Hero;
 import View.Request.Player.CardRequests.CardRequest;
@@ -11,6 +12,15 @@ import View.Request.Player.PlayerRequest;
 
 public class PlayerController {
     private Human human;
+    private final static PlayerController playerController = new PlayerController();
+
+    private PlayerController(){
+
+    }
+
+    public static PlayerController get(){
+        return playerController;
+    }
 
     public void handlePlayerCommands(Human haman) {
         this.human = human;
