@@ -159,7 +159,7 @@ public abstract class Force extends Card {
             if (buff.isStun())
                 return false;
         }
-
+        return true;
     }
 
     public void attack(Force force , boolean haveCounterAttack , boolean canCounterAttack){
