@@ -13,7 +13,7 @@ public class Hand {
     private Graveyard graveyard;
 
     public Hand (Deck deck) {
-        this.deck = deck;
+        this.deck = deck.getDeckCopy();
         for (int i = 0; i < 5; i++)
             this.hand[i] = deck.getRandomCard();
         this.nextCard = deck.getRandomCard();
