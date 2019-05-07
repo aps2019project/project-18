@@ -48,7 +48,8 @@ public class AI extends Player {
     }
 
     private void putCard(Card card) {
-        game.insertCardNearestToEnemyHero(card);
+        if (game.insertCardNearestToEnemyHero(card))
+            manaPoint -= card.getManaPoint();
     }
 
     private Card judgePutCard(Card[] cards){
