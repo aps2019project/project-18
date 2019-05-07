@@ -140,10 +140,7 @@ public abstract class Game {
 
     public void attack(Force force, String defenderId) {
         if (canAttack(force.getId(), defenderId)) {
-            force.attack(getForce(defenderId));
-            if (canAttack(defenderId, force.getId())) {
-                getForce(defenderId).counterAttack(force);
-            }
+            force.attack(getForce(defenderId) , true  ,canAttack(defenderId, force.getId()));
             if (checkDeath(force)) {
                 death(force);
             }

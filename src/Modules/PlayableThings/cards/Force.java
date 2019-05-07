@@ -152,7 +152,7 @@ public abstract class Force extends Card {
         return canMove;
     }
 
-    public void attack(Force force , boolean haveCounterAttack){
+    public void attack(Force force , boolean haveCounterAttack , boolean canCounterAttack){
         int defence = 0;
         for (Buff buff : buffs){
             if (buff.isStun())
@@ -186,7 +186,7 @@ public abstract class Force extends Card {
                 }
             }
             force.hitPoint -= (attackPower - defence);
-            if (haveCounterAttack)
+            if (haveCounterAttack &canCounterAttack)
                 force.counterAttack(this);
         }
         else
