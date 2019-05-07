@@ -113,7 +113,7 @@ public class Collection {
     public void addCard(Card card) {
         cards.add(card);
             helpToShowOrNotShowCardAdd++;
-        if (helpToShowOrNotShowCardAdd > 19) {
+        if (helpToShowOrNotShowCardAdd > 21) {
             Show.get().cardAddMessage();
         }
     }
