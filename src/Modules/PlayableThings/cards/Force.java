@@ -30,6 +30,16 @@ public abstract class Force extends Card {
     }
 
     public void addBuff(Buff buff) {
+        for (SpecialPower specialPower : specialPowers){
+            if (specialPower.getType() == SpecialPowerType.ON_DEFENCE) {
+                if (specialPower.isDontAffectNegativeK() && buff.isNegative())
+                    return;
+                else if (specialPower.isDontAffectDisarm() && buff.isDisarm())
+                    return;
+                else if (specialPower.isDontAffectpoison() && buff.isPoison())
+                    return;
+            }
+        }
         buffs.add(buff);
     }
 
@@ -126,7 +136,8 @@ public abstract class Force extends Card {
     }
 
     public void takeFlag(Flag flag) {
-        flags.add(flag);
+        if (flag != null)
+            flags.add(flag);
     }
 
     public void moved() {
@@ -141,13 +152,44 @@ public abstract class Force extends Card {
         return canMove;
     }
 
-    public void attack(Force force){
+    public void attack(Force force , boolean haveCounterAttack , boolean canCounterAttack){
+        int defence = 0;
+        for (Buff buff : buffs){
+            if (buff.isStun())
+                return;
+        }for (Buff buff : force.buffs){
+            if (buff.getHoly())
+                defence += buff.getHolyCount();
+        }
         if (canAttack) {
-            force.defend(this);
             canAttack = false;
             canMove = false;
-            //check buffs
-            force.hitPoint -= force.getAttackPower();
+            for (SpecialPower specialPower: specialPowers){
+                if (specialPower.getType() == SpecialPowerType.ON_ATTACK) {
+                    if (specialPower.getSpell() != null)
+                        specialPower.getSpell().execute(force);
+                    else if (specialPower.isDontAffectHoly())
+                        defence = 0;
+                    for (Buff buff : specialPower.getSpell().getBuffs())
+                        if (buff.isRisingAttackWithTurns())
+                            defence -= buff.isAttacked(force)*5;
+                }
+            }
+            for (SpecialPower specialPower : force.specialPowers) {
+                if (specialPower.getType() == SpecialPowerType.ON_DEFENCE) {
+                    if (specialPower.isDontTakeDamageFromWeaker()) {
+                        if (force.getAttackPower() > attackPower)
+                            return;
+                    }
+                    else if (specialPower.isDontAffectNegativeK())
+                        return;
+                }
+            }
+            force.hitPoint -= (attackPower - defence);
+            if (force.hitPoint < 0)
+                force.hitPoint = 0;
+            if (haveCounterAttack && canCounterAttack)
+                force.counterAttack(this);
         }
         else
             System.out.println("This card has attacked");

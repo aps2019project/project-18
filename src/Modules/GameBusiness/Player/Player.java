@@ -82,11 +82,13 @@ public abstract class Player {
                         if (item instanceof Flag) {
                             ((Force) card).insert((Flag) item);
                             takeFlag();
-                        } else
+                        } else {
                             this.items.add(item);
-                        game.getPlayground().getGround()[x - 1][y - 1].removeItems();
+                        }
                     }
                 }
+                game.getPlayground().getGround()[x - 1][y - 1].removeItems();
+                ((Force) card).insert(null).execute(game , x - 1 , y -1);
                 System.out.format("%s is inserted in (%d , %d)\n" , id , x ,y);
             }
             else

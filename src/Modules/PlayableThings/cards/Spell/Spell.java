@@ -31,6 +31,10 @@ public class Spell extends Card {
 
     }
 
+    public ArrayList<Buff> getBuffs() {
+        return buffs;
+    }
+
     public Spell setTarget(Target target) {
         this.target = target;
         return this;
