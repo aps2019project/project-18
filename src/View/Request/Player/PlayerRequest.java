@@ -120,6 +120,19 @@ public class PlayerRequest extends MainRequest {
     }
 
     public void show(){
-
+        System.out.println("commands:");
+        System.out.println(GAME_INFO);
+        System.out.println(SHOW_MY_MINIONS);
+        System.out.println(SHOW_OPPONENT_MINIONS);
+        System.out.println("Show card info id");
+        System.out.println("Select id");
+        System.out.println("Insert id");
+        System.out.println(SHOW_HAND);
+        System.out.println(END_TURN);
+        System.out.println(SHOW_ITEMS);
+        System.out.println(SHOW_NEXT_CARD);
+        System.out.println(END_TURN);
+        System.out.println(HELP);
+        System.out.println(CANCEL);
     }
 }
