@@ -95,18 +95,21 @@ public class SinglePlayer {
 
     private static AI levelOne() {
         AI ai = new AI();
+        ai.setAiLevel(1);
         ai.setDeck(Shop.getInstance().getDeckLevelOne());
         return ai;
     }
 
     private static AI levelTwo() {
         AI ai = new AI();
+        ai.setAiLevel(2);
         ai.setDeck(Shop.getInstance().getDeckLevelTwo());
         return ai;
     }
 
     private static AI levelThree() {
         AI ai = new AI();
+        ai.setAiLevel(3);
         ai.setDeck(Shop.getInstance().getDeckLevelThree());
         return ai;
     }

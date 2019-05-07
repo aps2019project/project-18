@@ -94,6 +94,16 @@ public class Spell extends Card {
         //todo spell 19
     }
 
+    public void executeOnAttack(Force force) {
+        for (Buff buff : buffs) {
+            if (buff.isDeletePositive()) {
+                force.diepell(true);
+            } else {
+                force.addBuff(buff);
+            }
+        }
+    }
+
     public void execute(Game game, int x, int y) {
         targets = target.getTargets(game, x, y, id.split("_")[0]);
     }

@@ -278,10 +278,6 @@ public class Account implements Comparator {
         return collection;
     }
 
-    public void beginGame() {
-        // TODO:
-    }
-
     public void showLeaderboard() {
         sortAccounts();
         int i = 1;
