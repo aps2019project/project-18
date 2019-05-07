@@ -147,8 +147,7 @@ public class PlayerController {
     }
 
     private void cardHelp(String id){
-
-        CardRequest.show();
+        new CardRequest().show();
         System.out.println("Others:");
         Force force = human.getGame().getForce(id);
         if (force.canMove())

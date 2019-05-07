@@ -105,7 +105,7 @@ public class CardRequest extends MainRequest {
         return null;
     }
 
-    public static void show(){
+    public void show(){
         System.out.println("commands:");
         System.out.println("Exit");
         System.out.println("Help");

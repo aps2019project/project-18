@@ -9,6 +9,7 @@ public class GraveyardRequest extends MainRequest {
     private static final String EXIT = "Exit";
     private static final String SHOW_CARD = "Show info";
     private static final String SHOW_CARDS = "Show cards";
+    private static final String HELP = "Help";
 
     public GraveyardRequestType getType() {
         if (command == null || command.equals("")) {
@@ -20,7 +21,8 @@ public class GraveyardRequest extends MainRequest {
             return GraveyardRequestType.SHOW_CARD;
         } else if (command.equals(SHOW_CARDS)) {
             return GraveyardRequestType.SHOW_CARDS;
-        }
+        }else if (command.equals(HELP))
+            return GraveyardRequestType.HELP;
         return null;
     }
 
@@ -47,5 +49,9 @@ public class GraveyardRequest extends MainRequest {
             return matcher.group(1);
         }
         return null;
+    }
+
+    public void show(){
+
     }
 }

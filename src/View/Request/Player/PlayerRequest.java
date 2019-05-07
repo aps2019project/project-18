@@ -118,4 +118,8 @@ public class PlayerRequest extends MainRequest {
         }
         return null;
     }
+
+    public void show(){
+
+    }
 }
