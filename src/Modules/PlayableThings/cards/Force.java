@@ -176,8 +176,9 @@ public abstract class Force extends Card {
             canMove = false;
             for (SpecialPower specialPower: specialPowers){
                 if (specialPower.getType() == SpecialPowerType.ON_ATTACK) {
-                    if (specialPower.getSpell() != null)
-                        specialPower.getSpell().execute(force);
+                    if (specialPower.getSpell() != null) {
+                        //specialPower.getSpell().execute(force);
+                    }
                     else if (specialPower.isDontAffectHoly())
                         defence = 0;
                     for (Buff buff : specialPower.getSpell().getBuffs())
