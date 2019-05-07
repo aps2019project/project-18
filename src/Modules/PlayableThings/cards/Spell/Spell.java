@@ -72,6 +72,8 @@ public class Spell extends Card {
                     Force force = (Force) game.getPlayground().getGround()[integers[0]][integers[1]].getCard();
                     if (buff.isBuff()) {
                         force.addBuff(buff.getBuffCopy());
+                        force.setAttackPower(force.getAttackPower() + buff.getAttackPower());
+                        force.setHitPoint(force.getHitPoint() + buff.getHitPoint());
                     } else {
                         execute(buff, force, userNamePlayerHAveTurn);
                     }
