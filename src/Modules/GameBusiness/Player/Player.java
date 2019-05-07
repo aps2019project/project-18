@@ -80,10 +80,14 @@ public abstract class Player {
                 for (Item item : items) {
                     if (card instanceof Force) {
                         if (item instanceof Flag) {
-                            ((Force) card).insert((Flag) item);
+                            if (((Force) card).insert((Flag) item) != null)
+                                ((Force) card).insert(null).execute(game , x - 1 , y -1);
                             takeFlag();
-                        } else
+                        } else {
                             this.items.add(item);
+                            if (((Force) card).insert(null) != null)
+                                ((Force) card).insert(null).execute(game , x - 1 , y -1);
+                        }
                         game.getPlayground().getGround()[x - 1][y - 1].removeItems();
                     }
                 }

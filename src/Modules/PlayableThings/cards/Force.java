@@ -136,7 +136,8 @@ public abstract class Force extends Card {
     }
 
     public void takeFlag(Flag flag) {
-        flags.add(flag);
+        if (flag != null)
+            flags.add(flag);
     }
 
     public void moved() {
