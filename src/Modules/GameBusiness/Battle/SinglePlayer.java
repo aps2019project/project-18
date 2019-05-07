@@ -6,6 +6,7 @@ import Modules.GameBusiness.Game.ModeCaptureFlag6Turn;
 import Modules.GameBusiness.Game.ModeCaptureHalfFlags;
 import Modules.GameBusiness.Game.ModeKillEnemyHero;
 import Modules.GameBusiness.Player.AI;
+import Modules.GameBusiness.Player.Human;
 import Modules.Main;
 import Modules.Shop;
 import View.View.ShowBattle;
@@ -37,14 +38,14 @@ public class SinglePlayer {
         while (true) {
             String string = Main.scanner.nextLine().trim();
             if (string.equalsIgnoreCase("Kill enemy hero")) {
-                return new ModeKillEnemyHero(account.getPlayer(), ai);
+                return new ModeKillEnemyHero(new Human(account), ai);
             } else if (string.equalsIgnoreCase("Capture flag for 6 turn")) {
-                return new ModeCaptureFlag6Turn(account.getPlayer(), ai);
+                return new ModeCaptureFlag6Turn(new Human(account), ai);
             } else if (string.split(" ")[0].equalsIgnoreCase("Capture more than half flags")) {
                 if (string.split(" ").length > 1) {
-                    return new ModeCaptureHalfFlags(account.getPlayer(), ai, Integer.parseInt(string.trim().split(" ")[1]));
+                    return new ModeCaptureHalfFlags(new Human(account), ai, Integer.parseInt(string.trim().split(" ")[1]));
                 } else {
-                    return new ModeCaptureHalfFlags(account.getPlayer(), ai);
+                    return new ModeCaptureHalfFlags(new Human(account), ai);
                 }
             } else if (string.equalsIgnoreCase("Help")) {
                 ShowBattle.showHelpGameModeMenu();

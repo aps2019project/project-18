@@ -5,6 +5,12 @@ import Modules.PlayableThings.cards.Card;
 public class Playground {
     private House[][] houses = new House[9][5];
 
+    public Playground() {
+        for (int i = 0; i < 9; i++)
+            for (int j = 0; j < 5; j++)
+                houses[i][j] = new House();
+    }
+
     public void move(int homeX, int homeY, int destinationX, int destinationY) {
         houses[destinationX][destinationY].setCard(houses[homeX][homeY].getCard());
         houses[homeX][homeY].removeCard();

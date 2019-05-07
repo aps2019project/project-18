@@ -4,6 +4,7 @@ import Modules.Account;
 import Modules.GameBusiness.Game.ModeCaptureFlag6Turn;
 import Modules.GameBusiness.Game.ModeCaptureHalfFlags;
 import Modules.GameBusiness.Game.ModeKillEnemyHero;
+import Modules.GameBusiness.Player.Human;
 import Modules.Main;
 import View.View.Show;
 import View.View.ShowBattle;
@@ -48,21 +49,21 @@ public class MultiPlayer {
         while (whileFlag) {
             String string = Main.scanner.nextLine().trim();
             if (string.equalsIgnoreCase("Kill enemy hero")) {
-                ModeKillEnemyHero modeKillEnemyHero = new ModeKillEnemyHero(account.getPlayer(), enemyAccount.getPlayer());
+                ModeKillEnemyHero modeKillEnemyHero = new ModeKillEnemyHero(new Human(account), new Human(enemyAccount));
                 modeKillEnemyHero.turn();
                 whileFlag = false;
             } else if (string.equalsIgnoreCase("Capture flag for 6 turn")) {
-                ModeCaptureFlag6Turn modeCaptureFlag6Turn = new ModeCaptureFlag6Turn(account.getPlayer(), enemyAccount.getPlayer());
+                ModeCaptureFlag6Turn modeCaptureFlag6Turn = new ModeCaptureFlag6Turn(new Human(account), new Human(enemyAccount));
                 modeCaptureFlag6Turn.turn();
                 whileFlag = false;
             } else if (string.split(" ")[0].equalsIgnoreCase("Capture more than half flags")) {
                 if (string.split(" ").length > 1) {
-                    ModeCaptureHalfFlags modeCaptureHalfFlags = new ModeCaptureHalfFlags(account.getPlayer(), enemyAccount.getPlayer(),
+                    ModeCaptureHalfFlags modeCaptureHalfFlags = new ModeCaptureHalfFlags(new Human(account), new Human(enemyAccount),
                             Integer.parseInt(string.trim().split(" ")[1]));
                     modeCaptureHalfFlags.turn();
                     whileFlag = false;
                 } else {
-                    ModeCaptureHalfFlags modeCaptureHalfFlags = new ModeCaptureHalfFlags(account.getPlayer(), enemyAccount.getPlayer());
+                    ModeCaptureHalfFlags modeCaptureHalfFlags = new ModeCaptureHalfFlags(new Human(account), new Human(enemyAccount));
                     modeCaptureHalfFlags.turn();
                     whileFlag = false;
                 }
