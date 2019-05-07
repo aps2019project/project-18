@@ -15,4 +15,6 @@ public abstract class MainRequest {
     public String getCommand(){
         return command;
     }
+
+    public abstract void show();
 }

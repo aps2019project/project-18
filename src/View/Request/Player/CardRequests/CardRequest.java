@@ -80,7 +80,7 @@ public class CardRequest extends MainRequest {
         Pattern patternAttack = Pattern.compile("Attack (\\w+_\\w+_\\d+)");
         Pattern patternComboAttack = Pattern.compile("(\\w+_\\w+_\\d+)");
         Pattern patternMove = Pattern.compile("Move to \\((\\d+), (\\d+)\\)");
-        Pattern patternSpecialPower = Pattern.compile("Use special power \\((\\d+); (\\d+)\\)");
+        Pattern patternSpecialPower = Pattern.compile("Use special power \\((\\d+), (\\d+)\\)");
         Matcher matcher;
         switch (getType()) {
             case MOVE:
@@ -106,6 +106,12 @@ public class CardRequest extends MainRequest {
     }
 
     public void show(){
-        System.out.println();
+        System.out.println("commands:");
+        System.out.println("Exit");
+        System.out.println("Help");
+        System.out.println("Move to (x, y)");
+        System.out.println("Attack combo enemy_id other_combo_minion other_combo_minion ....");
+        System.out.println("Attack enemy_id");
+        System.out.println("Use special power (x, y)");
     }
 }

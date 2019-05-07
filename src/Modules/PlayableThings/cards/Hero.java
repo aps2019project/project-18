@@ -47,6 +47,12 @@ public class Hero extends Force {
         }
     }
 
+    public boolean canUseSpell(){
+        if (spell != null && usedSpellCoolDown == 0)
+            return true;
+        return false;
+    }
+
     @Override
     public void agging() {
         if (usedSpellCoolDown > 0)

@@ -179,7 +179,7 @@ public abstract class Force extends Card {
                     if (specialPower.getSpell() != null) {
                         //specialPower.getSpell().execute(force);
                     }
-                    else if (specialPower.isDontAffectHoly())
+                    if (specialPower.isDontAffectHoly())
                         defence = 0;
                     for (Buff buff : specialPower.getSpell().getBuffs())
                         if (buff.isRisingAttackWithTurns())
