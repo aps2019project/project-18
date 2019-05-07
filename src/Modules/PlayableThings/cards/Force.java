@@ -123,14 +123,32 @@ public abstract class Force extends Card {
         Iterator<Buff> iterator = buffs.iterator();
         while (iterator.hasNext()) {
             Buff buff = iterator.next();
-            if (buff.getNumberOfTurns() == 0 && !buff.isContinious() && !buff.isInfinitive() && buff.getExecuteTime() == 0)
+            if (buff.getNumberOfTurns() == 0 && !buff.isContinious() && !buff.isInfinitive() && buff.getExecuteTime() == 0) {
+                attackPower -= buff.getAttackPower();
+                hitPoint -= buff.getHitPoint();
                 iterator.remove();
+            }
         }
     }
 
     public void agging() {
-        for (Buff buff : buffs) {
+        for (int i = buffs.size() - 1 ;i >= 0 ; i--) {
+            boolean canNotExcute = false;
+            boolean canExcute = false;
+            Buff buff = buffs.get(i);
+            if (buff.getExecuteTime() > 0)
+                canNotExcute = true;
             buff.aging();
+            if (buff.getExecuteTime() == 0) {
+                canExcute = true;
+            }
+            if (canExcute && canNotExcute) {
+                if (!buff.isBuff()) {
+                    attackPower += buff.getAttackPower();
+                    hitPoint += (buff.getHitPoint() - buff.getHit());
+                    buffs.remove(buff);
+                }
+            }
         }
         checkBuffs();
     }
@@ -168,7 +186,7 @@ public abstract class Force extends Card {
             if (buff.isStun())
                 return;
         }for (Buff buff : force.buffs){
-            if (buff.getHoly())
+            if (buff.getHoly() && buff.getExecuteTime() == 0)
                 defence += buff.getHolyCount();
         }
         if (canAttack) {
@@ -177,12 +195,12 @@ public abstract class Force extends Card {
             for (SpecialPower specialPower: specialPowers){
                 if (specialPower.getType() == SpecialPowerType.ON_ATTACK) {
                     if (specialPower.getSpell() != null) {
-                        //specialPower.getSpell().execute(force);
+                        specialPower.getSpell().executeOnAttack(force);
                     }
                     if (specialPower.isDontAffectHoly())
                         defence = 0;
                     for (Buff buff : specialPower.getSpell().getBuffs())
-                        if (buff.isRisingAttackWithTurns())
+                        if (buff.isRisingAttackWithTurns() && buff.getExecuteTime() == 0)
                             defence -= buff.isAttacked(force)*5;
                 }
             }
@@ -214,7 +232,7 @@ public abstract class Force extends Card {
                     return;
         }
         for (Buff buff : buffs){
-            if (buff.getHoly())
+            if (buff.getHoly() && buff.getExecuteTime() == 0)
                 counter += buff.getHolyCount();
         }
         hitPoint -= (force.getAttackPower() -  counter);
@@ -242,7 +260,7 @@ public abstract class Force extends Card {
 
     public void counterAttack(Force force){
         for (Buff buff : buffs){
-            if ((buff.isDisarm() || buff.isStun()))
+            if ((buff.isDisarm() || buff.isStun()) && buff.getExecuteTime() == 0)
                 return;
         }
         force.defend(this);
