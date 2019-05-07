@@ -71,7 +71,7 @@ public class Spell extends Card {
                 for (Integer[] integers : targets) {
                     Force force = (Force) game.getPlayground().getGround()[integers[0]][integers[1]].getCard();
                     if (buff.isBuff()) {
-                        force.addBuff(buff);
+                        force.addBuff(buff.getBuffCopy());
                     } else {
                         execute(buff, force);
                     }
@@ -92,7 +92,15 @@ public class Spell extends Card {
 
     @Override
     public Card getCopyCard() {
-        return new Spell(this.name, this.description, this.price, this.manaPoint, this.target, buffs);
+        return new Spell(this.name, this.description, this.price, this.manaPoint, this.target.getCopy(),
+                this.getBuffsCopy());
+    }
+
+    public ArrayList<Buff> getBuffsCopy() {
+        ArrayList<Buff> result = new ArrayList<>();
+        for (Buff buff : buffs)
+            result.add(buff.getBuffCopy());
+        return result;
     }
 
     @Override
