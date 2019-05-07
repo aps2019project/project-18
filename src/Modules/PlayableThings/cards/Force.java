@@ -148,6 +148,10 @@ public abstract class Force extends Card {
                     hitPoint += (buff.getHitPoint() - buff.getHit());
                     buffs.remove(buff);
                 }
+                else {
+                    attackPower += buff.getAttackPower();
+                    hitPoint += buff.getHitPoint();
+                }
             }
         }
         checkBuffs();
