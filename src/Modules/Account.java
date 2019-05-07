@@ -291,6 +291,16 @@ public class Account implements Comparator {
         }
     }
 
+    public static void showOpponents(String username) {
+        int i = 1;
+        for (Account account : accounts) {
+            if (!account.getUserName().equals(username)) {
+                ShowAccount.showOpponent(i, account.getUserName());
+                i++;
+            }
+        }
+    }
+
     public void setUserName(String userName) {
         this.userName = userName;
     }
