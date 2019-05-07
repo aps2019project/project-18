@@ -52,6 +52,10 @@ public class GraveyardRequest extends MainRequest {
     }
 
     public void show(){
-
+        System.out.println("commands:");
+        System.out.println("Exit");
+        System.out.println("Help");
+        System.out.println("Show cards");
+        System.out.println("Show info id");
     }
 }
