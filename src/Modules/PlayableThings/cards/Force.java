@@ -152,7 +152,7 @@ public abstract class Force extends Card {
         return canMove;
     }
 
-    public void attack(Force force){
+    public void attack(Force force , boolean haveCounterAttack){
         int defence = 0;
         for (Buff buff : buffs){
             if (buff.isStun())
@@ -170,6 +170,9 @@ public abstract class Force extends Card {
                         specialPower.getSpell().execute(force);
                     else if (specialPower.isDontAffectHoly())
                         defence = 0;
+                    for (Buff buff : specialPower.getSpell().getBuffs())
+                        if (buff.isRisingAttackWithTurns())
+                            defence -= buff.isAttacked(force)*5;
                 }
             }
             for (SpecialPower specialPower : force.specialPowers) {
@@ -182,7 +185,9 @@ public abstract class Force extends Card {
                         return;
                 }
             }
-            force.hitPoint -= force.getAttackPower();
+            force.hitPoint -= (attackPower - defence);
+            if (haveCounterAttack)
+                force.counterAttack(this);
         }
         else
             System.out.println("This card has attacked");

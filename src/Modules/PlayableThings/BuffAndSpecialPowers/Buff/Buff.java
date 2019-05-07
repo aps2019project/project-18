@@ -5,20 +5,20 @@ import Modules.PlayableThings.cards.Force;
 import java.util.HashMap;
 
 public class Buff {
-    private int numberOfTurns;
-    private int executeTime;
-    private int dimension;
+    private int numberOfTurns = 0;
+    private int executeTime = 0;
+    private int dimension = 0;
     private boolean disarm;
-    private int disarmCount;
-    private int attackPower;
-    private int hitPoint;
+    private int disarmCount = 0;
+    private int attackPower = 0;
+    private int hitPoint = 0;
     private boolean fireHouse;
-    private int fireCount;
+    private int fireCount = 0;
     private boolean poison;
-    private int poisonCount;
-    private int hit;
-    private Boolean holy;
-    private int holyCount;
+    private int poisonCount = 0;
+    private int hit = 0;
+    private boolean holy;
+    private int holyCount = 0;
     private boolean kill;
     private boolean stun;
     private boolean isContinious;
@@ -28,7 +28,7 @@ public class Buff {
     private boolean risingAttackWithTurns;
     private HashMap<Force, Integer> attackedPerson = new HashMap<>();
     private boolean dispel;
-    private int rangeRising;
+    private int rangeRising = 0;
     private boolean buff;
 
     public boolean isBuff() {
@@ -244,5 +244,14 @@ public class Buff {
 
     public int getRangeRising() {
         return rangeRising;
+    }
+
+    public int isAttacked(Force force){
+        if (risingAttackWithTurns)
+        if (attackedPerson.containsKey(force)){
+            int value = attackedPerson.get(force);
+            attackedPerson.put(force , attackedPerson.get(force)+1);
+            return value;
+        }return 0;
     }
 }
