@@ -390,4 +390,35 @@ public class Target {
         c[0][1] = b[random][1];
         return c;
     }
+
+    public Target getCopy(){
+        return new Target(this.ground, this.dimension, this.distance, this.all, this.ally, this.count, this.hero, this.minion, this.aroundHero, this.hybride, this.ranged, this.melee, this.row, this.column, this.game, this.graveyard, this.aroundIt, this.it, this.hand,  this.random);
+    }
+
+    private Target(boolean ground, int dimension, int distance, boolean all, Boolean ally, int count, boolean hero, boolean minion, boolean aroundHero, boolean hybride, boolean ranged, boolean melee, boolean row, boolean column, boolean game, boolean graveyard, boolean aroundIt, boolean it, boolean hand, boolean random) {
+        this.ground = ground;
+        this.dimension = dimension;
+        this.distance = distance;
+        this.all = all;
+        this.ally = ally;
+        this.count = count;
+        this.hero = hero;
+        this.minion = minion;
+        this.aroundHero = aroundHero;
+        this.hybride = hybride;
+        this.ranged = ranged;
+        this.melee = melee;
+        this.row = row;
+        this.column = column;
+        this.game = game;
+        this.graveyard = graveyard;
+        this.aroundIt = aroundIt;
+        this.it = it;
+        this.hand = hand;
+        this.random = random;
+    }
+
+    public Target(){
+
+    }
 }
