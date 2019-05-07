@@ -12,7 +12,7 @@ import View.View.ShowMultiPlayer;
 
 public class MultiPlayer {
     public static void doOrder(Account account) {
-        new Account().showLeaderboard();
+        Account.showOpponents(account.getUserName());
         ShowMultiPlayer.showMenu();
         while (true) {
             String[] order = Main.scanner.nextLine().trim().split(" ");

@@ -42,6 +42,10 @@ public class ShowAccount {
     }
 
     public static void showLeaderboard(int i, String userName, int winCount) {
-        System.out.println(i + "-UserName : " + userName + " Wins : " + winCount);
+        System.out.println(i + " - UserName : " + userName + " Wins : " + winCount);
+    }
+
+    public static void showOpponent(int i, String username) {
+        System.out.println(i + " - UserName : " + username);
     }
 }
