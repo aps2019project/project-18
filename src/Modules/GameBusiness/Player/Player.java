@@ -39,6 +39,10 @@ public abstract class Player {
         numberOfFlag++;
     }
 
+    public void setNumberOfTurnPlayerHaveFlag(int numberOfTurnPlayerHaveFlag) {
+        this.numberOfTurnPlayerHaveFlag = numberOfTurnPlayerHaveFlag;
+    }
+
     public void aging(){
         if (numberOfFlag == 1){
             numberOfTurnPlayerHaveFlag++;

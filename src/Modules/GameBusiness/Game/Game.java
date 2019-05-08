@@ -46,7 +46,13 @@ public abstract class Game {
                     result.add((Force) playground.getGround()[i][j].getCard());
                 }
             }
-        return (Force[]) result.toArray();
+        Force[] force1 = new Force[result.size()];
+        int i = 0;
+        for (Force force2 : result) {
+            force1[i] = force2;
+        }
+        //change to this form couse of cast exception
+        return force1;
     }
 
     public void showPlayground() {
@@ -360,6 +366,10 @@ public abstract class Game {
             }
         }
         return null;
+    }
+
+    public boolean isEnd() {
+        return end;
     }
 
     public Force[] getMyCards() {
