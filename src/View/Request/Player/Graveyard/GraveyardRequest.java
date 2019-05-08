@@ -17,7 +17,7 @@ public class GraveyardRequest extends MainRequest {
         }
         if (command.equals(EXIT)) {
             return GraveyardRequestType.EXIT;
-        } else if (command.length() >= 9 && command.substring(0, 8).equals(SHOW_CARD)) {
+        } else if (command.length() >= 10 && command.substring(0, 10).equals(SHOW_CARD)) {
             return GraveyardRequestType.SHOW_CARD;
         } else if (command.equals(SHOW_CARDS)) {
             return GraveyardRequestType.SHOW_CARDS;

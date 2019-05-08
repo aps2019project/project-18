@@ -145,7 +145,7 @@ public abstract class Player {
 
     public boolean checkCard(String id){
         String[] splittedId = id.split("_");
-        if (splittedId[0] == account.getUserName())
+        if (splittedId[0].equals(account.getUserName()))
             return true;
         return false;
     }
@@ -156,5 +156,9 @@ public abstract class Player {
 
     private void executeUncollectableItem(){
         Item item = new Item();
+    }
+
+    public int getManaPoint() {
+        return manaPoint;
     }
 }

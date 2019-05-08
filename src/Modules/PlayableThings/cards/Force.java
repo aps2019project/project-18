@@ -128,6 +128,9 @@ public abstract class Force extends Card {
                 hitPoint -= buff.getHitPoint();
                 iterator.remove();
             }
+            if (buff.isPoison()) {
+               hitPoint -= buff.getPoisonCount();
+            }
         }
     }
 
@@ -275,7 +278,11 @@ public abstract class Force extends Card {
     }
 
     public void prepareForTurn(boolean isItMyTurn){
-        //todo check some buffs
+        for (SpecialPower specialPower : specialPowers) {
+            if (specialPower.getType() == SpecialPowerType.PASSIVE) {
+                //todo excute
+            }
+        }
         canAttack = true;
         canMove = true;
     }

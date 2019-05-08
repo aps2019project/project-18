@@ -39,7 +39,7 @@ public class MultiPlayer {
                 System.out.println("Enemy main deck is not valid");
             }
         } else {
-            System.out.println("User name did is not exist");
+            System.out.println("User name does not exist");
         }
     }
 
