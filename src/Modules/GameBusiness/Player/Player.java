@@ -71,7 +71,7 @@ public abstract class Player {
     }
     public void insertCard(String id, int x, int y) {
         Card card = hand.insertCard(id , manaPoint);
-        Item[] items;
+        ArrayList<Item> items;
         if (card != null) {
             manaPoint -= card.getManaPoint();
             if (game.insertCard(card, x, y)) {
@@ -117,7 +117,7 @@ public abstract class Player {
     public void move(Force force , String command){
         String[] splittedCommand = command.split(" ");
         if (force.canMove()) {
-            Item[] items = game.move(force, Integer.parseInt(splittedCommand[0]), Integer.parseInt(splittedCommand[1]));
+            ArrayList<Item> items = game.move(force, Integer.parseInt(splittedCommand[0]), Integer.parseInt(splittedCommand[1]));
             for (Item item : items) {
                 if (item instanceof Flag) {
                     numberOfFlag++;

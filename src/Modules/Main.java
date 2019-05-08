@@ -27,10 +27,10 @@ public class Main {
     }
 
     private static void doOrder(String input) {
-        Account.createAccount("diveSepid", "Aa!12345");
-        Account.findAccount("diveSepid").getCollection().setMainDeck(Shop.getInstance().getDeckLevelOne());
-        Account.createAccount("zahhak", "Aa!12345");
-        Account.findAccount("zahhak").getCollection().setMainDeck(Shop.getInstance().getDeckLevelOne());
+        Account.createAccount("AI1", "Aa!12345");
+        Account.findAccount("AI1").getCollection().setMainDeck(Shop.getInstance().getDeckLevelOne());
+        Account.createAccount("AI2", "Aa!12345");
+        Account.findAccount("AI2").getCollection().setMainDeck(Shop.getInstance().getDeckLevelTwo());
 
         if (input.equalsIgnoreCase("sign in")) {
             signIn();

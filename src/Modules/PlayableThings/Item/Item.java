@@ -18,7 +18,9 @@ public class Item {
     }
 
     public Item getItemCopy() {
-        return new Item(this.name, this.price, this.description);
+        Item item = new Item(this.name, this.price, this.description);
+        item.setItemId(this.itemId);
+        return item;
     }
 
     public String getName() {

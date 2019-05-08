@@ -49,17 +49,21 @@ public abstract class Game {
     }
 
     public void showPlayground() {
-        for (int i = 0; i < 9; i++)
+        for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
-                System.out.print("(" + (i + 1) + "," + (j + 1) + ") : ");
+                System.out.print("(" + (i + 1) + "," + (j + 1) + ") : card - ");
                 if (playground.getGround()[i][j].getCard() == null) {
                     System.out.print("null");
                 } else {
                     System.out.print(playground.getGround()[i][j].getCardId());
                 }
+                System.out.print(" , items - ");
+                for (Item item : playground.getGround()[i][j].getItem())
+                    System.out.print(item.getName() + " ");
                 System.out.print(" | ");
             }
-        System.out.println();
+            System.out.println();
+        }
     }
 
     public boolean checkDeath(Force force) {
@@ -217,7 +221,7 @@ public abstract class Game {
         playground.getGround()[getPosition(force)[0]][getPosition(force)[1]].removeCard();
     }
 
-    public Item[] move(Force force, int x, int y) {
+    public ArrayList<Item> move(Force force, int x, int y) {
         if (playground.getGround()[x - 1][y - 1].getCard() != null) {
             System.out.println("destination house is full");
             return null;
@@ -238,7 +242,7 @@ public abstract class Game {
             playground.move(getPosition(force)[0], getPosition(force)[1], x - 1, y - 1);
             force.moved();
             System.out.println("card moved");
-            Item[] items = playground.getGround()[x - 1][y - 1].getItem();
+            ArrayList<Item> items = playground.getGround()[x - 1][y - 1].getItem();
             playground.getGround()[x - 1][y - 1].removeItems();
             return items;
         }
@@ -469,7 +473,7 @@ public abstract class Game {
     private Force getPlayerForce(int x, int y) {
         Player player = players[turn % 2];
         //player should have card to move it
-        if (player.checkCard(playground.getGround()[x][y].getCard().getId())) {
+        if (playground.getGround()[x][y].getCard() != null && player.checkCard(playground.getGround()[x][y].getCard().getId())) {
             if (playground.getGround()[x][y].getCard() instanceof Force) {
                 return (Force) playground.getGround()[x][y].getCard();
             }

@@ -114,8 +114,15 @@ public class Spell extends Card {
 
     @Override
     public Card getCopyCard() {
-        return new Spell(this.name, this.description, this.price, this.manaPoint, this.target.getCopy(),
+        Spell spell;
+        if (target != null)
+            spell = new Spell(this.name, this.description, this.price, this.manaPoint, this.target.getCopy(),
                 this.getBuffsCopy());
+        else
+            spell = new Spell(this.name, this.description, this.price, this.manaPoint, this.target,
+                this.getBuffsCopy());
+        spell.setId(this.id);
+        return spell;
     }
 
     public ArrayList<Buff> getBuffsCopy() {

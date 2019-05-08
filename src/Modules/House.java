@@ -20,8 +20,8 @@ public class House {
         return card;
     }
 
-    public Item[] getItem() {
-        return (Item[]) items.toArray();
+    public ArrayList<Item> getItem() {
+        return items;
     }
 
     public void setCard(Card card) {

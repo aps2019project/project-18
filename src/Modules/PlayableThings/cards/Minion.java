@@ -17,10 +17,13 @@ public class Minion extends Force {
 
     @Override
     public Card getCopyCard() {
+        Minion minion;
         if (specialPowers.size() == 0)
-            return new Minion( name,  description,  price,  attackPower,  hitPoint,  attackType,  range,  manaPoint ,  specialPowers.get(0));
+            minion = new Minion( name,  description,  price,  attackPower,  hitPoint,  attackType,  range,  manaPoint ,  specialPowers.get(0));
         else
-            return new Minion( name,  description,  price,  attackPower,  hitPoint,  attackType,  range,  manaPoint ,  null);
+            minion = new Minion( name,  description,  price,  attackPower,  hitPoint,  attackType,  range,  manaPoint ,  null);
+        minion.setId(this.id);
+        return minion;
     }
 
     public void showCard() {
