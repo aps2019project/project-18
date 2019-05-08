@@ -662,10 +662,10 @@ public abstract class Game {
         if (j - 1 >= 0 && playground.getGround()[i][j - 1].getCard() == null) {
             Show.showTargetThatForceCanMoveTo(i, j - 1);
         }
-        if (j + 1 < 9 && playground.getGround()[i][j + 1].getCard() == null) {
+        if (j + 1 < 5 && playground.getGround()[i][j + 1].getCard() == null) {
             Show.showTargetThatForceCanMoveTo(i, j + 1);
         }
-        if (j + 1 < 9 && playground.getGround()[i + 1][j].getCard() == null) {
+        if (j + 1 < 5 && playground.getGround()[i + 1][j].getCard() == null) {
             Show.showTargetThatForceCanMoveTo(i + 1, j);
         }
         if (i - 1 >= 0 && playground.getGround()[i - 1][j].getCard() == null &&
@@ -680,8 +680,8 @@ public abstract class Game {
                 i + 2 < 9 && playground.getGround()[i + 2][j].getCard() == null) {
             Show.showTargetThatForceCanMoveTo(i + 2, j);
         }
-        if (j + 1 < 9 && playground.getGround()[i][j + 1].getCard() == null &&
-                j + 2 < 9 && playground.getGround()[i][j + 2].getCard() == null) {
+        if (j + 1 < 5 && playground.getGround()[i][j + 1].getCard() == null &&
+                j + 2 < 5 && playground.getGround()[i][j + 2].getCard() == null) {
             Show.showTargetThatForceCanMoveTo(i, j + 2);
         }
         if (j - 1 >= 0 && i - 1 >= 0 && (playground.getGround()[i][j - 1].getCard() == null ||
@@ -689,7 +689,7 @@ public abstract class Game {
                 playground.getGround()[i - 1][j - 1].getCard() == null) {
             Show.showTargetThatForceCanMoveTo(i - 1, j - 1);
         }
-        if (j + 1 < 9 && i + 1 < 9 && (playground.getGround()[i][j + 1].getCard() == null ||
+        if (j + 1 < 5 && i + 1 < 9 && (playground.getGround()[i][j + 1].getCard() == null ||
                 playground.getGround()[i + 1][j].getCard() == null) &&
                 playground.getGround()[i + 1][j + 1].getCard() == null) {
             Show.showTargetThatForceCanMoveTo(i + 1, j + 1);
@@ -699,7 +699,7 @@ public abstract class Game {
                 playground.getGround()[i + 1][j - 1].getCard() == null) {
             Show.showTargetThatForceCanMoveTo(i + 1, j - 1);
         }
-        if (j + 1 < 9 && i - 1 >= 0 && (playground.getGround()[i][j + 1].getCard() == null ||
+        if (j + 1 < 5 && i - 1 >= 0 && (playground.getGround()[i][j + 1].getCard() == null ||
                 playground.getGround()[i - 1][j].getCard() == null) &&
                 playground.getGround()[i - 1][j + 1].getCard() == null) {
             Show.showTargetThatForceCanMoveTo(i - 1, j + 1);
