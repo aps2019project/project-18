@@ -36,6 +36,18 @@ public abstract class Game {
         return playground;
     }
 
+    public Force[] getAttackableMinions(Force force) {
+        ArrayList<Force> result = new ArrayList<>();
+        for (int i = 0; i < 9; i++)
+            for (int j = 0; j < 5; j++) {
+                if (playground.getGround()[i][j].getCard() != null &&
+                        canAttack(force.getId(), playground.getGround()[i][j].getCardId())) {
+                    result.add((Force) playground.getGround()[i][j].getCard());
+                }
+            }
+        return (Force[]) result.toArray();
+    }
+
     public boolean checkDeath(Force force) {
         if (force.getHitPoint() <= 0)
             return true;
