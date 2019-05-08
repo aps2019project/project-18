@@ -48,6 +48,20 @@ public abstract class Game {
         return (Force[]) result.toArray();
     }
 
+    public void showPlayground() {
+        for (int i = 0; i < 9; i++)
+            for (int j = 0; j < 5; j++) {
+                System.out.print("(" + (i + 1) + "," + (j + 1) + ") : ");
+                if (playground.getGround()[i][j].getCard() == null) {
+                    System.out.print("null");
+                } else {
+                    System.out.print(playground.getGround()[i][j].getCardId());
+                }
+                System.out.print(" | ");
+            }
+        System.out.println();
+    }
+
     public boolean checkDeath(Force force) {
         if (force.getHitPoint() <= 0)
             return true;
@@ -69,6 +83,7 @@ public abstract class Game {
             winnerPlayer = (turn + 1) % 2 + 1;
             doWhatNeedDoAfterGameEnd();
         }
+        showPlayground();
         turn++;
     }
 
