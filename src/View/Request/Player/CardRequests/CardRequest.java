@@ -26,7 +26,7 @@ public class CardRequest extends MainRequest {
         } else if (command.length() >= 12 && command.substring(0, 12).equals(COMBO)) {
             return CardRequestType.COMBO;
         } else if (command.length() >= 6 && command.substring(0, 6).equals(ATTACK)) {
-            return CardRequestType.HELP;
+            return CardRequestType.ATTACK;
         } else if (command.length() >= 17 && command.substring(0, 17).equals(SPECIAL_POWER)) {
             return CardRequestType.USE_SPECIAL_POWER;
         }
