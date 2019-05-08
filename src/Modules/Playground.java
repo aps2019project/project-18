@@ -19,16 +19,19 @@ public class Playground {
     public int[] isCardOnGround(String cardId) {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
-
+                if (houses[i][j].getCard() == null) continue;
+                if (houses[i][j].getCard().getId().equals(cardId)) {
+                    return new int[]{i, j};
+                }
             }
         }
         return null;
     }
 
-    public void aging(){
+    public void aging() {
         for (int i = 0; i < 9; i++)
             for (int j = 0; j < 5; j++) {
-               houses[i][j].aging();
+                houses[i][j].aging();
             }
     }
 
