@@ -7,6 +7,7 @@ import Modules.Hand;
 import Modules.PlayableThings.BuffAndSpecialPowers.SpecialPower.SpecialPower;
 import Modules.PlayableThings.cards.Card;
 import Modules.PlayableThings.cards.Force;
+import Modules.PlayableThings.cards.Hero;
 import Modules.PlayableThings.cards.Minion;
 import Modules.PlayableThings.cards.Spell.Spell;
 
@@ -84,11 +85,26 @@ public class AI extends Player {
     }
 
     private void judgeAttack(Force force){
-
+        Force[] defenders = game.getAttackableMinions(force);
+        for (Force force1 : defenders) {
+            if (force1 instanceof Hero) {
+                game.attack(force, force1.getId());
+                return;
+            }
+        }
+        if (defenders.length == 0)
+            return;
+        for (Force force1 : defenders){
+            if (force1.getHitPoint() <= force.getAttackPower()) {
+                game.attack(force, force1.getId());
+                return;
+            }
+        }
+        game.attack(force , defenders[0].getId());
     }
 
     public void setDeck(Deck deck){
-        hand =new Hand(deck);
+        hand = new Hand(deck);
     }
 
     private void judgeMove(Force force) {
