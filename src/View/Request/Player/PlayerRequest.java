@@ -28,17 +28,17 @@ public class PlayerRequest extends MainRequest {
         }
         if (command.equals(END_TURN)) {
             return PlayerRequestType.END_TURN;
-        } else if (command.length() >= 4 && command.substring(0, 3).equals(SHOW)) {
+        } else if (command.length() >= 4 && command.substring(0, 4).equals(SHOW)) {
             return showType();
         } else if (command.equals(GAME_INFO)) {
             return PlayerRequestType.GAME_INFO;
-        } else if (command.length() >= 6 && command.substring(0, 5).equals(SELECT)) {
+        } else if (command.length() >= 6 && command.substring(0, 6).equals(SELECT)) {
             return PlayerRequestType.SELECT;
         } else if (command.equals(ENTER_GRAVEYARD)) {
             return PlayerRequestType.ENTER_GRAVEYARD;
         } else if (command.equals(HELP)) {
             return PlayerRequestType.HELP;
-        } else if (command.length() >= 6 && command.substring(0, 5).equals(INSERT_CARD)) {
+        } else if (command.length() >= 6 && command.substring(0, 6).equals(INSERT_CARD)) {
             return PlayerRequestType.INSERT_CARD;
         }else if (command.equals(CANCEL))
             return PlayerRequestType.CANCEL_GAME;
@@ -46,7 +46,7 @@ public class PlayerRequest extends MainRequest {
     }
 
     private PlayerRequestType showType() {
-        if (command.length() >= 15 && command.substring(0, 14).equals(SHOW_CARD_INFO)) {
+        if (command.length() >= 15 && command.substring(0, 15).equals(SHOW_CARD_INFO)) {
             return PlayerRequestType.SHOW_CARD_INFO;
         } else if (command.equals(SHOW_MY_MINIONS)) {
             return PlayerRequestType.SHOW_MY_MINIONS;
