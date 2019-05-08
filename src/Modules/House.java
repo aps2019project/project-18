@@ -58,4 +58,8 @@ public class House {
         }
         return true;
     }
+
+    public void aging() {
+
+    }
 }
