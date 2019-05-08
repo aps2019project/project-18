@@ -74,6 +74,7 @@ public abstract class Game {
     }
 
     public void turn() {
+        prepare();
         if (end) {
             doWhatNeedDoAfterGameEnd();
             return;
@@ -93,11 +94,19 @@ public abstract class Game {
         turn++;
     }
 
-    public void aging() {
+    private void aging() {
         for (int i = 0; i < 9; i++)
             for (int j = 0; j < 5; j++) {
                 if (playground.getGround()[i][j].getCard() != null)
                     ((Force) playground.getGround()[i][j].getCard()).agging();
+            }
+    }
+
+    private void prepare() {
+        for (int i = 0; i < 9; i++)
+            for (int j = 0; j < 5; j++) {
+                if (playground.getGround()[i][j].getCard() != null)
+                    ((Force) playground.getGround()[i][j].getCard()).prepareForTurn(players[turn % 2].checkCard(playground.getGround()[i][j].getCardId()));
             }
     }
 
