@@ -73,7 +73,7 @@ public class Show {
     }
 
     public void showSpell(Spell spell) {
-        System.out.println("spell :    Name : " + spell.getName() + " - MP : " + spell.getManaPoint()
+        System.out.println("spell :    Name : " + spell.getId() + " - MP : " + spell.getManaPoint()
                 + " - Desc" + spell.getDescription());
     }
 
@@ -99,7 +99,7 @@ public class Show {
     }
 
     public void showMinion(Minion minion) {
-        System.out.println("minion :    Name : " + minion.getName() + " - Class : " +
+        System.out.println("minion :    Name : " + minion.getId() + " - Class : " +
                 minion.getAttackType() + " - AP : " + minion.getAttackPower() + " - HP : " +
                 minion.getHitPoint() + " - MP : " + minion.getManaPoint() + " - Special Power : " +
                 minion.getDescription());

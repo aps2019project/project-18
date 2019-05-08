@@ -19,7 +19,7 @@ public class Playground {
     public int[] isCardOnGround(String cardId) {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
-                if (houses[i][j].getCard().getId().equals(cardId)) {
+                if (houses[i][j].getCard() != null && houses[i][j].getCard().getId().equals(cardId)) {
                     return new int[]{i, j};
                 }
             }

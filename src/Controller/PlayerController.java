@@ -47,6 +47,7 @@ public class PlayerController {
                 case END_TURN:
                     in = false;
                     human.handleNextCard();
+                    human.endTurn();
                     break;
                 case GAME_INFO:
                     human.getGame().showInfo();
