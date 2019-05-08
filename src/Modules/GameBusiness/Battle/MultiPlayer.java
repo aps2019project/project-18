@@ -64,12 +64,12 @@ public class MultiPlayer {
                 human.setGame(modeCaptureFlag6Turn);
                 modeCaptureFlag6Turn.turn();
                 whileFlag = false;
-            } else if (string.split(" ")[0].equalsIgnoreCase("Capture more than half flags")) {
+            } else if (string.substring(0, 28).equalsIgnoreCase("capture more than half flags")) {
                 Human opponent = new Human(enemyAccount);
                 Human human = new Human(account);
-                if (string.split(" ").length > 1) {
+                if (string.split(" ").length > 5) {
                     ModeCaptureHalfFlags modeCaptureHalfFlags = new ModeCaptureHalfFlags(human, opponent,
-                            Integer.parseInt(string.trim().split(" ")[1]));
+                            Integer.parseInt(string.trim().split(" ")[5]));
                     human.setGame(modeCaptureHalfFlags);
                     opponent.setGame(modeCaptureHalfFlags);
                     modeCaptureHalfFlags.turn();

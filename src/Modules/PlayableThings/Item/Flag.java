@@ -6,6 +6,6 @@ public class Flag extends Item {
     }
 
     public Flag() {
-
+        this.name = "flag";
     }
 }

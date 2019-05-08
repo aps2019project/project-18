@@ -1,7 +1,7 @@
 package Modules.PlayableThings.Item;
 
 public class Item {
-    private String name;
+    protected String name;
     private String itemId;
     private int price;
     private String description;
