@@ -49,22 +49,36 @@ public class MultiPlayer {
         while (whileFlag) {
             String string = Main.scanner.nextLine().trim();
             if (string.equalsIgnoreCase("Kill enemy hero")) {
-                ModeKillEnemyHero modeKillEnemyHero = new ModeKillEnemyHero(new Human(account), new Human(enemyAccount));
+                Human human = new Human(account);
+                Human opponent = new Human(enemyAccount);
+                ModeKillEnemyHero modeKillEnemyHero = new ModeKillEnemyHero(human, opponent);
+                human.setGame(modeKillEnemyHero);
+                opponent.setGame(modeKillEnemyHero);
                 modeKillEnemyHero.turn();
                 whileFlag = false;
             } else if (string.equalsIgnoreCase("Capture flag for 6 turn")) {
-                ModeCaptureFlag6Turn modeCaptureFlag6Turn = new ModeCaptureFlag6Turn(new Human(account), new Human(enemyAccount));
+                Human opponent = new Human(enemyAccount);
+                Human human = new Human(account);
+                ModeCaptureFlag6Turn modeCaptureFlag6Turn = new ModeCaptureFlag6Turn(human, opponent);
+                opponent.setGame(modeCaptureFlag6Turn);
+                human.setGame(modeCaptureFlag6Turn);
                 modeCaptureFlag6Turn.turn();
                 whileFlag = false;
             } else if (string.split(" ")[0].equalsIgnoreCase("Capture more than half flags")) {
+                Human opponent = new Human(enemyAccount);
+                Human human = new Human(account);
                 if (string.split(" ").length > 1) {
-                    ModeCaptureHalfFlags modeCaptureHalfFlags = new ModeCaptureHalfFlags(new Human(account), new Human(enemyAccount),
+                    ModeCaptureHalfFlags modeCaptureHalfFlags = new ModeCaptureHalfFlags(human, opponent,
                             Integer.parseInt(string.trim().split(" ")[1]));
+                    human.setGame(modeCaptureHalfFlags);
+                    opponent.setGame(modeCaptureHalfFlags);
                     modeCaptureHalfFlags.turn();
                     whileFlag = false;
                 } else {
-                    ModeCaptureHalfFlags modeCaptureHalfFlags = new ModeCaptureHalfFlags(new Human(account), new Human(enemyAccount));
+                    ModeCaptureHalfFlags modeCaptureHalfFlags = new ModeCaptureHalfFlags(human, opponent);
                     modeCaptureHalfFlags.turn();
+                    human.setGame(modeCaptureHalfFlags);
+                    opponent.setGame(modeCaptureHalfFlags);
                     whileFlag = false;
                 }
             } else if (string.equalsIgnoreCase("Help")) {

@@ -70,6 +70,8 @@ public class SinglePlayer {
 
     private static boolean storyMode(Account account, AI ai) {
         Game game = gameMode(account, ai);
+        game.getPlayers()[0].setGame(game);
+        game.getPlayers()[1].setGame(game);
         game.turn();
         while (true)
             if (game.getWinnerPlayer() instanceof AI) {
@@ -79,6 +81,8 @@ public class SinglePlayer {
                     String s = Main.scanner.nextLine();
                     if (s.equalsIgnoreCase("Rematch")) {
                         game = gameMode(account, ai);
+                        game.getPlayers()[0].setGame(game);
+                        game.getPlayers()[1].setGame(game);
                         game.turn();
                         break;
                     }
@@ -117,6 +121,9 @@ public class SinglePlayer {
     private static void customGame(Account account) {
         AI ai = new AI();
         ai.setDeck(Shop.getInstance().setCustomDeck());
-        gameMode(account, ai);
+        Game game = gameMode(account, ai);
+        game.getPlayers()[0].setGame(game);
+        game.getPlayers()[1].setGame(game);
+        game.turn();
     }
 }
