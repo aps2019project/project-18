@@ -14,11 +14,11 @@ public class PlayerController {
     private Human human;
     private final static PlayerController playerController = new PlayerController();
 
-    private PlayerController(){
+    private PlayerController() {
 
     }
 
-    public static PlayerController get(){
+    public static PlayerController get() {
         return playerController;
     }
 
@@ -29,11 +29,10 @@ public class PlayerController {
 
         while (in) {
             request.getNewCommand();
-            if (!request.isValid() && request.getType() == null){
+            if (!request.isValid() && request.getType() == null) {
                 System.out.println("Invalid command");
                 continue;
-            }
-            else if (!request.isValid()) {
+            } else if (!request.isValid()) {
                 continue;
             }
             switch (request.getType()) {
@@ -62,13 +61,13 @@ public class PlayerController {
                     human.insertCard(temp[0], Integer.parseInt(temp[1]), Integer.parseInt(temp[2]));
                     break;
                 case SHOW_CARD_INFO:
-                        human.getGame().showCardInfo(request.returnCommand());
+                    human.getGame().showCardInfo(request.returnCommand());
                     break;
                 case ENTER_GRAVEYARD:
                     graveYardMenu();
                     break;
                 case SHOW_MY_MINIONS:
-                       human.getGame().showMyMinions();
+                    human.getGame().showMyMinions();
                     break;
                 case SHOW_COLLECTABLES:
                     human.showCollectables(Show.get());
@@ -89,11 +88,10 @@ public class PlayerController {
 
         while (in) {
             request.getCommand();
-            if (!request.isValid() && request.getType() == null){
+            if (!request.isValid() && request.getType() == null) {
                 System.out.println("Invalid command");
                 continue;
-            }
-            else if (!request.isValid())
+            } else if (!request.isValid())
                 continue;
             switch (request.getType()) {
                 case EXIT:
@@ -111,12 +109,12 @@ public class PlayerController {
     }
 
     public void selectMenu(String id) {
-             if (human.checkItem(id))
-                selectMenuItem(id);
-            else if (human.getGame().getForce(id) != null && human.checkCard(id))
-               selectMenuCard(id);
-            else
-                 System.out.println("There is not such a item or card");
+        if (human.checkItem(id))
+            selectMenuItem(id);
+        else if (human.getGame().getForce(id) != null && human.checkCard(id))
+            selectMenuCard(id);
+        else
+            System.out.println("There is not such a item or card");
     }
 
     public void selectMenuCard(String id) {
@@ -130,11 +128,10 @@ public class PlayerController {
 
         while (in) {
             request.getNewCommand();
-            if (!request.isValid() && request.getType() == null){
+            if (!request.isValid() && request.getType() == null) {
                 System.out.println("Invalid command");
                 continue;
-            }
-            else if (!request.isValid()) {
+            } else if (!request.isValid()) {
                 continue;
             }
             switch (request.getType()) {
@@ -150,7 +147,7 @@ public class PlayerController {
                     cardHelp(id);
                     break;
                 case MOVE:
-                    human.move(force , request.returnCommand());
+                    human.move(force, request.returnCommand());
                     break;
                 case USE_SPECIAL_POWER:
                     //human.
@@ -159,7 +156,7 @@ public class PlayerController {
         }
     }
 
-    private void cardHelp(String id){
+    private void cardHelp(String id) {
         new CardRequest().show();
         System.out.println("Others:");
         Force force = human.getGame().getForce(id);
@@ -168,7 +165,7 @@ public class PlayerController {
         if (force.canAttack())
             human.getGame().showAttackAbleCards();
         if (force instanceof Hero) {
-            Hero hero = (Hero)force;
+            Hero hero = (Hero) force;
             System.out.println("Can use spell:" + hero.canUseSpell());
         }
     }
@@ -179,11 +176,10 @@ public class PlayerController {
 
         while (in) {
             request.getCommand();
-            if (!request.isValid() && request.getType() == null){
+            if (!request.isValid() && request.getType() == null) {
                 System.out.println("Invalid command");
                 continue;
-            }
-            else if (!request.isValid())
+            } else if (!request.isValid())
                 continue;
             switch (request.getType()) {
                 case EXIT:
@@ -202,6 +198,6 @@ public class PlayerController {
 
     private void useItem(String id, String place) {
         String[] dimension = place.split(" ");
-        human.getGame().useItem(human.getItem(id) , Integer.parseInt(dimension[0]) , Integer.parseInt(dimension[1]));
+        human.getGame().useItem(human.getItem(id), Integer.parseInt(dimension[0]), Integer.parseInt(dimension[1]));
     }
 }

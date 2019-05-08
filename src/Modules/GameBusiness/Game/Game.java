@@ -89,7 +89,16 @@ public abstract class Game {
             winnerPlayer = (turn + 1) % 2 + 1;
             doWhatNeedDoAfterGameEnd();
         }
+        aging();
         turn++;
+    }
+
+    public void aging() {
+        for (int i = 0; i < 9; i++)
+            for (int j = 0; j < 5; j++) {
+                if (playground.getGround()[i][j].getCard() != null)
+                    ((Force) playground.getGround()[i][j].getCard()).agging();
+            }
     }
 
     public int[][] getMovablePlaces(Force force) {
@@ -156,7 +165,7 @@ public abstract class Game {
         return finalResult;
     }
 
-    public void insertCardNearestToEnemyHero(Card card) {
+    public boolean insertCardNearestToEnemyHero(Card card) {
         int[] nearestPosition;
         nearestPosition = getInsertablePlaces()[0];
         for (int[] position : getInsertablePlaces()) {
@@ -165,7 +174,7 @@ public abstract class Game {
                 nearestPosition = position;
             }
         }
-        insertCard(card, nearestPosition[0], nearestPosition[1]);
+        return insertCard(card, nearestPosition[0], nearestPosition[1]);
     }
 
     private int[][] getInsertablePlaces() {
