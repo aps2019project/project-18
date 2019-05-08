@@ -3,6 +3,7 @@ package Modules.GameBusiness.Game;
 import Modules.GameBusiness.Player.AI;
 import Modules.GameBusiness.Player.Human;
 import Modules.PlayableThings.Item.Flag;
+import Modules.PlayableThings.cards.Force;
 
 import java.util.Random;
 
@@ -70,7 +71,14 @@ public class ModeCaptureHalfFlags extends Game {
         }
     }
 
-    public void showInfo(){
-        //todo
+    public void showInfo() {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (playground.getGround()[i][j].getCard() == null) continue;
+                Force force = (Force) playground.getGround()[i][j].getCard();
+                if (force.getFlags() == null || force.getFlags().length == 0) continue;
+                System.out.println(force.getId() + " (" + i + "," + j + ")");
+            }
+        }
     }
 }

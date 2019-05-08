@@ -18,18 +18,22 @@ public class Show {
     }
 
     public void showItems(ArrayList<Item> items, Boolean sell) {
-        int i = 1;
-        System.out.println("Items : ");
-        for (Item item : items) {
-            System.out.print("        " + i + ". Name : " + item.getName() + " - Desc : " + item.getDescription());
-            if (sell) {
-                System.out.println(" - Sell Cost : " + item.getPrice() / 10);
-            } else if (!sell) {
-                System.out.println(" - Buy Cost : " + item.getPrice());
-            } else if (sell == null) {
-                System.out.println();
+        try {
+            int i = 1;
+            System.out.println("Items : ");
+            for (Item item : items) {
+                System.out.print("        " + i + ". Name : " + item.getName() + " - Desc : " + item.getDescription());
+                if (sell) {
+                    System.out.println(" - Sell Cost : " + item.getPrice() / 10);
+                } else if (!sell) {
+                    System.out.println(" - Buy Cost : " + item.getPrice());
+                } else if (sell == null) {
+                    System.out.println();
+                }
+                i++;
             }
-            i++;
+        } catch (NullPointerException e) {
+            System.out.println(e.getMessage());
         }
     }
 
