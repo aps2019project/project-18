@@ -41,6 +41,7 @@ public abstract class Game {
         for (int i = 0; i < 9; i++)
             for (int j = 0; j < 5; j++) {
                 if (playground.getGround()[i][j].getCard() != null &&
+                        getEnemyPlayer().checkCard(playground.getGround()[i][j].getCardId()) &&
                         canAttack(force.getId(), playground.getGround()[i][j].getCardId())) {
                     result.add((Force) playground.getGround()[i][j].getCard());
                 }
