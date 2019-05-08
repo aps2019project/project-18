@@ -332,7 +332,7 @@ public abstract class Game {
         int[] result = new int[2];
         for (int i = 0; i < 9; i++)
             for (int j = 0; j < 5; j++)
-                if (playground.getGround()[i][j].getCard().getId().equals(cardId)) {
+                if (playground.getGround()[i][j].getCard() != null && playground.getGround()[i][j].getCard().getId().equals(cardId)) {
                     result[0] = i;
                     result[1] = j;
                     break;
