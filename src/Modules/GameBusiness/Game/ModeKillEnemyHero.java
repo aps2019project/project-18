@@ -49,13 +49,17 @@ public class ModeKillEnemyHero extends Game {
     @Override
     public void showInfo() {
         Card card;
+        System.out.println(players[0].getAccount().getUserName() + " mana : " + players[0].getManaPoint());
+        System.out.println(players[1].getAccount().getUserName() + " mana : " + players[1].getManaPoint());
+        System.out.println("turn : " + players[this.getTurn() % 2].getAccount().getUserName());
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
                 card = playground.getGround()[i][j].getCard();
                 if (card instanceof Hero) {
-                    System.out.println("Player have hero : " + card.getPlayerUserNameWhoHaveThisCard() + "Hero HP" + ((Hero) card).getHitPoint());
+                    System.out.println("Player have hero : " + card.getPlayerUserNameWhoHaveThisCard() + " - Hero HP : " + ((Hero) card).getHitPoint());
                 }
             }
         }
+        showPlayground();
     }
 }

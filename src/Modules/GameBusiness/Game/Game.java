@@ -80,6 +80,7 @@ public abstract class Game {
         }
         players[turn % 2].playTurn(turn);
         doWhatNeedDoAfterEachTurn();
+        turn();
     }
 
     private void doWhatNeedDoAfterEachTurn() {
@@ -88,7 +89,6 @@ public abstract class Game {
             winnerPlayer = (turn + 1) % 2 + 1;
             doWhatNeedDoAfterGameEnd();
         }
-        showPlayground();
         turn++;
     }
 
@@ -705,5 +705,9 @@ public abstract class Game {
         collectableItems.add(new Item("RandomDamage", 0, "Hit 2 HP to random force"));
         collectableItems.add(new Item("BladesOfAgility", 0, "Increase 6 AP to random force"));
         collectableItems.add(new Item("ChineseSword", 0, "Increase 5 AP to all melee force"));
+    }
+
+    public int getTurn() {
+        return turn;
     }
 }

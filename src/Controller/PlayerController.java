@@ -47,7 +47,6 @@ public class PlayerController {
                 case END_TURN:
                     in = false;
                     human.handleNextCard();
-                    human.endTurn();
                     break;
                 case GAME_INFO:
                     human.getGame().showInfo();
@@ -130,7 +129,7 @@ public class PlayerController {
         boolean in = true;
 
         while (in) {
-            request.getCommand();
+            request.getNewCommand();
             if (!request.isValid() && request.getType() == null){
                 System.out.println("Invalid command");
                 continue;
