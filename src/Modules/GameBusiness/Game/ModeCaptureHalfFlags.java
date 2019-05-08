@@ -36,7 +36,7 @@ public class ModeCaptureHalfFlags extends Game {
         int indexX, indexY;
         playground.getGround()[0][2].setCard(players[0].getHeroCard());
         playground.getGround()[8][2].setCard(players[1].getHeroCard());
-        for (int i = 0; i < numberOfFlags && i < 44; i++) {
+        for (int i = 0; i < numberOfFlags && i < 43; i++) {
             indexX = new Random().nextInt(9);
             indexY = new Random().nextInt(5);
             while (playground.getGround()[indexX][indexY].isCardOnIt()) {
