@@ -1,4 +1,4 @@
-import Modules.PlayableThings.cards.Card;
+/*import Modules.PlayableThings.cards.Card;
 import Modules.Playground;
 import Modules.Shop;
 import org.junit.Assert;
@@ -6,9 +6,9 @@ import org.junit.Test;
 import org.junit.internal.runners.JUnit4ClassRunner;
 import org.junit.runner.RunWith;
 
-@RunWith(JUnit4ClassRunner.class)
+@RunWith(JUnit4ClassRunner.class)*/
 public class JUnitTests {
-    @Test
+  /*  @Test
     public void checkMoveInClassPlayground() {
         Playground playground = new Playground();
         Card card = Shop.getInstance().getDeckLevelOne().getHero();
@@ -20,5 +20,5 @@ public class JUnitTests {
         if (playground.getGround()[1][2].getCard() == null) {
             Assert.assertFalse(false);
         }
-    }
+    }*/
 }

@@ -242,6 +242,10 @@ public abstract class Game {
     }
 
     public ArrayList<Item> move(Force force, int x, int y) {
+        if (!checkPlaceValidity(x - 1, y - 1)) {
+            System.out.println("house number out of bound");
+            return null;
+        }
         if (playground.getGround()[x - 1][y - 1].getCard() != null) {
             System.out.println("destination house is full");
             return null;
