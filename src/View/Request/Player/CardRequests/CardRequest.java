@@ -19,15 +19,15 @@ public class CardRequest extends MainRequest {
         }
         if (command.equals(EXIT)) {
             return CardRequestType.EXIT;
-        } else if (command.length() >= 7 && command.substring(0, 6).equals(MOVE)) {
+        } else if (command.length() >= 7 && command.substring(0, 7).equals(MOVE)) {
             return CardRequestType.MOVE;
         } else if (command.equals(HELP)) {
             return CardRequestType.HELP;
-        } else if (command.length() >= 12 && command.substring(0, 11).equals(COMBO)) {
+        } else if (command.length() >= 12 && command.substring(0, 12).equals(COMBO)) {
             return CardRequestType.COMBO;
-        } else if (command.length() >= 6 && command.substring(0, 5).equals(ATTACK)) {
+        } else if (command.length() >= 6 && command.substring(0, 6).equals(ATTACK)) {
             return CardRequestType.HELP;
-        } else if (command.length() >= 17 && command.substring(0, 16).equals(SPECIAL_POWER)) {
+        } else if (command.length() >= 17 && command.substring(0, 17).equals(SPECIAL_POWER)) {
             return CardRequestType.USE_SPECIAL_POWER;
         }
         return null;
