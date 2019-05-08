@@ -128,6 +128,9 @@ public abstract class Force extends Card {
                 hitPoint -= buff.getHitPoint();
                 iterator.remove();
             }
+            if (buff.isPoison()) {
+               hitPoint -= buff.getPoisonCount();
+            }
         }
     }
 
