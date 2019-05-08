@@ -60,6 +60,20 @@ public class House {
     }
 
     public void aging() {
-
+        for (int i = fireTurns.size(); i > 0 ; i--) {
+            fireTurns.set(i , fireTurns.get(i)-1);
+            if (fireTurns.get(i) == 0)
+                fireTurns.remove(i);
+        }
+        for (int j = poisonTurns.size(); i > 0 ; j--) {
+            poisonTurns.set(j , poisonTurns.get(j)-1);
+            if (poisonTurns.get(j) == 0)
+                poisonTurns.remove(j);
+        }
+        for (int k = holyTurns.size(); k > 0 ; k--) {
+            holyTurns.set(k , holyTurns.get(k)-1);
+            if (holyTurns.get(k) == 0)
+                holyTurns.remove(k);
+        }
     }
 }

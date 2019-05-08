@@ -57,7 +57,8 @@ public abstract class Force extends Card {
         this.hitPoint = hitPoint;
         this.attackType = attackType;
         this.range = range;
-        specialPowers.add(specialPower);
+        if (specialPower != null)
+            specialPowers.add(specialPower);
     }
 
     public Force(String name, String description, int price, int attackPower, int hitPoint, String attackType, int range, int manaPoint , Buff buff) {
