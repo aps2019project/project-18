@@ -33,6 +33,10 @@ public class Human extends Player {
         hand.showHand();
     }
 
+    public void endTurn() {
+        game.turn();
+    }
+
     public void showNextCard() {
         hand.showNextCard();
     }

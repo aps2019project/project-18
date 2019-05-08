@@ -335,7 +335,7 @@ public abstract class Game {
     public Force getForce(String id) {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
-                if (playground.getGround()[i][j].getCardId().equals(id)) {
+                if (playground.getGround()[i][j].getCard() != null && playground.getGround()[i][j].getCardId().equals(id)) {
                     return (Force) playground.getGround()[i][j].getCard();
                 }
             }
@@ -552,7 +552,7 @@ public abstract class Game {
     public void showMyMinions() {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
-                if (getEnemyForce(i, j) != null) continue;
+                if (getEnemyForce(i, j) == null) continue;
                 showCardInfo(getEnemyForce(i, j).getId());
             }
         }

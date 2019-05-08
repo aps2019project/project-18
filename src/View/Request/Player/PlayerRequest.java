@@ -77,30 +77,30 @@ public class PlayerRequest extends MainRequest {
     }
 
     private boolean checkCardInfoCommand() {
-        if (command.matches("Show card info (\\w+_\\w+_\\d+)"))
+        if (command.matches("Show card info .+_\\w+_\\d+"))
             return true;
         System.out.println("Invalid syntax of show card info");
         return false;
     }
 
     private boolean checkInsertCommand() {
-        if (command.matches("Insert \\w+_\\w+_\\d+ in \\(\\d+; \\d+\\)"))
+        if (command.matches("Insert .+_\\w+_\\d+ in \\(\\d+,\\d+\\)"))
             return true;
         System.out.println("Invalid syntax of insert");
         return false;
     }
 
     private boolean checkSelectCommand(){
-        if (command.matches("Select \\w+_\\w+_\\d+"))
+        if (command.matches("Select .+_\\w+_\\d+"))
             return true;
         System.out.println("Invalid syntax of select");
         return false;
     }
 
     public String returnCommand() {
-        Pattern patternInsert = Pattern.compile("Insert (\\w+_\\w+_\\d+) in \\((\\d); (\\d)\\)");
+        Pattern patternInsert = Pattern.compile("Insert (.+_\\w+_\\d+) in \\((\\d),(\\d)\\)");
         Pattern patternCardInfo = Pattern.compile("Show card info (\\w+_\\w+_\\d+)");
-        Pattern patternSelect = Pattern.compile("Select (\\w+_\\w+_\\d+)");
+        Pattern patternSelect = Pattern.compile("Select (.+_\\w+_\\d+)");
         Matcher matcher;
         switch (getType()) {
             case INSERT_CARD:
