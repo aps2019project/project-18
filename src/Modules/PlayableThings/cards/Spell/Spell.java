@@ -96,7 +96,9 @@ public class Spell extends Card {
             //enemy force
             force.diepell(true);
         }
-        //todo spell 19
+        if (buff.isKill()) {
+            force.setHitPoint(0);
+        }
     }
 
     public void executeOnAttack(Force force) {

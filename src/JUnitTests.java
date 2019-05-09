@@ -120,8 +120,8 @@ public class JUnitTests {
         ModeKillEnemyHero modeKillEnemyHero = new ModeKillEnemyHero(human, opponent);
         human.setGame(modeKillEnemyHero);
         opponent.setGame(modeKillEnemyHero);
-        int[][] places = modeKillEnemyHero.getMovablePlaces(human.getHeroCard());
         modeKillEnemyHero.getPlayground().move(8, 2, 0, 1);
+        int[][] places = modeKillEnemyHero.getMovablePlaces(human.getHeroCard());
         for (int i = 0; i < places[i].length; i++) {
             if (places[i][0] == 0 && places[i][1] == 0) {
                 Assert.fail();
