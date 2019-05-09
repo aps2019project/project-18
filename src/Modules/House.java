@@ -14,11 +14,11 @@ public class House {
     private ArrayList<Integer> holyTurns = new ArrayList();
 
     public String getCardId() {
-        return card.getId();
+        return force.getId();
     }
 
     public Card getCard() {
-        return card;
+        return force;
     }
 
     public void excuteBuffs() {
