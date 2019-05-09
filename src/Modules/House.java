@@ -2,6 +2,7 @@ package Modules;
 
 import Modules.PlayableThings.Item.Item;
 import Modules.PlayableThings.cards.Card;
+import Modules.PlayableThings.cards.Force;
 
 import java.util.ArrayList;
 
@@ -18,6 +19,12 @@ public class House {
 
     public Card getCard() {
         return card;
+    }
+
+    public void excuteBuffs() {
+        if (card != null) {
+            ((Force)card).setHitPoint(((Force)card).getHitPoint() - poisonTurns.size() - holyTurns.size()*2);
+        }
     }
 
     public ArrayList<Item> getItem() {
