@@ -31,6 +31,10 @@ public class House {
         return items;
     }
 
+    public int getHolyCount() {
+        return holyTurns.size();
+    }
+
     public void setCard(Card card) {
         this.force = (Force)card;
     }
