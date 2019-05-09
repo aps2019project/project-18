@@ -7,7 +7,7 @@ import Modules.PlayableThings.cards.Force;
 import java.util.ArrayList;
 
 public class House {
-    private Card card;
+    private Force force;
     private ArrayList<Item> items = new ArrayList<>();
     private ArrayList<Integer> fireTurns = new ArrayList<>();
     private ArrayList<Integer> poisonTurns = new ArrayList();
@@ -22,8 +22,8 @@ public class House {
     }
 
     public void excuteBuffs() {
-        if (card != null) {
-            ((Force)card).setHitPoint(((Force)card).getHitPoint() - poisonTurns.size() - holyTurns.size()*2);
+        if (force != null) {
+            force.setHitPoint(force.getHitPoint() - poisonTurns.size() - holyTurns.size()*2);
         }
     }
 
@@ -32,7 +32,7 @@ public class House {
     }
 
     public void setCard(Card card) {
-        this.card = card;
+        this.force = (Force)card;
     }
 
     public void setItem(Item item) {
@@ -40,7 +40,7 @@ public class House {
     }
 
     public void removeCard() {
-        card = null;
+        force = null;
     }
 
     public void removeItems() {
@@ -60,7 +60,7 @@ public class House {
     }
 
     public boolean isCardOnIt() {
-        if (card == null && items.size() == 0) {
+        if (force == null) {
             return false;
         }
         return true;
