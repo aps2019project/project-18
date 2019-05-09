@@ -254,15 +254,21 @@ public abstract class Force extends Card {
             if (buff.isPositive() == true && positive == true){
                 attackPower -= buff.getAttackPower();
                 hitPoint -= buff.getHitPoint();
-                if (buff.isContinious())
+                if (buff.isContinious()) {
                     buff.setExecuteTime(1);
+                    attackPower -= buff.getAttackPower();
+                    hitPoint -= buff.getHitPoint();
+                }
                 else
                     buffs.remove(buff);
             }else if (buff.isNegative() == true && positive == false){
                 attackPower -= buff.getAttackPower();
                 hitPoint -= buff.getHitPoint();
-                if (buff.isContinious())
+                if (buff.isContinious()) {
                     buff.setExecuteTime(1);
+                    attackPower -= buff.getAttackPower();
+                    hitPoint -= buff.getHitPoint();
+                }
                 else
                     buffs.remove(buff);
             }
@@ -284,7 +290,10 @@ public abstract class Force extends Card {
     public void prepareForTurn(boolean isItMyTurn){
         for (SpecialPower specialPower : specialPowers) {
             if (specialPower.getType() == SpecialPowerType.PASSIVE) {
-                //todo excute
+                //todo
+            }
+            if (specialPower.getType() == SpecialPowerType.ON_TURN && isItMyTurn){
+                //todo
             }
         }
         canAttack = true;
