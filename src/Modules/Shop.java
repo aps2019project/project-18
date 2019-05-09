@@ -330,6 +330,7 @@ public class Shop {
         Buff buff = new Buff();
         buff.setAttackPower(4);
         buff.setInfitinive(true);
+        buff.setBuff(true);
         spell.addBuff(buff);
         Target target = new Target();
         target.setHero(true);
@@ -340,6 +341,7 @@ public class Shop {
         buff = new Buff();
         buff.setStun(true);
         buff.setNumberOfTurns(1);
+        buff.setBuff(true);
         spell.addBuff(buff);
         target = new Target();
         target.setHero(true);
@@ -352,6 +354,7 @@ public class Shop {
         buff = new Buff();
         buff.setDisarm(true);
         buff.setInfitinive(true);
+        buff.setBuff(true);
         spell.addBuff(buff);
         target = new Target();
         target.setHero(true);
@@ -363,6 +366,7 @@ public class Shop {
         buff = new Buff();
         buff.setStun(true);
         buff.setNumberOfTurns(1);
+        buff.setBuff(true);
         spell.addBuff(buff);
         target = new Target();
         target.setHero(true);
@@ -377,6 +381,7 @@ public class Shop {
         buff.setPoison(true);
         buff.setPoisonCount(1);
         buff.setNumberOfTurns(3);
+        buff.setBuff(true);
         spell.addBuff(buff);
         specialPower.setSpell(spell);
         specialPower.setType(SpecialPowerType.ON_ATTACK);
@@ -386,6 +391,7 @@ public class Shop {
         buff.setHoly(true);
         buff.setHolyCount(1);
         buff.setNumberOfTurns(3);
+        buff.setBuff(true);
         spell.addBuff(buff);
         target = new Target();
         target.setGround(true);
@@ -415,6 +421,7 @@ public class Shop {
         buff.setHoly(true);
         buff.setHolyCount(3);
         buff.setContinious(true);
+        buff.setBuff(true);
         spell.addBuff(buff);
         target = new Target();
         target.setHero(true);
