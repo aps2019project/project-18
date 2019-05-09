@@ -228,6 +228,7 @@ public abstract class Game {
     }
 
     public boolean insertCardNearestToEnemyHero(Card card) {
+        System.out.println("ddd");
         int[] nearestPosition = new int[2];
         int[] position = new int[2];
         int[][] inserts = getInsertablePlaces(card);
@@ -256,6 +257,7 @@ public abstract class Game {
                     places[index][0] = i;
                     places[index][1] = j;
                     index++;
+                    System.out.println(i+"  "+j);
                 }
             }
         }
@@ -488,6 +490,7 @@ public abstract class Game {
         } else {
             player = players[1].getAccount().getUserName();
         }
+        System.out.println(player);
         if (playground.getGround()[x][y].getCard() != null)
             return false;
         for (int i = 0; i < 9; i++) {
