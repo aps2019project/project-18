@@ -34,7 +34,7 @@ public class AI extends Player {
     public void playTurn(int turn) {
         super.playTurn(turn);
         enemyHero = game.getPosition(hand.getHero().getId());
-        Force[] forces = game.getMyCards();
+        ArrayList<Force> forces = game.getMyCards();
         attackAndMove(forces);
         while(true) {
             Card[] cards = hand.getPutableCards(manaPoint);
@@ -75,7 +75,7 @@ public class AI extends Player {
         return cards[max];
     }
 
-    private void attackAndMove(Force[] forces){
+    private void attackAndMove(ArrayList<Force> forces){
         for (Force force : forces){
             if (force.canMove())
                 judgeMove(force);

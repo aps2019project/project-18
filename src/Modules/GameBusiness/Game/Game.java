@@ -420,7 +420,7 @@ public abstract class Game {
         return null;
     }
 
-    public Force[] getMyCards() {
+    public ArrayList<Force> getMyCards() {
         ArrayList<Force> cards = new ArrayList<>();
         for (int i = 0; i < 9; i++)
             for (int j = 0; j < 5; j++) {
@@ -428,7 +428,7 @@ public abstract class Game {
                         players[turn % 2].checkCard(playground.getGround()[i][j].getCardId()))
                     cards.add((Force) playground.getGround()[i][j].getCard());
             }
-        return (Force[]) cards.toArray();
+        return cards;
     }
 
     public void cancelGame() {
