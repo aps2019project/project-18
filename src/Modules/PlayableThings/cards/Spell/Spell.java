@@ -110,7 +110,7 @@ public class Spell extends Card {
     public void executeOnAttack(Force force) {
         for (Buff buff : buffs) {
             if (buff.isDeletePositive()) {
-                force.diepell(true);
+                force.dispell(true);
             } else {
                 force.addBuff(buff);
             }
