@@ -4,8 +4,6 @@ import Modules.GameBusiness.Game.Game;
 import Modules.PlayableThings.BuffAndSpecialPowers.Buff.Buff;
 import Modules.PlayableThings.cards.Card;
 import Modules.PlayableThings.cards.Force;
-import Modules.PlayableThings.cards.Hero;
-import Modules.Playground;
 import View.View.Show;
 
 import java.util.ArrayList;
@@ -74,6 +72,10 @@ public class Spell extends Card {
                         force.addBuff(buff.getBuffCopy());
                         force.setAttackPower(force.getAttackPower() + buff.getAttackPower());
                         force.setHitPoint(force.getHitPoint() + buff.getHitPoint());
+                        if (force.getAttackPower() < 0)
+                            force.setAttackPower(0);
+                        if (force.getHitPoint() < 0)
+                            force.setHitPoint(0);
                     } else {
                         execute(buff, force, userNamePlayerHAveTurn);
                     }

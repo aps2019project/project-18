@@ -150,8 +150,6 @@ public abstract class Game {
                     movablePlaces[1][i] <= 5 && (movablePlaces[0][i] != getPosition(force)[0] ||
                     movablePlaces[1][i] != getPosition(force)[1]) &&
                     playground.getGround()[movablePlaces[0][i]][movablePlaces[1][i]].getCard() == null) {
-                finalResult[0][counter] = movablePlaces[0][i];
-                finalResult[1][counter] = movablePlaces[1][i];
                 counter++;
             }
         }
