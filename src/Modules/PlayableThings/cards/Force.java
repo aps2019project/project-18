@@ -252,17 +252,7 @@ public abstract class Force extends Card {
 
     public void dispell(boolean positive){
         for (Buff buff : buffs) {
-            if (buff.isPositive() == true && positive == true){
-                attackPower -= buff.getAttackPower();
-                hitPoint -= buff.getHitPoint();
-                if (buff.isContinious()) {
-                    buff.setExecuteTime(1);
-                    attackPower -= buff.getAttackPower();
-                    hitPoint -= buff.getHitPoint();
-                }
-                else
-                    buffs.remove(buff);
-            }else if (buff.isNegative() == true && positive == false){
+            if ((buff.isPositive() && positive) || (buff.isNegative() && !positive)){
                 attackPower -= buff.getAttackPower();
                 hitPoint -= buff.getHitPoint();
                 if (buff.isContinious()) {
