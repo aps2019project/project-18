@@ -99,6 +99,7 @@ public abstract class Game {
     }
 
     private void doWhatNeedDoAfterEachTurn() {
+        playground.executeBuffs();
         if (cancel && !end) {
             winnerPlayer = (turn + 1) % 2 + 1;
             doWhatNeedDoAfterGameEnd();
