@@ -1,13 +1,13 @@
 package Modules.PlayableThings.cards;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
 import Modules.PlayableThings.BuffAndSpecialPowers.Buff.Buff;
 import Modules.PlayableThings.BuffAndSpecialPowers.SpecialPower.SpecialPower;
 import Modules.PlayableThings.BuffAndSpecialPowers.SpecialPower.SpecialPowerType;
 import Modules.PlayableThings.Item.Flag;
 import Modules.PlayableThings.cards.Spell.Spell;
+
+import java.util.ArrayList;
+import java.util.Iterator;
 
 
 public abstract class Force extends Card {
@@ -284,6 +284,11 @@ public abstract class Force extends Card {
                 //todo excute
             }
         }
+        canAttack = true;
+        canMove = true;
+    }
+
+    public void setCan(){
         canAttack = true;
         canMove = true;
     }
