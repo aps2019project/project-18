@@ -124,7 +124,7 @@ public abstract class Game {
         for (int i = 0; i < 9; i++)
             for (int j = 0; j < 5; j++) {
                 if (playground.getGround()[i][j].getCard() != null)
-                    ((Force) playground.getGround()[i][j].getCard()).prepareForTurn(players[turn % 2].checkCard(playground.getGround()[i][j].getCardId()));
+                    ((Force) playground.getGround()[i][j].getCard()).prepareForTurn(players[turn % 2].checkCard(playground.getGround()[i][j].getCardId()) , getPosition(playground.getGround()[i][j].getCard().getId()) , this);
             }
     }
 

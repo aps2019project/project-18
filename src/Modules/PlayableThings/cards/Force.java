@@ -1,5 +1,6 @@
 package Modules.PlayableThings.cards;
 
+import Modules.GameBusiness.Game.Game;
 import Modules.House;
 import Modules.PlayableThings.BuffAndSpecialPowers.Buff.Buff;
 import Modules.PlayableThings.BuffAndSpecialPowers.SpecialPower.SpecialPower;
@@ -287,13 +288,13 @@ public abstract class Force extends Card {
         return flags;
     }
 
-    public void prepareForTurn(boolean isItMyTurn){
+    public void prepareForTurn(boolean isItMyTurn , int[] position , Game game){
         for (SpecialPower specialPower : specialPowers) {
             if (specialPower.getType() == SpecialPowerType.PASSIVE) {
-                //todo
+                specialPower.getSpell().executePasive(game.getPlayground() ,this ,position[0] , position[1] , game.getPlayers()[game.getTurn()%2].getAccount().getUserName());
             }
             if (specialPower.getType() == SpecialPowerType.ON_TURN && isItMyTurn){
-                //todo
+                specialPower.getSpell().execute(game , position[0] , position[1]);
             }
         }
         canAttack = true;
