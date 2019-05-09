@@ -37,11 +37,4 @@ public class Minion extends Force {
         }
         return false;
     }
-
-    public void prepareForTurn(boolean isItMyTurn) {
-        super.prepareForTurn(isItMyTurn);
-        if (isItMyTurn) {
-            //Onturn & passive
-        }
-    }
 }
