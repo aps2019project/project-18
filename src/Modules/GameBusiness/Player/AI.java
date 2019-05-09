@@ -102,6 +102,7 @@ public class AI extends Player {
             }
         }
         game.attack(force , defenders[0].getId());
+        game.checkEnd();
     }
 
     public void setDeck(Deck deck){
