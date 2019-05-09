@@ -115,7 +115,7 @@ public abstract class Game {
                 if (playground.getGround()[i][j].getCard() != null)
                     ((Force) playground.getGround()[i][j].getCard()).agging();
             }
-        for (int i = 0 ; i < 2 ; i++)
+        for (int i = 0; i < 2; i++)
             players[i].aging();
         playground.aging();
     }
@@ -124,7 +124,7 @@ public abstract class Game {
         for (int i = 0; i < 9; i++)
             for (int j = 0; j < 5; j++) {
                 if (playground.getGround()[i][j].getCard() != null)
-                    ((Force) playground.getGround()[i][j].getCard()).prepareForTurn(players[turn % 2].checkCard(playground.getGround()[i][j].getCardId()) , getPosition(playground.getGround()[i][j].getCard().getId()) , this);
+                    ((Force) playground.getGround()[i][j].getCard()).prepareForTurn(players[turn % 2].checkCard(playground.getGround()[i][j].getCardId()), getPosition(playground.getGround()[i][j].getCard().getId()), this);
             }
     }
 
@@ -245,42 +245,28 @@ public abstract class Game {
     }
 
     private int[][] getInsertablePlaces() {
-        int counter = 0;
-        for (int i = 0; i < 9; i++)
+        int[][] places = new int[25][2];
+        int index = 0;
+        for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
-                if (playground.getGround()[i][j].getCard() != null &&
-                        getMyPlayer().checkCard(playground.getGround()[i][j].getCardId())) {
-                    for (int k = -1; k < 2; k++)
-                        for (int l = -1; l < 2; l++) {
-                            if (checkPlaceValidity(i + k, j + l) &&
-                                    playground.getGround()[i + k][j + l].getCard() == null) {
-                                counter++;
-                            }
-                        }
+                if (playground.getGround()[i][j].getCard() == null) continue;
+                if (playground.getGround()[i][j].getCard().getId().contains(getEnemyPlayer().getAccount().getUserName()))
+                    continue;
+                for (int m = 0; m < 9; m++) {
+                    for (int n = 0; n < 5; n++) {
+                        if (Math.abs(i - m) >= 1 || Math.abs(j - n) >= 1) continue;
+                        if (playground.getGround()[m][n].getCard() != null) continue;
+                        places[index][0] = m;
+                        places[index][1] = n;
+                    }
                 }
             }
-        int[][] result = new int[counter][2];
-        counter = 0;
-        for (int i = 0; i < 9; i++)
-            for (int j = 0; j < 5; j++) {
-                if (playground.getGround()[i][j].getCard() != null &&
-                        getMyPlayer().checkCard(playground.getGround()[i][j].getCardId())) {
-                    for (int k = -1; k < 2; k++)
-                        for (int l = -1; l < 2; l++) {
-                            if (checkPlaceValidity(i + k, j + l) &&
-                                    playground.getGround()[i + k][j + l].getCard() == null) {
-                                result[counter][0] = i + k;
-                                result[counter][1] = j + l;
-                                counter++;
-                            }
-                        }
-                }
-            }
-        return result;
+        }
+        return places;
     }
 
     private boolean checkPlaceValidity(int x, int y) {
-        return !(x > 9 || x < 0 || y > 5 || y < 0);
+        return !(x >= 9 || x < 0 || y >= 5 || y < 0);
     }
 
     private int distance(int[] position1, int[] position2) {
@@ -303,7 +289,7 @@ public abstract class Game {
     }
 
     public void death(Force force) {
-        force.die().executeOnDeath(force , this , getPosition(force.getId())[0] , getPosition(force.getId())[1]);
+        force.die().executeOnDeath(force, this, getPosition(force.getId())[0], getPosition(force.getId())[1]);
         checkDeathEveryWhere();
         ArrayList<Flag> items = force.getFlags();
         players[(turn + 1) % 2].loseFlag(items.size());
@@ -471,14 +457,13 @@ public abstract class Game {
         if (x - 1 >= 0 && x - 1 < 9 && y - 1 >= 0 && y - 1 < 9) {
             if (card instanceof Spell) {
                 Spell spell = (Spell) card;
-                    if (!spell.executeBuff(this , x - 1 , y - 1 , players[turn%2].getAccount().getUserName())) {
-                        System.out.println("Invalid destination for spell");
-                        return false;
-                    }
-                    checkDeathEveryWhere();
-                    return true;
-            }
-            else if (playground.getGround()[x - 1][y - 1].getCard() == null) {
+                if (!spell.executeBuff(this, x - 1, y - 1, players[turn % 2].getAccount().getUserName())) {
+                    System.out.println("Invalid destination for spell");
+                    return false;
+                }
+                checkDeathEveryWhere();
+                return true;
+            } else if (playground.getGround()[x - 1][y - 1].getCard() == null) {
                 Minion minion = (Minion) card;
                 if (canPlaceMinion(x - 1, y - 1, card)) {
                     playground.getGround()[x - 1][y - 1].setCard(minion);
