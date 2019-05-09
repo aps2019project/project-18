@@ -131,100 +131,93 @@ public abstract class Game {
     public int[][] getMovablePlaces(Force force) {
         int[][] movablePlaces = new int[2][13];
         int counter = 0;
-        for (int i = -1; i < 2; i++) {
-            for (int j = -1; j < 2; j++) {
-                movablePlaces[0][counter] = getPosition(force)[0] + i;
-                movablePlaces[1][counter] = getPosition(force)[1] + j;
-                counter++;
-            }
-        }
-        movablePlaces[0][counter] = getPosition(force)[0] + 2;
-        movablePlaces[1][counter] = getPosition(force)[1];
-        counter++;
-        movablePlaces[0][counter] = getPosition(force)[0];
-        movablePlaces[1][counter] = getPosition(force)[1] + 2;
-        counter++;
-        movablePlaces[0][counter] = getPosition(force)[0] - 2;
-        movablePlaces[1][counter] = getPosition(force)[1];
-        counter++;
-        movablePlaces[0][counter] = getPosition(force)[0];
-        movablePlaces[1][counter] = getPosition(force)[1] - 2;
-        counter = 0;
+        int x = 0, y = 0;
         for (int i = 0; i < 9; i++) {
-            if (movablePlaces[0][i] >= 0 && movablePlaces[0][i] < 9 && movablePlaces[1][i] >= 0 &&
-                    movablePlaces[1][i] < 5 && (movablePlaces[0][i] != getPosition(force)[0] ||
-                    movablePlaces[1][i] != getPosition(force)[1]) &&
-                    playground.getGround()[movablePlaces[0][i]][movablePlaces[1][i]].getCard() == null) {
-                counter++;
+            for (int j = 0; j < 5; j++) {
+                if (playground.getGround()[i][j].getCard() == null) continue;
+                if (playground.getGround()[i][j].getCard().getId().equals(force.getId())) {
+                    x = i;
+                    y = j;
+                }
             }
         }
-        if (movablePlaces[0][9] >= 0 && movablePlaces[0][9] < 9 && movablePlaces[1][9] >= 0 && movablePlaces[1][9] < 5
-                && playground.getGround()[movablePlaces[0][9]][movablePlaces[1][9]].getCard() == null &&
-                playground.getGround()[movablePlaces[0][9] - 1][movablePlaces[1][9]].getCard() == null) {
+        int i = x, j = y;
+        if (!force.getCanMove()) {
+            return null;
+        }
+        if (i - 1 >= 0 && playground.getGround()[i - 1][j].getCard() == null) {
+            movablePlaces[0][counter] = i - 1;
+            movablePlaces[1][counter] = j;
             counter++;
         }
-        if (movablePlaces[0][10] >= 0 && movablePlaces[0][10] < 9 && movablePlaces[1][10] >= 0 &&
-                movablePlaces[1][10] < 5 &&
-                playground.getGround()[movablePlaces[0][10]][movablePlaces[1][10]].getCard() == null
-                && playground.getGround()[movablePlaces[0][10]][movablePlaces[1][10] - 1].getCard() == null) {
+        if (j - 1 >= 0 && playground.getGround()[i][j - 1].getCard() == null) {
+            movablePlaces[0][counter] = i;
+            movablePlaces[1][counter] = j - 1;
             counter++;
         }
-        if (movablePlaces[0][11] >= 0 && movablePlaces[0][11] < 9 && movablePlaces[1][11] >= 0 &&
-                movablePlaces[1][11] < 5 &&
-                playground.getGround()[movablePlaces[0][11]][movablePlaces[1][11]].getCard() == null
-                && playground.getGround()[movablePlaces[0][11] + 1][movablePlaces[1][11]].getCard() == null) {
+        if (j + 1 < 5 && playground.getGround()[i][j + 1].getCard() == null) {
+            movablePlaces[0][counter] = i;
+            movablePlaces[1][counter] = j + 1;
             counter++;
         }
-        if (movablePlaces[0][12] >= 0 && movablePlaces[0][12] < 9 && movablePlaces[1][12] >= 0 &&
-                movablePlaces[1][12] < 5 &&
-                playground.getGround()[movablePlaces[0][12]][movablePlaces[1][12]].getCard() == null
-                && playground.getGround()[movablePlaces[0][12]][movablePlaces[1][12] + 1].getCard() == null) {
+        if (i + 1 < 9 && playground.getGround()[i + 1][j].getCard() == null) {
+            movablePlaces[0][counter] = i + 1;
+            movablePlaces[1][counter] = j;
             counter++;
         }
-        int[][] finalResult = new int[2][counter];
-        counter = 0;
-        for (int i = 0; i < 9; i++) {
-            if (movablePlaces[0][i] >= 0 && movablePlaces[0][i] < 9 && movablePlaces[1][i] >= 0 &&
-                    movablePlaces[1][i] < 5 && (movablePlaces[0][i] != getPosition(force)[0] ||
-                    movablePlaces[1][i] != getPosition(force)[1]) &&
-                    playground.getGround()[movablePlaces[0][i]][movablePlaces[1][i]].getCard() == null) {
-                finalResult[0][counter] = movablePlaces[0][9];
-                finalResult[1][counter] = movablePlaces[1][9];
-                counter++;
-            }
-        }
-        if (movablePlaces[0][9] >= 0 && movablePlaces[0][9] < 9 && movablePlaces[1][9] >= 0 && movablePlaces[1][9] < 5
-                && playground.getGround()[movablePlaces[0][9]][movablePlaces[1][9]].getCard() == null &&
-                playground.getGround()[movablePlaces[0][9] - 1][movablePlaces[1][9]].getCard() == null) {
-            finalResult[0][counter] = movablePlaces[0][9];
-            finalResult[1][counter] = movablePlaces[1][9];
+        if (i - 1 >= 0 && playground.getGround()[i - 1][j].getCard() == null &&
+                i - 2 >= 0 && playground.getGround()[i - 2][j].getCard() == null) {
+            movablePlaces[0][counter] = i - 2;
+            movablePlaces[1][counter] = j;
             counter++;
         }
-        if (movablePlaces[0][10] >= 0 && movablePlaces[0][10] < 9 && movablePlaces[1][10] >= 0 &&
-                movablePlaces[1][10] < 5 &&
-                playground.getGround()[movablePlaces[0][10]][movablePlaces[1][10]].getCard() == null
-                && playground.getGround()[movablePlaces[0][10]][movablePlaces[1][10] - 1].getCard() == null) {
-            finalResult[0][counter] = movablePlaces[0][10];
-            finalResult[1][counter] = movablePlaces[1][10];
+        if (j - 1 >= 0 && playground.getGround()[i][j - 1].getCard() == null &&
+                j - 2 >= 0 && playground.getGround()[i][j - 2].getCard() == null) {
+            movablePlaces[0][counter] = i;
+            movablePlaces[1][counter] = j - 2;
             counter++;
         }
-        if (movablePlaces[0][11] >= 0 && movablePlaces[0][11] < 9 && movablePlaces[1][11] >= 0 &&
-                movablePlaces[1][11] < 5 &&
-                playground.getGround()[movablePlaces[0][11]][movablePlaces[1][11]].getCard() == null
-                && playground.getGround()[movablePlaces[0][11] + 1][movablePlaces[1][11]].getCard() == null) {
-            finalResult[0][counter] = movablePlaces[0][11];
-            finalResult[1][counter] = movablePlaces[1][11];
+        if (i + 1 < 9 && playground.getGround()[i + 1][j].getCard() == null &&
+                i + 2 < 9 && playground.getGround()[i + 2][j].getCard() == null) {
+            movablePlaces[0][counter] = i + 2;
+            movablePlaces[1][counter] = j;
             counter++;
         }
-        if (movablePlaces[0][12] >= 0 && movablePlaces[0][12] < 9 && movablePlaces[1][12] >= 0 &&
-                movablePlaces[1][12] < 5 &&
-                playground.getGround()[movablePlaces[0][12]][movablePlaces[1][12]].getCard() == null
-                && playground.getGround()[movablePlaces[0][12]][movablePlaces[1][12] + 1].getCard() == null) {
-            finalResult[0][counter] = movablePlaces[0][12];
-            finalResult[1][counter] = movablePlaces[1][12];
+        if (j + 1 < 5 && playground.getGround()[i][j + 1].getCard() == null &&
+                j + 2 < 5 && playground.getGround()[i][j + 2].getCard() == null) {
+            movablePlaces[0][counter] = i;
+            movablePlaces[1][counter] = j + 2;
             counter++;
         }
-        return finalResult;
+        if (j - 1 >= 0 && i - 1 >= 0 && (playground.getGround()[i][j - 1].getCard() == null ||
+                playground.getGround()[i - 1][j].getCard() == null) &&
+                playground.getGround()[i - 1][j - 1].getCard() == null) {
+            movablePlaces[0][counter] = i - 1;
+            movablePlaces[1][counter] = j - 1;
+            counter++;
+        }
+        if (j + 1 < 5 && i + 1 < 9 && (playground.getGround()[i][j + 1].getCard() == null ||
+                playground.getGround()[i + 1][j].getCard() == null) &&
+                playground.getGround()[i + 1][j + 1].getCard() == null) {
+            movablePlaces[0][counter] = i + 1;
+            movablePlaces[1][counter] = j + 1;
+            counter++;
+        }
+        if (j - 1 >= 0 && i + 1 < 9 && (playground.getGround()[i][j - 1].getCard() == null ||
+                playground.getGround()[i + 1][j].getCard() == null) &&
+                playground.getGround()[i + 1][j - 1].getCard() == null) {
+            movablePlaces[0][counter] = i + 1;
+            movablePlaces[1][counter] = j - 1;
+            counter++;
+        }
+        if (j + 1 < 5 && i - 1 >= 0 && (playground.getGround()[i][j + 1].getCard() == null ||
+                playground.getGround()[i - 1][j].getCard() == null) &&
+                playground.getGround()[i - 1][j + 1].getCard() == null) {
+            movablePlaces[0][counter] = i - 1;
+            movablePlaces[1][counter] = j + 1;
+            counter++;
+        }
+        return movablePlaces;
     }
 
     public boolean insertCardNearestToEnemyHero(Card card) {
@@ -267,11 +260,11 @@ public abstract class Game {
                     continue;
                 for (int m = 0; m < 9; m++) {
                     for (int n = 0; n < 5; n++) {
-                        if (Math.abs(i - m) >= 1 || Math.abs(j - n) >= 1) continue;
+                        if (Math.abs(i - m) > 1 || Math.abs(j - n) > 1) continue;
                         if (playground.getGround()[m][n].getCard() != null) continue;
+                        System.out.println(m + " " + n);
                         places[index][0] = m;
                         places[index][1] = n;
-                        System.out.println(m + " " + n);
                     }
                 }
             }
