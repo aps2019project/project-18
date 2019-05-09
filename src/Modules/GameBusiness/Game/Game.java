@@ -88,6 +88,7 @@ public abstract class Game {
     }
 
     public void turn() {
+        System.out.println("it's player " + players[turn % 2].getAccount().getUserName() + "'s turn");
         prepare();
         if (end || cancel) {
             doWhatNeedDoAfterGameEnd();
@@ -228,24 +229,33 @@ public abstract class Game {
     }
 
     public boolean insertCardNearestToEnemyHero(Card card) {
-        System.out.println("ddd");
-        int[] nearestPosition = new int[2];
-        int[] position = new int[2];
-        int[][] inserts = getInsertablePlaces(card);
-        if (inserts.length > 0) {
-            nearestPosition = inserts[0];
-            for (int i = 0; i < inserts.length; i++) {
-                position = inserts[i];
-                if (inserts[i][0] == 0 && inserts[i][1] == 0 && inserts[i + 1][0] == 0 && inserts[i + 1][1] == 0)
-                    return false;
-                if (distance(position, getPosition(getEnemyHero())) <
-                        distance(nearestPosition, getPosition(getEnemyHero()))) {
-                    nearestPosition = position;
+        if (card instanceof Minion) {
+            int[] nearestPosition = new int[2];
+            int[] position = new int[2];
+            int[][] inserts = getInsertablePlaces(card);
+            if (inserts.length > 0) {
+                nearestPosition = inserts[0];
+                for (int i = 0; i < inserts.length; i++) {
+                    position = inserts[i];
+                    if (inserts[i][0] == 0 && inserts[i][1] == 0 && inserts[i + 1][0] == 0 && inserts[i + 1][1] == 0)
+                        return false;
+                    if (distance(position, getPosition(getEnemyHero())) <
+                            distance(nearestPosition, getPosition(getEnemyHero()))) {
+                        nearestPosition = position;
+                    }
                 }
+                return insertCard(card, nearestPosition[0] + 1, nearestPosition[1] + 1);
             }
-            return insertCard(card, nearestPosition[0] + 1, nearestPosition[1] + 1);
+            return false;
+        } else {
+            for (int i = 0; i < 9; i++)
+                for (int j = 0; j < 5; j++) {
+                    if (insertCard(card, i, j)) {
+                        return true;
+                    }
+                }
+            return false;
         }
-        return false;
     }
 
     private int[][] getInsertablePlaces(Card card) {
