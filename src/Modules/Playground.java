@@ -28,6 +28,14 @@ public class Playground {
         return null;
     }
 
+    public void excuteBuffs() {
+        for (int i = 0 ; i < houses.length ; i++) {
+            for (int j = 0 ; j < houses[i].length ; j++) {
+                houses[i][j].excuteBuffs();
+            }
+        }
+    }
+
     public void aging() {
         for (int i = 0; i < 9; i++)
             for (int j = 0; j < 5; j++) {
