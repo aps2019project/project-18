@@ -663,11 +663,11 @@ public abstract class Game {
     public Hero getEnemyHero() {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
-                if (playground.getGround()[i][j].getCard().getId().contains
+                if (playground.getGround()[i][j].getCard() != null && playground.getGround()[i][j].getCard().getId().contains
                         (getEnemyPlayer().getAccount().getUserName())) {
                     continue;
                 }
-                if (playground.getGround()[i][j].getCard() instanceof Hero) {
+                if (playground.getGround()[i][j].getCard() != null && playground.getGround()[i][j].getCard() instanceof Hero) {
                     return (Hero) playground.getGround()[i][j].getCard();
                 }
             }
