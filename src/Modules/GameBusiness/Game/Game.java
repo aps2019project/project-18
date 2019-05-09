@@ -277,7 +277,7 @@ public abstract class Game {
     }
 
     private boolean checkPlaceValidity(int x, int y) {
-        return !(x > 9 || x < 0 || y > 5 || y < 0);
+        return !(x >= 9 || x < 0 || y >= 5 || y < 0);
     }
 
     private int distance(int[] position1, int[] position2) {
