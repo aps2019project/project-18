@@ -101,11 +101,11 @@ public class JUnitTests {
         ModeKillEnemyHero modeKillEnemyHero = new ModeKillEnemyHero(human, opponent);
         human.setGame(modeKillEnemyHero);
         opponent.setGame(modeKillEnemyHero);
-        if (modeKillEnemyHero.getAttackableMinions(human.getHeroCard()).length  != 0) {
+        if (modeKillEnemyHero.getAttackableMinions(human.getHeroCard()) != null) {
             Assert.fail();
         }
         modeKillEnemyHero.getPlayground().move(0, 2, 8, 1);
-        if (modeKillEnemyHero.getAttackableMinions(human.getHeroCard()).length == 0) {
+        if (modeKillEnemyHero.getAttackableMinions(human.getHeroCard()) == null) {
             Assert.fail();
         }
     }
@@ -162,15 +162,15 @@ public class JUnitTests {
         Human human = new Human(Account.findAccount("AI1"));
         Human opponent = new Human(Account.findAccount("AI2"));
         ModeKillEnemyHero modeKillEnemyHero = new ModeKillEnemyHero(human, opponent);
-        modeKillEnemyHero.getPlayground().move(8 ,2 , 5 , 2);
-        modeKillEnemyHero.getPlayground().move(0 ,2 , 4 , 2);
+        modeKillEnemyHero.getPlayground().move(8, 2, 5, 2);
+        modeKillEnemyHero.getPlayground().move(0, 2, 4, 2);
         Buff buff = new Buff();
         buff.setHoly(true);
         buff.setHolyCount(2);
         opponent.getHeroCard().addBuff(buff);
         int hitPointOpponent = opponent.getHeroCard().getHitPoint();
         int hitPointHuman = human.getHeroCard().getHitPoint();
-        modeKillEnemyHero.attack(human.getHeroCard() , opponent.getHeroCard().getId());
+        modeKillEnemyHero.attack(human.getHeroCard(), opponent.getHeroCard().getId());
         if (hitPointOpponent - opponent.getHeroCard().getHitPoint() != human.getHeroCard().getAttackPower() - 2 && hitPointHuman - human.getHeroCard().getHitPoint() != opponent.getHeroCard().getAttackPower())
             Assert.fail();
     }
