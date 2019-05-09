@@ -129,6 +129,9 @@ public class PlayerController {
         boolean in = true;
 
         while (in) {
+            human.getGame().checkEnd();
+            if (human.getGame().isEnd())
+                return;
             request.getNewCommand();
             if (!request.isValid() && request.getType() == null) {
                 System.out.println("Invalid command");
