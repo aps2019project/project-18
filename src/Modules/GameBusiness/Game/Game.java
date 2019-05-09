@@ -461,10 +461,8 @@ public abstract class Game {
             else if (playground.getGround()[x - 1][y - 1].getCard() == null) {
                 Minion minion = (Minion) card;
                 if (canPlaceMinion(x - 1, y - 1, card)) {
+
                     playground.getGround()[x - 1][y - 1].setCard(minion);
-                    if (checkDeath((Force) card)) {
-                        death((Force) card);
-                    }
                     return true;
                 } else {
                     System.out.println("minion can place near own forces");
@@ -663,8 +661,7 @@ public abstract class Game {
     public Hero getEnemyHero() {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
-                if (playground.getGround()[i][j].getCard() != null && playground.getGround()[i][j].getCard().getId().contains
-                        (getEnemyPlayer().getAccount().getUserName())) {
+                if (playground.getGround()[i][j].getCard() != null && playground.getGround()[i][j].getCard() == players[turn%2].getHeroCard()) {
                     continue;
                 }
                 if (playground.getGround()[i][j].getCard() != null && playground.getGround()[i][j].getCard() instanceof Hero) {
