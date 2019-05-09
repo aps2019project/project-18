@@ -90,6 +90,7 @@ public class AI extends Player {
         for (Force force1 : defenders) {
             if (force1 instanceof Hero) {
                 game.attack(force, force1.getId());
+                game.checkEnd();
                 return;
             }
         }
@@ -98,6 +99,7 @@ public class AI extends Player {
         for (Force force1 : defenders){
             if (force1.getHitPoint() <= force.getAttackPower()) {
                 game.attack(force, force1.getId());
+                game.checkEnd();
                 return;
             }
         }
