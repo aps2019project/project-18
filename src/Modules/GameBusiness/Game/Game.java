@@ -377,10 +377,6 @@ public abstract class Game {
         return null;
     }
 
-    public boolean isEnd() {
-        return end;
-    }
-
     public Force[] getMyCards() {
         ArrayList<Force> cards = new ArrayList<>();
         for (int i = 0; i < 9; i++)
