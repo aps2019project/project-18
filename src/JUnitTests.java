@@ -5,6 +5,7 @@ import Modules.GameBusiness.Game.ModeKillEnemyHero;
 import Modules.GameBusiness.Player.Human;
 import Modules.PlayableThings.BuffAndSpecialPowers.Buff.Buff;
 import Modules.PlayableThings.cards.Card;
+import Modules.PlayableThings.cards.Force;
 import Modules.Playground;
 import Modules.Shop;
 import org.junit.Assert;
@@ -100,11 +101,11 @@ public class JUnitTests {
         ModeKillEnemyHero modeKillEnemyHero = new ModeKillEnemyHero(human, opponent);
         human.setGame(modeKillEnemyHero);
         opponent.setGame(modeKillEnemyHero);
-        if (modeKillEnemyHero.getAttackableMinions(human.getHeroCard()) != null) {
+        if (modeKillEnemyHero.getAttackableMinions(human.getHeroCard()).length  != 0) {
             Assert.fail();
         }
         modeKillEnemyHero.getPlayground().move(0, 2, 8, 1);
-        if (modeKillEnemyHero.getAttackableMinions(human.getHeroCard()) == null) {
+        if (modeKillEnemyHero.getAttackableMinions(human.getHeroCard()).length == 0) {
             Assert.fail();
         }
     }
