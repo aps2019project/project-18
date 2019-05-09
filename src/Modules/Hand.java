@@ -24,12 +24,12 @@ public class Hand {
         return deck.getItem();
     }
 
-    public Card[] getPutableCards(int mana) {
+    public ArrayList<Card> getPutableCards(int mana) {
         ArrayList<Card> cards = new ArrayList<>();
         for (int i = 0; i < 5; i++)
             if (hand[i].getManaPoint() <= mana)
                 cards.add(hand[i]);
-        return (Card[]) cards.toArray();
+        return cards;
     }
 
     public Hero getHero(){
