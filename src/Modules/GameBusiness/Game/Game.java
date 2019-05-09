@@ -230,11 +230,9 @@ public abstract class Game {
     public boolean insertCardNearestToEnemyHero(Card card) {
         int[] nearestPosition = new int[2];
         int[] position = new int[2];
-        nearestPosition[0] = getInsertablePlaces()[0][0];
-        nearestPosition[1] = getInsertablePlaces()[1][0];
+        nearestPosition = getInsertablePlaces()[0];
         for (int i = 0; i < getInsertablePlaces().length; i++) {
-            position[0] = getInsertablePlaces()[0][i];
-            position[1] = getInsertablePlaces()[1][i];
+            position = getInsertablePlaces()[i];
             if (distance(position, getPosition(getEnemyHero())) <
                     distance(nearestPosition, getPosition(getEnemyHero()))) {
                 nearestPosition = position;
@@ -258,7 +256,7 @@ public abstract class Game {
                         }
                 }
             }
-        int[][] result = new int[2][counter];
+        int[][] result = new int[counter][2];
         counter = 0;
         for (int i = 0; i < 9; i++)
             for (int j = 0; j < 5; j++) {
@@ -268,8 +266,8 @@ public abstract class Game {
                         for (int l = -1; l < 2; l++) {
                             if (checkPlaceValidity(i + k, j + l) &&
                                     playground.getGround()[i + k][j + l].getCard() == null) {
-                                result[0][counter] = i + k;
-                                result[1][counter] = j + l;
+                                result[counter][0] = i + k;
+                                result[counter][1] = j + l;
                                 counter++;
                             }
                         }
