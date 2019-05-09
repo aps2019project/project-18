@@ -239,7 +239,7 @@ public abstract class Game {
                     nearestPosition = position;
                 }
             }
-            return insertCard(card, nearestPosition[0], nearestPosition[1]);
+            return insertCard(card, nearestPosition[0]+1, nearestPosition[1]+1);
         }
         return false;
     }
