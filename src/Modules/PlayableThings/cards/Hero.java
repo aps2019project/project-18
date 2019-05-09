@@ -41,10 +41,7 @@ public class Hero extends Force {
     }
 
     public void excuteAbility() {
-        if (usedSpellCoolDown == 0) {
-            usedSpellCoolDown = spellCoolDown;
-            //todo
-        }
+        usedSpellCoolDown = spellCoolDown;
     }
 
     public boolean canUseSpell(){
@@ -76,6 +73,18 @@ public class Hero extends Force {
         }
         hero.setId(this.id);
         return hero;
+    }
+
+    public Spell getSpell() {
+        return spell;
+    }
+
+    public int getUsedSpellCoolDown() {
+        return usedSpellCoolDown;
+    }
+
+    public int getSpellMana(){
+        return spellMana;
     }
 
     @Override

@@ -168,4 +168,22 @@ public abstract class Player {
     public int getManaPoint() {
         return manaPoint;
     }
+
+    public void useSpecialPower(int x , int y){
+        Hero hero = getHeroCard();
+        if (hero.canUseSpell()) {
+            if ( hero.getSpellMana() < manaPoint) {
+                if (game.insertCard(hero.getSpell(), x, y)) {
+                    hero.excuteAbility();
+                    manaPoint -= hero.getSpellMana();
+                }
+            }else
+                System.out.println("You dont have enough mana to use special power");
+        }else {
+            if (getHeroCard().getUsedSpellCoolDown() != 0)
+                System.out.println("You have used special power and must wait until cool down ends");
+            else
+                System.out.println("This hero does not have special power");
+        }
+    }
 }
