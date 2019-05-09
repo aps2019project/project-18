@@ -17,6 +17,7 @@ public class Item {
         this.mana = mana;
         this.turns = turns;
         this.infinitive = infinitive;
+        this.spell = spell;
         this.name = name;
         this.price = price;
         this.description = description;
@@ -33,7 +34,11 @@ public class Item {
     }
 
     public Item getItemCopy() {
-        Item item = new Item( name,  price,  description ,  mana ,  turns ,  infinitive ,  (Spell)spell.getCopyCard());
+        Item item;
+        if (spell != null)
+            item = new Item( name,  price,  description ,  mana ,  turns ,  infinitive ,  (Spell)spell.getCopyCard());
+        else
+            item = new Item( name,  price,  description ,  mana ,  turns ,  infinitive ,  null);
         item.setItemId(this.itemId);
         return item;
     }
