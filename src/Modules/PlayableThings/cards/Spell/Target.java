@@ -236,7 +236,34 @@ public class Target {
         if (minion && ally) {
             return oneOwnMinion(playground, x, y, userNamePlayerHaveTurn);
         }
+        if (row) {
+            return allForceInHeroRow(playground, userNamePlayerHaveTurn);
+        }
         return null;
+    }
+
+    private Integer[][] allForceInHeroRow(Playground playground, String id) {
+        int x = 0, y = 0;
+        Integer[][] targets = new Integer[8][2];
+        int index = 0;
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (playground.getGround()[i][j].getCard() == null) continue;
+                if (playground.getGround()[i][j].getCard().getId().contains(id)) {
+                    x = i;
+                    y = j;
+                    break;
+                }
+            }
+        }
+        for (int i = 0; i < 9; i++) {
+            if (playground.getGround()[i][y].getCard() == null) continue;
+            if (i == x) continue;
+            targets[index][0] = i;
+            targets[index][1] = y;
+        }
+        if (index == 0) return null;
+        return targets;
     }
 
     private Integer[][] oneEnemyRandomMinion(Playground playground, String id) {
@@ -441,7 +468,9 @@ public class Target {
         return new Target(this.ground, this.dimension, this.distance, this.all, this.ally, this.count, this.hero, this.minion, this.aroundHero, this.hybride, this.ranged, this.melee, this.row, this.column, this.game, this.graveyard, this.aroundIt, this.it, this.hand, this.random);
     }
 
-    private Target(boolean ground, int dimension, int distance, boolean all, Boolean ally, int count, boolean hero, boolean minion, boolean aroundHero, boolean hybride, boolean ranged, boolean melee, boolean row, boolean column, boolean game, boolean graveyard, boolean aroundIt, boolean it, boolean hand, boolean random) {
+    private Target(boolean ground, int dimension, int distance, boolean all, Boolean ally, int count, boolean hero,
+                   boolean minion, boolean aroundHero, boolean hybride, boolean ranged, boolean melee, boolean row, boolean column,
+                   boolean game, boolean graveyard, boolean aroundIt, boolean it, boolean hand, boolean random) {
         this.ground = ground;
         this.dimension = dimension;
         this.distance = distance;
