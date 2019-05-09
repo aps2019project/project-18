@@ -8,6 +8,7 @@ import Modules.GameBusiness.Game.ModeKillEnemyHero;
 import Modules.GameBusiness.Player.AI;
 import Modules.GameBusiness.Player.Human;
 import Modules.Main;
+import Modules.PlayableThings.cards.Card;
 import Modules.Shop;
 import View.View.ShowBattle;
 import View.View.ShowSinglePlayer;
@@ -119,6 +120,9 @@ public class SinglePlayer {
     }
 
     private static void customGame(Account account) {
+        for (Card card1 : Shop.getInstance().setCustomDeck().getCards()){
+            System.out.println(card1.getId());
+        }
         AI ai = new AI();
         ai.setDeck(Shop.getInstance().setCustomDeck());
         Game game = gameMode(account, ai);

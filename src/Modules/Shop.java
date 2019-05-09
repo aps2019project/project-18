@@ -306,9 +306,9 @@ public class Shop {
         for (int i = 0; i < 9; i++) {
             deck.addCard(cards.get(new Random().nextInt(40) + 30).getCopyCard());
         }
-        for (int i = 0; i < 21; i++) {
+        for (int i = 0; i < 20; i++) {
             int id = 1;
-            for (int j = i + 1; j < 21; j++) {
+            for (int j = i + 1; j < 20; j++) {
                 if (deck.getCards().get(i).getName().equals(deck.getCards().get(j))) {
                     id++;
                 }
