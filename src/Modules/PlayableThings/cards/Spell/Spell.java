@@ -43,9 +43,9 @@ public class Spell extends Card {
         return this;
     }
 
-    public void executeBuff(Game game, int x, int y, String userNamePlayerHAveTurn) {
+    public boolean executeBuff(Game game, int x, int y, String userNamePlayerHAveTurn) {
         Integer[][] targets = target.getTargets(game, x, y, userNamePlayerHAveTurn);
-        if (targets == null) return;
+        if (targets == null) return false;
         if (target.isGround()) {
             for (Buff buff : buffs) {
                 if (buff.getHolyCount() > 0) {
@@ -82,6 +82,7 @@ public class Spell extends Card {
                 }
             }
         }
+        return true;
     }
 
     private void execute(Buff buff, Force force, String playerHaveTurn) {
@@ -119,10 +120,10 @@ public class Spell extends Card {
         Spell spell;
         if (target != null)
             spell = new Spell(this.name, this.description, this.price, this.manaPoint, this.target.getCopy(),
-                this.getBuffsCopy());
+                    this.getBuffsCopy());
         else
             spell = new Spell(this.name, this.description, this.price, this.manaPoint, this.target,
-                this.getBuffsCopy());
+                    this.getBuffsCopy());
         spell.setId(this.id);
         return spell;
     }

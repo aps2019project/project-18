@@ -143,7 +143,16 @@ public abstract class Game {
         counter++;
         movablePlaces[0][counter] = getPosition(force)[0];
         movablePlaces[1][counter] = getPosition(force)[1] - 2;
-        int[][] finalResult = new int[2][];
+        counter = 0;
+        for (int i = 0; i < 9; i++) {
+            if (movablePlaces[0][i] >= 0 && movablePlaces[0][i] <= 9 && movablePlaces[1][i] >= 0 &&
+                    movablePlaces[1][i] <= 5 && (movablePlaces[0][i] != getPosition(force)[0] ||
+                    movablePlaces[1][i] != getPosition(force)[1]) &&
+                    playground.getGround()[movablePlaces[0][i]][movablePlaces[1][i]].getCard() == null) {
+                counter++;
+            }
+        }
+        int[][] finalResult = new int[2][counter];
         counter = 0;
         for (int i = 0; i < 9; i++) {
             if (movablePlaces[0][i] >= 0 && movablePlaces[0][i] <= 9 && movablePlaces[1][i] >= 0 &&
