@@ -4,6 +4,7 @@ import Modules.GameBusiness.Player.AI;
 import Modules.GameBusiness.Player.Human;
 import Modules.GameBusiness.Player.Player;
 import Modules.GameData;
+import Modules.PlayableThings.Item.Flag;
 import Modules.PlayableThings.Item.Item;
 import Modules.PlayableThings.cards.*;
 import Modules.PlayableThings.cards.Spell.Spell;
@@ -278,8 +279,8 @@ public abstract class Game {
 
     public void death(Force force) {
         force.die();
-        Item[] items = force.getFlags();
-        players[(turn + 1) % 2].loseFlag(items.length);
+        ArrayList<Flag> items = force.getFlags();
+        players[(turn + 1) % 2].loseFlag(items.size());
         for (Item item : items) {
             playground.getGround()[getPosition(force)[0]][getPosition(force)[1]].setItem(item);
         }
@@ -429,7 +430,7 @@ public abstract class Game {
 
     public boolean insertCard(Card card, int x, int y) {
         if (x - 1 >= 0 && x - 1 < 9 && y - 1 >= 0 && y - 1 < 9) {
-            if (playground.getGround()[x - 1][y - 1] == null) {
+            if (playground.getGround()[x - 1][y - 1].getCard() == null) {
                 if (card instanceof Spell) {
                     Spell spell = (Spell) card;
                     /*if (canExecuteSpell()) {
@@ -440,7 +441,7 @@ public abstract class Game {
                     }*/
                 } else {
                     Minion minion = (Minion) card;
-                    if (canPlaceMinion(x, y, card)) {
+                    if (canPlaceMinion(x - 1, y - 1, card)) {
                         playground.getGround()[x - 1][y - 1].setCard(minion);
                         return true;
                     } else {
@@ -463,11 +464,13 @@ public abstract class Game {
         } else {
             player = players[1].getAccount().getUserName();
         }
+        if (playground.getGround()[x][y].getCard() != null)
+            return false;
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
                 if (Math.abs(i - x) <= 1 && Math.abs(j - y) <= 1) {
-                    if (playground.getGround()[x][y].getCard() == null) continue;
-                    if (!playground.getGround()[x][y].getCard().getId().contains(player)) continue;
+                    if (playground.getGround()[i][j].getCard() == null) continue;
+                    if (!playground.getGround()[i][j].getCard().getId().contains(player)) continue;
                     return true;
                 }
             }

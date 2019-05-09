@@ -76,7 +76,7 @@ public class ModeCaptureHalfFlags extends Game {
             for (int j = 0; j < 5; j++) {
                 if (playground.getGround()[i][j].getCard() == null) continue;
                 Force force = (Force) playground.getGround()[i][j].getCard();
-                if (force.getFlags() == null || force.getFlags().length == 0) continue;
+                if (force.getFlags() == null || force.getFlags().size() == 0) continue;
                 System.out.println(force.getId() + " (" + i + "," + j + ")");
             }
         }

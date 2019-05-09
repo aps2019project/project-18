@@ -92,7 +92,8 @@ public abstract class Player {
                     }
                 }
                 game.getPlayground().getGround()[x - 1][y - 1].removeItems();
-                ((Force) card).insert(null).execute(game , x - 1 , y -1);
+                if (((Force) card).insert(null) != null)
+                    ((Force) card).insert(null).execute(game , x - 1 , y -1);
                 System.out.format("%s is inserted in (%d , %d)\n" , id , x ,y);
             }
             else
