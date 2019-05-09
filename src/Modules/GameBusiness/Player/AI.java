@@ -110,7 +110,7 @@ public class AI extends Player {
     private void judgeMove(Force force) {
         int[][] places = game.getMovablePlaces(force);
         if (places.length == 0)
-            return;;
+            return;
         int[] destination = judgeDestination(places);
         move(force , ((Integer)(destination[0] + 1)).toString() + " " + ((Integer)(destination[1] + 1)).toString());
     }
