@@ -1,7 +1,6 @@
 package Modules;
 
 import Modules.GameBusiness.Battle.Battle;
-import Modules.GameBusiness.Player.Human;
 import Modules.PlayableThings.Item.Item;
 import Modules.PlayableThings.cards.Card;
 import View.View.ShowAccount;
@@ -10,7 +9,7 @@ import View.View.ShowMain;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-import static Modules.Main.*;
+import static Modules.Main.scanner;
 
 public class Account implements Comparator {
 
@@ -239,7 +238,7 @@ public class Account implements Comparator {
             return;
         }
         money -= item.getPrice();
-        Item _item = item.copyItem();
+        Item _item = item.getItemCopy();
         setItemId(_item);
         collection.addItem(_item);
     }
