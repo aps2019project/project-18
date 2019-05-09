@@ -191,32 +191,73 @@ public class Target {
 
     public Integer[][] getTargets(Game game, int x, int y, String userNamePlayerHaveTurn) {
         Playground playground = game.getPlayground();
-        if (minion && hero && !ally) {
-            return oneEnemyForce(playground, x, y, userNamePlayerHaveTurn);
-        } else if (ground) {
-            return ground(x, y);
-        } else if (minion && hero && ally) {
-            return oneOwnForce(playground, x, y, userNamePlayerHaveTurn);
-        } else if (hero && ally) {
-            return ownHero(playground, userNamePlayerHaveTurn);
-        } else if (hero && !ally) {
-            return enemyHero(playground, userNamePlayerHaveTurn);
-        } else if (minion && hero && !ally && all) {
-            return allEnemyForce(playground, userNamePlayerHaveTurn);
-        } else if (minion && hero && ally == null) {
+        if (minion && hero && ally == null) {
             return oneOwnOrEnemyForce(playground, x, y);
-        } else if (minion && hero && ally && all) {
-            return allOwnForce(playground, userNamePlayerHaveTurn);
-        } else if (column && minion && hero && !ally) {
+        }
+        if (column && minion && hero && !ally) {
             return allEnemyInOneColumn(playground, x, y, userNamePlayerHaveTurn);
-        } else if (minion && !ally) {
-            return oneEnemyMinion(playground, x, y, userNamePlayerHaveTurn);
-        } else if (minion && ally) {
-            return oneOwnMinion(playground, x, y, userNamePlayerHaveTurn);
-        } else if (minion && !ally && random && aroundHero) {
+        }
+        if (minion && !ally && random && aroundHero) {
             return oneRandomMinionAroundOwnHero(game, playground, userNamePlayerHaveTurn);
         }
+        if (minion && hero && ally && all) {
+            return allOwnForce(playground, userNamePlayerHaveTurn);
+        }
+        if (minion && hero && !ally && all) {
+            return allEnemyForce(playground, userNamePlayerHaveTurn);
+        }
+        if (minion && hero && !ally) {
+            return oneEnemyForce(playground, x, y, userNamePlayerHaveTurn);
+        }
+        if (minion && all && aroundIt && dimension > 0) {
+            return allMinionAroundIt(playground, x, y);
+        }
+        if (minion && all && aroundIt && dimension <= 0) {
+            return allMinionAroundIt8(playground, x, y);
+        }
+        if (minion && !ally && random) {
+            return oneEnemyRandomMinion(playground, userNamePlayerHaveTurn);
+        }
+        if (ground) {
+            return ground(x, y);
+        }
+        if (minion && hero && ally) {
+            return oneOwnForce(playground, x, y, userNamePlayerHaveTurn);
+        }
+        if (hero && ally && !minion) {
+            return ownHero(playground, userNamePlayerHaveTurn);
+        }
+        if (hero && !ally && !minion) {
+            return enemyHero(playground, userNamePlayerHaveTurn);
+        }
+        if (minion && !ally) {
+            return oneEnemyMinion(playground, x, y, userNamePlayerHaveTurn);
+        }
+        if (minion && ally) {
+            return oneOwnMinion(playground, x, y, userNamePlayerHaveTurn);
+        }
         return null;
+    }
+
+    private Integer[][] oneEnemyRandomMinion(Playground playground, String id) {
+        int[][] b = new int[15][2];
+        int index = 0;
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (playground.getGround()[i][j].getCard() == null) continue;
+                if (playground.getGround()[i][j].getCard() instanceof Hero) continue;
+                if (playground.getGround()[i][j].getCard().getId().contains(id)) continue;
+                b[index][0] = i;
+                b[index][1] = j;
+                index++;
+            }
+        }
+        if (index == 0) return null;
+        int random = new Random().nextInt(index);
+        Integer[][] c = new Integer[1][2];
+        c[0][0] = b[random][0];
+        c[0][1] = b[random][1];
+        return c;
     }
 
     private Integer[][] oneEnemyForce(Playground playground, int x, int y, String id) {
@@ -240,6 +281,7 @@ public class Target {
                 index++;
             }
         }
+        if (index == 0) return null;
         return integers;
     }
 
@@ -299,6 +341,7 @@ public class Target {
                 }
             }
         }
+        if (index == 0) return null;
         return integers;
     }
 
@@ -314,6 +357,7 @@ public class Target {
                 }
             }
         }
+        if (index == 0) return null;
         return integers;
     }
 
@@ -339,6 +383,7 @@ public class Target {
                 index++;
             }
         }
+        if (index == 0) return null;
         return integers;
     }
 
@@ -384,6 +429,7 @@ public class Target {
                 index++;
             }
         }
+        if (index == 0) return null;
         int random = new Random().nextInt(index);
         Integer[][] c = new Integer[1][2];
         c[0][0] = b[random][0];
@@ -391,8 +437,8 @@ public class Target {
         return c;
     }
 
-    public Target getCopy(){
-        return new Target(this.ground, this.dimension, this.distance, this.all, this.ally, this.count, this.hero, this.minion, this.aroundHero, this.hybride, this.ranged, this.melee, this.row, this.column, this.game, this.graveyard, this.aroundIt, this.it, this.hand,  this.random);
+    public Target getCopy() {
+        return new Target(this.ground, this.dimension, this.distance, this.all, this.ally, this.count, this.hero, this.minion, this.aroundHero, this.hybride, this.ranged, this.melee, this.row, this.column, this.game, this.graveyard, this.aroundIt, this.it, this.hand, this.random);
     }
 
     private Target(boolean ground, int dimension, int distance, boolean all, Boolean ally, int count, boolean hero, boolean minion, boolean aroundHero, boolean hybride, boolean ranged, boolean melee, boolean row, boolean column, boolean game, boolean graveyard, boolean aroundIt, boolean it, boolean hand, boolean random) {
@@ -418,7 +464,39 @@ public class Target {
         this.random = random;
     }
 
-    public Target(){
+    private Integer[][] allMinionAroundIt(Playground playground, int x, int y) {
+        Integer[][] targets = new Integer[15][2];
+        int index = 0;
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (Math.abs(x - i) + Math.abs(y - j) <= dimension) {
+                    targets[index][0] = i;
+                    targets[index][1] = j;
+                    index++;
+                }
+            }
+        }
+        if (index == 0) return null;
+        return targets;
+    }
+
+    private Integer[][] allMinionAroundIt8(Playground playground, int x, int y) {
+        Integer[][] targets = new Integer[15][2];
+        int index = 0;
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (Math.abs(x - i) <= 1 && Math.abs(y - j) <= 1) {
+                    targets[index][0] = i;
+                    targets[index][1] = j;
+                    index++;
+                }
+            }
+        }
+        if (index == 0) return null;
+        return targets;
+    }
+
+    public Target() {
 
     }
 }

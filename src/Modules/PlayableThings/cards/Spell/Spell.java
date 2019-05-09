@@ -138,6 +138,25 @@ public class Spell extends Card {
         }
     }
 
+    public void executeOnRespawn(Game game, int x, int y, String userNamePlayerHAveTurn) {
+        Integer[][] targets = target.getTargets(game, x, y, userNamePlayerHAveTurn);
+        for (Buff buff : buffs) {
+            for (Integer[] integers : targets) {
+                Force force = (Force) game.getPlayground().getGround()[integers[0]][integers[1]].getCard();
+                force.addBuff(buff.getBuffCopy());
+                force.setAttackPower(force.getAttackPower() + buff.getAttackPower());
+                force.setHitPoint(force.getHitPoint() + buff.getHitPoint());
+                if (force.getAttackPower() < 0)
+                    force.setAttackPower(0);
+                if (force.getHitPoint() < 0)
+                    force.setHitPoint(0);
+                force.setHitPoint(force.getHitPoint() - buff.getHit());
+                if (force.getHitPoint() < 0)
+                    force.setHitPoint(0);
+            }
+        }
+    }
+
     public void execute(Game game, int x, int y) {
         targets = target.getTargets(game, x, y, id.split("_")[0]);
     }
