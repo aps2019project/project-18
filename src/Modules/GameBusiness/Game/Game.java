@@ -258,7 +258,7 @@ public abstract class Game {
                     continue;
                 for (int m = 0; m < 9; m++) {
                     for (int n = 0; n < 5; n++) {
-                        if (Math.abs(i - m) >= 1 || Math.abs(j - n) >= 1) continue;
+                        if (Math.abs(i - m) > 1 || Math.abs(j - n) > 1) continue;
                         if (playground.getGround()[m][n].getCard() != null) continue;
                         places[index][0] = m;
                         places[index][1] = n;
@@ -324,6 +324,7 @@ public abstract class Game {
             System.out.println("there is an obstacle in the way, card can not move!");
             return null;
         } else if (Math.abs(getPosition(force)[0] - x + 1) + Math.abs(getPosition(force)[1] - y + 1) > 2) {
+            System.out.println(x + " " + y);
             System.out.println("destination too far");
             return null;
         } else {
