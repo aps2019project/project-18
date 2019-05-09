@@ -1,5 +1,6 @@
 package Modules.PlayableThings.cards;
 
+import Modules.House;
 import Modules.PlayableThings.BuffAndSpecialPowers.Buff.Buff;
 import Modules.PlayableThings.BuffAndSpecialPowers.SpecialPower.SpecialPower;
 import Modules.PlayableThings.BuffAndSpecialPowers.SpecialPower.SpecialPowerType;
@@ -188,7 +189,7 @@ public abstract class Force extends Card {
         return true;
     }
 
-    public void attack(Force force , boolean haveCounterAttack , boolean canCounterAttack){
+    public void attack(Force force , boolean haveCounterAttack , boolean canCounterAttack ,House defenderPlace){
         int defence = 0;
         for (Buff buff : buffs){
             if (buff.isStun())
@@ -197,6 +198,7 @@ public abstract class Force extends Card {
             if (buff.getHoly() && buff.getExecuteTime() == 0)
                 defence += buff.getHolyCount();
         }
+        defence += defenderPlace.getHolyCount();
         if (canAttack) {
             canAttack = false;
             canMove = false;
@@ -226,13 +228,13 @@ public abstract class Force extends Card {
             if (force.hitPoint < 0)
                 force.hitPoint = 0;
             if (haveCounterAttack && canCounterAttack)
-                force.counterAttack(this);
+                force.counterAttack(this , defenderPlace);
         }
         else
             System.out.println("This card has attacked");
     }
 
-    public void defend(Force force){
+    public void defend(Force force, House defenderPlace){
         int counter = 0;
         for (SpecialPower specialPower : specialPowers){
             if (specialPower.getType() == SpecialPowerType.ON_DEFENCE && specialPower.isDontTakeDamageFromWeaker())
@@ -243,6 +245,7 @@ public abstract class Force extends Card {
             if (buff.getHoly() && buff.getExecuteTime() == 0)
                 counter += buff.getHolyCount();
         }
+        counter  += defenderPlace.getHolyCount();
         hitPoint -= (force.getAttackPower() -  counter);
     }
 
@@ -266,12 +269,12 @@ public abstract class Force extends Card {
         }
     }
 
-    public void counterAttack(Force force){
+    public void counterAttack(Force force , House defenderPlace){
         for (Buff buff : buffs){
             if ((buff.isDisarm() || buff.isStun()) && buff.getExecuteTime() == 0)
                 return;
         }
-        force.defend(this);
+        force.defend(this, defenderPlace);
     }
 
     public ArrayList<Flag> getFlags(){
