@@ -249,7 +249,7 @@ public abstract class Force extends Card {
         hitPoint -= (force.getAttackPower() -  counter);
     }
 
-    public void diepell(boolean positive){
+    public void dispell(boolean positive){
         for (Buff buff : buffs) {
             if (buff.isPositive() == true && positive == true){
                 attackPower -= buff.getAttackPower();

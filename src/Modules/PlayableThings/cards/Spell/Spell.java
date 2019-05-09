@@ -96,11 +96,11 @@ public class Spell extends Card {
         if (force.getHitPoint() < 0) force.setHitPoint(0);
         if (force.getId().contains(playerHaveTurn)) {
             //own force
-            force.diepell(false);
+            force.dispell(false);
         }
         if (!force.getId().contains(playerHaveTurn)) {
             //enemy force
-            force.diepell(true);
+            force.dispell(true);
         }
         if (buff.isKill()) {
             force.setHitPoint(0);
