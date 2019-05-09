@@ -88,6 +88,7 @@ public abstract class Game {
     }
 
     public void turn() {
+        System.out.println("it's player " + players[turn % 2].getAccount().getUserName() + "'s turn");
         prepare();
         if (end || cancel) {
             doWhatNeedDoAfterGameEnd();
@@ -326,6 +327,7 @@ public abstract class Game {
             System.out.println("there is an obstacle in the way, card can not move!");
             return null;
         } else if (Math.abs(getPosition(force)[0] - x + 1) + Math.abs(getPosition(force)[1] - y + 1) > 2) {
+            System.out.println(x + " " + y);
             System.out.println("destination too far");
             return null;
         } else {

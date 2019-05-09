@@ -40,7 +40,12 @@ public class AI extends Player {
             ArrayList<Card> cards = hand.getPutableCards(manaPoint);
             if (cards.size() == 0)
                 break;
-            else if (cards.size() == 1 && cards.get(0) instanceof Spell)
+            boolean haha = false;
+            for (Card card : cards) {
+                if (!(card instanceof  Spell))
+                    haha = true;
+            }
+            if (!haha)
                 break;
             Card card = judgePutCard(cards);
             putCard(card);

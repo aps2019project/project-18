@@ -514,7 +514,7 @@ public class Shop {
         buff = new Buff();
         buff.setAttackPower(6);
         buff.setBuff(true);
-        cards.add(new Spell("PowerUp", "Add one power buff with increase 6 AP to one own force", 2500, 2, targetOwnForce));
+        cards.add(new Spell("PowerUp", "Add one power buff with increase 6 AP to one own force", 2500, 2, targetOwnForce).addBuff(buff));
         Target targetAllOwnForce = new Target();
         targetAllEnemyForce.setAll(true);
         targetAllEnemyForce.setMinion(true);
