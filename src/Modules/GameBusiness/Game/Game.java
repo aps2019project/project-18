@@ -230,15 +230,18 @@ public abstract class Game {
     public boolean insertCardNearestToEnemyHero(Card card) {
         int[] nearestPosition = new int[2];
         int[] position = new int[2];
-        nearestPosition = getInsertablePlaces()[0];
-        for (int i = 0; i < getInsertablePlaces().length; i++) {
-            position = getInsertablePlaces()[i];
-            if (distance(position, getPosition(getEnemyHero())) <
-                    distance(nearestPosition, getPosition(getEnemyHero()))) {
-                nearestPosition = position;
+        if (getInsertablePlaces().length > 0) {
+            nearestPosition = getInsertablePlaces()[0];
+            for (int i = 0; i < getInsertablePlaces().length; i++) {
+                position = getInsertablePlaces()[i];
+                if (distance(position, getPosition(getEnemyHero())) <
+                        distance(nearestPosition, getPosition(getEnemyHero()))) {
+                    nearestPosition = position;
+                }
             }
+            return insertCard(card, nearestPosition[0], nearestPosition[1]);
         }
-        return insertCard(card, nearestPosition[0], nearestPosition[1]);
+        return false;
     }
 
     private int[][] getInsertablePlaces() {
