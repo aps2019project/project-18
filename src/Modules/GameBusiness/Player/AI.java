@@ -13,7 +13,7 @@ import Modules.PlayableThings.cards.Spell.Spell;
 import java.util.ArrayList;
 
 public class AI extends Player {
-    int aiLevel;
+    int aiLevel = 0;
 //i(omid) need this for handling prize
 
     public void setAiLevel(int aiLevel) {
@@ -50,8 +50,9 @@ public class AI extends Player {
     }
 
     private void putCard(Card card) {
-        if (game.insertCardNearestToEnemyHero(card))
+        if (game.insertCardNearestToEnemyHero(card)) {
             manaPoint -= card.getManaPoint();
+        }
     }
 
     private Card judgePutCard(ArrayList<Card> cards){
