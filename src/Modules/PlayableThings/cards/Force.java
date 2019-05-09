@@ -13,7 +13,7 @@ import java.util.Iterator;
 public abstract class Force extends Card {
     protected int attackPower;
     protected int hitPoint;
-    protected ArrayList<Flag> flags;
+    protected ArrayList<Flag> flags = new ArrayList<>();
     protected String attackType;
     protected boolean canMove = false;
     protected boolean canAttack = false;
@@ -274,8 +274,8 @@ public abstract class Force extends Card {
         force.defend(this);
     }
 
-    public Flag[] getFlags(){
-        return (Flag[])flags.toArray();
+    public ArrayList<Flag> getFlags(){
+        return flags;
     }
 
     public void prepareForTurn(boolean isItMyTurn){
