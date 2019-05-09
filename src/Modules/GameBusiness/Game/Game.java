@@ -88,6 +88,7 @@ public abstract class Game {
     }
 
     public void turn() {
+        System.out.println("it's player " + players[turn % 2].getAccount().getUserName() + "'s turn");
         prepare();
         if (end || cancel) {
             doWhatNeedDoAfterGameEnd();
@@ -267,7 +268,7 @@ public abstract class Game {
                     continue;
                 for (int m = 0; m < 9; m++) {
                     for (int n = 0; n < 5; n++) {
-                        if (Math.abs(i - m) >= 1 || Math.abs(j - n) >= 1) continue;
+                        if (Math.abs(i - m) > 1 || Math.abs(j - n) > 1) continue;
                         if (playground.getGround()[m][n].getCard() != null) continue;
                         places[index][0] = m;
                         places[index][1] = n;
