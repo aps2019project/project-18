@@ -50,7 +50,7 @@ public class Deck {
                 return;
             }
         } else {
-            if (cards.size() < 20 && findCard(card.getId()) == null) {
+            if (cards.size() < 20) {
                 cards.add(card);
                 Show.get().cardAddMessage();
                 return;
