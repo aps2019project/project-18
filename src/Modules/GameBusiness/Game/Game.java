@@ -244,8 +244,22 @@ public abstract class Game {
     }
 
     private int[][] getInsertablePlaces() {
-        int[][] result = new int[2][];
         int counter = 0;
+        for (int i = 0; i < 9; i++)
+            for (int j = 0; j < 5; j++) {
+                if (playground.getGround()[i][j].getCard() != null &&
+                        getMyPlayer().checkCard(playground.getGround()[i][j].getCardId())) {
+                    for (int k = -1; k < 2; k++)
+                        for (int l = -1; l < 2; l++) {
+                            if (checkPlaceValidity(i + k, j + l) &&
+                                    playground.getGround()[i + k][j + l].getCard() == null) {
+                                counter++;
+                            }
+                        }
+                }
+            }
+        int[][] result = new int[2][counter];
+        counter = 0;
         for (int i = 0; i < 9; i++)
             for (int j = 0; j < 5; j++) {
                 if (playground.getGround()[i][j].getCard() != null &&
