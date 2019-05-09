@@ -36,6 +36,10 @@ public abstract class Game {
         return playground;
     }
 
+    public boolean isEnd() {
+        return end;
+    }
+
     public Force[] getAttackableMinions(Force force) {
         ArrayList<Force> result = new ArrayList<>();
         for (int i = 0; i < 9; i++)
@@ -91,7 +95,6 @@ public abstract class Game {
     }
 
     private void doWhatNeedDoAfterEachTurn() {
-        checkEnd();
         if (cancel && !end) {
             winnerPlayer = (turn + 1) % 2 + 1;
             doWhatNeedDoAfterGameEnd();
@@ -106,6 +109,8 @@ public abstract class Game {
                 if (playground.getGround()[i][j].getCard() != null)
                     ((Force) playground.getGround()[i][j].getCard()).agging();
             }
+        for (int i = 0 ; i < 2 ; i++)
+            players[i].aging();
         playground.aging();
     }
 
@@ -248,6 +253,10 @@ public abstract class Game {
     }
 
     public ArrayList<Item> move(Force force, int x, int y) {
+        if (!checkPlaceValidity(x - 1, y - 1)) {
+            System.out.println("house number out of bound");
+            return null;
+        }
         if (playground.getGround()[x - 1][y - 1].getCard() != null) {
             System.out.println("destination house is full");
             return null;
@@ -498,7 +507,7 @@ public abstract class Game {
 
     abstract void setPlayground();
 
-    abstract protected void checkEnd();
+    abstract public void checkEnd();
 
     private Force getPlayerForce(int x, int y) {
         Player player = players[turn % 2];
@@ -668,10 +677,10 @@ public abstract class Game {
         if (j - 1 >= 0 && playground.getGround()[i][j - 1].getCard() == null) {
             Show.showTargetThatForceCanMoveTo(i, j - 1);
         }
-        if (j + 1 < 9 && playground.getGround()[i][j + 1].getCard() == null) {
+        if (j + 1 < 5 && playground.getGround()[i][j + 1].getCard() == null) {
             Show.showTargetThatForceCanMoveTo(i, j + 1);
         }
-        if (j + 1 < 9 && playground.getGround()[i + 1][j].getCard() == null) {
+        if (j + 1 < 5 && playground.getGround()[i + 1][j].getCard() == null) {
             Show.showTargetThatForceCanMoveTo(i + 1, j);
         }
         if (i - 1 >= 0 && playground.getGround()[i - 1][j].getCard() == null &&
@@ -686,8 +695,8 @@ public abstract class Game {
                 i + 2 < 9 && playground.getGround()[i + 2][j].getCard() == null) {
             Show.showTargetThatForceCanMoveTo(i + 2, j);
         }
-        if (j + 1 < 9 && playground.getGround()[i][j + 1].getCard() == null &&
-                j + 2 < 9 && playground.getGround()[i][j + 2].getCard() == null) {
+        if (j + 1 < 5 && playground.getGround()[i][j + 1].getCard() == null &&
+                j + 2 < 5 && playground.getGround()[i][j + 2].getCard() == null) {
             Show.showTargetThatForceCanMoveTo(i, j + 2);
         }
         if (j - 1 >= 0 && i - 1 >= 0 && (playground.getGround()[i][j - 1].getCard() == null ||
@@ -695,7 +704,7 @@ public abstract class Game {
                 playground.getGround()[i - 1][j - 1].getCard() == null) {
             Show.showTargetThatForceCanMoveTo(i - 1, j - 1);
         }
-        if (j + 1 < 9 && i + 1 < 9 && (playground.getGround()[i][j + 1].getCard() == null ||
+        if (j + 1 < 5 && i + 1 < 9 && (playground.getGround()[i][j + 1].getCard() == null ||
                 playground.getGround()[i + 1][j].getCard() == null) &&
                 playground.getGround()[i + 1][j + 1].getCard() == null) {
             Show.showTargetThatForceCanMoveTo(i + 1, j + 1);
@@ -705,7 +714,7 @@ public abstract class Game {
                 playground.getGround()[i + 1][j - 1].getCard() == null) {
             Show.showTargetThatForceCanMoveTo(i + 1, j - 1);
         }
-        if (j + 1 < 9 && i - 1 >= 0 && (playground.getGround()[i][j + 1].getCard() == null ||
+        if (j + 1 < 5 && i - 1 >= 0 && (playground.getGround()[i][j + 1].getCard() == null ||
                 playground.getGround()[i - 1][j].getCard() == null) &&
                 playground.getGround()[i - 1][j + 1].getCard() == null) {
             Show.showTargetThatForceCanMoveTo(i - 1, j + 1);

@@ -122,12 +122,14 @@ public abstract class Player {
         String[] splittedCommand = command.split(" ");
         if (force.canMove()) {
             ArrayList<Item> items = game.move(force, Integer.parseInt(splittedCommand[0]), Integer.parseInt(splittedCommand[1]));
-            for (Item item : items) {
-                if (item instanceof Flag) {
-                    numberOfFlag++;
-                    force.takeFlag((Flag) item);
-                } else if (item != null)
-                    this.items.add(item);
+            if (items != null) {
+                for (Item item : items) {
+                    if (item instanceof Flag) {
+                        numberOfFlag++;
+                        force.takeFlag((Flag) item);
+                    } else if (item != null)
+                        this.items.add(item);
+                }
             }
         }
         else
