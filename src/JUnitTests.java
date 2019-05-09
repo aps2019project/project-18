@@ -162,8 +162,8 @@ public class JUnitTests {
         Human human = new Human(Account.findAccount("AI1"));
         Human opponent = new Human(Account.findAccount("AI2"));
         ModeKillEnemyHero modeKillEnemyHero = new ModeKillEnemyHero(human, opponent);
-        modeKillEnemyHero.getPlayground().move(8 ,2 , 5 , 2);
-        modeKillEnemyHero.getPlayground().move(0 ,2 , 4 , 2);
+        modeKillEnemyHero.getPlayground().move(8, 2, 5, 2);
+        modeKillEnemyHero.getPlayground().move(0, 2, 4, 2);
         human.setGame(modeKillEnemyHero);
         opponent.setGame(modeKillEnemyHero);
         Buff buff = new Buff();
@@ -174,7 +174,7 @@ public class JUnitTests {
         int hitPointHuman = human.getHeroCard().getHitPoint();
         human.getHeroCard().setCan();
         opponent.getHeroCard().setCan();
-        modeKillEnemyHero.attack(human.getHeroCard() , opponent.getHeroCard().getId());
+        modeKillEnemyHero.attack(human.getHeroCard(), opponent.getHeroCard().getId());
         if (hitPointOpponent - opponent.getHeroCard().getHitPoint() != human.getHeroCard().getAttackPower() - 2 && hitPointHuman - human.getHeroCard().getHitPoint() != opponent.getHeroCard().getAttackPower())
             Assert.fail();
     }

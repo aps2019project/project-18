@@ -639,6 +639,7 @@ public class Shop {
         target.setMinion(true);
         target.setAll(true);
         target.setAlly(false);
+        target.setAroundIt(true);
         spell = new Spell();
         buff = new Buff();
         buff.setHoly(true);
@@ -753,6 +754,7 @@ public class Shop {
         target = new Target();
         target.setMinion(true);
         target.setRandom(true);
+        target.setAlly(false);
         target.setCount(1);
         spell.setTarget(target);
         specialPower = new SpecialPower();
@@ -789,7 +791,7 @@ public class Shop {
         spell.setTarget(target);
         specialPower = new SpecialPower();
         specialPower.setSpell(spell);
-        specialPower.setType(SpecialPowerType.ON_ATTACK);
+        specialPower.setType(SpecialPowerType.ON_SPAWN);
         cards.add(new Minion("NaneSarma", "On spawn Stun all enemy minion on her sides", 500, 4, 3, "ranged", 5, 3, specialPower));
         specialPower = new SpecialPower();
         spell = new Spell();

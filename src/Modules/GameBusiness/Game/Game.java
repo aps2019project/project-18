@@ -19,6 +19,11 @@ import java.util.Random;
 
 public abstract class Game {
     Player[] players = new Player[2];
+
+    public boolean isEnd() {
+        return end;
+    }
+
     private int turn = 0;
     boolean end;
     int winnerPlayer;
@@ -40,9 +45,9 @@ public abstract class Game {
         return playground;
     }
 
-    public boolean isEnd() {
-        return end;
-    }
+//    public boolean isEnd() {
+//        return end;
+//    }
 
     public Force[] getAttackableMinions(Force force) {
         ArrayList<Force> result = new ArrayList<>();
