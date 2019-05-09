@@ -5,6 +5,7 @@ import Modules.PlayableThings.BuffAndSpecialPowers.Buff.Buff;
 import Modules.PlayableThings.cards.Card;
 import Modules.PlayableThings.cards.Force;
 import Modules.PlayableThings.cards.Hero;
+import Modules.Playground;
 import View.View.Show;
 
 import java.util.ArrayList;
@@ -135,6 +136,25 @@ public class Spell extends Card {
                     }
                 }
             }
+        }
+    }
+
+    public void executePasive(Playground playground, Force force, int x, int y, String playerHaveTurn) {
+        if (target.isAroundIt())
+            for (int i = 0; i < 9; i++) {
+                for (int j = 0; j < 5; j++) {
+                    if (Math.abs(x - i) > 1 || Math.abs(y - j) > 1) continue;
+                    if (playground.getGround()[i][j].getCard() == null) continue;
+                    if (playground.getGround()[i][j].getCard() instanceof Hero) continue;
+                    if (!playground.getGround()[i][j].getCard().getId().contains(playerHaveTurn)) continue;
+                    Force force1 = (Force) playground.getGround()[i][j].getCard();
+                    for (Buff buff : buffs) {
+                        force1.addBuff(buff);
+                    }
+                }
+            }
+        for (Buff buff : buffs) {
+            force.addBuff(buff);
         }
     }
 
