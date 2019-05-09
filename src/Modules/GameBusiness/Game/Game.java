@@ -89,7 +89,7 @@ public abstract class Game {
 
     public void turn() {
         prepare();
-        if (end) {
+        if (end || cancel) {
             doWhatNeedDoAfterGameEnd();
             return;
         }
@@ -103,7 +103,6 @@ public abstract class Game {
         checkDeathEveryWhere();
         if (cancel && !end) {
             winnerPlayer = (turn + 1) % 2 + 1;
-            doWhatNeedDoAfterGameEnd();
         }
         aging();
         turn++;
