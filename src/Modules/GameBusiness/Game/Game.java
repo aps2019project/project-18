@@ -230,10 +230,13 @@ public abstract class Game {
     public boolean insertCardNearestToEnemyHero(Card card) {
         int[] nearestPosition = new int[2];
         int[] position = new int[2];
-        if (getInsertablePlaces().length > 0) {
-            nearestPosition = getInsertablePlaces()[0];
-            for (int i = 0; i < getInsertablePlaces().length; i++) {
-                position = getInsertablePlaces()[i];
+        int[][] inserts = getInsertablePlaces(card);
+        if (inserts.length > 0) {
+            nearestPosition = inserts[0];
+            for (int i = 0; i < inserts.length; i++) {
+                position = inserts[i];
+                if (inserts[i][0] == 0 && inserts[i][1] == 0 && inserts[i+1][0] == 0 && inserts[i+1][1] == 0)
+                    return false;
                 if (distance(position, getPosition(getEnemyHero())) <
                         distance(nearestPosition, getPosition(getEnemyHero()))) {
                     nearestPosition = position;
@@ -244,21 +247,15 @@ public abstract class Game {
         return false;
     }
 
-    private int[][] getInsertablePlaces() {
+    private int[][] getInsertablePlaces(Card card) {
         int[][] places = new int[25][2];
         int index = 0;
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
-                if (playground.getGround()[i][j].getCard() == null) continue;
-                if (playground.getGround()[i][j].getCard().getId().contains(getEnemyPlayer().getAccount().getUserName()))
-                    continue;
-                for (int m = 0; m < 9; m++) {
-                    for (int n = 0; n < 5; n++) {
-                        if (Math.abs(i - m) >= 1 || Math.abs(j - n) >= 1) continue;
-                        if (playground.getGround()[m][n].getCard() != null) continue;
-                        places[index][0] = m;
-                        places[index][1] = n;
-                    }
+                if (canPlaceMinion(i , j , (Minion)card)) {
+                    places[index][0] = i;
+                    places[index][1] = j;
+                    index++;
                 }
             }
         }
