@@ -21,7 +21,7 @@ public class House {
         return force;
     }
 
-    public void excuteBuffs() {
+    public void executeBuffs() {
         if (force != null) {
             force.setHitPoint(force.getHitPoint() - poisonTurns.size() - holyTurns.size()*2);
         }
