@@ -1,6 +1,5 @@
 package Modules;
 
-import Modules.PlayableThings.Item.Item;
 import Modules.PlayableThings.cards.*;
 import Modules.PlayableThings.cards.Spell.Spell;
 import View.View.Show;
@@ -18,10 +17,6 @@ public class Hand {
         for (int i = 0; i < 5; i++)
             this.hand[i] = deck.getRandomCard();
         this.nextCard = deck.getRandomCard();
-    }
-
-    public Item getItem(){
-        return deck.getItem();
     }
 
     public ArrayList<Card> getPutableCards(int mana) {

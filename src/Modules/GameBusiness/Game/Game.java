@@ -19,11 +19,6 @@ import java.util.Random;
 
 public abstract class Game {
     Player[] players = new Player[2];
-
-    public boolean isEnd() {
-        return end;
-    }
-
     private int turn = 0;
     boolean end;
     int winnerPlayer;
@@ -45,9 +40,9 @@ public abstract class Game {
         return playground;
     }
 
-//    public boolean isEnd() {
-//        return end;
-//    }
+    public boolean isEnd() {
+        return end;
+    }
 
     public Force[] getAttackableMinions(Force force) {
         ArrayList<Force> result = new ArrayList<>();
@@ -94,7 +89,7 @@ public abstract class Game {
 
     public void turn() {
         prepare();
-        if (end || cancel) {
+        if (end) {
             doWhatNeedDoAfterGameEnd();
             return;
         }
@@ -108,6 +103,7 @@ public abstract class Game {
         checkDeathEveryWhere();
         if (cancel && !end) {
             winnerPlayer = (turn + 1) % 2 + 1;
+            doWhatNeedDoAfterGameEnd();
         }
         aging();
         turn++;
@@ -232,9 +228,13 @@ public abstract class Game {
     }
 
     public boolean insertCardNearestToEnemyHero(Card card) {
-        int[] nearestPosition;
-        nearestPosition = getInsertablePlaces()[0];
-        for (int[] position : getInsertablePlaces()) {
+        int[] nearestPosition = new int[2];
+        int[] position = new int[2];
+        nearestPosition[0] = getInsertablePlaces()[0][0];
+        nearestPosition[1] = getInsertablePlaces()[1][0];
+        for (int i = 0; i < getInsertablePlaces().length; i++) {
+            position[0] = getInsertablePlaces()[0][i];
+            position[1] = getInsertablePlaces()[1][i];
             if (distance(position, getPosition(getEnemyHero())) <
                     distance(nearestPosition, getPosition(getEnemyHero()))) {
                 nearestPosition = position;
@@ -253,7 +253,7 @@ public abstract class Game {
                     for (int k = -1; k < 2; k++)
                         for (int l = -1; l < 2; l++) {
                             if (checkPlaceValidity(i + k, j + l) &&
-                                    playground.getGround()[i + k][j + l].getCard() == null) {
+                                    playground.getGround()[i + k][j + l].getCard() == null) {````````` `````````
                                 result[0][counter] = i + k;
                                 result[1][counter] = j + l;
                                 counter++;
@@ -466,8 +466,10 @@ public abstract class Game {
             else if (playground.getGround()[x - 1][y - 1].getCard() == null) {
                 Minion minion = (Minion) card;
                 if (canPlaceMinion(x - 1, y - 1, card)) {
-
                     playground.getGround()[x - 1][y - 1].setCard(minion);
+                    if (checkDeath((Force) card)) {
+                        death((Force) card);
+                    }
                     return true;
                 } else {
                     System.out.println("minion can place near own forces");
@@ -666,10 +668,11 @@ public abstract class Game {
     public Hero getEnemyHero() {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
-                if (playground.getGround()[i][j].getCard() != null && playground.getGround()[i][j].getCard() == players[turn%2].getHeroCard()) {
+                if (playground.getGround()[i][j].getCard() == null)
                     continue;
-                }
-                if (playground.getGround()[i][j].getCard() != null && playground.getGround()[i][j].getCard() instanceof Hero) {
+                if (playground.getGround()[i][j].getCard().getId().contains
+                        (getEnemyPlayer().getAccount().getUserName()) &&
+                        playground.getGround()[i][j].getCard() instanceof Hero) {
                     return (Hero) playground.getGround()[i][j].getCard();
                 }
             }
@@ -794,7 +797,7 @@ public abstract class Game {
     public static void initializeItems() {
         collectableItems.add(new Item("Antidote", 0, "Increase 6 HP random force"));
         collectableItems.add(new Item("FuckingArrow", 0, "Increase one random ranged or hybrid force 2 AP"));
-        collectableItems.add(new Item("Eٍlixir", 0, "Increase 3 HP and add one power buff with 3 increase AP for random minion" , 3 , 1 , false , null));
+        collectableItems.add(new Item("Eٍlixir", 0, "Increase 3 HP and add one power buff with 3 increase AP for random minion"));
         collectableItems.add(new Item("Mana'alectuary", 0, "Increase 3 mana for next turn"));
         collectableItems.add(new Item("Brazen-bodied'alectuary", 0, "Add 10 holy buff to random own force for 2 turn"));
         collectableItems.add(new Item("Death'curse", 0, "Add ability to random minion : ability is hit 8 HP to nearest force on death"));
