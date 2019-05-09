@@ -4,7 +4,6 @@ package Modules.GameBusiness.Player;
 import Modules.Account;
 import Modules.Deck;
 import Modules.Hand;
-import Modules.PlayableThings.BuffAndSpecialPowers.SpecialPower.SpecialPower;
 import Modules.PlayableThings.cards.Card;
 import Modules.PlayableThings.cards.Force;
 import Modules.PlayableThings.cards.Hero;
@@ -41,6 +40,8 @@ public class AI extends Player {
             Card[] cards = hand.getPutableCards(manaPoint);
             if (cards.length == 0)
                 break;
+            else if (cards.length == 1 && cards[0] instanceof Spell)
+                break;
             Card card = judgePutCard(cards);
             putCard(card);
         }
@@ -49,9 +50,8 @@ public class AI extends Player {
     }
 
     private void putCard(Card card) {
-        //age gozashti ok bood true bede
-        /*if (game.insertCardNearestToEnemyHero(card))
-            manaPoint -= card.getManaPoint();*/
+        if (game.insertCardNearestToEnemyHero(card))
+            manaPoint -= card.getManaPoint();
     }
 
     private Card judgePutCard(Card[] cards){

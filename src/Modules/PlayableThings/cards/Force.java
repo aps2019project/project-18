@@ -1,19 +1,19 @@
 package Modules.PlayableThings.cards;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
 import Modules.PlayableThings.BuffAndSpecialPowers.Buff.Buff;
 import Modules.PlayableThings.BuffAndSpecialPowers.SpecialPower.SpecialPower;
 import Modules.PlayableThings.BuffAndSpecialPowers.SpecialPower.SpecialPowerType;
 import Modules.PlayableThings.Item.Flag;
 import Modules.PlayableThings.cards.Spell.Spell;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 
 public abstract class Force extends Card {
     protected int attackPower;
     protected int hitPoint;
-    protected ArrayList<Flag> flags;
+    protected ArrayList<Flag> flags = new ArrayList<>();
     protected String attackType;
     protected boolean canMove = false;
     protected boolean canAttack = false;
@@ -274,8 +274,8 @@ public abstract class Force extends Card {
         force.defend(this);
     }
 
-    public Flag[] getFlags(){
-        return (Flag[])flags.toArray();
+    public ArrayList<Flag> getFlags(){
+        return flags;
     }
 
     public void prepareForTurn(boolean isItMyTurn){
@@ -284,6 +284,11 @@ public abstract class Force extends Card {
                 //todo excute
             }
         }
+        canAttack = true;
+        canMove = true;
+    }
+
+    public void setCan(){
         canAttack = true;
         canMove = true;
     }
