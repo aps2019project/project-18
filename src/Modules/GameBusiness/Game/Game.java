@@ -282,7 +282,7 @@ public abstract class Game {
     }
 
     public void death(Force force) {
-        force.die();
+        force.die().executeOnDeath(force , this , getPosition(force.getId())[0] , getPosition(force.getId())[1]);
         ArrayList<Flag> items = force.getFlags();
         players[(turn + 1) % 2].loseFlag(items.size());
         for (Item item : items) {
