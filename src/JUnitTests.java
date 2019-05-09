@@ -122,7 +122,7 @@ public class JUnitTests {
         opponent.setGame(modeKillEnemyHero);
         modeKillEnemyHero.getPlayground().move(8, 2, 0, 1);
         int[][] places = modeKillEnemyHero.getMovablePlaces(human.getHeroCard());
-        for (int i = 0; i < places[i].length; i++) {
+        for (int i = 0; i < places.length; i++) {
             if (places[i][0] == 0 && places[i][1] == 0) {
                 Assert.fail();
             }
