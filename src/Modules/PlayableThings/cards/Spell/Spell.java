@@ -4,6 +4,7 @@ import Modules.GameBusiness.Game.Game;
 import Modules.PlayableThings.BuffAndSpecialPowers.Buff.Buff;
 import Modules.PlayableThings.cards.Card;
 import Modules.PlayableThings.cards.Force;
+import Modules.PlayableThings.cards.Hero;
 import View.View.Show;
 
 import java.util.ArrayList;
@@ -45,7 +46,10 @@ public class Spell extends Card {
 
     public boolean executeBuff(Game game, int x, int y, String userNamePlayerHAveTurn) {
         Integer[][] targets = target.getTargets(game, x, y, userNamePlayerHAveTurn);
-        if (targets == null) return false;
+        if (targets == null) {
+            System.out.println("can't insert card");
+            return false;
+        }
         if (target.isGround()) {
             for (Buff buff : buffs) {
                 if (buff.getHolyCount() > 0) {
@@ -98,7 +102,9 @@ public class Spell extends Card {
             //enemy force
             force.diepell(true);
         }
-        //todo spell 19
+        if (buff.isKill()) {
+            force.setHitPoint(0);
+        }
     }
 
     public void executeOnAttack(Force force) {
@@ -107,6 +113,27 @@ public class Spell extends Card {
                 force.diepell(true);
             } else {
                 force.addBuff(buff);
+            }
+        }
+    }
+
+    public void executeOnDeath(Force force, Game game, int x, int y) {
+        for (Buff buff : buffs) {
+            //only works for 2 on death minion
+            if (this.target.isHero() && !this.target.getAlly()) {
+                game.getEnemyHero().setHitPoint(game.getEnemyHero().getHitPoint() - buff.getHit());
+            } else {
+                for (int i = 0; i < 9; i++) {
+                    for (int j = 0; j < 5; j++) {
+                        if (Math.abs(x - i) <= 1 && Math.abs(y - j) <= 1) {
+                            Card card = game.getPlayground().getGround()[i][j].getCard();
+                            if (card == null) continue;
+                            if (card instanceof Hero) continue;
+                            Force force1 = (Force) card;
+                            force1.setHitPoint(force1.getHitPoint() - 2);
+                        }
+                    }
+                }
             }
         }
     }

@@ -446,6 +446,9 @@ public abstract class Game {
                     Minion minion = (Minion) card;
                     if (canPlaceMinion(x - 1, y - 1, card)) {
                         playground.getGround()[x - 1][y - 1].setCard(minion);
+                        if (checkDeath((Force) card)) {
+                            death((Force) card);
+                        }
                         return true;
                     } else {
                         System.out.println("minion can place near own forces");

@@ -101,11 +101,11 @@ public class JUnitTests {
         ModeKillEnemyHero modeKillEnemyHero = new ModeKillEnemyHero(human, opponent);
         human.setGame(modeKillEnemyHero);
         opponent.setGame(modeKillEnemyHero);
-        if (modeKillEnemyHero.getAttackableMinions(human.getHeroCard()).length  != 0) {
+        if (modeKillEnemyHero.getAttackableMinions(human.getHeroCard()) != null) {
             Assert.fail();
         }
         modeKillEnemyHero.getPlayground().move(0, 2, 8, 1);
-        if (modeKillEnemyHero.getAttackableMinions(human.getHeroCard()).length == 0) {
+        if (modeKillEnemyHero.getAttackableMinions(human.getHeroCard()) == null) {
             Assert.fail();
         }
     }

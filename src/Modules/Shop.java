@@ -611,7 +611,12 @@ public class Shop {
         cards.add(new Minion("Eagle", "Have 10 power buf with increase 1 HP (Passive)", 200, 2, 0, "ranged", 3, 2, specialPower));
         cards.add(new Minion("DemonRideSwine", "", 300, 8, 16, "melee", 0, 6, null));
         specialPower = new SpecialPower();
-        //todo
+        target = new Target();
+        spell = new Spell();
+        spell.addBuff(new Buff());
+        spell.setTarget(target);
+        specialPower.setSpell(spell);
+        specialPower.setType(SpecialPowerType.ON_DEATH);
         cards.add(new Minion("DemonWithOneEye", "On death hit 2 HP to all minion in its side", 500, 11, 12, "hybrid", 3, 7, specialPower));
         specialPower = new SpecialPower();
         spell = new Spell();
