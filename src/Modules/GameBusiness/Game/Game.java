@@ -89,7 +89,7 @@ public abstract class Game {
 
     public void turn() {
         prepare();
-        if (end) {
+        if (end && cancel) {
             doWhatNeedDoAfterGameEnd();
             return;
         }
