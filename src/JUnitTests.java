@@ -3,6 +3,7 @@ import Modules.GameBusiness.Game.Game;
 import Modules.GameBusiness.Game.ModeCaptureFlag6Turn;
 import Modules.GameBusiness.Game.ModeKillEnemyHero;
 import Modules.GameBusiness.Player.Human;
+import Modules.PlayableThings.BuffAndSpecialPowers.Buff.Buff;
 import Modules.PlayableThings.cards.Card;
 import Modules.PlayableThings.cards.Force;
 import Modules.Playground;
@@ -149,5 +150,28 @@ public class JUnitTests {
         if (!modeKillEnemyHero.canAttack(human.getHeroCard().getId(), opponent.getHeroCard().getId())) {
             Assert.fail();
         }
+    }
+
+    @Test
+    public void holyCheck() {
+        Game.initializeItems();
+        Account.createAccount("AI1", "Aa!12345");
+        Account.findAccount("AI1").getCollection().setMainDeck(Shop.getInstance().getDeckLevelOne());
+        Account.createAccount("AI2", "Aa!12345");
+        Account.findAccount("AI2").getCollection().setMainDeck(Shop.getInstance().getDeckLevelTwo());
+        Human human = new Human(Account.findAccount("AI1"));
+        Human opponent = new Human(Account.findAccount("AI2"));
+        ModeKillEnemyHero modeKillEnemyHero = new ModeKillEnemyHero(human, opponent);
+        modeKillEnemyHero.getPlayground().move(8 ,2 , 5 , 2);
+        modeKillEnemyHero.getPlayground().move(0 ,2 , 4 , 2);
+        Buff buff = new Buff();
+        buff.setHoly(true);
+        buff.setHolyCount(2);
+        opponent.getHeroCard().addBuff(buff);
+        int hitPointOpponent = opponent.getHeroCard().getHitPoint();
+        int hitPointHuman = human.getHeroCard().getHitPoint();
+        modeKillEnemyHero.attack(human.getHeroCard() , opponent.getHeroCard().getId());
+        if (hitPointOpponent - opponent.getHeroCard().getHitPoint() != human.getHeroCard().getAttackPower() - 2 && hitPointHuman - human.getHeroCard().getHitPoint() != opponent.getHeroCard().getAttackPower())
+            Assert.fail();
     }
 }
