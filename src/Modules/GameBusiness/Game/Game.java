@@ -36,6 +36,10 @@ public abstract class Game {
         return playground;
     }
 
+    public boolean isEnd() {
+        return end;
+    }
+
     public Force[] getAttackableMinions(Force force) {
         ArrayList<Force> result = new ArrayList<>();
         for (int i = 0; i < 9; i++)
@@ -85,7 +89,6 @@ public abstract class Game {
     }
 
     private void doWhatNeedDoAfterEachTurn() {
-        checkEnd();
         if (cancel && !end) {
             winnerPlayer = (turn + 1) % 2 + 1;
             doWhatNeedDoAfterGameEnd();
@@ -492,7 +495,7 @@ public abstract class Game {
 
     abstract void setPlayground();
 
-    abstract protected void checkEnd();
+    abstract public void checkEnd();
 
     private Force getPlayerForce(int x, int y) {
         Player player = players[turn % 2];

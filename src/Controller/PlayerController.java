@@ -1,14 +1,13 @@
 package Controller;
 
 import Modules.GameBusiness.Player.Human;
-import Modules.GameBusiness.Player.Player;
 import Modules.PlayableThings.cards.Force;
 import Modules.PlayableThings.cards.Hero;
 import View.Request.Player.CardRequests.CardRequest;
 import View.Request.Player.Graveyard.GraveyardRequest;
 import View.Request.Player.Item.ItemRequest;
-import View.View.Show;
 import View.Request.Player.PlayerRequest;
+import View.View.Show;
 
 public class PlayerController {
     private Human human;
@@ -28,6 +27,9 @@ public class PlayerController {
         boolean in = true;
 
         while (in) {
+            human.getGame().checkEnd();
+            if (human.getGame().isEnd())
+                return;
             request.getNewCommand();
             if (!request.isValid() && request.getType() == null) {
                 System.out.println("Invalid command");
