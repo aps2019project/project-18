@@ -1,5 +1,6 @@
 package Modules;
 
+import Modules.PlayableThings.Item.Item;
 import Modules.PlayableThings.cards.*;
 import Modules.PlayableThings.cards.Spell.Spell;
 import View.View.Show;
@@ -19,12 +20,16 @@ public class Hand {
         this.nextCard = deck.getRandomCard();
     }
 
-    public Card[] getPutableCards(int mana) {
+    public Item getItem(){
+        return deck.getItem();
+    }
+
+    public ArrayList<Card> getPutableCards(int mana) {
         ArrayList<Card> cards = new ArrayList<>();
         for (int i = 0; i < 5; i++)
             if (hand[i].getManaPoint() <= mana)
                 cards.add(hand[i]);
-        return (Card[]) cards.toArray();
+        return cards;
     }
 
     public Hero getHero(){

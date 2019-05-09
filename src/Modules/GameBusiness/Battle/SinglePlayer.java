@@ -41,7 +41,7 @@ public class SinglePlayer {
                 return new ModeKillEnemyHero(new Human(account), ai);
             } else if (string.equalsIgnoreCase("Capture flag for 6 turn")) {
                 return new ModeCaptureFlag6Turn(new Human(account), ai);
-            } else if (string.substring(0, 28).equalsIgnoreCase("capture more than half flags")) {
+            } else if (string.length() > 28 && string.substring(0, 28).equalsIgnoreCase("capture more than half flags")) {
                 if (string.split(" ").length > 5) {
                     return new ModeCaptureHalfFlags(new Human(account), ai, Integer.parseInt(string.trim().split(" ")[5]));
                 } else {

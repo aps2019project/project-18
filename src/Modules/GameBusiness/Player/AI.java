@@ -34,13 +34,13 @@ public class AI extends Player {
     public void playTurn(int turn) {
         super.playTurn(turn);
         enemyHero = game.getPosition(hand.getHero().getId());
-        Force[] forces = game.getMyCards();
+        ArrayList<Force> forces = game.getMyCards();
         attackAndMove(forces);
         while(true) {
-            Card[] cards = hand.getPutableCards(manaPoint);
-            if (cards.length == 0)
+            ArrayList<Card> cards = hand.getPutableCards(manaPoint);
+            if (cards.size() == 0)
                 break;
-            else if (cards.length == 1 && cards[0] instanceof Spell)
+            else if (cards.size() == 1 && cards.get(0) instanceof Spell)
                 break;
             Card card = judgePutCard(cards);
             putCard(card);
@@ -54,7 +54,7 @@ public class AI extends Player {
             manaPoint -= card.getManaPoint();
     }
 
-    private Card judgePutCard(Card[] cards){
+    private Card judgePutCard(ArrayList<Card> cards){
         ArrayList<Integer> points = new ArrayList<>();
         for (Card card : cards){
             if (card instanceof Spell) {
@@ -72,10 +72,10 @@ public class AI extends Player {
             if (points.get(i) > points.get(max))
                 max = i;
         }
-        return cards[max];
+        return cards.get(max);
     }
 
-    private void attackAndMove(Force[] forces){
+    private void attackAndMove(ArrayList<Force> forces){
         for (Force force : forces){
             if (force.canMove())
                 judgeMove(force);
