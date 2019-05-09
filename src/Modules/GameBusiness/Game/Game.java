@@ -103,6 +103,8 @@ public abstract class Game {
                 if (playground.getGround()[i][j].getCard() != null)
                     ((Force) playground.getGround()[i][j].getCard()).agging();
             }
+        for (int i = 0 ; i < 2 ; i++)
+            players[i].aging();
         playground.aging();
     }
 
