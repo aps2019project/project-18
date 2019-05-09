@@ -472,7 +472,7 @@ public abstract class Game {
                     }
                     return true;
                 } else {
-                    System.out.println("minion can place near own forces");
+                    System.out.println("minions can only be placed near your own forces");
                 }
 
             } else {
