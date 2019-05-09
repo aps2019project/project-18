@@ -100,6 +100,7 @@ public abstract class Game {
 
     private void doWhatNeedDoAfterEachTurn() {
         playground.executeBuffs();
+        checkDeathEveryWhere();
         if (cancel && !end) {
             winnerPlayer = (turn + 1) % 2 + 1;
             doWhatNeedDoAfterGameEnd();
@@ -269,7 +270,8 @@ public abstract class Game {
 
     public void attack(Force force, String defenderId) {
         if (canAttack(force.getId(), defenderId)) {
-            force.attack(getForce(defenderId), true, canAttack(defenderId, force.getId()));
+            force.attack(getForce(defenderId), true, canAttack(defenderId, force.getId()),
+                    playground.getGround()[getPosition(defenderId)[0]][getPosition(defenderId)[1]]);
             if (checkDeath(force)) {
                 death(force);
             }
@@ -283,6 +285,7 @@ public abstract class Game {
 
     public void death(Force force) {
         force.die().executeOnDeath(force , this , getPosition(force.getId())[0] , getPosition(force.getId())[1]);
+        checkDeathEveryWhere();
         ArrayList<Flag> items = force.getFlags();
         players[(turn + 1) % 2].loseFlag(items.size());
         for (Item item : items) {
@@ -354,7 +357,8 @@ public abstract class Game {
                 }
             }
             for (int i = 1; i < splittedCommand.length; i++) {
-                getForce(splittedCommand[i]).attack(enemyForce, false, false);
+                getForce(splittedCommand[i]).attack(enemyForce, false, false,
+                        playground.getGround()[getPosition(enemyForce)[0]][getPosition(enemyForce)[1]]);
             }
         } else {
             attack(force, splittedCommand[0]);
@@ -432,6 +436,18 @@ public abstract class Game {
         cancel = true;
     }
 
+    public void checkDeathEveryWhere() {
+        for (int i = 0; i < 9; i++)
+            for (int j = 0; j < 5; j++) {
+                if (playground.getGround()[i][j] == null)
+                    continue;
+                else {
+                    if (checkDeath((Force) playground.getGround()[i][j].getCard()))
+                        death((Force) playground.getGround()[i][j].getCard());
+                }
+            }
+    }
+
     public boolean insertCard(Card card, int x, int y) {
         if (x - 1 >= 0 && x - 1 < 9 && y - 1 >= 0 && y - 1 < 9) {
             if (card instanceof Spell) {
@@ -440,6 +456,7 @@ public abstract class Game {
                         System.out.println("Invalid destination for spell");
                         return false;
                     }
+                    checkDeathEveryWhere();
                     return true;
             }
             else if (playground.getGround()[x - 1][y - 1].getCard() == null) {
