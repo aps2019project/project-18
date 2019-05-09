@@ -155,10 +155,19 @@ public class PlayerController {
                     human.move(force, request.returnCommand());
                     break;
                 case USE_SPECIAL_POWER:
-                    //human.
+                    useSpecialPower(id , request.returnCommand());
                     break;
             }
         }
+    }
+
+    private void useSpecialPower(String id , String command) {
+        String[] spillitedCommand = command.split(" ");
+        if (human.getGame().getForce(id) instanceof Hero) {
+            human.useSpecialPower(Integer.parseInt(spillitedCommand[0]) , Integer.parseInt(spillitedCommand[1]));
+        }
+        else
+            System.out.println("this card is not hero and dont have special power");
     }
 
     private void cardHelp(String id) {
