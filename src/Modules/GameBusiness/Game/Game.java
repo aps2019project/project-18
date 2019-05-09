@@ -525,12 +525,14 @@ public abstract class Game {
     private void handlePrize() {
         if (players[winnerPlayer - 1] instanceof AI) return;
         if (players[winnerPlayer % 2] instanceof Human) {
-            players[winnerPlayer - 1].getAccount().winReward(100);
+            players[winnerPlayer - 1].getAccount().winReward(1000);
             return;
         }
         AI ai = (AI) players[winnerPlayer % 2];
         switch (ai.getAiLevel()) {
             case 0:
+                players[winnerPlayer - 1].getAccount().winReward(1000);
+                break;
             case 2:
                 players[winnerPlayer - 1].getAccount().winReward(1000);
                 return;
