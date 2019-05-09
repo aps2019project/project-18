@@ -5,7 +5,10 @@ import Modules.GameBusiness.Player.Human;
 import Modules.GameBusiness.Player.Player;
 import Modules.GameData;
 import Modules.PlayableThings.Item.Item;
-import Modules.PlayableThings.cards.*;
+import Modules.PlayableThings.cards.Card;
+import Modules.PlayableThings.cards.Force;
+import Modules.PlayableThings.cards.Hero;
+import Modules.PlayableThings.cards.Minion;
 import Modules.PlayableThings.cards.Spell.Spell;
 import Modules.Playground;
 import View.View.Show;
@@ -429,23 +432,20 @@ public abstract class Game {
 
     public boolean insertCard(Card card, int x, int y) {
         if (x - 1 >= 0 && x - 1 < 9 && y - 1 >= 0 && y - 1 < 9) {
-            if (playground.getGround()[x - 1][y - 1] == null) {
-                if (card instanceof Spell) {
-                    Spell spell = (Spell) card;
-                    /*if (canExecuteSpell()) {
-                        //todo
-                        spell.execute();
-                        players[turn % 2].die(spell);
-                        return true;
-                    }*/
+            if (card instanceof Spell) {
+                Spell spell = (Spell) card;
+                if (!spell.executeBuff(this , x - 1 , y - 1 , players[turn%2].getAccount().getUserName())){
+                    System.out.println("Invalid destination for spell");
+                    return false;
+                }
+            }
+            else if (playground.getGround()[x - 1][y - 1] == null) {
+                Minion minion = (Minion) card;
+                if (canPlaceMinion(x, y, card)) {
+                    playground.getGround()[x - 1][y - 1].setCard(minion);
+                    return true;
                 } else {
-                    Minion minion = (Minion) card;
-                    if (canPlaceMinion(x, y, card)) {
-                        playground.getGround()[x - 1][y - 1].setCard(minion);
-                        return true;
-                    } else {
-                        System.out.println("minion can place near own forces");
-                    }
+                    System.out.println("minion can place near own forces");
                 }
             } else {
                 System.out.println("target place is already have card on it");
