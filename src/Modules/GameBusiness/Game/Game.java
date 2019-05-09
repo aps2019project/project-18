@@ -324,7 +324,7 @@ public abstract class Game {
     public boolean canAttack(String attackerId, String defenderId) {
         if (getForce(attackerId).getAttackType().equals("melee")) {
             if (distance(attackerId, defenderId) == 1 || (distance(attackerId, defenderId) == 2 &&
-                    (getPosition(attackerId)[0] != getPosition(defenderId)[0] ||
+                    (getPosition(attackerId)[0] != getPosition(defenderId)[0] &&
                             getPosition(attackerId)[1] != getPosition(defenderId)[1]))) {
                 return true;
             } else
