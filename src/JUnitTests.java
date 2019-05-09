@@ -1,3 +1,8 @@
+import Modules.Account;
+import Modules.GameBusiness.Game.Game;
+import Modules.GameBusiness.Game.ModeCaptureFlag6Turn;
+import Modules.GameBusiness.Game.ModeKillEnemyHero;
+import Modules.GameBusiness.Player.Human;
 import Modules.PlayableThings.cards.Card;
 import Modules.Playground;
 import Modules.Shop;
