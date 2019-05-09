@@ -262,11 +262,17 @@ public abstract class Game {
         int index = 0;
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 5; j++) {
-                if (canPlaceMinion(i , j , (Minion)card)) {
-                    places[index][0] = i;
-                    places[index][1] = j;
-                    index++;
-                    System.out.println(i+"  "+j);
+                if (playground.getGround()[i][j].getCard() == null) continue;
+                if (playground.getGround()[i][j].getCard().getId().contains(getEnemyPlayer().getAccount().getUserName()))
+                    continue;
+                for (int m = 0; m < 9; m++) {
+                    for (int n = 0; n < 5; n++) {
+                        if (Math.abs(i - m) >= 1 || Math.abs(j - n) >= 1) continue;
+                        if (playground.getGround()[m][n].getCard() != null) continue;
+                        places[index][0] = m;
+                        places[index][1] = n;
+                        System.out.println(m + " " + n);
+                    }
                 }
             }
         }
