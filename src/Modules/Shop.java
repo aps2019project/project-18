@@ -1,8 +1,5 @@
 package Modules;
 
-import java.util.ArrayList;
-import java.util.Random;
-
 import Modules.PlayableThings.BuffAndSpecialPowers.Buff.Buff;
 import Modules.PlayableThings.BuffAndSpecialPowers.SpecialPower.SpecialPower;
 import Modules.PlayableThings.BuffAndSpecialPowers.SpecialPower.SpecialPowerType;
@@ -12,8 +9,11 @@ import Modules.PlayableThings.cards.Hero;
 import Modules.PlayableThings.cards.Minion;
 import Modules.PlayableThings.cards.Spell.Spell;
 import Modules.PlayableThings.cards.Spell.Target;
-import View.View.Show;//why? u fucked mvc module should not use view
+import View.View.Show;
 import View.View.ShowAccount;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 public class Shop {
     private static final Shop SHOP = new Shop();
@@ -212,7 +212,7 @@ public class Shop {
         setCardToAiDeck(69, 1, deck, 1);
         //ITEM
         Item item;
-        item = items.get(0).copyItem();
+        item = items.get(0).getItemCopy();
         item.setItemId("AI1" + "_" + item.getName() + "_" + "1");
         deck.addItem(item);
         return deck;
@@ -246,7 +246,7 @@ public class Shop {
         setCardToAiDeck(68, 1, deck, 2);
         //ITEM
         Item item;
-        item = items.get(9).copyItem();
+        item = items.get(9).getItemCopy();
         item.setItemId("AI2" + "_" + item.getName() + "_" + "1");
         deck.addItem(item);
         return deck;
@@ -280,7 +280,7 @@ public class Shop {
         setCardToAiDeck(63, 1, deck, 2);
         //ITEM
         Item item;
-        item = items.get(4).copyItem();
+        item = items.get(4).getItemCopy();
         item.setItemId("AI" + "_" + item.getName() + "_" + "1");
         deck.addItem(item);
         return deck;
@@ -290,7 +290,7 @@ public class Shop {
         Deck deck = new Deck("AI");
         //Item
         int random = new Random().nextInt(4);
-        Item item = items.get(random).copyItem();
+        Item item = items.get(random).getItemCopy();
         item.setItemId("AI" + "_" + item.getName() + "_" + "1");
         deck.addItem(item);
         //Hero
