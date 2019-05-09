@@ -253,7 +253,7 @@ public abstract class Game {
                     for (int k = -1; k < 2; k++)
                         for (int l = -1; l < 2; l++) {
                             if (checkPlaceValidity(i + k, j + l) &&
-                                    playground.getGround()[i + k][j + l].getCard() == null) {````````` `````````
+                                    playground.getGround()[i + k][j + l].getCard() == null) {
                                 result[0][counter] = i + k;
                                 result[1][counter] = j + l;
                                 counter++;
