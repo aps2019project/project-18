@@ -131,7 +131,11 @@ public class Deck {
     }
 
     public Deck getDeckCopy() {
-        return new Deck(this.name, (Hero) this.hero.getCopyCard(), this.getCardsCopy(), this.item.getItemCopy());
+        if (this.item != null)
+            return new Deck(this.name, (Hero) this.hero.getCopyCard(), this.getCardsCopy(), this.item.getItemCopy());
+        else
+            return new Deck(this.name, (Hero) this.hero.getCopyCard(), this.getCardsCopy(), this.item);
+
     }
 
     private ArrayList<Card> getCardsCopy() {
