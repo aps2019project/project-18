@@ -36,18 +36,34 @@ public class Main {
 
         Alert emptyFields = new Alert(Alert.AlertType.WARNING);
         emptyFields.setTitle("Warning");
-        emptyFields.setHeaderText("Incorrect username/password");
-        emptyFields.setContentText("incorrect username or password, please check your entries");
+        emptyFields.setHeaderText("Empty Fields");
+        emptyFields.setContentText("Please enter your username and password");
+
+        Alert usernameNotFound = new Alert(Alert.AlertType.WARNING);
+        usernameNotFound.setTitle("Warning");
+        usernameNotFound.setHeaderText("Username does not exist");
+        usernameNotFound.setContentText("Please enter an existing account or sign up");
+
+        Alert wrongPassword = new Alert(Alert.AlertType.WARNING);
+        wrongPassword.setTitle("Warning");
+        wrongPassword.setHeaderText("Wrong password");
+        wrongPassword.setContentText("Please check your password");
+
         apply.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY) {
                 if (username.getText().equals("") || password.getText().equals("")) {
-
+                    emptyFields.showAndWait();
+                } else if (!Account.checkExistUserName(username.getText())) {
+                    usernameNotFound.showAndWait();
+                } else if (!Account.findAccount(username.getText()).equals(password.getText())) {
+                    wrongPassword.showAndWait();
+                } else {
+                    //todo
                 }
             }
         });
 
         root.getChildren().addAll(username, password, apply);
-        Account.signIn(username, password);
     }
 
     private static void signUp(Scene scene) {
