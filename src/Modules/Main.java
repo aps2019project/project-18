@@ -18,13 +18,13 @@ import java.util.Scanner;
 
 public class Main {
     public static Scanner scanner = new Scanner(System.in);
-    private Scene scene;
+    private static Scene scene;
     private static boolean exit = false;
     public static void main(String[] args) {
         Game.initializeItems();
     }
 
-    private static void signIn(Scene scene) {
+    private static void signIn() {
         Group root = new Group();
         scene = new Scene(root, 800, 800, Color.VIOLET);
 
@@ -69,6 +69,7 @@ public class Main {
     }
 
     public static void menu(Scene scene) {
+        Main.scene = scene;
         Group root = new Group();
         scene = new Scene(root, 800, 800, Color.VIOLET);
 
@@ -91,7 +92,7 @@ public class Main {
 
         signIn.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY) {
-                signIn(scene);
+                signIn();
             }
         });
         root.getChildren().addAll(exit , signIn , signUp);
