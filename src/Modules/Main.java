@@ -2,12 +2,8 @@ package Modules;
 
 import Modules.GameBusiness.Game.Game;
 import View.View.ShowMain;
-import netscape.javascript.JSObject;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
 
 public class Main {
@@ -15,15 +11,6 @@ public class Main {
     private static boolean exit = false;
     public static void main(String[] args) {
         Game.initializeItems();
-        ShowMain.showMenu();
-        String input;
-        while (true) {
-            input = scanner.nextLine();
-            doOrder(input);
-            if (exit) {
-                break;
-            }
-        }
     }
 
     private static void doOrder(String input) {
