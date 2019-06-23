@@ -28,7 +28,7 @@ public class AI extends Player {
 
     public AI(){
         account =new Account();
-        account.setUserName("AI");
+        account.setUserName("AI1");
     }
     @Override
     public void playTurn(int turn) {
@@ -49,6 +49,7 @@ public class AI extends Player {
                 break;
             Card card = judgePutCard(cards);
             putCard(card);
+            System.err.println(cards);
         }
         handleNextCard();
         aging();

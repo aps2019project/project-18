@@ -16,7 +16,7 @@ public class Account implements Comparator {
     private static ArrayList<Account> accounts = new ArrayList<>();
     private ArrayList<GameData> matchHistory = new ArrayList<>();
     private String userName, passWord;
-    private int winCount, money = 15000;
+    private int winCount, money = 150000;
     private Collection collection = new Collection();
 
     private void doOrderInAccount() {
@@ -57,7 +57,7 @@ public class Account implements Comparator {
             account.passWord = createPassword();
             account.money = 100000000;
             Shop.getInstance().addSomeCardToCollectionForBeginning(account);
-            account.money = 15000;
+            account.money = 1500000;
             accounts.add(account);
             ShowAccount.showMenu();
             account.doOrderInAccount();

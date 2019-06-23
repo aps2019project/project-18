@@ -73,6 +73,11 @@ public abstract class Player {
         }
         return null;
     }
+
+    public Hand getHand() {
+        return hand;
+    }
+
     public void insertCard(String id, int x, int y) {
         Card card = hand.insertCard(id , manaPoint);
         ArrayList<Item> items;

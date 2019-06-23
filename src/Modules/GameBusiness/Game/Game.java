@@ -237,6 +237,7 @@ public abstract class Game {
                         nearestPosition = position;
                     }
                 }
+                players[turn%2].getHand().deleteCard(card);
                 return insertCard(card, nearestPosition[0] + 1, nearestPosition[1] + 1);
             }
             return false;
@@ -244,6 +245,7 @@ public abstract class Game {
             for (int i = 0; i < 9; i++)
                 for (int j = 0; j < 5; j++) {
                     if (insertCard(card, i, j)) {
+                        players[turn%2].getHand().deleteCard(card);
                         return true;
                     }
                 }
@@ -263,9 +265,10 @@ public abstract class Game {
                     for (int n = 0; n < 5; n++) {
                         if (Math.abs(i - m) > 1 || Math.abs(j - n) > 1) continue;
                         if (playground.getGround()[m][n].getCard() != null) continue;
-                        System.out.println(m + " " + n);
+                        System.err.println(m + " " + n);
                         places[index][0] = m;
                         places[index][1] = n;
+                        index++;
                     }
                 }
             }

@@ -161,6 +161,8 @@ public class Spell extends Card {
     public void executeOnRespawn(Game game, int x, int y, String userNamePlayerHAveTurn) {
         Integer[][] targets = target.getTargets(game, x, y, userNamePlayerHAveTurn);
         for (Buff buff : buffs) {
+            if (targets == null)
+                return;
             for (Integer[] integers : targets) {
                 Force force = (Force) game.getPlayground().getGround()[integers[0]][integers[1]].getCard();
                 force.addBuff(buff.getBuffCopy());
