@@ -2,6 +2,10 @@ package Modules;
 
 import Modules.GameBusiness.Game.Game;
 import View.View.ShowMain;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.paint.Color;
 import netscape.javascript.JSObject;
 
 import java.util.LinkedList;
@@ -62,4 +66,13 @@ public class Main {
         exit = true;
     }
 
+    public static void menu(Scene scene) {
+        Group root = new Group();
+        scene = new Scene(root, Color.VIOLET);
+
+        Button signIn = new Button();
+        signIn.setText("Sign In");
+        signIn.relocate(100, 100);
+
+    }
 }
