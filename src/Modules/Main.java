@@ -5,7 +5,6 @@ import View.View.ShowMain;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 
 import java.util.Scanner;
@@ -41,9 +40,6 @@ public class Main {
 
         Button exit = new Button("Exit");
         exit.relocate(100 , 500);
-
-        TextField userName = new TextField();
-        TextField password = new TextField();
 
     }
 }
