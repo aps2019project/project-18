@@ -1,5 +1,6 @@
 package View;
 
+import Modules.GameBusiness.Game.Game;
 import Modules.Main;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -15,6 +16,7 @@ public class GraphicView extends Application {
     }
 
     public static void main(String[] args) {
+        Game.initializeItems();
         launch(args);
     }
 }
