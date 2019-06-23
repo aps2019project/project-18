@@ -17,6 +17,7 @@ import java.util.Scanner;
 
 public class Main {
     public static Scanner scanner = new Scanner(System.in);
+    private Scene scene;
     private static boolean exit = false;
     public static void main(String[] args) {
         Game.initializeItems();
@@ -29,7 +30,7 @@ public class Main {
         Account.signIn(userName, password);
     }
 
-    private static void signUp(Scene scene) {
+    private static Scene signUp() {
         Group root = new Group();
         scene = new Scene(root , 100 , 100 , Color.RED)
         TextField userName = new TextField();
@@ -40,9 +41,10 @@ public class Main {
         ok.relocate(50 ,100);
         ok.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY)
-                Account.createAccount(userName.getText() , password.getText());
+                Account.createAccount(userName.getText(), password.getText());
         });
         root.getChildren().addAll(ok , password , userName);
+        return scene;
     }
 
     public static void menu(Scene scene) {
@@ -64,7 +66,7 @@ public class Main {
         signUp.relocate(100 , 300);
         signUp.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY)
-                signUp(scene);
+                signUp();
         });
 
         root.getChildren().addAll(exit , signIn , signUp);
