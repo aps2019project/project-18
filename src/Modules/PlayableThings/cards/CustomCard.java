@@ -2,6 +2,7 @@ package Modules.PlayableThings.cards;
 
 
 import Modules.PlayableThings.cards.Spell.Spell;
+import Modules.Shop;
 
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -14,6 +15,15 @@ public class CustomCard {
     PrintWriter writer;
     FileReader fileReader;
     Scanner scanner;
+    private static final CustomCard customCard = new CustomCard();
+
+    private CustomCard() {
+
+    }
+
+    public static CustomCard getInstance() {
+        return customCard;
+    }
 
     {
         try {
@@ -30,7 +40,13 @@ public class CustomCard {
         writer.write(cartDetails);
     }
 
-    public Card initializeCards() {
+    public void initilizeCustomCards() {
+        while (scanner.hasNextLine()) {
+            Shop.getInstance().addCard(initializeCards());
+        }
+    }
+
+    private Card initializeCards() {
         Card card;
         String name = scanner.nextLine();
         String type = scanner.nextLine();
@@ -69,4 +85,5 @@ public class CustomCard {
         int cost = scanner.nextInt();
         return new Hero(name, "", cost, ap, hp, attackType, range, null, 0, 0);
     }
+
 }
