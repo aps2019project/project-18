@@ -56,6 +56,9 @@ public class Main {
             }
         });
 
+        apply.setStyle("-fx-background-color: #3A81C4");
+        back.setStyle("-fx-background-color: #3A81C4");
+
         Alert emptyFields = new Alert(Alert.AlertType.WARNING);
         emptyFields.setTitle("Warning");
         emptyFields.setHeaderText("Empty Fields");
@@ -118,6 +121,8 @@ public class Main {
         Button back = new Button("Back");
         back.setFont(Font.font(35));
         back.relocate(100, 500);
+        ok.setStyle("-fx-background-color: #3A81C4");
+        back.setStyle("-fx-background-color: #3A81C4");
 
         back.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY) {
