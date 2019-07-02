@@ -82,16 +82,20 @@ public class Main {
             e.printStackTrace();
         }
 
-        Label title = new Label("")
+        Label title = new Label("Duelyst");
+        title.setFont(Font.font(150));
+        title.setTextFill(Color.ORANGERED);
+        title.relocate(150 , 20);
+
 
         Button signIn = new Button("Sign In");
         signIn.setFont(Font.font(35));
-        signIn.relocate(305, 200);
+        signIn.relocate(305, 250);
         signIn.setStyle("-fx-background-color: #3A81C4");
 
         Button exit = new Button("Exit");
         exit.setFont(Font.font(35));
-        exit.relocate(335, 400);
+        exit.relocate(335, 450);
         exit.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY)
                 System.exit(0);
@@ -100,7 +104,7 @@ public class Main {
 
         Button signUp = new Button("Sign up");
         signUp.setFont(Font.font(35));
-        signUp.relocate(300, 300);
+        signUp.relocate(300, 350);
         signUp.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY)
                 signUp(stage);
@@ -112,7 +116,7 @@ public class Main {
                 signIn(stage);
             }
         });
-        root.getChildren().addAll(exit, signIn, signUp);
+        root.getChildren().addAll(exit, signIn, signUp , title);
         stage.setTitle("menu");
         stage.setScene(scene);
         stage.show();
