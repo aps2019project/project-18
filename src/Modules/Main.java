@@ -46,6 +46,15 @@ public class Main {
         Button apply = new Button("Sign In");
         apply.setFont(Font.font(35));
         apply.relocate(100, 400);
+        Button back = new Button("Back");
+        back.setFont(Font.font(35));
+        back.relocate(100, 500);
+
+        back.setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.PRIMARY) {
+                menu(stage);
+            }
+        });
 
         Alert emptyFields = new Alert(Alert.AlertType.WARNING);
         emptyFields.setTitle("Warning");
@@ -76,7 +85,7 @@ public class Main {
             }
         });
 
-        root.getChildren().addAll(username, password, apply);
+        root.getChildren().addAll(username, password, apply, back);
         // Account.signIn(username, password);
         stage.setTitle("sign in");
         stage.setScene(scene);
@@ -106,7 +115,16 @@ public class Main {
             if (event.getButton() == MouseButton.PRIMARY)
                 Account.createAccount(userName.getText(), password.getText());
         });
-        root.getChildren().addAll(ok, password, userName);
+        Button back = new Button("Back");
+        back.setFont(Font.font(35));
+        back.relocate(100, 500);
+
+        back.setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.PRIMARY) {
+                menu(stage);
+            }
+        });
+        root.getChildren().addAll(back, ok, password, userName);
         stage.setTitle("sign up");
         stage.setScene(scene);
         stage.show();
