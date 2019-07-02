@@ -107,6 +107,11 @@ public class Main {
             e.printStackTrace();
         }
 
+        Alert duplicateUsername = new Alert(Alert.AlertType.WARNING);
+        duplicateUsername.setTitle("Warning");
+        duplicateUsername.setHeaderText("Username exists");
+        duplicateUsername.setContentText("Please choose a different username");
+
         TextField userName = new TextField();
         userName.relocate(0, 20);
         PasswordField password = new PasswordField();
@@ -116,7 +121,11 @@ public class Main {
         ok.relocate(50, 100);
         ok.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY)
-                Account.createAccount(userName.getText(), password.getText());
+                if (Account.checkExistUserName(userName.getText())) {
+                    duplicateUsername.showAndWait();
+                } else {
+                    Account.createAccount(userName.getText(), password.getText());
+                }
         });
         Button back = new Button("Back");
         back.setFont(Font.font(35));
