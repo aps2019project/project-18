@@ -1,15 +1,12 @@
 package Modules;
 
 import Modules.GameBusiness.Game.Game;
-import View.View.ShowMain;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -38,17 +35,20 @@ public class Main {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
+        Label title = new Label("Sign in");
+        title.setTextFill(Color.ORANGERED);
+        title.setFont(Font.font(60));
+        title.relocate(280 , 100);
         TextField username = new TextField();
-        username.relocate(100, 200);
+        username.relocate(300, 200);
         PasswordField password = new PasswordField();
-        password.relocate(100, 300);
+        password.relocate(300, 250);
         Button apply = new Button("Sign In");
         apply.setFont(Font.font(35));
-        apply.relocate(100, 400);
+        apply.relocate(300, 300);
         Button back = new Button("Back");
         back.setFont(Font.font(35));
-        back.relocate(100, 500);
+        back.relocate(315, 400);
 
         back.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY) {
@@ -88,7 +88,7 @@ public class Main {
             }
         });
 
-        root.getChildren().addAll(username, password, apply, back);
+        root.getChildren().addAll(username, password, apply, back , title);
         // Account.signIn(username, password);
         stage.setTitle("sign in");
         stage.setScene(scene);
