@@ -31,6 +31,14 @@ public class Main {
         Group root = new Group();
         scene = new Scene(root, 800, 800, Color.VIOLET);
 
+        try {
+            Image backGround = new Image(new FileInputStream("C:\\Users\\asus\\Desktop\\project-18\\src\\Modules\\bg.jpg"));
+            ImageView bg = new ImageView(backGround);
+            root.getChildren().add(bg);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
         TextField username = new TextField();
         username.relocate(100, 200);
         PasswordField password = new PasswordField();
@@ -78,6 +86,15 @@ public class Main {
     private static void signUp(Stage stage) {
         Group root = new Group();
         scene = new Scene(root, 100, 100, Color.RED);
+
+        try {
+            Image backGround = new Image(new FileInputStream("C:\\Users\\asus\\Desktop\\project-18\\src\\Modules\\bg.jpg"));
+            ImageView bg = new ImageView(backGround);
+            root.getChildren().add(bg);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
         TextField userName = new TextField();
         userName.relocate(0, 20);
         PasswordField password = new PasswordField();
