@@ -41,7 +41,7 @@ public class Account implements Comparator {
             } else if (input.equalsIgnoreCase("Help")) {
                 ShowAccount.showHelp();
             } else if (input.equalsIgnoreCase("Exit")) {
-                Main.exit();
+               // Main.exit();
                 return;
             } else {
                 ShowAccount.showInvalidCommand();

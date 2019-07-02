@@ -5,6 +5,7 @@ import Modules.PlayableThings.BuffAndSpecialPowers.SpecialPower.SpecialPower;
 import Modules.PlayableThings.BuffAndSpecialPowers.SpecialPower.SpecialPowerType;
 import Modules.PlayableThings.Item.Item;
 import Modules.PlayableThings.cards.Card;
+import Modules.PlayableThings.cards.CustomCard;
 import Modules.PlayableThings.cards.Hero;
 import Modules.PlayableThings.cards.Minion;
 import Modules.PlayableThings.cards.Spell.Spell;
@@ -23,6 +24,7 @@ public class Shop {
     private Shop() {
         initializeCards();
         initializeItems();
+        CustomCard.getInstance().initilizeCustomCards();
     }
 
     public static Shop getInstance() {
@@ -122,6 +124,10 @@ public class Shop {
 
     private void showHelp() {
         Show.get().showShopHelp();
+    }
+
+    public void addCard(Card card) {
+        cards.add(card);
     }
 
 
@@ -831,7 +837,7 @@ public class Shop {
     }
 
     private void initializeItems() {
-        items.add(new Item("CrownOfKnowledge", 300, "Add 1 mana in 3 first turn" , 1 , 3 , false , null));
+        items.add(new Item("CrownOfKnowledge", 300, "Add 1 mana in 3 first turn", 1, 3, false, null));
         Spell spell = new Spell();
         Target target = new Target();
         target.setAll(true);
@@ -841,11 +847,11 @@ public class Shop {
         buff.setHoly(true);
         spell.setTarget(target);
         spell.addBuff(buff);
-        items.add(new Item("Parisa", 4000, "Active 12 holy buff to own hero" , 0 , 0 , false , spell));
+        items.add(new Item("Parisa", 4000, "Active 12 holy buff to own hero", 0, 0, false, spell));
         items.add(new Item("Damol'sArrow", 30000, "Only for ranged adn hybrid : when attacked on own hero enemy disarm for 1 turn"));
         items.add(new Item("Phoenix'wing", 3500, "if enemy hero is ranged or hybrid decrease 2 AP"));
         items.add(new Item("TerrorHood", 5000, "On attack, add one weakness buff with decrease 2 AP on random force"));
-        items.add(new Item("KingWisdom ", 9000, "In all turns add 1 mana" , 1 , 0 , true , null));
+        items.add(new Item("KingWisdom ", 9000, "In all turns add 1 mana", 1, 0, true, null));
         items.add(new Item("AssassinationDagger", 15000, "When put each own force card on field hit 1 HP to enemy hero"));
         items.add(new Item("PoisonousDagger", 7000, "On own attack add one poison buff for 1 turn to random enemy force"));
         items.add(new Item("ShockHammer", 15000, "Own hero on attack for 1 turn disarm enemy force"));
