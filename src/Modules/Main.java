@@ -1,11 +1,15 @@
 package Modules;
 
+import Modules.GameBusiness.Game.Game;
+import View.View.ShowMain;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -19,6 +23,9 @@ public class Main {
     public static Scanner scanner = new Scanner(System.in);
     private static Scene scene;
     private static boolean exit = false;
+    public static void main(String[] args) {
+        Game.initializeItems();
+    }
 
     private static void signIn(Stage stage) {
         Group root = new Group();
@@ -34,12 +41,29 @@ public class Main {
 
         Alert emptyFields = new Alert(Alert.AlertType.WARNING);
         emptyFields.setTitle("Warning");
-        emptyFields.setHeaderText("Incorrect username/password");
-        emptyFields.setContentText("incorrect username or password, please check your entries");
+        emptyFields.setHeaderText("Empty Fields");
+        emptyFields.setContentText("Please enter your username and password");
+
+        Alert usernameNotFound = new Alert(Alert.AlertType.WARNING);
+        usernameNotFound.setTitle("Warning");
+        usernameNotFound.setHeaderText("Username does not exist");
+        usernameNotFound.setContentText("Please enter an existing account or sign up");
+
+        Alert wrongPassword = new Alert(Alert.AlertType.WARNING);
+        wrongPassword.setTitle("Warning");
+        wrongPassword.setHeaderText("Wrong password");
+        wrongPassword.setContentText("Please check your password");
+
         apply.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY) {
                 if (username.getText().equals("") || password.getText().equals("")) {
-
+                    emptyFields.showAndWait();
+                } else if (!Account.checkExistUserName(username.getText())) {
+                    usernameNotFound.showAndWait();
+                } else if (!Account.findAccount(username.getText()).equals(password.getText())) {
+                    wrongPassword.showAndWait();
+                } else {
+                    //todo
                 }
             }
         });

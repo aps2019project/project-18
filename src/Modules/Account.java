@@ -74,6 +74,13 @@ public class Account implements Comparator {
         accounts.add(account);
     }
 
+    public static Account findAccount(String username) {
+        for (Account account : accounts)
+            if (account.getUserName().equals(username))
+                return account;
+        return null;
+    }
+
     public static void signIn(String userName, String passWord) {
         for (Account account : accounts) {
             if (account.userName.equals(userName)) {
@@ -94,7 +101,7 @@ public class Account implements Comparator {
         }
     }
 
-    private static boolean checkExistUserName(String userName) {
+    public static boolean checkExistUserName(String userName) {
         for (Account account : accounts) {
             if (account.userName.equalsIgnoreCase(userName)) {
                 return true;
@@ -154,15 +161,6 @@ public class Account implements Comparator {
 
     private void sortAccounts() {
         accounts.sort(this::compare);
-    }
-
-    public static Account findAccount(String userName) {
-        for (Account account : accounts) {
-            if (account.userName.equalsIgnoreCase(userName)) {
-                return account;
-            }
-        }
-        return null;
     }
 
     public String getUserName() {
