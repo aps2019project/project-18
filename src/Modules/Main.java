@@ -88,7 +88,7 @@ public class Main {
             }
         });
 
-        root.getChildren().addAll(username, password, apply, back , title);
+        root.getChildren().addAll(username, password, apply, back, title);
         // Account.signIn(username, password);
         stage.setTitle("sign in");
         stage.setScene(scene);
@@ -97,7 +97,7 @@ public class Main {
 
     private static void signUp(Stage stage) {
         Group root = new Group();
-        scene = new Scene(root, 100, 100, Color.RED);
+        scene = new Scene(root, 800, 800, Color.RED);
 
         try {
             Image backGround = new Image(new FileInputStream("C:\\Users\\asus\\Desktop\\project-18\\src\\Modules\\bg.jpg"));
@@ -107,18 +107,22 @@ public class Main {
             e.printStackTrace();
         }
 
+        Label title = new Label("Sign up");
+        title.setTextFill(Color.ORANGERED);
+        title.setFont(Font.font(60));
+        title.relocate(280 , 100);
         Alert duplicateUsername = new Alert(Alert.AlertType.WARNING);
         duplicateUsername.setTitle("Warning");
         duplicateUsername.setHeaderText("Username exists");
         duplicateUsername.setContentText("Please choose a different username");
 
         TextField userName = new TextField();
-        userName.relocate(0, 20);
+        userName.relocate(310, 200);
         PasswordField password = new PasswordField();
-        password.relocate(50, 20);
-        Button ok = new Button("Ok");
+        password.relocate(310, 230);
+        Button ok = new Button("Sign up");
         ok.setFont(Font.font(35));
-        ok.relocate(50, 100);
+        ok.relocate(300, 260);
         ok.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY)
                 if (Account.checkExistUserName(userName.getText())) {
@@ -129,7 +133,7 @@ public class Main {
         });
         Button back = new Button("Back");
         back.setFont(Font.font(35));
-        back.relocate(100, 500);
+        back.relocate(320, 360);
         ok.setStyle("-fx-background-color: #3A81C4");
         back.setStyle("-fx-background-color: #3A81C4");
 
@@ -138,7 +142,7 @@ public class Main {
                 menu(stage);
             }
         });
-        root.getChildren().addAll(back, ok, password, userName);
+        root.getChildren().addAll(back, ok, password, userName , title);
         stage.setTitle("sign up");
         stage.setScene(scene);
         stage.show();
