@@ -33,8 +33,8 @@ public class GraphicView extends Application {
     public static void connect() {
         try {
             FileInputStream fileInputStream = new FileInputStream("C:\\Users\\asus\\Desktop\\project-18\\src\\Client\\config.txt");
-            Scanner scanner = new Scanner(fileInputStream);
-            socket = new Socket(scanner.nextLine() , scanner.nextInt());
+            Scanner fileScanner = new Scanner(fileInputStream);
+            socket = new Socket(fileScanner.nextLine() , fileScanner.nextInt());
             formatter = new Formatter(socket.getOutputStream());
             scanner = new Scanner(socket.getInputStream());
         } catch (FileNotFoundException e) {
