@@ -11,15 +11,17 @@ import java.util.Comparator;
 
 import static Client.Main.scanner;
 
-public class Account implements Comparator {
+public class Account implements Comparator, Runnable{
 
     private static ArrayList<Account> accounts = new ArrayList<>();
     private ArrayList<GameData> matchHistory = new ArrayList<>();
     private String userName, passWord;
     private int winCount, money = 150000;
     private Collection collection = new Collection();
+    private boolean online = true;
 
-    private void doOrderInAccount() {
+    @Override
+    public void run() {
         String input;
         while (true) {
             input = scanner.nextLine();
@@ -55,8 +57,7 @@ public class Account implements Comparator {
         account.passWord = password;
         Shop.getInstance().addSomeCardToCollectionForBeginning(account);
         accounts.add(account);
-        ShowAccount.showMenu();
-        account.doOrderInAccount();
+        //account.doOrderInAccount();
     }
 
     public static Account findAccount(String username) {
@@ -68,7 +69,8 @@ public class Account implements Comparator {
 
     public void signIn() {
         ShowAccount.showMenu();
-        this.doOrderInAccount();
+        online = true;
+        //this.doOrderInAccount();
     }
 
     public boolean checkPassword(String input) {
@@ -259,5 +261,13 @@ public class Account implements Comparator {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public void logout() {
+        online = false;
+    }
+
+    public boolean getOnline() {
+        return online;
     }
 }

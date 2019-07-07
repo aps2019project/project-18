@@ -47,7 +47,8 @@ public class Main{
                 String username = serverScanner.nextLine();
                 if (!Account.checkExistUserName(username)) {
                     Account.createAccount(username, serverScanner.nextLine());
-                    //todo start account thread
+                    Thread thread = new Thread(Account.findAccount(username));
+                    thread.start();
                     serverOutput.format("ok\n");
                     serverOutput.flush();
                 } else {
@@ -59,7 +60,8 @@ public class Main{
                 if (Account.checkExistUserName(username)) {
                     if (Account.findAccount(username).checkPassword(serverScanner.nextLine())) {
                         Account.findAccount(username).signIn();
-                        //todo start account thread
+                        Thread thread = new Thread(Account.findAccount(username));
+                        thread.start();
                         serverOutput.format("ok\n");
                         serverOutput.flush();
                     } else {
