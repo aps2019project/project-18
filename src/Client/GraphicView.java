@@ -54,6 +54,6 @@ public class GraphicView extends Application {
     }
 
     synchronized public static String read() {
-        return scanner.nextLine()
+        return scanner.nextLine();
     }
 }
