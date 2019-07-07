@@ -30,7 +30,7 @@ public class Main {
         scene = new Scene(root, 800, 800, Color.VIOLET);
 
         try {
-            Image backGround = new Image(new FileInputStream("C:\\Users\\asus\\Desktop\\project-18\\src\\Modules\\bg.jpg"));
+            Image backGround = new Image(new FileInputStream("C:\\Users\\asus\\Desktop\\project-18\\src\\Client\\bg.jpg"));
             ImageView bg = new ImageView(backGround);
             root.getChildren().add(bg);
         } catch (FileNotFoundException e) {
@@ -101,7 +101,7 @@ public class Main {
         scene = new Scene(root, 800, 800, Color.RED);
 
         try {
-            Image backGround = new Image(new FileInputStream("C:\\Users\\asus\\Desktop\\project-18\\src\\Modules\\bg.jpg"));
+            Image backGround = new Image(new FileInputStream("C:\\Users\\asus\\Desktop\\project-18\\src\\Client\\bg.jpg"));
             ImageView bg = new ImageView(backGround);
             root.getChildren().add(bg);
         } catch (FileNotFoundException e) {
@@ -153,7 +153,7 @@ public class Main {
         Group root = new Group();
         scene = new Scene(root, 800, 800, Color.VIOLET);
         try {
-            Image backGround = new Image(new FileInputStream("C:\\Users\\asus\\Desktop\\project-18\\src\\Modules\\bg.jpg"));
+            Image backGround = new Image(new FileInputStream("C:\\Users\\asus\\Desktop\\project-18\\src\\Client\\bg.jpg"));
             ImageView bg = new ImageView(backGround);
             root.getChildren().add(bg);
         } catch (FileNotFoundException e) {

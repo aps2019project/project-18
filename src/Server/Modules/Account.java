@@ -1,6 +1,6 @@
 package Server.Modules;
 
-import Modules.GameBusiness.Battle.Battle;
+import Server.Modules.GameBusiness.Battle.Battle;
 import Server.Modules.PlayableThings.Item.Item;
 import Server.Modules.PlayableThings.cards.Card;
 import Server.View.View.ShowAccount;

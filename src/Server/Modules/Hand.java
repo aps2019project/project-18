@@ -1,6 +1,6 @@
 package Server.Modules;
 
-import Modules.PlayableThings.cards.*;
+
 import Server.Modules.PlayableThings.cards.Card;
 import Server.Modules.PlayableThings.cards.Hero;
 import Server.Modules.PlayableThings.cards.Minion;
