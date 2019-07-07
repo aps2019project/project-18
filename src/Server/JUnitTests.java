@@ -1,21 +1,11 @@
 package Server;
 
-import Server.Modules.Account;
-import Server.Modules.GameBusiness.Game.Game;
-import Server.Modules.GameBusiness.Game.ModeCaptureFlag6Turn;
-import Server.Modules.GameBusiness.Game.ModeKillEnemyHero;
-import Server.Modules.GameBusiness.Player.Human;
-import Server.Modules.Playground;
-import Server.Modules.Shop;
-import Server.Modules.PlayableThings.cards.Card;
-import Server.Modules.PlayableThings.BuffAndSpecialPowers.Buff.Buff;
-import org.junit.Assert;
-import org.junit.Test;
 import org.junit.internal.runners.JUnit4ClassRunner;
 import org.junit.runner.RunWith;
 
 @RunWith(JUnit4ClassRunner.class)
 public class JUnitTests {
+    /*
     @Test
     public void checkMoveInClassPlayground() {
         Playground playground = new Playground();
@@ -178,5 +168,5 @@ public class JUnitTests {
         modeKillEnemyHero.attack(human.getHeroCard(), opponent.getHeroCard().getId());
         if (hitPointOpponent - opponent.getHeroCard().getHitPoint() != human.getHeroCard().getAttackPower() - 2 && hitPointHuman - human.getHeroCard().getHitPoint() != opponent.getHeroCard().getAttackPower())
             Assert.fail();
-    }
+    }*/
 }
