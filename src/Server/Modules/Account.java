@@ -6,10 +6,12 @@ import Server.Modules.PlayableThings.cards.Card;
 import Server.View.View.ShowAccount;
 import Server.View.View.ShowMain;
 
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Comparator;
-
-import static Client.Main.scanner;
+import java.util.Formatter;
+import java.util.Scanner;
 
 public class Account implements Comparator, Runnable{
 
@@ -19,6 +21,8 @@ public class Account implements Comparator, Runnable{
     private int winCount, money = 150000;
     private Collection collection = new Collection();
     private boolean online = true;
+    private Scanner scanner;
+    private Formatter formatter;
 
     @Override
     public void run() {
@@ -51,13 +55,24 @@ public class Account implements Comparator, Runnable{
         }
     }
 
-    public static void createAccount(String userName, String password) {
+    public static void createAccount(String userName, String password, InputStream inputStream,
+                                     OutputStream outputStream) {
         Account account = new Account();
         account.userName = userName;
         account.passWord = password;
         Shop.getInstance().addSomeCardToCollectionForBeginning(account);
         accounts.add(account);
+        account.setScanner(inputStream);
+        account.setFormatter(outputStream);
         //account.doOrderInAccount();
+    }
+
+    public void setScanner(InputStream inputStream) {
+        scanner = new Scanner(inputStream);
+    }
+
+    public void setFormatter(OutputStream outputStream) {
+        formatter = new Formatter(outputStream);
     }
 
     public static Account findAccount(String username) {
@@ -67,8 +82,9 @@ public class Account implements Comparator, Runnable{
         return null;
     }
 
-    public void signIn() {
-        ShowAccount.showMenu();
+    public void signIn(InputStream inputStream, OutputStream outputStream) {
+        setScanner(inputStream);
+        setFormatter(outputStream);
         online = true;
         //this.doOrderInAccount();
     }

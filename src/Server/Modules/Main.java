@@ -46,7 +46,11 @@ public class Main{
             if (serverScanner.nextLine().equals("sign up")) {
                 String username = serverScanner.nextLine();
                 if (!Account.checkExistUserName(username)) {
-                    Account.createAccount(username, serverScanner.nextLine());
+                    try {
+                        Account.createAccount(username, serverScanner.nextLine(), socket.getInputStream(), socket.getOutputStream());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     Thread thread = new Thread(Account.findAccount(username));
                     thread.start();
                     serverOutput.format("ok\n");
@@ -59,7 +63,11 @@ public class Main{
                 String username = serverScanner.nextLine();
                 if (Account.checkExistUserName(username)) {
                     if (Account.findAccount(username).checkPassword(serverScanner.nextLine())) {
-                        Account.findAccount(username).signIn();
+                        try {
+                            Account.findAccount(username).signIn(socket.getInputStream(), socket.getOutputStream());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                         Thread thread = new Thread(Account.findAccount(username));
                         thread.start();
                         serverOutput.format("ok\n");
