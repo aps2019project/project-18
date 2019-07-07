@@ -4,8 +4,10 @@ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -85,5 +87,12 @@ public class GraphicView extends Application {
         button.setFont(Font.font(35));
         button.setStyle("-fx-background-color: #3A81C4");
         return button;
+    }
+
+    public static Label getTitle(String text , int font) {
+        Label title = new Label(text);
+        title.setTextFill(Color.ORANGERED);
+        title.setFont(Font.font(font));
+        return title;
     }
 }

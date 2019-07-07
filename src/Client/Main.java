@@ -16,6 +16,7 @@ public class Main {
     public static Scanner scanner = new Scanner(System.in);
     private static Scene scene;
     private static boolean exit = false;
+
     public static void main(String[] args) {
         Game.initializeItems();
     }
@@ -25,10 +26,8 @@ public class Main {
         scene = new Scene(root, 800, 800, Color.VIOLET);
 
         GraphicView.getBackGround(root);
-        Label title = new Label("Sign in");
-        title.setTextFill(Color.ORANGERED);
-        title.setFont(Font.font(60));
-        title.relocate(280 , 100);
+        Label title = GraphicView.getTitle("Sign in", 60);
+        title.relocate(280, 100);
         TextField username = new TextField();
         username.relocate(300, 200);
         PasswordField password = new PasswordField();
@@ -70,16 +69,16 @@ public class Main {
                     emptyFields.showAndWait();
                 } else {
                     GraphicView.connect();
-                    GraphicView.write("sign in" , true);
-                    GraphicView.write(username.getText() , true);
-                    GraphicView.write(password.getText() , true);
+                    GraphicView.write("sign in", true);
+                    GraphicView.write(username.getText(), true);
+                    GraphicView.write(password.getText(), true);
                     String line = GraphicView.read();
                     if (line.equals("ok")) {
                         GraphicView.setId(username.getText());
                         AcountMenu.goToAccountMenu(stage);
-                    } else  if (line.equals("user")) {
+                    } else if (line.equals("user")) {
                         usernameNotFound.showAndWait();
-                    }else {
+                    } else {
                         wrongPassword.showAndWait();
                     }
                 }
@@ -98,10 +97,8 @@ public class Main {
 
         GraphicView.getBackGround(root);
 
-        Label title = new Label("Sign up");
-        title.setTextFill(Color.ORANGERED);
-        title.setFont(Font.font(60));
-        title.relocate(280 , 100);
+        Label title = GraphicView.getTitle("Sign up", 60);
+        title.relocate(280, 100);
         Alert duplicateUsername = new Alert(Alert.AlertType.WARNING);
         duplicateUsername.setTitle("Warning");
         duplicateUsername.setHeaderText("Username exists");
@@ -122,11 +119,11 @@ public class Main {
             if (event.getButton() == MouseButton.PRIMARY)
                 if (userName.getText().equals("") || password.getText().equals("")) {
                     emptyFields.showAndWait();
-                }else {
+                } else {
                     GraphicView.connect();
-                    GraphicView.write("sign up" , true);
-                    GraphicView.write(userName.getText() , true);
-                    GraphicView.write(password.getText() , true);
+                    GraphicView.write("sign up", true);
+                    GraphicView.write(userName.getText(), true);
+                    GraphicView.write(password.getText(), true);
                     String line = GraphicView.read();
                     if (line.equals("ok")) {
                         GraphicView.setId(userName.getText());
@@ -148,7 +145,7 @@ public class Main {
                 menu(stage);
             }
         });
-        root.getChildren().addAll(back, ok, password, userName , title);
+        root.getChildren().addAll(back, ok, password, userName, title);
         stage.setTitle("sign up");
         stage.setScene(scene);
         stage.show();
@@ -159,20 +156,18 @@ public class Main {
         scene = new Scene(root, 800, 800, Color.VIOLET);
         GraphicView.getBackGround(root);
 
-        Label title = new Label("Duelyst");
-        title.setFont(Font.font(150));
-        title.setTextFill(Color.ORANGERED);
-        title.relocate(150 , 20);
+        Label title = GraphicView.getTitle("Duelyst", 150);
+        title.relocate(170, 20);
 
 
         Button signIn = new Button("Sign In");
         signIn.setFont(Font.font(35));
-        signIn.relocate(305, 250);
+        signIn.relocate(325, 250);
         signIn.setStyle("-fx-background-color: #3A81C4");
 
         Button exit = new Button("Exit");
         exit.setFont(Font.font(35));
-        exit.relocate(335, 450);
+        exit.relocate(352, 450);
         exit.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY)
                 System.exit(0);
@@ -181,7 +176,7 @@ public class Main {
 
         Button signUp = new Button("Sign up");
         signUp.setFont(Font.font(35));
-        signUp.relocate(300, 350);
+        signUp.relocate(320, 350);
         signUp.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY)
                 signUp(stage);
@@ -193,7 +188,7 @@ public class Main {
                 signIn(stage);
             }
         });
-        root.getChildren().addAll(exit, signIn, signUp , title);
+        root.getChildren().addAll(exit, signIn, signUp, title);
         stage.setTitle("menu");
         stage.setScene(scene);
         stage.show();

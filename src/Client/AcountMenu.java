@@ -21,8 +21,8 @@ public class AcountMenu {
         shop.relocate(338, 200);
         Button battle = GraphicView.getButton("Battle");
         battle.relocate(335, 300);
-        Button leaderboard = GraphicView.getButton("Leaderboard");
-        leaderboard.relocate(280, 400);
+        Button leaderBoard = GraphicView.getButton("LeaderBoard");
+        leaderBoard.relocate(280, 400);
         Button exit = GraphicView.getButton("exit");
         exit.relocate(353, 600);
         Button logOut = GraphicView.getButton("Log out");
@@ -31,21 +31,21 @@ public class AcountMenu {
         shop.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY) {
                 GraphicView.write("shop" , true);
-                //todo
+                goToShopMenu(stage);
             }
         });
 
         battle.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY) {
                 GraphicView.write("battle" , true);
-                //todo
+                goToBattleMenu(stage);
             }
         });
 
         collection.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY) {
                 GraphicView.write("collection" , true);
-                //todo
+                goToCollectionMenu(stage);
             }
         });
 
@@ -56,10 +56,10 @@ public class AcountMenu {
             }
         });
 
-        leaderboard.setOnMouseClicked(event -> {
+        leaderBoard.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY) {
                 GraphicView.write("leaderboard" , true);
-                //todo
+                goToLeaderBoardMenu(stage);
             }
         });
 
@@ -70,9 +70,61 @@ public class AcountMenu {
             }
         });
 
-        root.getChildren().addAll(collection , shop , battle , leaderboard , exit , logOut);
+        root.getChildren().addAll(collection , shop , battle , leaderBoard , exit , logOut);
 
         stage.setTitle("Account Menu");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private static void goToShopMenu(Stage stage) {
+        Group root = new Group();
+        scene = new Scene(root, 800, 800, Color.VIOLET);
+
+        GraphicView.getBackGround(root);
+
+        root.getChildren().addAll();
+
+        stage.setTitle("Shop");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private static void goToCollectionMenu(Stage stage) {
+        Group root = new Group();
+        scene = new Scene(root, 800, 800, Color.VIOLET);
+
+        GraphicView.getBackGround(root);
+
+        root.getChildren().addAll();
+
+        stage.setTitle("Collection");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private static void goToBattleMenu(Stage stage) {
+        Group root = new Group();
+        scene = new Scene(root, 800, 800, Color.VIOLET);
+
+        GraphicView.getBackGround(root);
+
+        root.getChildren().addAll();
+
+        stage.setTitle("Battle");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private static void goToLeaderBoardMenu(Stage stage) {
+        Group root = new Group();
+        scene = new Scene(root, 800, 800, Color.VIOLET);
+
+        GraphicView.getBackGround(root);
+
+        root.getChildren().addAll();
+
+        stage.setTitle("Leader Board");
         stage.setScene(scene);
         stage.show();
     }
