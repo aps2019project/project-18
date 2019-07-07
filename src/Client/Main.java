@@ -4,15 +4,11 @@ import Server.Modules.GameBusiness.Game.Game;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 
@@ -28,13 +24,7 @@ public class Main {
         Group root = new Group();
         scene = new Scene(root, 800, 800, Color.VIOLET);
 
-        try {
-            Image backGround = new Image(new FileInputStream("C:\\Users\\asus\\Desktop\\project-18\\src\\Client\\bg.jpg"));
-            ImageView bg = new ImageView(backGround);
-            root.getChildren().add(bg);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        GraphicView.getBackGround(root);
         Label title = new Label("Sign in");
         title.setTextFill(Color.ORANGERED);
         title.setFont(Font.font(60));
@@ -86,7 +76,7 @@ public class Main {
                     String line = GraphicView.read();
                     if (line.equals("ok")) {
                         GraphicView.setId(username.getText());
-                        //todo
+                        AcountMenu.goToAccountMenu(stage);
                     } else  if (line.equals("user")) {
                         usernameNotFound.showAndWait();
                     }else {
@@ -97,7 +87,6 @@ public class Main {
         });
 
         root.getChildren().addAll(username, password, apply, back, title);
-        // Account.signIn(username, password);
         stage.setTitle("sign in");
         stage.setScene(scene);
         stage.show();
@@ -107,13 +96,7 @@ public class Main {
         Group root = new Group();
         scene = new Scene(root, 800, 800, Color.RED);
 
-        try {
-            Image backGround = new Image(new FileInputStream("C:\\Users\\asus\\Desktop\\project-18\\src\\Client\\bg.jpg"));
-            ImageView bg = new ImageView(backGround);
-            root.getChildren().add(bg);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        GraphicView.getBackGround(root);
 
         Label title = new Label("Sign up");
         title.setTextFill(Color.ORANGERED);
@@ -147,7 +130,7 @@ public class Main {
                     String line = GraphicView.read();
                     if (line.equals("ok")) {
                         GraphicView.setId(userName.getText());
-                        //todo
+                        AcountMenu.goToAccountMenu(stage);
                     } else {
                         duplicateUsername.showAndWait();
                     }
@@ -174,13 +157,7 @@ public class Main {
     public static void menu(Stage stage) {
         Group root = new Group();
         scene = new Scene(root, 800, 800, Color.VIOLET);
-        try {
-            Image backGround = new Image(new FileInputStream("C:\\Users\\asus\\Desktop\\project-18\\src\\Client\\bg.jpg"));
-            ImageView bg = new ImageView(backGround);
-            root.getChildren().add(bg);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        GraphicView.getBackGround(root);
 
         Label title = new Label("Duelyst");
         title.setFont(Font.font(150));

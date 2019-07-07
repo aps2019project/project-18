@@ -1,8 +1,14 @@
 package Client;
 
 import javafx.application.Application;
+import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -62,5 +68,22 @@ public class GraphicView extends Application {
 
     synchronized public static String read() {
         return scanner.nextLine();
+    }
+
+    public static void getBackGround(Group group) {
+        try {
+            Image backGround = new Image(new FileInputStream("C:\\Users\\asus\\Desktop\\project-18\\src\\Client\\bg.jpg"));
+            ImageView bg = new ImageView(backGround);
+            group.getChildren().add(bg);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Button getButton(String text) {
+        Button button = new Button(text);
+        button.setFont(Font.font(35));
+        button.setStyle("-fx-background-color: #3A81C4");
+        return button;
     }
 }
