@@ -42,7 +42,9 @@ public class Account implements Comparator, Runnable{
             } else if (input.equalsIgnoreCase("leaderboard")) {
                 showLeaderboard();
             } else if (input.equalsIgnoreCase("Logout")) {
-                ShowMain.showMenu();
+                //ShowMain.showMenu();
+                logout();
+
                 return;
             } else if (input.equalsIgnoreCase("Help")) {
                 ShowAccount.showHelp();
