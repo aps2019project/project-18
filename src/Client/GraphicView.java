@@ -32,7 +32,7 @@ public class GraphicView extends Application {
 
     public static void connect() {
         try {
-            FileInputStream fileInputStream = new FileInputStream("C:\\Users\\asus\\Desktop\\project-18\\config.txt");
+            FileInputStream fileInputStream = new FileInputStream("C:\\Users\\asus\\Desktop\\project-18\\src\\Client\\config.txt");
             Scanner scanner = new Scanner(fileInputStream);
             socket = new Socket(scanner.nextLine() , scanner.nextInt());
             formatter = new Formatter(socket.getOutputStream());
