@@ -1,6 +1,5 @@
 package Client;
 
-import Server.Modules.Account;
 import Server.Modules.GameBusiness.Game.Game;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -79,12 +78,20 @@ public class Main {
             if (event.getButton() == MouseButton.PRIMARY) {
                 if (username.getText().equals("") || password.getText().equals("")) {
                     emptyFields.showAndWait();
-                } else if (!Account.checkExistUserName(username.getText())) {
-                    usernameNotFound.showAndWait();
-                } else if (!Account.findAccount(username.getText()).equals(password.getText())) {
-                    wrongPassword.showAndWait();
                 } else {
-                    //todo
+                    GraphicView.connect();
+                    GraphicView.write("sign in" , true);
+                    GraphicView.write(username.getText() , true);
+                    GraphicView.write(password.getText() , true);
+                    String line = GraphicView.read();
+                    if (line.equals("ok")) {
+                        GraphicView.setId(username.getText());
+                        //todo
+                    } else  if (line.equals("user")) {
+                        usernameNotFound.showAndWait();
+                    }else {
+                        wrongPassword.showAndWait();
+                    }
                 }
             }
         });
@@ -116,6 +123,10 @@ public class Main {
         duplicateUsername.setTitle("Warning");
         duplicateUsername.setHeaderText("Username exists");
         duplicateUsername.setContentText("Please choose a different username");
+        Alert emptyFields = new Alert(Alert.AlertType.WARNING);
+        emptyFields.setTitle("Warning");
+        emptyFields.setHeaderText("Empty Fields");
+        emptyFields.setContentText("Please enter your username and password");
 
         TextField userName = new TextField();
         userName.relocate(310, 200);
@@ -126,11 +137,22 @@ public class Main {
         ok.relocate(300, 260);
         ok.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY)
-                if (Account.checkExistUserName(userName.getText())) {
-                    duplicateUsername.showAndWait();
-                } else {
-                    Account.createAccount(userName.getText(), password.getText());
+                if (userName.getText().equals("") || password.getText().equals("")) {
+                    emptyFields.showAndWait();
+                }else {
+                    GraphicView.connect();
+                    GraphicView.write("sign up" , true);
+                    GraphicView.write(userName.getText() , true);
+                    GraphicView.write(password.getText() , true);
+                    String line = GraphicView.read();
+                    if (line.equals("ok")) {
+                        GraphicView.setId(userName.getText());
+                        //todo
+                    } else {
+                        duplicateUsername.showAndWait();
+                    }
                 }
+
         });
         Button back = new Button("Back");
         back.setFont(Font.font(35));
