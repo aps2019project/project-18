@@ -16,17 +16,21 @@ public class GraphicView extends Application {
     private static Socket socket;
     private static Scanner scanner;
     private static Formatter formatter;
+    private static String id;
+
+    public static void setId(String id1) {
+        id = id1;
+    }
 
     public void start(Stage primaryStage) {
         Main.menu(primaryStage);
     }
 
     public static void main(String[] args) {
-        connect();
         launch(args);
     }
 
-    private static void connect() {
+    public static void connect() {
         try {
             FileInputStream fileInputStream = new FileInputStream("C:\\Users\\asus\\Desktop\\project-18\\config.txt");
             Scanner scanner = new Scanner(fileInputStream);
@@ -48,8 +52,11 @@ public class GraphicView extends Application {
         }
     }
 
-    synchronized public static void write(String line) {
-        formatter.format("%s\\n" , line);
+    synchronized public static void write(String line , boolean start) {
+        if (start)
+            formatter.format("%s\n" , line);
+        else
+            formatter.format("%s%s\n" , id, line);
         formatter.flush();
     }
 
