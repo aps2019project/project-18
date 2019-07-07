@@ -41,7 +41,7 @@ public class Account implements Comparator {
             } else if (input.equalsIgnoreCase("Help")) {
                 ShowAccount.showHelp();
             } else if (input.equalsIgnoreCase("Exit")) {
-               // Main.exit();
+                // Main.exit();
                 return;
             } else {
                 ShowAccount.showInvalidCommand();
@@ -49,29 +49,14 @@ public class Account implements Comparator {
         }
     }
 
-    public static void createAccount(String userName) {
-        if (!checkExistUserName(userName)) {
-            Account account = new Account();
-            account.userName = userName;
-            ShowAccount.showEnterPassword();
-            account.passWord = createPassword();
-            account.money = 100000000;
-            Shop.getInstance().addSomeCardToCollectionForBeginning(account);
-            account.money = 1500000;
-            accounts.add(account);
-            ShowAccount.showMenu();
-            account.doOrderInAccount();
-        } else {
-            ShowAccount.showUserNameExist();
-            createAccount(scanner.nextLine());
-        }
-    }
-
     public static void createAccount(String userName, String password) {
         Account account = new Account();
         account.userName = userName;
         account.passWord = password;
+        Shop.getInstance().addSomeCardToCollectionForBeginning(account);
         accounts.add(account);
+        ShowAccount.showMenu();
+        account.doOrderInAccount();
     }
 
     public static Account findAccount(String username) {
@@ -81,24 +66,13 @@ public class Account implements Comparator {
         return null;
     }
 
-    public static void signIn(String userName, String passWord) {
-        for (Account account : accounts) {
-            if (account.userName.equals(userName)) {
-                if (account.passWord.equals(passWord)) {
-                    ShowAccount.showMenu();
-                    account.doOrderInAccount();
-                    return;
-                }
-            }
-        }
-        ShowAccount.showIncorrectUserNameOrPassword();
-        String input = scanner.nextLine();
-        if (input.equalsIgnoreCase("Back")) {
-            ShowMain.showMenu();
-            return;
-        } else {
-            signIn(input, scanner.nextLine());
-        }
+    public void signIn() {
+        ShowAccount.showMenu();
+        this.doOrderInAccount();
+    }
+
+    public boolean checkPassword(String input) {
+        return  this.passWord.equals(input);
     }
 
     public static boolean checkExistUserName(String userName) {
@@ -108,17 +82,6 @@ public class Account implements Comparator {
             }
         }
         return false;
-    }
-
-    private static String createPassword() {
-        String password = scanner.nextLine();
-        if (checkPasswordNote(password)) {
-            return password;
-        } else {
-            ShowAccount.showPasswordNote();
-            createPassword();
-        }
-        return "";
     }
 
     private static boolean checkPasswordNote(String passWord) {
