@@ -6,20 +6,26 @@ import Server.Modules.PlayableThings.cards.Card;
 import Server.View.View.ShowAccount;
 import Server.View.View.ShowMain;
 
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Formatter;
+import java.util.Scanner;
 
-import static Client.Main.scanner;
-
-public class Account implements Comparator {
+public class Account implements Comparator, Runnable{
 
     private static ArrayList<Account> accounts = new ArrayList<>();
     private ArrayList<GameData> matchHistory = new ArrayList<>();
     private String userName, passWord;
     private int winCount, money = 150000;
     private Collection collection = new Collection();
+    private boolean online = true;
+    private Scanner scanner;
+    private Formatter formatter;
 
-    private void doOrderInAccount() {
+    @Override
+    public void run() {
         String input;
         while (true) {
             input = scanner.nextLine();
@@ -49,14 +55,24 @@ public class Account implements Comparator {
         }
     }
 
-    public static void createAccount(String userName, String password) {
+    public static void createAccount(String userName, String password, InputStream inputStream,
+                                     OutputStream outputStream) {
         Account account = new Account();
         account.userName = userName;
         account.passWord = password;
         Shop.getInstance().addSomeCardToCollectionForBeginning(account);
         accounts.add(account);
-        ShowAccount.showMenu();
-        account.doOrderInAccount();
+        account.setScanner(inputStream);
+        account.setFormatter(outputStream);
+        //account.doOrderInAccount();
+    }
+
+    public void setScanner(InputStream inputStream) {
+        scanner = new Scanner(inputStream);
+    }
+
+    public void setFormatter(OutputStream outputStream) {
+        formatter = new Formatter(outputStream);
     }
 
     public static Account findAccount(String username) {
@@ -66,9 +82,11 @@ public class Account implements Comparator {
         return null;
     }
 
-    public void signIn() {
-        ShowAccount.showMenu();
-        this.doOrderInAccount();
+    public void signIn(InputStream inputStream, OutputStream outputStream) {
+        setScanner(inputStream);
+        setFormatter(outputStream);
+        online = true;
+        //this.doOrderInAccount();
     }
 
     public boolean checkPassword(String input) {
@@ -259,5 +277,13 @@ public class Account implements Comparator {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public void logout() {
+        online = false;
+    }
+
+    public boolean getOnline() {
+        return online;
     }
 }
