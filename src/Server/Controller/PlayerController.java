@@ -11,15 +11,6 @@ import Server.View.View.Show;
 
 public class PlayerController {
     private Human human;
-    private final static PlayerController playerController = new PlayerController();
-
-    private PlayerController() {
-
-    }
-
-    public static PlayerController get() {
-        return playerController;
-    }
 
     public void handlePlayerCommands(Human human) {
         this.human = human;

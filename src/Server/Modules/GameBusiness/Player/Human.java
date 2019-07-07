@@ -25,7 +25,7 @@ public class Human extends Player {
     @Override
     public void playTurn(int turn) {
         super.playTurn(turn);
-        PlayerController.get().handlePlayerCommands(this);
+        new PlayerController().handlePlayerCommands(this);
         aging();
     }
 
