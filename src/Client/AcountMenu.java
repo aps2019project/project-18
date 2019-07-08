@@ -300,7 +300,7 @@ public class AcountMenu {
         ScrollPane scrollPane = new ScrollPane(vBox);
         Group root = new Group();
 
-        //GraphicView.getBackGround(root);
+        GraphicView.getBackGround(root);
 
         updateChat(root);
 
