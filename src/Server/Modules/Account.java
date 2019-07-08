@@ -261,7 +261,10 @@ public class Account implements Comparator, Runnable{
         sortAccounts();
         int i = 1;
         for (Account account : accounts) {
-            formatter.format(i + " " +  account.userName + " " + account.winCount + "\n");
+            if (account.getOnline())
+                formatter.format(i + " " +  account.userName + " " + account.winCount + " - online\n");
+            else
+                formatter.format(i + " " +  account.userName + " " + account.winCount + " - offline\n");
             formatter.flush();
             i++;
         }
