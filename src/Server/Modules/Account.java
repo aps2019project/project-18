@@ -124,7 +124,8 @@ public class Account implements Comparator, Runnable{
                 break;
             if (newMessage.equals("update"))
                 sendChatsToClient();
-            messages.add(this.getUserName() + " : " + newMessage);
+            else
+                messages.add(newMessage);
         }
     }
 
