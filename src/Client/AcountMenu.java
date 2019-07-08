@@ -2,7 +2,6 @@ package Client;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.animation.AnimationTimer;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -16,7 +15,6 @@ import java.util.ArrayList;
 
 public class AcountMenu {
     private static Scene scene;
-    private static VBox vBox;
 
     public static void goToAccountMenu(Stage stage) {
         Group root = new Group();
@@ -213,7 +211,7 @@ public class AcountMenu {
             });
         }
         Button back = GraphicView.getButton("back");
-        back.relocate(700 , 0);
+        back.relocate(650 , 0);
         back.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY) {
                 GraphicView.write("end" , true);
@@ -252,8 +250,6 @@ public class AcountMenu {
         Group root = new Group();
         scene = new Scene(root, 800, 800, Color.VIOLET);
 
-
-
         setBack(root , stage);
 
         root.getChildren().addAll();
@@ -266,38 +262,28 @@ public class AcountMenu {
     private static void goToLeaderBoardMenu(Stage stage) {
         Group root = new Group();
 
-
         GraphicView.getBackGround(root);
 
         Label title = GraphicView.getTitle("Leader board", 50);
         title.relocate(280, 0);
         String line = GraphicView.read();
         VBox vBox = new VBox();
-
+        vBox.getChildren().add(title);
         while (!line.equals("end")) {
             String[] parts = line.split(" ");
-            Label number = new Label(parts[0] + ".");
-            number.relocate(0, 100 * Integer.parseInt(parts[0]));
-            number.setFont(Font.font(30));
-            Label name = new Label(parts[1]);
-            name.relocate(70, 100 * Integer.parseInt(parts[0]));
-            name.setFont(Font.font(30));
-            Label wins = new Label(parts[2]);
-            wins.relocate(200, 100 * Integer.parseInt(parts[0]));
-            wins.setFont(Font.font(30));
+            Label label = new Label(parts[0] + "." + parts[1] + "   " + parts[2]);
+            label.setFont(Font.font(30));
+
             if (parts[3].equals("on")) {
-                name.setTextFill(Color.GREEN);
-                number.setTextFill(Color.GREEN);
-                wins.setTextFill(Color.GREEN);
+                label.setTextFill(Color.GREEN);
             }else {
-                name.setTextFill(Color.RED);
-                number.setTextFill(Color.RED);
-                wins.setTextFill(Color.RED);
+                label.setTextFill(Color.RED);
             }
-            vBox.getChildren().addAll(number, name, wins);
+            vBox.getChildren().addAll(label);
             line = GraphicView.read();
         }
-        root.getChildren().addAll(title , vBox);
+
+        root.getChildren().addAll(vBox);
 
         setBack(root , stage);
 
@@ -310,34 +296,16 @@ public class AcountMenu {
     }
 
     private static void goChating (Stage stage) {
-        vBox = new VBox();
+        VBox vBox = new VBox();
         ScrollPane scrollPane = new ScrollPane(vBox);
         Group root = new Group();
 
         GraphicView.getBackGround(root);
 
-        AnimationTimer animationTimer = new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                String line = GraphicView.read();
-                int number = 0;
-                GraphicView.write("update" , true);
-                vBox = new VBox();
-                while (!line.equals("end")) {
-                    Label label = new Label(line);
-                    label.setFont(Font.font(20));
-                    label.relocate(0 , number * 70);
-                    label.setStyle("-fx-background-color: white");
-                    vBox.getChildren().add(label);
-                    number++;
-                    line = GraphicView.read();
-                }
-            }
-        };
-        animationTimer.start();
+        updateChat(vBox);
 
         Button back = GraphicView.getButton("Back");
-        back.relocate(710 , 750);
+        back.relocate(650 , 700);
         back.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY) {
                 GraphicView.write("end" , true);
@@ -345,14 +313,23 @@ public class AcountMenu {
             }
         });
 
+        Button update = GraphicView.getButton("update");
+        update.relocate(650 , 600);
+        update.setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.PRIMARY) {
+                updateChat(vBox);
+            }
+        });
+
         TextField message = new TextField();
         message.setOnAction(event -> {
             GraphicView.write(message.getText() , false);
             message.setText("");
+            updateChat(vBox);
         });
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         scrollPane.setContent(root);
-        root.getChildren().addAll(vBox , back);
+        root.getChildren().addAll(vBox , back , message);
         stage.setScene(new Scene(scrollPane , 800 , 800));
         stage.setTitle("Chat");
         stage.show();
@@ -361,12 +338,28 @@ public class AcountMenu {
 
     private static void setBack(Group root , Stage stage) {
         Button back = GraphicView.getButton("Back");
-        back.relocate(710 , 750);
+        back.relocate(650 , 750);
         back.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY) {
                 goToAccountMenu(stage);
             }
         });
         root.getChildren().add(back);
+    }
+
+    private static void updateChat(VBox vBox) {
+        GraphicView.write("update" , true);
+        String line = GraphicView.read();
+        int number = 0;
+        vBox = new VBox();
+        while (!line.equals("end")) {
+            Label label = new Label(line);
+            label.setFont(Font.font(20));
+            label.setStyle("-fx-background-color: white");
+            vBox.getChildren().add(label);
+            number++;
+            line = GraphicView.read();
+            System.err.println("fuck");
+        }
     }
 }
