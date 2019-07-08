@@ -8,8 +8,8 @@ import java.net.Socket;
 import java.util.Formatter;
 import java.util.Scanner;
 
-public class Main{
-    public static void main(String[] args) {
+public class Main implements Runnable{
+    public void run() {
         ServerSocket ss = null;
         while (true) {
             try {
