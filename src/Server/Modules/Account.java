@@ -318,9 +318,9 @@ public class Account implements Comparator, Runnable{
         int i = 1;
         for (Account account : accounts) {
             if (account.getOnline())
-                formatter.format(i + " " +  account.userName + " " + account.winCount + "on\n");
+                formatter.format(i + " " +  account.userName + " " + account.winCount + " on\n");
             else
-                formatter.format(i + " " +  account.userName + " " + account.winCount + "off\n");
+                formatter.format(i + " " +  account.userName + " " + account.winCount + " off\n");
             formatter.flush();
             i++;
         }
