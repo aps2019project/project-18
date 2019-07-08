@@ -39,7 +39,7 @@ public class AcountMenu {
         Button logOut = GraphicView.getButton("Log out");
         logOut.relocate(320, 600);
         Button chat = GraphicView.getButton("chat room");
-        logOut.relocate(320, 500);
+        logOut.relocate(310, 500);
 
         shop.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY) {
