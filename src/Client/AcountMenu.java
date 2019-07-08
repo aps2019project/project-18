@@ -3,8 +3,11 @@ package Client;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class AcountMenu {
@@ -118,12 +121,34 @@ public class AcountMenu {
 
     private static void goToLeaderBoardMenu(Stage stage) {
         Group root = new Group();
-        scene = new Scene(root, 800, 800, Color.VIOLET);
+
 
         GraphicView.getBackGround(root);
 
-        root.getChildren().addAll();
+        Label title = GraphicView.getTitle("Leader board" , 50);
+        title.relocate(280 , 0);
+        String line = GraphicView.read();
 
+        while (!line.equals("end")) {
+            String[] parts = line.split(" ");
+            Label number = new Label(parts[0] + ".");
+            number.relocate(0 , 100 * Integer.parseInt(parts[0]));
+            number.setFont(Font.font(30));
+            Label name = new Label(parts[1]);
+            name.relocate(70 , 100 * Integer.parseInt(parts[0]));
+            name.setFont(Font.font(30));
+            Label wins = new Label(parts[2]);
+            wins.relocate(200 , 100 * Integer.parseInt(parts[0]));
+            wins.setFont(Font.font(30));
+            root.getChildren().addAll(number , name , wins);
+
+        }
+
+        root.getChildren().addAll(title);
+
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setContent(root);
+        scene = new Scene(scrollPane, 800, 800,);
         stage.setTitle("Leader Board");
         stage.setScene(scene);
         stage.show();
