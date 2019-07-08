@@ -7,10 +7,7 @@ import Server.View.View.ShowAccount;
 
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Formatter;
-import java.util.Scanner;
+import java.util.*;
 
 public class Account implements Comparator, Runnable{
 
@@ -32,7 +29,7 @@ public class Account implements Comparator, Runnable{
             if (input.equalsIgnoreCase("Collection")) {
                 collection.menu();
             } else if (input.equalsIgnoreCase("Shop")) {
-                Shop.getInstance().menu(this);
+                shop();
             } else if (input.equalsIgnoreCase("Battle")) {
                 if (this.getCollection().getMainDeck() != null && this.getCollection().getMainDeck().checkValidity() && this.getCollection().getMainDeck().checkValidity()) {
                     Battle.doOrder(this);
@@ -55,6 +52,46 @@ public class Account implements Comparator, Runnable{
                 ShowAccount.showInvalidCommand();
             }
         }
+    }
+
+    private void sendCardsToClient() {
+        Random random = new Random();
+        String s;
+        for (Card card : Shop.getInstance().getHeroes()) {
+            s = card.getName() + "/" + random.nextInt(10) + "/" + card.getPrice();
+            System.out.println(s);
+            formatter.format(s + "\n");
+            formatter.flush();
+        }
+        formatter.format("end\n");
+        formatter.flush();
+        for (Card card : Shop.getInstance().getSpells()) {
+            s = card.getName() + "/" + random.nextInt(10) + "/" + card.getPrice();
+            formatter.format(s + "\n");
+            formatter.flush();
+        }
+        formatter.format("end\n");
+        formatter.flush();
+        for (Card card : Shop.getInstance().getMinions()) {
+            s = card.getName() + "/" + random.nextInt(10) + "/" + card.getPrice();
+            formatter.format(s + "\n");
+            formatter.flush();
+        }
+        formatter.format("end\n");
+        formatter.flush();
+        for (Item item : Shop.getInstance().getItems()) {
+            s = item.getName() + "/" + random.nextInt(10) + "/" + item.getPrice();
+            formatter.format(s + "\n");
+            formatter.flush();
+        }
+        formatter.format("end\n");
+        formatter.flush();
+    }
+
+    private void shop() {
+        formatter.format(this.money + "\n");
+        formatter.flush();
+        sendCardsToClient();
     }
 
     private void sendChatsToClient() {
