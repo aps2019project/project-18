@@ -68,6 +68,12 @@ public class ServerGrraphic extends Application {
         back.setFont(Font.font(35));
         back.relocate(700 , 700);
 
+        back.setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.PRIMARY) {
+                start(stage);
+            }
+        });
+
         root.getChildren().addAll(back);
 
         stage.setTitle("shop");
@@ -98,6 +104,12 @@ public class ServerGrraphic extends Application {
         back.setStyle("-fx-background-color: #3A81C4");
         back.setFont(Font.font(35));
         back.relocate(700 , 700);
+
+        back.setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.PRIMARY) {
+                start(stage);
+            }
+        });
 
         root.getChildren().addAll(back , vBox);
 
