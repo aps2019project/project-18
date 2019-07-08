@@ -63,7 +63,12 @@ public class ServerGrraphic extends Application {
 
         ServerGrraphic.getBackGround(root);
 
-        root.getChildren().addAll();
+        Button back = new Button("back");
+        back.setStyle("-fx-background-color: #3A81C4");
+        back.setFont(Font.font(35));
+        back.relocate(700 , 700);
+
+        root.getChildren().addAll(back);
 
         stage.setTitle("shop");
         stage.setScene(scene);
@@ -82,13 +87,19 @@ public class ServerGrraphic extends Application {
             if (!account.getOnline())
                 continue;
             Label name = new Label(account.getUserName());
-            name.relocate(0, 70 * number);
             name.setFont(Font.font(30));
             vBox.getChildren().add(name);
             number++;
         }
+
         scrollPane.setContent(vBox);
-        root.getChildren().addAll(scrollPane);
+
+        Button back = new Button("back");
+        back.setStyle("-fx-background-color: #3A81C4");
+        back.setFont(Font.font(35));
+        back.relocate(700 , 700);
+
+        root.getChildren().addAll(back , vBox);
 
         stage.setTitle("online players");
         stage.setScene(scene);
