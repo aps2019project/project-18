@@ -12,6 +12,7 @@ public class Item {
     private boolean infinitive;
     private boolean used = false;
     private Spell spell;
+    private int number;
 
     public Item(String name, int price, String description , int mana , int turns , boolean infinitive , Spell spell) {
         this.mana = mana;
@@ -31,6 +32,18 @@ public class Item {
 
     public Item() {
 
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void buy() {
+        this.number--;
     }
 
     public Item getItemCopy() {

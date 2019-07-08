@@ -143,8 +143,11 @@ public class AcountMenu {
                         cardDoesNotExist.showAndWait();
                     else if (Integer.parseInt(price) > Integer.parseInt(money))
                         notEnoughMoney.showAndWait();
-                    //else
-                        //todo buy card
+                    else {
+                        GraphicView.write(s.split("/")[0].trim(), true);
+                        vBox.getChildren().removeAll();
+                        goToShopMenu(stage);
+                    }
                 }
             });
         }
@@ -160,8 +163,11 @@ public class AcountMenu {
                         cardDoesNotExist.showAndWait();
                     else if (Integer.parseInt(price) > Integer.parseInt(money))
                         notEnoughMoney.showAndWait();
-                    //else
-                    //todo buy card
+                    else {
+                        GraphicView.write(s.split("/")[0].trim(), true);
+                        vBox.getChildren().removeAll();
+                        goToShopMenu(stage);
+                    }
                 }
             });
         }
@@ -177,8 +183,11 @@ public class AcountMenu {
                         cardDoesNotExist.showAndWait();
                     else if (Integer.parseInt(price) > Integer.parseInt(money))
                         notEnoughMoney.showAndWait();
-                    //else
-                    //todo buy card
+                    else {
+                        GraphicView.write(s.split("/")[0].trim(), true);
+                        vBox.getChildren().removeAll();
+                        goToShopMenu(stage);
+                    }
                 }
             });
         }
@@ -194,8 +203,11 @@ public class AcountMenu {
                         cardDoesNotExist.showAndWait();
                     else if (Integer.parseInt(price) > Integer.parseInt(money))
                         notEnoughMoney.showAndWait();
-                    //else
-                    //todo buy card
+                    else {
+                        GraphicView.write(s.split("/")[0].trim(), true);
+                        vBox.getChildren().removeAll();
+                        goToShopMenu(stage);
+                    }
                 }
             });
         }

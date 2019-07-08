@@ -1,5 +1,7 @@
 package Server.Modules;
 
+import Server.ServerGrraphic;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;

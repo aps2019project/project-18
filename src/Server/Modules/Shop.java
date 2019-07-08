@@ -115,7 +115,7 @@ public class Shop {
         }
     }
 
-    private Card findCard(String name) {
+    public Card findCard(String name) {
         for (Card card : cards) {
             if (card.getName().compareTo(name) == 0)
                 return card;
@@ -123,7 +123,7 @@ public class Shop {
         return null;
     }
 
-    private Item findItem(String name) {
+    public Item findItem(String name) {
         for (Item item : items) {
             if (item.getName().compareTo(name) == 0)
                 return item;
@@ -866,6 +866,10 @@ public class Shop {
         specialPower = new SpecialPower();
         specialPower.setType(SpecialPowerType.COMBO);
         cards.add(new Minion("ArzhangDiv", "", 600, 6, 6, "melee", 0, 3, specialPower));
+        Random random = new Random();
+        for (Card card : cards) {
+            card.setNumber(random.nextInt(10));
+        }
     }
 
     private void initializeItems() {
@@ -889,5 +893,9 @@ public class Shop {
         items.add(new Item("ShockHammer", 15000, "Own hero on attack for 1 turn disarm enemy force"));
         items.add(new Item("SoulEater", 25000, "On death of each own force add 1 power buff with 1 increase AP too random force"));
         items.add(new Item("B‌aptism'ablution", 20000, "Each minion on spawn give 2 turns holy buff"));
+        Random random = new Random();
+        for (Item item : items) {
+            item.setNumber(random.nextInt(10));
+        }
     }
 }
