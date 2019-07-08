@@ -125,7 +125,7 @@ public class AcountMenu {
         VBox vBox = new VBox();
         vBox.getChildren().addAll(new Label("your money is : " + money));
         for (String s : heroes) {
-            Button button = new Button(s.split("/")[0]);
+            Button button = new Button(s);
             vBox.getChildren().addAll(button);
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
@@ -135,7 +135,7 @@ public class AcountMenu {
             });
         }
         for (String s : spells) {
-            Button button = new Button(s.split("/")[0]);
+            Button button = new Button(s);
             vBox.getChildren().addAll(button);
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
@@ -145,7 +145,7 @@ public class AcountMenu {
             });
         }
         for (String s : minions) {
-            Button button = new Button(s.split("/")[0]);
+            Button button = new Button(s);
             vBox.getChildren().addAll(button);
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
@@ -155,7 +155,7 @@ public class AcountMenu {
             });
         }
         for (String s : items) {
-            Button button = new Button(s.split("/")[0]);
+            Button button = new Button(s);
             vBox.getChildren().addAll(button);
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
