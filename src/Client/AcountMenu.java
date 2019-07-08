@@ -207,6 +207,15 @@ public class AcountMenu {
             Label wins = new Label(parts[2]);
             wins.relocate(200, 100 * Integer.parseInt(parts[0]));
             wins.setFont(Font.font(30));
+            if (parts[3].equals("on")) {
+                name.setTextFill(Color.GREEN);
+                number.setTextFill(Color.GREEN);
+                wins.setTextFill(Color.GREEN);
+            }else {
+                name.setTextFill(Color.RED);
+                number.setTextFill(Color.RED);
+                wins.setTextFill(Color.RED);
+            }
             root.getChildren().addAll(number, name, wins);
             line = GraphicView.read();
         }
