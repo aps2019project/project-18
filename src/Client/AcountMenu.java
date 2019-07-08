@@ -326,6 +326,7 @@ public class AcountMenu {
         TextField message = new TextField();
         message.setOnAction(event -> {
             GraphicView.write(message.getText() , false);
+            message.setText("");
         });
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         scrollPane.setContent(root);
