@@ -349,4 +349,8 @@ public class Account implements Comparator, Runnable{
     public boolean getOnline() {
         return online;
     }
+
+    public static ArrayList<Account> getAccounts() {
+        return accounts;
+    }
 }
