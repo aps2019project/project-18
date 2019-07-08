@@ -213,7 +213,7 @@ public class AcountMenu {
             });
         }
         Button back = GraphicView.getButton("back");
-        back.relocate(0 , 700);
+        back.relocate(700 , 0);
         back.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY) {
                 GraphicView.write("end" , true);
