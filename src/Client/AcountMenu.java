@@ -1,5 +1,7 @@
 package Client;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -13,8 +15,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class AcountMenu {
     private static Scene scene;
+
     public static void goToAccountMenu(Stage stage) {
         Group root = new Group();
         scene = new Scene(root, 800, 800, Color.VIOLET);
@@ -38,42 +43,42 @@ public class AcountMenu {
 
         shop.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY) {
-                GraphicView.write("shop" , true);
+                GraphicView.write("shop", true);
                 goToShopMenu(stage);
             }
         });
 
         battle.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY) {
-                GraphicView.write("battle" , true);
+                GraphicView.write("battle", true);
                 goToBattleMenu(stage);
             }
         });
 
         collection.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY) {
-                GraphicView.write("collection" , true);
+                GraphicView.write("collection", true);
                 goToCollectionMenu(stage);
             }
         });
 
         logOut.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY) {
-                GraphicView.write("log out" , true);
+                GraphicView.write("log out", true);
                 Main.menu(stage);
             }
         });
 
         leaderBoard.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY) {
-                GraphicView.write("leaderboard" , true);
+                GraphicView.write("leaderboard", true);
                 goToLeaderBoardMenu(stage);
             }
         });
 
         exit.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY) {
-                GraphicView.write("log out" , true);
+                GraphicView.write("log out", true);
                 System.exit(0);
             }
         });
@@ -93,12 +98,62 @@ public class AcountMenu {
     }
 
     private static void goToShopMenu(Stage stage) {
+        String money = "";
+        ArrayList<String> heroes = new ArrayList<>();
+        ArrayList<String> spells = new ArrayList<>();
+        ArrayList<String> minions = new ArrayList<>();
+        ArrayList<String> items = new ArrayList<>();
         Group root = new Group();
-        scene = new Scene(root, 800, 800, Color.VIOLET);
 
         GraphicView.getBackGround(root);
-
         root.getChildren().addAll();
+        VBox vBox = new VBox();
+        vBox.getChildren().addAll(new Label("your money is : " + money));
+        for (String s : heroes) {
+            Button button = new Button(s);
+            vBox.getChildren().addAll(button);
+            button.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    //buy card if have enough money
+                }
+            });
+        }
+        for (String s : spells) {
+            Button button = new Button(s);
+            vBox.getChildren().addAll(button);
+            button.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    //buy card if have enough money
+                }
+            });
+        }
+        for (String s : minions) {
+            Button button = new Button(s);
+            vBox.getChildren().addAll(button);
+            button.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    //buy card if have enough money
+                }
+            });
+        }
+        for (String s : items) {
+            Button button = new Button(s);
+            vBox.getChildren().addAll(button);
+            button.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    //buy card if have enough money
+                }
+            });
+        }
+        root.getChildren().addAll(vBox);
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setContent(root);
+        vBox.setFillWidth(true);
+        scene = new Scene(scrollPane);
 
         stage.setTitle("Shop");
         stage.setScene(scene);
@@ -137,22 +192,22 @@ public class AcountMenu {
 
         GraphicView.getBackGround(root);
 
-        Label title = GraphicView.getTitle("Leader board" , 50);
-        title.relocate(280 , 0);
+        Label title = GraphicView.getTitle("Leader board", 50);
+        title.relocate(280, 0);
         String line = GraphicView.read();
 
         while (!line.equals("end")) {
             String[] parts = line.split(" ");
             Label number = new Label(parts[0] + ".");
-            number.relocate(0 , 100 * Integer.parseInt(parts[0]));
+            number.relocate(0, 100 * Integer.parseInt(parts[0]));
             number.setFont(Font.font(30));
             Label name = new Label(parts[1]);
-            name.relocate(70 , 100 * Integer.parseInt(parts[0]));
+            name.relocate(70, 100 * Integer.parseInt(parts[0]));
             name.setFont(Font.font(30));
             Label wins = new Label(parts[2]);
-            wins.relocate(200 , 100 * Integer.parseInt(parts[0]));
+            wins.relocate(200, 100 * Integer.parseInt(parts[0]));
             wins.setFont(Font.font(30));
-            root.getChildren().addAll(number , name , wins);
+            root.getChildren().addAll(number, name, wins);
 
         }
 
