@@ -42,7 +42,7 @@ public class Item {
         return number;
     }
 
-    public void buy() {
+    synchronized public void buy() {
         this.number--;
     }
 

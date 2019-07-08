@@ -1,5 +1,8 @@
 package Server;
 
+import Server.Modules.PlayableThings.Item.Item;
+import Server.Modules.PlayableThings.cards.Card;
+import Server.Modules.Shop;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -59,14 +62,42 @@ public class ServerGrraphic extends Application {
 
     private void goToShop(Stage stage) {
         Group root = new Group();
-        Scene scene = new Scene(root, 800, 800, Color.VIOLET);
+        ScrollPane scrollPane = new ScrollPane();
+        VBox vBox = new VBox();
+        vBox.setFillWidth(true);
+        Scene scene = new Scene(scrollPane, 800, 800, Color.VIOLET);
 
         ServerGrraphic.getBackGround(root);
 
         Button back = new Button("back");
         back.setStyle("-fx-background-color: #3A81C4");
         back.setFont(Font.font(35));
-        back.relocate(700 , 700);
+        back.relocate(600 , 500);
+
+        for (Card card : Shop.getInstance().getHeroes()) {
+            Label label = new Label(card.getName() + " / number : " + card.getNumber());
+            label.setFont(Font.font(30));
+            label.setTextFill(Color.ORANGERED);
+            vBox.getChildren().addAll(label);
+        }
+        for (Card card : Shop.getInstance().getMinions()) {
+            Label label = new Label(card.getName() + " / number : " + card.getNumber());
+            label.setFont(Font.font(30));
+            label.setTextFill(Color.ORANGERED);
+            vBox.getChildren().addAll(label);
+        }
+        for (Card card : Shop.getInstance().getSpells()) {
+            Label label = new Label(card.getName() + " / number : " + card.getNumber());
+            label.setFont(Font.font(30));
+            label.setTextFill(Color.ORANGERED);
+            vBox.getChildren().addAll(label);
+        }
+        for (Item item : Shop.getInstance().getItems()) {
+            Label label = new Label(item.getName() + " / number : " + item.getNumber());
+            label.setFont(Font.font(30));
+            label.setTextFill(Color.ORANGERED);
+            vBox.getChildren().addAll(label);
+        }
 
         back.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY) {
@@ -74,7 +105,19 @@ public class ServerGrraphic extends Application {
             }
         });
 
-        root.getChildren().addAll(back);
+        Button update = new Button("update");
+        update.setStyle("-fx-background-color: #3A81C4");
+        update.setFont(Font.font(35));
+        update.relocate(600 , 200);
+
+        update.setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.PRIMARY) {
+                goToShop(stage);
+            }
+        });
+
+        root.getChildren().addAll(back, vBox, update);
+        scrollPane.setContent(root);
 
         stage.setTitle("shop");
         stage.setScene(scene);
@@ -102,7 +145,7 @@ public class ServerGrraphic extends Application {
         Button back = new Button("back");
         back.setStyle("-fx-background-color: #3A81C4");
         back.setFont(Font.font(35));
-        back.relocate(700 , 700);
+        back.relocate(600 , 500);
 
         back.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY) {
@@ -110,7 +153,18 @@ public class ServerGrraphic extends Application {
             }
         });
 
-        root.getChildren().addAll(back , vBox);
+        Button update = new Button("update");
+        update.setStyle("-fx-background-color: #3A81C4");
+        update.setFont(Font.font(35));
+        update.relocate(600 , 200);
+
+        update.setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.PRIMARY) {
+                goToOnlinePlayer(stage);
+            }
+        });
+
+        root.getChildren().addAll(back, vBox, update);
 
         Scene scene = new Scene(scrollPane, 800, 800, Color.VIOLET);
         stage.setTitle("online players");

@@ -47,6 +47,7 @@ public class Account implements Comparator, Runnable{
                 chat();
             } else if (input.equalsIgnoreCase("Exit")) {
                 //Main.exit();
+                logout();
                 return;
             } else {
                 ShowAccount.showInvalidCommand();
@@ -55,9 +56,7 @@ public class Account implements Comparator, Runnable{
     }
 
     private void sendCardsToClient() {
-        Random random = new Random();
         String s;
-        int numberOfCard;
         for (Card card : Shop.getInstance().getHeroes()) {
             s = card.getName() + " / number : " + card.getNumber() + " / price : " + card.getPrice();
             System.out.println(s);
@@ -114,6 +113,8 @@ public class Account implements Comparator, Runnable{
             formatter.format(message + "\n");
             formatter.flush();
         }
+        formatter.format("end\n");
+        formatter.flush();
     }
 
     private void chat() {
