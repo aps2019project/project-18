@@ -330,7 +330,7 @@ public class AcountMenu {
         message.relocate(0 , 750);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         scrollPane.setContent(root);
-        root.getChildren().addAll(vBox , back , message);
+        root.getChildren().addAll(vBox , back , message , update);
         stage.setScene(new Scene(scrollPane , 800 , 800));
         stage.setTitle("Chat");
         stage.show();
