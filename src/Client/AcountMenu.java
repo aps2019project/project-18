@@ -39,7 +39,7 @@ public class AcountMenu {
         Button logOut = GraphicView.getButton("Log out");
         logOut.relocate(320, 600);
         Button chat = GraphicView.getButton("chat room");
-        logOut.relocate(320, 500);
+        chat.relocate(310, 500);
 
         shop.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY) {
@@ -83,7 +83,7 @@ public class AcountMenu {
             }
         });
 
-        exit.setOnMouseClicked(event -> {
+        chat.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY) {
                 GraphicView.write("chat" , true);
                 goChating(stage);
@@ -207,8 +207,17 @@ public class AcountMenu {
             Label wins = new Label(parts[2]);
             wins.relocate(200, 100 * Integer.parseInt(parts[0]));
             wins.setFont(Font.font(30));
+            if (parts[3].equals("on")) {
+                name.setTextFill(Color.GREEN);
+                number.setTextFill(Color.GREEN);
+                wins.setTextFill(Color.GREEN);
+            }else {
+                name.setTextFill(Color.RED);
+                number.setTextFill(Color.RED);
+                wins.setTextFill(Color.RED);
+            }
             root.getChildren().addAll(number, name, wins);
-
+            line = GraphicView.read();
         }
 
         root.getChildren().addAll(title);
@@ -232,13 +241,29 @@ public class AcountMenu {
             @Override
             public void handle(long now) {
                 String line = GraphicView.read();
-
+                int number = 0;
+                GraphicView.write("update" , true);
                 while (!line.equals("end")) {
-
+                    Label label = new Label(line);
+                    label.setFont(Font.font(20));
+                    label.relocate(0 , number * 70);
+                    label.setStyle("-fx-background-color: white");
+                    vBox.getChildren().add(label);
+                    number++;
+                    line = GraphicView.read();
                 }
             }
         };
         animationTimer.start();
+
+        Button back = GraphicView.getButton("Back");
+        back.relocate(710 , 750);
+        back.setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.PRIMARY) {
+                GraphicView.write("end" , true);
+                goToAccountMenu(stage);
+            }
+        });
 
         TextField message = new TextField();
         message.setOnAction(event -> {
