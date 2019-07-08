@@ -22,6 +22,7 @@ public class Account implements Comparator, Runnable{
     private boolean online = true;
     private Scanner scanner;
     private Formatter formatter;
+    private static ArrayList<String> messages = new ArrayList<>();
 
     @Override
     public void run() {
@@ -40,19 +41,37 @@ public class Account implements Comparator, Runnable{
                 }
             } else if (input.equalsIgnoreCase("leaderboard")) {
                 sendLeaderboard();
-            } else if (input.equalsIgnoreCase("Logout")) {
+            } else if (input.equalsIgnoreCase("Log out")) {
                 //ShowMain.showMenu();
                 logout();
 
                 return;
-            } else if (input.equalsIgnoreCase("Help")) {
-                ShowAccount.showHelp();
+            } else if (input.equalsIgnoreCase("chat")) {
+                chat();
             } else if (input.equalsIgnoreCase("Exit")) {
-                // Main.exit();
+                //Main.exit();
                 return;
             } else {
                 ShowAccount.showInvalidCommand();
             }
+        }
+    }
+
+    private void sendChatsToClient() {
+        for (String message : messages) {
+            formatter.format(message + "\n");
+            formatter.flush();
+        }
+    }
+
+    private void chat() {
+        while (true) {
+            String newMessage = scanner.nextLine();
+            if (newMessage.equals("end"))
+                break;
+            if (newMessage.equals("update"))
+                sendChatsToClient();
+            messages.add(this.getUserName() + " : " + newMessage);
         }
     }
 
