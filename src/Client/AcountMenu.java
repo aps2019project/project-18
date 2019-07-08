@@ -87,6 +87,7 @@ public class AcountMenu {
     }
 
     private static void goToShopMenu(Stage stage) {
+        String money = "";
         ArrayList<String> heroes = new ArrayList<>();
         ArrayList<String> spells = new ArrayList<>();
         ArrayList<String> minions = new ArrayList<>();
@@ -94,9 +95,9 @@ public class AcountMenu {
         Group root = new Group();
 
         GraphicView.getBackGround(root);
-
         root.getChildren().addAll();
         VBox vBox = new VBox();
+        vBox.getChildren().addAll(new Label("your money is : " + money));
         for (String s : heroes) {
             Button button = new Button(s);
             vBox.getChildren().addAll(button);
