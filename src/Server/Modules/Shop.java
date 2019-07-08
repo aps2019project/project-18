@@ -28,6 +28,37 @@ public class Shop {
         CustomCard.getInstance().initilizeCustomCards();
     }
 
+    public ArrayList<Card> getHeroes() {
+        ArrayList<Card> heroes = new ArrayList<>();
+        for (Card card : cards) {
+            if (card instanceof Hero)
+                heroes.add(card);
+        }
+        return heroes;
+    }
+
+    public ArrayList<Card> getMinions() {
+        ArrayList<Card> minions = new ArrayList<>();
+        for (Card card : cards) {
+            if (card instanceof Minion)
+                minions.add(card);
+        }
+        return minions;
+    }
+
+    public ArrayList<Card> getSpells() {
+        ArrayList<Card> spells = new ArrayList<>();
+        for (Card card : cards) {
+            if (card instanceof Spell)
+                spells.add(card);
+        }
+        return spells;
+    }
+
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
     public static Shop getInstance() {
         return SHOP;
     }

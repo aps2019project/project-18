@@ -97,20 +97,35 @@ public class AcountMenu {
         stage.show();
     }
 
+    private static void getCards(ArrayList<String> cards) {
+        while (true) {
+            String s = GraphicView.read();
+            if (s.equals("end"))
+                break;
+            cards.add(s);
+        }
+    }
+
     private static void goToShopMenu(Stage stage) {
-        String money = "";
+        String money;
         ArrayList<String> heroes = new ArrayList<>();
         ArrayList<String> spells = new ArrayList<>();
         ArrayList<String> minions = new ArrayList<>();
         ArrayList<String> items = new ArrayList<>();
         Group root = new Group();
 
+        money = GraphicView.read();
+        getCards(heroes);
+        getCards(spells);
+        getCards(minions);
+        getCards(items);
+
         GraphicView.getBackGround(root);
         root.getChildren().addAll();
         VBox vBox = new VBox();
         vBox.getChildren().addAll(new Label("your money is : " + money));
         for (String s : heroes) {
-            Button button = new Button(s);
+            Button button = new Button(s.split("/")[0]);
             vBox.getChildren().addAll(button);
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
@@ -120,7 +135,7 @@ public class AcountMenu {
             });
         }
         for (String s : spells) {
-            Button button = new Button(s);
+            Button button = new Button(s.split("/")[0]);
             vBox.getChildren().addAll(button);
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
@@ -130,7 +145,7 @@ public class AcountMenu {
             });
         }
         for (String s : minions) {
-            Button button = new Button(s);
+            Button button = new Button(s.split("/")[0]);
             vBox.getChildren().addAll(button);
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
@@ -140,7 +155,7 @@ public class AcountMenu {
             });
         }
         for (String s : items) {
-            Button button = new Button(s);
+            Button button = new Button(s.split("/")[0]);
             vBox.getChildren().addAll(button);
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
@@ -153,7 +168,7 @@ public class AcountMenu {
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setContent(root);
         vBox.setFillWidth(true);
-        scene = new Scene(scrollPane);
+        scene = new Scene(scrollPane, 800, 800);
 
         stage.setTitle("Shop");
         stage.setScene(scene);
