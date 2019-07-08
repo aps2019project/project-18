@@ -40,7 +40,7 @@ public class Account implements Comparator, Runnable{
                     System.out.println("Main deck is not valid");
                 }
             } else if (input.equalsIgnoreCase("leaderboard")) {
-                showLeaderboard();
+                sendLeaderboard();
             } else if (input.equalsIgnoreCase("Logout")) {
                 //ShowMain.showMenu();
                 logout();
@@ -258,13 +258,16 @@ public class Account implements Comparator, Runnable{
         return collection;
     }
 
-    public void showLeaderboard() {
+    public void sendLeaderboard() {
         sortAccounts();
         int i = 1;
         for (Account account : accounts) {
-            ShowAccount.showLeaderboard(i, account.userName, account.winCount);
+            formatter.format(i + " - Username : " +  account.userName + " - Wins" + account.winCount + "\n");
+            formatter.flush();
             i++;
         }
+        formatter.format("end\n");
+        formatter.flush();
     }
 
     public static void showOpponents(String username) {
