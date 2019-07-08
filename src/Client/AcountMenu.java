@@ -199,8 +199,18 @@ public class AcountMenu {
                 }
             });
         }
-        root.getChildren().addAll(vBox);
+        Button back = GraphicView.getButton("back");
+        back.relocate(0 , 700);
+        back.setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.PRIMARY) {
+                GraphicView.write("end" , true);
+                goToAccountMenu(stage);
+            }
+        });
+        root.getChildren().addAll(vBox , back);
         ScrollPane scrollPane = new ScrollPane();
+
+
         scrollPane.setContent(root);
         vBox.setFillWidth(true);
         scene = new Scene(scrollPane, 800, 800);
