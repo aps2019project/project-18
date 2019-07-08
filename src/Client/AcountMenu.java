@@ -181,6 +181,8 @@ public class AcountMenu {
 
         GraphicView.getBackGround(root);
 
+        setBack(root , stage);
+
         root.getChildren().addAll();
 
         stage.setTitle("Collection");
@@ -192,7 +194,9 @@ public class AcountMenu {
         Group root = new Group();
         scene = new Scene(root, 800, 800, Color.VIOLET);
 
-        GraphicView.getBackGround(root);
+
+
+        setBack(root , stage);
 
         root.getChildren().addAll();
 
@@ -238,9 +242,11 @@ public class AcountMenu {
 
         root.getChildren().addAll(title);
 
+        setBack(root , stage);
+
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setContent(vBox);
-        root.getChildren().add(scrollPane);
+        root.getChildren().addAll(scrollPane);
         scene = new Scene(root, 800, 800);
         stage.setTitle("Leader Board");
         stage.setScene(scene);
@@ -288,9 +294,21 @@ public class AcountMenu {
         });
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         scrollPane.setContent(vBox);
-        root.getChildren().add(scrollPane);
+        root.getChildren().addAll(scrollPane , back);
         stage.setScene(new Scene(root , 800 , 800));
         stage.setTitle("Chat");
         stage.show();
+    }
+
+
+    private static void setBack(Group root , Stage stage) {
+        Button back = GraphicView.getButton("Back");
+        back.relocate(710 , 750);
+        back.setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.PRIMARY) {
+                goToAccountMenu(stage);
+            }
+        });
+        root.getChildren().add(back);
     }
 }
