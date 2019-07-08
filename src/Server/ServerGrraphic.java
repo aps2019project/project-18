@@ -83,7 +83,6 @@ public class ServerGrraphic extends Application {
 
     private  void goToOnlinePlayer(Stage stage) {
         Group root = new Group();
-        Scene scene = new Scene(root, 800, 800, Color.VIOLET);
         VBox vBox = new VBox();
         ScrollPane scrollPane = new ScrollPane();
 
@@ -98,7 +97,7 @@ public class ServerGrraphic extends Application {
             number++;
         }
 
-        scrollPane.setContent(vBox);
+        scrollPane.setContent(root);
 
         Button back = new Button("back");
         back.setStyle("-fx-background-color: #3A81C4");
@@ -113,6 +112,7 @@ public class ServerGrraphic extends Application {
 
         root.getChildren().addAll(back , vBox);
 
+        Scene scene = new Scene(scrollPane, 800, 800, Color.VIOLET);
         stage.setTitle("online players");
         stage.setScene(scene);
         stage.show();
