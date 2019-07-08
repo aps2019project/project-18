@@ -32,7 +32,7 @@ public class ServerGrraphic extends Application {
         Button online = new Button("online players");
         online.setFont(Font.font(60));
         online.setStyle("-fx-background-color: #3A81C4");
-        online.relocate(300 , 100);
+        online.relocate(200 , 100);
         Button shop = new Button("shop");
         shop.setStyle("-fx-background-color: #3A81C4");
         shop.setFont(Font.font(60));
