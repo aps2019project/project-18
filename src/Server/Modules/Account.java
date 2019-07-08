@@ -58,7 +58,7 @@ public class Account implements Comparator, Runnable{
         Random random = new Random();
         String s;
         for (Card card : Shop.getInstance().getHeroes()) {
-            s = card.getName() + "/" + random.nextInt(10) + "/" + card.getPrice();
+            s = card.getName() + " / number : " + random.nextInt(10) + " / price : " + card.getPrice();
             System.out.println(s);
             formatter.format(s + "\n");
             formatter.flush();
