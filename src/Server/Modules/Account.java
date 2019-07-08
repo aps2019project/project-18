@@ -114,6 +114,8 @@ public class Account implements Comparator, Runnable{
             formatter.format(message + "\n");
             formatter.flush();
         }
+        formatter.format("end\n");
+        formatter.flush();
     }
 
     private void chat() {

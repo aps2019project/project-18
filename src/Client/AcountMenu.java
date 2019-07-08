@@ -359,6 +359,7 @@ public class AcountMenu {
             vBox.getChildren().add(label);
             number++;
             line = GraphicView.read();
+            System.err.println("fuck");
         }
     }
 }
