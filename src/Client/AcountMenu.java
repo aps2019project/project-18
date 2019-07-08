@@ -5,10 +5,7 @@ import javafx.event.EventHandler;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -114,6 +111,16 @@ public class AcountMenu {
         ArrayList<String> items = new ArrayList<>();
         Group root = new Group();
 
+        Alert cardDoesNotExist = new Alert(Alert.AlertType.WARNING);
+        cardDoesNotExist.setTitle("Warning");
+        cardDoesNotExist.setHeaderText("Card does not exist");
+        cardDoesNotExist.setContentText("Sorry, the shop has run out of this card");
+
+        Alert notEnoughMoney = new Alert(Alert.AlertType.WARNING);
+        notEnoughMoney.setTitle("Warning");
+        notEnoughMoney.setHeaderText("Not enough money");
+        notEnoughMoney.setContentText("You don't have enough money to buy this card");
+
         money = GraphicView.read();
         getCards(heroes);
         getCards(spells);
@@ -130,7 +137,14 @@ public class AcountMenu {
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    //buy card if have enough money
+                    String price = s.split("/")[2].replace(" price : ", "");
+                    String number = s.split("/")[1].trim().replace("number : ", "");
+                    if (Integer.parseInt(number) == 0)
+                        cardDoesNotExist.showAndWait();
+                    else if (Integer.parseInt(price) > Integer.parseInt(money))
+                        notEnoughMoney.showAndWait();
+                    //else
+                        //todo buy card
                 }
             });
         }
@@ -140,7 +154,14 @@ public class AcountMenu {
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    //buy card if have enough money
+                    String price = s.split("/")[2].replace(" price : ", "");
+                    String number = s.split("/")[1].trim().replace("number : ", "");
+                    if (Integer.parseInt(number) == 0)
+                        cardDoesNotExist.showAndWait();
+                    else if (Integer.parseInt(price) > Integer.parseInt(money))
+                        notEnoughMoney.showAndWait();
+                    //else
+                    //todo buy card
                 }
             });
         }
@@ -150,7 +171,14 @@ public class AcountMenu {
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    //buy card if have enough money
+                    String price = s.split("/")[2].replace(" price : ", "");
+                    String number = s.split("/")[1].trim().replace("number : ", "");
+                    if (Integer.parseInt(number) == 0)
+                        cardDoesNotExist.showAndWait();
+                    else if (Integer.parseInt(price) > Integer.parseInt(money))
+                        notEnoughMoney.showAndWait();
+                    //else
+                    //todo buy card
                 }
             });
         }
@@ -160,7 +188,14 @@ public class AcountMenu {
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    //buy card if have enough money
+                    String price = s.split("/")[2].replace(" price : ", "");
+                    String number = s.split("/")[1].trim().replace("number : ", "");
+                    if (Integer.parseInt(number) == 0)
+                        cardDoesNotExist.showAndWait();
+                    else if (Integer.parseInt(price) > Integer.parseInt(money))
+                        notEnoughMoney.showAndWait();
+                    //else
+                    //todo buy card
                 }
             });
         }
