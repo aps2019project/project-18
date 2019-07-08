@@ -349,6 +349,7 @@ public class AcountMenu {
     }
 
     private static void updateChat(Group root) {
+        //
         GraphicView.write("update" , true);
         String line = GraphicView.read();
         int number = 0;
