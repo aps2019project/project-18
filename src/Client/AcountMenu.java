@@ -302,7 +302,7 @@ public class AcountMenu {
 
         GraphicView.getBackGround(root);
 
-        updateChat(root);
+        updateChat(vBox);
 
         Button back = GraphicView.getButton("Back");
         back.relocate(650 , 700);
@@ -314,10 +314,10 @@ public class AcountMenu {
         });
 
         Button update = GraphicView.getButton("update");
-        update.relocate(650 , 600);
+        update.relocate(650 , 570);
         update.setOnMouseClicked(event -> {
             if (event.getButton() == MouseButton.PRIMARY) {
-                updateChat(root);
+                updateChat(vBox);
             }
         });
 
@@ -325,7 +325,7 @@ public class AcountMenu {
         message.setOnAction(event -> {
             GraphicView.write(message.getText() , false);
             message.setText("");
-            updateChat(root);
+            updateChat(vBox);
         });
         message.relocate(0 , 750);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
@@ -348,11 +348,11 @@ public class AcountMenu {
         root.getChildren().add(back);
     }
 
-    private static void updateChat(Group root) {
+    private static void updateChat(VBox vBox) {
         GraphicView.write("update" , true);
         String line = GraphicView.read();
         int number = 0;
-        VBox vBox = new VBox();
+        vBox = new VBox();
         while (!line.equals("end")) {
             Label label = new Label(line);
             label.setFont(Font.font(20));
@@ -363,6 +363,5 @@ public class AcountMenu {
             line = GraphicView.read();
             System.err.println("fuck");
         }
-        root.getChildren().addAll(vBox);
     }
 }
