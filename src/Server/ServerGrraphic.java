@@ -63,7 +63,18 @@ public class ServerGrraphic extends Application {
 
         ServerGrraphic.getBackGround(root);
 
-        root.getChildren().addAll();
+        Button back = new Button("back");
+        back.setStyle("-fx-background-color: #3A81C4");
+        back.setFont(Font.font(35));
+        back.relocate(700 , 700);
+
+        back.setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.PRIMARY) {
+                start(stage);
+            }
+        });
+
+        root.getChildren().addAll(back);
 
         stage.setTitle("shop");
         stage.setScene(scene);
@@ -72,7 +83,6 @@ public class ServerGrraphic extends Application {
 
     private  void goToOnlinePlayer(Stage stage) {
         Group root = new Group();
-        Scene scene = new Scene(root, 800, 800, Color.VIOLET);
         VBox vBox = new VBox();
         ScrollPane scrollPane = new ScrollPane();
 
@@ -82,14 +92,27 @@ public class ServerGrraphic extends Application {
             if (!account.getOnline())
                 continue;
             Label name = new Label(account.getUserName());
-            name.relocate(0, 70 * number);
             name.setFont(Font.font(30));
             vBox.getChildren().add(name);
             number++;
         }
-        scrollPane.setContent(vBox);
-        root.getChildren().addAll(scrollPane);
 
+        scrollPane.setContent(root);
+
+        Button back = new Button("back");
+        back.setStyle("-fx-background-color: #3A81C4");
+        back.setFont(Font.font(35));
+        back.relocate(700 , 700);
+
+        back.setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.PRIMARY) {
+                start(stage);
+            }
+        });
+
+        root.getChildren().addAll(back , vBox);
+
+        Scene scene = new Scene(scrollPane, 800, 800, Color.VIOLET);
         stage.setTitle("online players");
         stage.setScene(scene);
         stage.show();

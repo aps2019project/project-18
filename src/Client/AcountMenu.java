@@ -87,7 +87,7 @@ public class AcountMenu {
             }
         });
 
-        root.getChildren().addAll(collection , shop , battle , leaderBoard , exit , logOut);
+        root.getChildren().addAll(collection , shop , battle , leaderBoard , exit , logOut , chat);
 
         stage.setTitle("Account Menu");
         stage.setScene(scene);
@@ -216,6 +216,8 @@ public class AcountMenu {
 
         GraphicView.getBackGround(root);
 
+        setBack(root , stage);
+
         root.getChildren().addAll();
 
         stage.setTitle("Collection");
@@ -227,7 +229,9 @@ public class AcountMenu {
         Group root = new Group();
         scene = new Scene(root, 800, 800, Color.VIOLET);
 
-        GraphicView.getBackGround(root);
+
+
+        setBack(root , stage);
 
         root.getChildren().addAll();
 
@@ -271,12 +275,14 @@ public class AcountMenu {
             line = GraphicView.read();
         }
 
-        root.getChildren().addAll(title);
+        root.getChildren().addAll(title , vBox);
+
+        setBack(root , stage);
 
         ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setContent(vBox);
-        root.getChildren().add(scrollPane);
-        scene = new Scene(root, 800, 800);
+        scrollPane.setContent(root);
+        root.getChildren().addAll(scrollPane);
+        scene = new Scene(scrollPane, 800, 800);
         stage.setTitle("Leader Board");
         stage.setScene(scene);
         stage.show();
@@ -322,10 +328,22 @@ public class AcountMenu {
             GraphicView.write(message.getText() , false);
         });
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
-        scrollPane.setContent(vBox);
-        root.getChildren().add(scrollPane);
-        stage.setScene(new Scene(root , 800 , 800));
+        scrollPane.setContent(root);
+        root.getChildren().addAll(vBox , back);
+        stage.setScene(new Scene(scrollPane , 800 , 800));
         stage.setTitle("Chat");
         stage.show();
+    }
+
+
+    private static void setBack(Group root , Stage stage) {
+        Button back = GraphicView.getButton("Back");
+        back.relocate(710 , 750);
+        back.setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.PRIMARY) {
+                goToAccountMenu(stage);
+            }
+        });
+        root.getChildren().add(back);
     }
 }
