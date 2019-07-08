@@ -57,8 +57,9 @@ public class Account implements Comparator, Runnable{
     private void sendCardsToClient() {
         Random random = new Random();
         String s;
+        int numberOfCard;
         for (Card card : Shop.getInstance().getHeroes()) {
-            s = card.getName() + " / number : " + random.nextInt(10) + " / price : " + card.getPrice();
+            s = card.getName() + " / number : " + card.getNumber() + " / price : " + card.getPrice();
             System.out.println(s);
             formatter.format(s + "\n");
             formatter.flush();
@@ -66,21 +67,21 @@ public class Account implements Comparator, Runnable{
         formatter.format("end\n");
         formatter.flush();
         for (Card card : Shop.getInstance().getSpells()) {
-            s = card.getName() + " / number : " + random.nextInt(10) + " / price : " + card.getPrice();
+            s = card.getName() + " / number : " + card.getNumber() + " / price : " + card.getPrice();
             formatter.format(s + "\n");
             formatter.flush();
         }
         formatter.format("end\n");
         formatter.flush();
         for (Card card : Shop.getInstance().getMinions()) {
-            s = card.getName() + " / number : " + random.nextInt(10) + " / price : " + card.getPrice();
+            s = card.getName() + " / number : " + card.getNumber() + " / price : " + card.getPrice();
             formatter.format(s + "\n");
             formatter.flush();
         }
         formatter.format("end\n");
         formatter.flush();
         for (Item item : Shop.getInstance().getItems()) {
-            s = item.getName() + " / number : " + random.nextInt(10) + " / price : " + item.getPrice();
+            s = item.getName() + " / number : " + item.getNumber() + " / price : " + item.getPrice();
             formatter.format(s + "\n");
             formatter.flush();
         }
@@ -92,6 +93,20 @@ public class Account implements Comparator, Runnable{
         formatter.format(this.money + "\n");
         formatter.flush();
         sendCardsToClient();
+        while (true) {
+            String s = scanner.nextLine();
+            if (s.equals("end"))
+                break;
+            if (Shop.getInstance().findCard(s) != null) {
+                Shop.getInstance().findCard(s).buy();
+                this.buyCard(Shop.getInstance().findCard(s));
+            } else {
+                Shop.getInstance().findItem(s).buy();
+                this.buyItem(Shop.getInstance().findItem(s));
+            }
+            formatter.format(this.money + "\n");
+            sendCardsToClient();
+        }
     }
 
     private void sendChatsToClient() {
@@ -206,10 +221,6 @@ public class Account implements Comparator, Runnable{
     }
 
     public void buyCard(Card card) {
-        if (card.getPrice() > money) {
-            ShowAccount.showNotEnoughMoney();
-            return;
-        }
         money -= card.getPrice();
         Card copyCard = card.getCopyCard();
         setIdCard(copyCard);
@@ -269,10 +280,6 @@ public class Account implements Comparator, Runnable{
     }
 
     public void buyItem(Item item) {
-        if (item.getPrice() > money) {
-            ShowAccount.showNotEnoughMoney();
-            return;
-        }
         money -= item.getPrice();
         Item _item = item.getItemCopy();
         setItemId(_item);

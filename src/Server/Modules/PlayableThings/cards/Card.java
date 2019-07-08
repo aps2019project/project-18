@@ -6,12 +6,25 @@ public abstract class Card {
     protected String description;
     protected int price;
     protected int manaPoint = 0;
+    protected int number;
 
     public Card(String name, String description, int price, int manaPoint) {
         this.manaPoint = manaPoint;
         this.name = name;
         this.description = description;
         this.price = price;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    synchronized public void buy() {
+        this.number--;
     }
 
     public void setId(String id) {

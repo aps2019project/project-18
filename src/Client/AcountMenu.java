@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 public class AcountMenu {
     private static Scene scene;
+    private static VBox vBox;
 
     public static void goToAccountMenu(Stage stage) {
         Group root = new Group();
@@ -143,8 +144,11 @@ public class AcountMenu {
                         cardDoesNotExist.showAndWait();
                     else if (Integer.parseInt(price) > Integer.parseInt(money))
                         notEnoughMoney.showAndWait();
-                    //else
-                        //todo buy card
+                    else {
+                        GraphicView.write(s.split("/")[0].trim(), true);
+                        vBox.getChildren().removeAll();
+                        goToShopMenu(stage);
+                    }
                 }
             });
         }
@@ -160,8 +164,11 @@ public class AcountMenu {
                         cardDoesNotExist.showAndWait();
                     else if (Integer.parseInt(price) > Integer.parseInt(money))
                         notEnoughMoney.showAndWait();
-                    //else
-                    //todo buy card
+                    else {
+                        GraphicView.write(s.split("/")[0].trim(), true);
+                        vBox.getChildren().removeAll();
+                        goToShopMenu(stage);
+                    }
                 }
             });
         }
@@ -177,8 +184,11 @@ public class AcountMenu {
                         cardDoesNotExist.showAndWait();
                     else if (Integer.parseInt(price) > Integer.parseInt(money))
                         notEnoughMoney.showAndWait();
-                    //else
-                    //todo buy card
+                    else {
+                        GraphicView.write(s.split("/")[0].trim(), true);
+                        vBox.getChildren().removeAll();
+                        goToShopMenu(stage);
+                    }
                 }
             });
         }
@@ -194,13 +204,26 @@ public class AcountMenu {
                         cardDoesNotExist.showAndWait();
                     else if (Integer.parseInt(price) > Integer.parseInt(money))
                         notEnoughMoney.showAndWait();
-                    //else
-                    //todo buy card
+                    else {
+                        GraphicView.write(s.split("/")[0].trim(), true);
+                        vBox.getChildren().removeAll();
+                        goToShopMenu(stage);
+                    }
                 }
             });
         }
-        root.getChildren().addAll(vBox);
+        Button back = GraphicView.getButton("back");
+        back.relocate(700 , 0);
+        back.setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.PRIMARY) {
+                GraphicView.write("end" , true);
+                goToAccountMenu(stage);
+            }
+        });
+        root.getChildren().addAll(vBox , back);
         ScrollPane scrollPane = new ScrollPane();
+
+
         scrollPane.setContent(root);
         vBox.setFillWidth(true);
         scene = new Scene(scrollPane, 800, 800);
@@ -287,7 +310,7 @@ public class AcountMenu {
     }
 
     private static void goChating (Stage stage) {
-        VBox vBox = new VBox();
+        vBox = new VBox();
         ScrollPane scrollPane = new ScrollPane(vBox);
         Group root = new Group();
 
@@ -299,6 +322,7 @@ public class AcountMenu {
                 String line = GraphicView.read();
                 int number = 0;
                 GraphicView.write("update" , true);
+                vBox = new VBox();
                 while (!line.equals("end")) {
                     Label label = new Label(line);
                     label.setFont(Font.font(20));
