@@ -1,11 +1,14 @@
 package Client;
 
+import javafx.animation.AnimationTimer;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseButton;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -27,8 +30,10 @@ public class AcountMenu {
         Button leaderBoard = GraphicView.getButton("LeaderBoard");
         leaderBoard.relocate(280, 400);
         Button exit = GraphicView.getButton("exit");
-        exit.relocate(353, 600);
+        exit.relocate(353, 700);
         Button logOut = GraphicView.getButton("Log out");
+        logOut.relocate(320, 600);
+        Button chat = GraphicView.getButton("chat room");
         logOut.relocate(320, 500);
 
         shop.setOnMouseClicked(event -> {
@@ -70,6 +75,13 @@ public class AcountMenu {
             if (event.getButton() == MouseButton.PRIMARY) {
                 GraphicView.write("log out" , true);
                 System.exit(0);
+            }
+        });
+
+        exit.setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.PRIMARY) {
+                GraphicView.write("chat" , true);
+                goChating(stage);
             }
         });
 
@@ -148,9 +160,40 @@ public class AcountMenu {
 
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setContent(root);
-        scene = new Scene(scrollPane, 800, 800,);
+        scene = new Scene(scrollPane, 800, 800);
         stage.setTitle("Leader Board");
         stage.setScene(scene);
+        stage.show();
+    }
+
+    private static void goChating (Stage stage) {
+        VBox vBox = new VBox();
+        ScrollPane scrollPane = new ScrollPane(vBox);
+        Group root = new Group();
+
+        GraphicView.getBackGround(root);
+
+        AnimationTimer animationTimer = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                String line = GraphicView.read();
+
+                while (!line.equals("end")) {
+
+                }
+            }
+        };
+        animationTimer.start();
+
+        TextField message = new TextField();
+        message.setOnAction(event -> {
+            GraphicView.write(message.getText() , false);
+        });
+        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+        scrollPane.setContent(vBox);
+        root.getChildren().add(scrollPane);
+        stage.setScene(new Scene(root , 800 , 800));
+        stage.setTitle("Chat");
         stage.show();
     }
 }
