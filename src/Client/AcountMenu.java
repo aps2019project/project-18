@@ -327,6 +327,7 @@ public class AcountMenu {
             message.setText("");
             updateChat(vBox);
         });
+        message.relocate(0 , 750);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
         scrollPane.setContent(root);
         root.getChildren().addAll(vBox , back , message);
@@ -358,6 +359,7 @@ public class AcountMenu {
             label.setStyle("-fx-background-color: white");
             vBox.getChildren().add(label);
             number++;
+            System.err.println(line);
             line = GraphicView.read();
             System.err.println("fuck");
         }
