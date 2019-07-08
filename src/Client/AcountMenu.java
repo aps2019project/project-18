@@ -208,7 +208,7 @@ public class AcountMenu {
             wins.relocate(200, 100 * Integer.parseInt(parts[0]));
             wins.setFont(Font.font(30));
             root.getChildren().addAll(number, name, wins);
-
+            line = GraphicView.read();
         }
 
         root.getChildren().addAll(title);
@@ -232,9 +232,16 @@ public class AcountMenu {
             @Override
             public void handle(long now) {
                 String line = GraphicView.read();
+                int number = 0;
 
                 while (!line.equals("end")) {
-
+                    Label label = new Label(line);
+                    label.setFont(Font.font(20));
+                    label.relocate(0 , number * 70);
+                    label.setStyle("-fx-background-color: white");
+                    vBox.getChildren().add(label);
+                    number++;
+                    line = GraphicView.read();
                 }
             }
         };
