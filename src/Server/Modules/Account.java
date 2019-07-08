@@ -4,7 +4,6 @@ import Server.Modules.GameBusiness.Battle.Battle;
 import Server.Modules.PlayableThings.Item.Item;
 import Server.Modules.PlayableThings.cards.Card;
 import Server.View.View.ShowAccount;
-import Server.View.View.ShowMain;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -262,7 +261,7 @@ public class Account implements Comparator, Runnable{
         sortAccounts();
         int i = 1;
         for (Account account : accounts) {
-            formatter.format(i + " - Username : " +  account.userName + " - Wins" + account.winCount + "\n");
+            formatter.format(i + " " +  account.userName + " " + account.winCount + "\n");
             formatter.flush();
             i++;
         }
