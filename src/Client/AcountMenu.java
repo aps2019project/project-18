@@ -274,14 +274,12 @@ public class AcountMenu {
             vBox.getChildren().addAll(number, name, wins);
             line = GraphicView.read();
         }
-
         root.getChildren().addAll(title , vBox);
 
         setBack(root , stage);
 
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setContent(root);
-        root.getChildren().addAll(scrollPane);
         scene = new Scene(scrollPane, 800, 800);
         stage.setTitle("Leader Board");
         stage.setScene(scene);
