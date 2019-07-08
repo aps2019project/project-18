@@ -195,6 +195,7 @@ public class AcountMenu {
         Label title = GraphicView.getTitle("Leader board", 50);
         title.relocate(280, 0);
         String line = GraphicView.read();
+        VBox vBox = new VBox();
 
         while (!line.equals("end")) {
             String[] parts = line.split(" ");
@@ -216,15 +217,16 @@ public class AcountMenu {
                 number.setTextFill(Color.RED);
                 wins.setTextFill(Color.RED);
             }
-            root.getChildren().addAll(number, name, wins);
+            vBox.getChildren().addAll(number, name, wins);
             line = GraphicView.read();
         }
 
         root.getChildren().addAll(title);
 
         ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setContent(root);
-        scene = new Scene(scrollPane, 800, 800);
+        scrollPane.setContent(vBox);
+        root.getChildren().add(scrollPane);
+        scene = new Scene(root, 800, 800);
         stage.setTitle("Leader Board");
         stage.setScene(scene);
         stage.show();
