@@ -64,7 +64,7 @@ public class GraphicView extends Application {
         if (start)
             formatter.format("%s\n" , line);
         else
-            formatter.format("5s : %s\n" , id, line);
+            formatter.format("%s : %s\n" , id, line);
         formatter.flush();
     }
 
