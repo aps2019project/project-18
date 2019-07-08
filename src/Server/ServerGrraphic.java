@@ -139,6 +139,7 @@ public class ServerGrraphic extends Application {
                 continue;
             Label name = new Label(account.getUserName());
             name.setFont(Font.font(30));
+            name.setTextFill(Color.RED);
             vBox.getChildren().add(name);
             number++;
         }
