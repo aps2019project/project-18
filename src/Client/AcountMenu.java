@@ -1,5 +1,7 @@
 package Client;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -85,7 +87,7 @@ public class AcountMenu {
     }
 
     private static void goToShopMenu(Stage stage) {
-        ArrayList<String> heros = new ArrayList<>();
+        ArrayList<String> heroes = new ArrayList<>();
         ArrayList<String> spells = new ArrayList<>();
         ArrayList<String> minions = new ArrayList<>();
         ArrayList<String> items = new ArrayList<>();
@@ -95,17 +97,45 @@ public class AcountMenu {
 
         root.getChildren().addAll();
         VBox vBox = new VBox();
-        for (String s : heros) {
-            vBox.getChildren().addAll(new Button(s));
+        for (String s : heroes) {
+            Button button = new Button(s);
+            vBox.getChildren().addAll(button);
+            button.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    //buy card if have enough money
+                }
+            });
         }
         for (String s : spells) {
-            vBox.getChildren().addAll(new Button(s));
+            Button button = new Button(s);
+            vBox.getChildren().addAll(button);
+            button.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    //buy card if have enough money
+                }
+            });
         }
         for (String s : minions) {
-            vBox.getChildren().addAll(new Button(s));
+            Button button = new Button(s);
+            vBox.getChildren().addAll(button);
+            button.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    //buy card if have enough money
+                }
+            });
         }
         for (String s : items) {
-            vBox.getChildren().addAll(new Button(s));
+            Button button = new Button(s);
+            vBox.getChildren().addAll(button);
+            button.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    //buy card if have enough money
+                }
+            });
         }
         root.getChildren().addAll(vBox);
         ScrollPane scrollPane = new ScrollPane();
