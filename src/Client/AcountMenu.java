@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 public class AcountMenu {
     private static Scene scene;
+    private static VBox vBox;
 
     public static void goToAccountMenu(Stage stage) {
         Group root = new Group();
@@ -299,7 +300,7 @@ public class AcountMenu {
     }
 
     private static void goChating (Stage stage) {
-        VBox vBox = new VBox();
+        vBox = new VBox();
         ScrollPane scrollPane = new ScrollPane(vBox);
         Group root = new Group();
 
@@ -311,6 +312,7 @@ public class AcountMenu {
                 String line = GraphicView.read();
                 int number = 0;
                 GraphicView.write("update" , true);
+                vBox = new VBox();
                 while (!line.equals("end")) {
                     Label label = new Label(line);
                     label.setFont(Font.font(20));
