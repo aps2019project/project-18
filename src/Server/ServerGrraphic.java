@@ -1,5 +1,6 @@
 package Server;
 
+import Server.Modules.Main;
 import Server.Modules.PlayableThings.Item.Item;
 import Server.Modules.PlayableThings.cards.Card;
 import Server.Modules.Shop;
@@ -22,6 +23,8 @@ import java.io.FileNotFoundException;
 
 public class ServerGrraphic extends Application {
     public static void main(String[] args) {
+        Thread t = new Thread(new Main());
+        t.start();
         launch(args);
     }
 
