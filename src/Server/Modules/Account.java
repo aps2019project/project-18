@@ -66,21 +66,21 @@ public class Account implements Comparator, Runnable{
         formatter.format("end\n");
         formatter.flush();
         for (Card card : Shop.getInstance().getSpells()) {
-            s = card.getName() + "/" + random.nextInt(10) + "/" + card.getPrice();
+            s = card.getName() + " / number : " + random.nextInt(10) + " / price : " + card.getPrice();
             formatter.format(s + "\n");
             formatter.flush();
         }
         formatter.format("end\n");
         formatter.flush();
         for (Card card : Shop.getInstance().getMinions()) {
-            s = card.getName() + "/" + random.nextInt(10) + "/" + card.getPrice();
+            s = card.getName() + " / number : " + random.nextInt(10) + " / price : " + card.getPrice();
             formatter.format(s + "\n");
             formatter.flush();
         }
         formatter.format("end\n");
         formatter.flush();
         for (Item item : Shop.getInstance().getItems()) {
-            s = item.getName() + "/" + random.nextInt(10) + "/" + item.getPrice();
+            s = item.getName() + " / number : " + random.nextInt(10) + " / price : " + item.getPrice();
             formatter.format(s + "\n");
             formatter.flush();
         }
